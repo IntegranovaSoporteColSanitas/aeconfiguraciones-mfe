@@ -1,28 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aeusuarios-mfe
+  name: aeconfiguraciones-mfe
   labels:
-    app: aeusuarios-mfe
-    app.kubernetes.io/component: aeusuarios-mfe
-    app.kubernetes.io/instance: aeusuarios-mfe
-    app.kubernetes.io/name: aeusuarios-mfe
+    app: aeconfiguraciones-mfe
+    app.kubernetes.io/component: aeconfiguraciones-mfe
+    app.kubernetes.io/instance: aeconfiguraciones-mfe
+    app.kubernetes.io/name: aeconfiguraciones-mfe
     app.kubernetes.io/part-of: ae-app-frontend
-    app.openshift.io/runtime: aeusuarios-mfe
+    app.openshift.io/runtime: aeconfiguraciones-mfe
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: aeusuarios-mfe
+      app: aeconfiguraciones-mfe
   template:
     metadata:
       labels:
-        app: aeusuarios-mfe
-        deployment: aeusuarios-mfe
+        app: aeconfiguraciones-mfe
+        deployment: aeconfiguraciones-mfe
     spec:
       containers:
-        - name: aeusuarios-mfe
-          image: 'image-registry.openshift-image-registry.svc:5000/jbarbera-1-dev/aeusuarios-mfe:latest'
+        - name: aeconfiguraciones-mfe
+          image: 'image-registry.openshift-image-registry.svc:5000/jbarbera-1-dev/aeconfiguraciones-mfe:latest'
           ports:
             - containerPort: 8080
               protocol: TCP

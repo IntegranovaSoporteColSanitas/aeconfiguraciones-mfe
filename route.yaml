@@ -1,17 +1,17 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: aeusuarios-mfe
+  name: aeconfiguraciones-mfe
   labels:
-    app: aeusuarios-mfe
-    app.kubernetes.io/component: aeusuarios-mfe
-    app.kubernetes.io/instance: aeusuarios-mfe
-    app.kubernetes.io/name: aeusuarios-mfe
+    app: aeconfiguraciones-mfe
+    app.kubernetes.io/component: aeconfiguraciones-mfe
+    app.kubernetes.io/instance: aeconfiguraciones-mfe
+    app.kubernetes.io/name: aeconfiguraciones-mfe
     app.kubernetes.io/part-of: ae-app-frontend
-    app.openshift.io/runtime: aeusuarios-mfe
+    app.openshift.io/runtime: aeconfiguraciones-mfe
 spec:
   to:
     kind: Service
-    name: aeusuarios-mfe
+    name: aeconfiguraciones-mfe
   tls:
     termination: edge
