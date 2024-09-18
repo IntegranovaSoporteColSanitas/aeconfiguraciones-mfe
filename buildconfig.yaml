@@ -1,0 +1,25 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: aeusuarios-mfe
+  labels:
+    app: aeusuarios-mfe
+    app.kubernetes.io/component: aeusuarios-mfe
+    app.kubernetes.io/instance: aeusuarios-mfe
+    app.kubernetes.io/name: aeusuarios-mfe
+    app.kubernetes.io/part-of: ae-app-frontend
+    app.openshift.io/runtime: aeusuarios-mfe
+spec:
+  source:
+    type: Git
+    git:
+      uri: "git@github.com:elbarbe/aeusuarios.git"
+      ref: "mainbarbe"
+    sourceSecret:
+      name: elbarbe-git-credentials
+  strategy:
+    type: Docker
+  output:
+    to:
+      kind: ImageStreamTag
+      name: aeusuarios-mfe:latest

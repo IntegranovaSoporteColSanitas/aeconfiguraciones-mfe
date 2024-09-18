@@ -1,0 +1,24 @@
+﻿<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-lensesearch [field]="puthisDominio" *ngIf="puthisDominio.visible"
+                (selected)="processputhisdominioSelected($event)" (cleared)="cleanputhisdominio()"
+                (keypressLenseSearch)="onKeypressLenseSearch('onputhisdominioChange')"
+                (searched)="doSearchAction('puthisDominio')"></imes-lensesearch>
+            <imes-input-radio [field]="puNovExcepcionReqDoc" *ngIf="puNovExcepcionReqDoc.visible"></imes-input-radio>
+            <div class="card argumentGroup" *ngIf="isGroupVisible('2')">
+                <div class="card-header">{{getGroupAlias('2')}}</div>
+                <div class="card-body">
+                    <imes-input-string [field]="puSolNovColorOscuro" *ngIf="puSolNovColorOscuro.visible"></imes-input-string>
+                    <imes-input-string [field]="puSolNovColorClaro" *ngIf="puSolNovColorClaro.visible"></imes-input-string>
+                    <imes-input-string [field]="puSolNovLogo" *ngIf="puSolNovLogo.visible"></imes-input-string>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

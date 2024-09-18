@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aeusuarios-mfe
+  labels:
+    app: aeusuarios-mfe
+    app.kubernetes.io/component: aeusuarios-mfe
+    app.kubernetes.io/instance: aeusuarios-mfe
+    app.kubernetes.io/name: aeusuarios-mfe
+    app.kubernetes.io/part-of: ae-app-frontend
+    app.openshift.io/runtime: aeusuarios-mfe
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aeusuarios-mfe
+  template:
+    metadata:
+      labels:
+        app: aeusuarios-mfe
+        deployment: aeusuarios-mfe
+    spec:
+      containers:
+        - name: aeusuarios-mfe
+          image: 'image-registry.openshift-image-registry.svc:5000/jbarbera-1-dev/aeusuarios-mfe:latest'
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources:
+            requests:
+              cpu: 10m
+              memory: 100Mi
