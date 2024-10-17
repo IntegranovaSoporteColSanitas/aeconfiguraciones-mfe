@@ -1,0 +1,19 @@
+﻿<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-lensesearch [field]="puthisProducto" *ngIf="puthisProducto.visible"
+                (selected)="processputhisproductoSelected($event)" (cleared)="cleanputhisproducto()"
+                (keypressLenseSearch)="onKeypressLenseSearch('onputhisproductoChange')"
+                (searched)="doSearchAction('puthisProducto')"></imes-lensesearch>
+            <imes-input-numeric [field]="puCodAnexoMat" *ngIf="puCodAnexoMat.visible"></imes-input-numeric>
+            <imes-input-numeric [field]="puCodAnexoNeo" *ngIf="puCodAnexoNeo.visible"></imes-input-numeric>
+            <imes-input-string [field]="puNIT" *ngIf="puNIT.visible"></imes-input-string>
+            <imes-input-date [field]="puFechaDocSolicitud" *ngIf="puFechaDocSolicitud.visible"></imes-input-date>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

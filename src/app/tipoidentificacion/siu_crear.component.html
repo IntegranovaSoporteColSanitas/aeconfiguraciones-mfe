@@ -1,0 +1,23 @@
+﻿<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-input-numeric [field]="puatrCodigo" *ngIf="puatrCodigo.visible"></imes-input-numeric>
+            <imes-input-string [field]="puatrDescripcion" *ngIf="puatrDescripcion.visible"></imes-input-string>
+            <imes-input-string [field]="puatrNombreCorto" *ngIf="puatrNombreCorto.visible"></imes-input-string>
+            <imes-input-radio [field]="puatrValidoContratante" *ngIf="puatrValidoContratante.visible"></imes-input-radio>
+            <imes-input-radio [field]="puatrValidoTitular" *ngIf="puatrValidoTitular.visible"></imes-input-radio>
+            <imes-input-radio [field]="puatrDiplomatico" *ngIf="puatrDiplomatico.visible"></imes-input-radio>
+            <imes-input-radio [field]="puatrNIT" *ngIf="puatrNIT.visible"></imes-input-radio>
+            <imes-input-radio [field]="puatrHijoDe" *ngIf="puatrHijoDe.visible"></imes-input-radio>
+            <imes-input-radio [field]="puatrRequiereEPS" *ngIf="puatrRequiereEPS.visible"></imes-input-radio>
+            <imes-input-radio [field]="puatrMenorSinIdentificar" *ngIf="puatrMenorSinIdentificar.visible"></imes-input-radio>
+            <imes-input-radio [field]="puatrEsPasaporte" *ngIf="puatrEsPasaporte.visible"></imes-input-radio>
+            <imes-input-radio [field]="puatrVisibleValidadorUsu" *ngIf="puatrVisibleValidadorUsu.visible"></imes-input-radio>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

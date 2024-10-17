@@ -1,0 +1,16 @@
+﻿<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-preload [field]="puthisTipoNovedad" *ngIf="puthisTipoNovedad.visible" (selected)="onputhistiponovedadChange()"></imes-preload>
+            <imes-input-string [field]="puAliasTipo" *ngIf="puAliasTipo.visible"></imes-input-string>
+            <imes-input-string [field]="puNombre" *ngIf="puNombre.visible"></imes-input-string>
+            <imes-input-string [field]="puDescripcion" *ngIf="puDescripcion.visible"></imes-input-string>
+            <imes-input-string [field]="puCodigoLegal" *ngIf="puCodigoLegal.visible"></imes-input-string>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

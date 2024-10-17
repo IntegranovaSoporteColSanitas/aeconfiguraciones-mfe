@@ -1,0 +1,18 @@
+﻿<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-lensesearch [field]="ptupuagrReporte" *ngIf="ptupuagrReporte.visible"
+                (selected)="processptupuagrreporteSelected($event)" (cleared)="cleanptupuagrreporte()"
+                (keypressLenseSearch)="onKeypressLenseSearch('onptupuagrreporteChange')"
+                (searched)="doSearchAction('ptupuagrReporte')"></imes-lensesearch>
+            <imes-input-string [field]="ptupuatrTitulo" *ngIf="ptupuatrTitulo.visible"></imes-input-string>
+            <imes-input-string [field]="ptupuatrDescripcion" *ngIf="ptupuatrDescripcion.visible"></imes-input-string>
+            <imes-input-radio [field]="ptupuatrEsNumerico" *ngIf="ptupuatrEsNumerico.visible"></imes-input-radio>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

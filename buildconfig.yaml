@@ -1,0 +1,24 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: aeconfiguraciones-mfe
+  labels:
+    app: aeconfiguraciones-mfe
+    app.kubernetes.io/component: aeconfiguraciones-mfe
+    app.kubernetes.io/instance: aeconfiguraciones-mfe
+    app.kubernetes.io/name: aeconfiguraciones-mfe
+    app.kubernetes.io/part-of: ae-app-frontend
+    app.openshift.io/runtime: aeconfiguraciones-mfe
+spec:
+  source:
+    type: Git
+    git:
+      uri: "git@github.com:IntegranovaSoporteColSanitas/aeconfiguraciones-mfe.git"
+    sourceSecret:
+      name: ae-git-credentials
+  strategy:
+    type: Docker
+  output:
+    to:
+      kind: ImageStreamTag
+      name: aeconfiguraciones-mfe:latest

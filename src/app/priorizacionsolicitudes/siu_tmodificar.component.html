@@ -1,0 +1,16 @@
+﻿<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-input-definedselection [field]="ptEstadoSolicitud" *ngIf="ptEstadoSolicitud.visible"></imes-input-definedselection>
+            <imes-input-definedselection [field]="ptEstadoDoc" *ngIf="ptEstadoDoc.visible"></imes-input-definedselection>
+            <imes-input-numeric [field]="ptupuPrioridad" *ngIf="ptupuPrioridad.visible"></imes-input-numeric>
+            <imes-lense [field]="puthisPriorizacionSolicitudes" *ngIf="puthisPriorizacionSolicitudes.visible" (selected)="onputhispriorizacionsolicitudesChange()"
+                (cleared)="cleanputhispriorizacionsolicitudes()" (searched)="doSearchAction('puthisPriorizacionSolicitudes')"></imes-lense>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

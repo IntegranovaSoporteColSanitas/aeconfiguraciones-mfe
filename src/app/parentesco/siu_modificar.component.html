@@ -1,0 +1,19 @@
+﻿<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-lensesearch [field]="puthisParentesco" *ngIf="puthisParentesco.visible"
+                (selected)="processputhisparentescoSelected($event)" (cleared)="cleanputhisparentesco()"
+                (keypressLenseSearch)="onKeypressLenseSearch('onputhisparentescoChange')"
+                (searched)="doSearchAction('puthisParentesco')"></imes-lensesearch>
+            <imes-input-radio [field]="puEsTitular" *ngIf="puEsTitular.visible" (valueChanged)="onpuestitularChange()"></imes-input-radio>
+            <imes-input-radio [field]="puEsConyuge" *ngIf="puEsConyuge.visible" (valueChanged)="onpuesconyugeChange()"></imes-input-radio>
+            <imes-input-radio [field]="puEsPadre" *ngIf="puEsPadre.visible" (valueChanged)="onpuespadreChange()"></imes-input-radio>
+            <imes-input-radio [field]="puEsHijo" *ngIf="puEsHijo.visible" (valueChanged)="onpueshijoChange()"></imes-input-radio>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

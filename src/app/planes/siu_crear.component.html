@@ -1,0 +1,19 @@
+﻿<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-input-numeric [field]="puatrPlan" *ngIf="puatrPlan.visible"></imes-input-numeric>
+            <imes-input-string [field]="puatrNombre" *ngIf="puatrNombre.visible"></imes-input-string>
+            <imes-input-radio [field]="puatrEsBancoRep" *ngIf="puatrEsBancoRep.visible"></imes-input-radio>
+            <imes-input-string [field]="puatrCodigoLegal" *ngIf="puatrCodigoLegal.visible"></imes-input-string>
+            <imes-lensesearch [field]="puagrProductoT" *ngIf="puagrProductoT.visible"
+                (selected)="processpuagrproductotSelected($event)" (cleared)="cleanpuagrproductot()"
+                (keypressLenseSearch)="onKeypressLenseSearch('onpuagrproductotChange')"
+                (searched)="doSearchAction('puagrProductoT')"></imes-lensesearch>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>
