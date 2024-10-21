@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: aeconfiguraciones-mfe
-          image: 'image-registry.openshift-image-registry.svc:5000/soporte-colsanitas-dev/aeestatus-mfe:latest'
+          image: 'image-registry.openshift-image-registry.svc:5000/soporte-colsanitas-dev/aeconfiguraciones-mfe:latest'
           ports:
             - containerPort: 8080
               protocol: TCP
