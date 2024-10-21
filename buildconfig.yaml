@@ -16,7 +16,7 @@ spec:
       uri: "git@github.com:elbarbe/aeconfiguraciones.git"
       ref: "main"
     sourceSecret:
-      name: elbarbe-git-credentials
+      name: ae-git-credentials
   strategy:
     type: Docker
   output:
