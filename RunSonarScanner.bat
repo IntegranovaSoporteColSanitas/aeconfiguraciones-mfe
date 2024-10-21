@@ -1,0 +1,2 @@
+
+"C:\java\sonar-scanner-6.1.0.4477-windows-x64\bin\sonar-scanner.bat" -D"sonar.projectKey=ae-configuraciones" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.token=sqp_25589c407083b77e5626f04a802e79e7acc1029c"

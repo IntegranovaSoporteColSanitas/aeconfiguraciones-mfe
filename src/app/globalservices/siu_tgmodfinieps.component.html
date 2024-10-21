@@ -1,0 +1,18 @@
+﻿<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-input-definedselection [field]="ptTratime" *ngIf="ptTratime.visible"></imes-input-definedselection>
+            <imes-input-definedselection [field]="ptTipoContrato" *ngIf="ptTipoContrato.visible"></imes-input-definedselection>
+            <imes-input-date [field]="ptupuDesde" *ngIf="ptupuDesde.visible"></imes-input-date>
+            <imes-input-date [field]="ptupuHasta" *ngIf="ptupuHasta.visible"></imes-input-date>
+            <imes-input-date [field]="ptupuFechaInicioAplicar" *ngIf="ptupuFechaInicioAplicar.visible"></imes-input-date>
+            <imes-lense [field]="ptuputhisFechaIniEPS" *ngIf="ptuputhisFechaIniEPS.visible" (selected)="onptuputhisfechainiepsChange()"
+                (cleared)="cleanptuputhisfechainieps()" (searched)="doSearchAction('ptuputhisFechaIniEPS')"></imes-lense>
+        </div>
+        <div class="col-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

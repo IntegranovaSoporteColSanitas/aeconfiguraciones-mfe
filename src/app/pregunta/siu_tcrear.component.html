@@ -1,0 +1,26 @@
+﻿<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-preload [field]="ptupuagrSeccion" *ngIf="ptupuagrSeccion.visible" (selected)="onptupuagrseccionChange()"></imes-preload>
+            <imes-input-numeric [field]="ptupuatrNumero" *ngIf="ptupuatrNumero.visible"></imes-input-numeric>
+            <imes-input-numeric [field]="ptupuatrNumOrden" *ngIf="ptupuatrNumOrden.visible"></imes-input-numeric>
+            <imes-input-string [field]="ptupuatrDescripcion" *ngIf="ptupuatrDescripcion.visible"></imes-input-string>
+            <imes-input-radio [field]="ptupuatrValorSNObliga" *ngIf="ptupuatrValorSNObliga.visible"></imes-input-radio>
+            <imes-input-radio [field]="ptupuatrObsOblig" *ngIf="ptupuatrObsOblig.visible"></imes-input-radio>
+            <imes-input-radio [field]="ptupuatrEsNumero" *ngIf="ptupuatrEsNumero.visible" (valueChanged)="onptupuatresnumeroChange()"></imes-input-radio>
+            <imes-input-numeric [field]="ptupuatrValorMax" *ngIf="ptupuatrValorMax.visible"></imes-input-numeric>
+            <imes-input-numeric [field]="ptupuatrValorMin" *ngIf="ptupuatrValorMin.visible"></imes-input-numeric>
+            <imes-input-radio [field]="ptupuatrSoloHombres" *ngIf="ptupuatrSoloHombres.visible" (valueChanged)="onptupuatrsolohombresChange()"></imes-input-radio>
+            <imes-input-radio [field]="ptupuatrSoloMujeres" *ngIf="ptupuatrSoloMujeres.visible" (valueChanged)="onptupuatrsolomujeresChange()"></imes-input-radio>
+            <imes-input-radio [field]="ptupuatrRespMultiple" *ngIf="ptupuatrRespMultiple.visible"></imes-input-radio>
+            <imes-input-radio [field]="ptupuatrSeEnviaAlCORE" *ngIf="ptupuatrSeEnviaAlCORE.visible"></imes-input-radio>
+            <imes-input-definedselection [field]="ptupuatrCondicionEdad" *ngIf="ptupuatrCondicionEdad.visible" (valueChanged)="onptupuatrcondicionedadChange()"></imes-input-definedselection>
+            <imes-input-numeric [field]="ptupuatrCondicionEdadAnyos" *ngIf="ptupuatrCondicionEdadAnyos.visible"></imes-input-numeric>
+        </div>
+        <div class="col-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

@@ -1,0 +1,21 @@
+﻿<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-preload [field]="puthisTipoIdentificacion" *ngIf="puthisTipoIdentificacion.visible" (selected)="onputhistipoidentificacionChange()"></imes-preload>
+            <imes-input-radio [field]="puValidoContratante" *ngIf="puValidoContratante.visible"></imes-input-radio>
+            <imes-input-radio [field]="puValidoTitular" *ngIf="puValidoTitular.visible"></imes-input-radio>
+            <imes-input-radio [field]="puDiplomatico" *ngIf="puDiplomatico.visible"></imes-input-radio>
+            <imes-input-radio [field]="puNIT" *ngIf="puNIT.visible"></imes-input-radio>
+            <imes-input-radio [field]="puHijoDe" *ngIf="puHijoDe.visible"></imes-input-radio>
+            <imes-input-radio [field]="puRequiereEPS" *ngIf="puRequiereEPS.visible"></imes-input-radio>
+            <imes-input-radio [field]="puMenorSinIdentificar" *ngIf="puMenorSinIdentificar.visible"></imes-input-radio>
+            <imes-input-radio [field]="puEsPasaporte" *ngIf="puEsPasaporte.visible"></imes-input-radio>
+            <imes-input-radio [field]="puVisibleValidadorUsuarios" *ngIf="puVisibleValidadorUsuarios.visible"></imes-input-radio>
+        </div>
+        <div class="col-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

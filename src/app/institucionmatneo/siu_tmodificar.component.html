@@ -1,0 +1,30 @@
+﻿<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-lensesearch [field]="puthisInstitucionMatNeo" *ngIf="puthisInstitucionMatNeo.visible"
+                (selected)="processputhisinstitucionmatneoSelected($event)" (cleared)="cleanputhisinstitucionmatneo()"
+                (keypressLenseSearch)="onKeypressLenseSearch('onputhisinstitucionmatneoChange')"
+                (searched)="doSearchAction('puthisInstitucionMatNeo')"></imes-lensesearch>
+            <imes-input-string [field]="ptupuNombre" *ngIf="ptupuNombre.visible"></imes-input-string>
+            <imes-preload [field]="ptupuevcTipoIdentificacion" *ngIf="ptupuevcTipoIdentificacion.visible"></imes-preload>
+            <imes-input-string [field]="ptupuNumIdentificacion" *ngIf="ptupuNumIdentificacion.visible"></imes-input-string>
+            <imes-lensesearch [field]="ptupuevcMunicipio" *ngIf="ptupuevcMunicipio.visible"
+                (selected)="processptupuevcmunicipioSelected($event)" (cleared)="cleanptupuevcmunicipio()"
+                (keypressLenseSearch)="onKeypressLenseSearch('onptupuevcmunicipioChange')"
+                (searched)="doSearchAction('ptupuevcMunicipio')"></imes-lensesearch>
+            <imes-lensesearch [field]="ptupuevcTarifa" *ngIf="ptupuevcTarifa.visible"
+                (selected)="processptupuevctarifaSelected($event)" (cleared)="cleanptupuevctarifa()"
+                (keypressLenseSearch)="onKeypressLenseSearch('onptupuevctarifaChange')"
+                (searched)="doSearchAction('ptupuevcTarifa')"></imes-lensesearch>
+            <imes-input-radio [field]="ptupuParaMaternidad" *ngIf="ptupuParaMaternidad.visible"></imes-input-radio>
+            <imes-input-radio [field]="ptupuParaNeonatal" *ngIf="ptupuParaNeonatal.visible"></imes-input-radio>
+            <imes-input-date [field]="ptupuFechaInicial" *ngIf="ptupuFechaInicial.visible"></imes-input-date>
+            <imes-input-date [field]="ptupuFechaFinal" *ngIf="ptupuFechaFinal.visible"></imes-input-date>
+        </div>
+        <div class="col-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

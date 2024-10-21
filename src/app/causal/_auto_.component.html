@@ -1,0 +1,28 @@
+﻿<form novalidate>
+    <ng-container *ngIf="visible">
+        <h3 class="title">{{title}}</h3>
+        <div class="iiuRegion" [ngClass]="cssClasses">
+            <imes-actionsnavigations [queryIU]="this"></imes-actionsnavigations>
+            <!-- Display Set elements -->
+            <div class="card displaySet">
+                <div class="card-header">{{title}}</div>
+                <div class="card-body">
+                    <imes-input-numeric [field]="dseiduCausal" *ngIf="dseiduCausal.visible"></imes-input-numeric>
+                    <imes-input-string [field]="dseAliasCausal" *ngIf="dseAliasCausal.visible"></imes-input-string>
+                    <imes-input-string [field]="dseNombre" *ngIf="dseNombre.visible"></imes-input-string>
+                    <imes-input-string [field]="dseDescripcion" *ngIf="dseDescripcion.visible"></imes-input-string>
+                    <imes-input-string [field]="dseCodigoLegal" *ngIf="dseCodigoLegal.visible"></imes-input-string>
+                    <imes-input-definedselection [field]="dseReqDocPersona" *ngIf="dseReqDocPersona.visible"></imes-input-definedselection>
+                    <imes-input-definedselection [field]="dseReqDocSolicitud" *ngIf="dseReqDocSolicitud.visible"></imes-input-definedselection>
+                    <imes-input-string [field]="dseDrvTextoMostrar" *ngIf="dseDrvTextoMostrar.visible"></imes-input-string>
+                </div>
+            </div>
+            <div *ngIf="showInstanceLog" class="iiuLogNavigation">
+                <a (click)="onNavigateLoginstance()">{{langMng.translateText('app_INSTANCELOG', 'Log Instance')}}</a>
+            </div>
+        </div>
+        <div class="col-12 iiuButtons">
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_CLOSE', '')}}</button>
+        </div>
+    </ng-container>
+</form>

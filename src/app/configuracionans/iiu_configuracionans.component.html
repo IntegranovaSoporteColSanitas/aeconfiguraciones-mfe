@@ -1,0 +1,34 @@
+﻿<form novalidate>
+    <ng-container *ngIf="visible">
+        <h3 class="title">{{title}}</h3>
+        <div class="iiuRegion" [ngClass]="cssClasses">
+            <imes-actionsnavigations [queryIU]="this"></imes-actionsnavigations>
+            <!-- Display Set elements -->
+            <div class="card displaySet">
+                <div class="card-header">{{title}}</div>
+                <div class="card-body">
+                    <imes-input-string [field]="dseDominioProductoTDescripcion" *ngIf="dseDominioProductoTDescripcion.visible"></imes-input-string>
+                    <imes-input-string [field]="dseDominioPlanTNombre" *ngIf="dseDominioPlanTNombre.visible"></imes-input-string>
+                    <imes-input-definedselection [field]="dseTramite" *ngIf="dseTramite.visible"></imes-input-definedselection>
+                    <imes-input-string [field]="dseNovedadNombre" *ngIf="dseNovedadNombre.visible"></imes-input-string>
+                    <imes-input-string [field]="dseCausalNombre" *ngIf="dseCausalNombre.visible"></imes-input-string>
+                    <imes-input-definedselection [field]="dseHabilLunes" *ngIf="dseHabilLunes.visible"></imes-input-definedselection>
+                    <imes-input-definedselection [field]="dseHabilMartes" *ngIf="dseHabilMartes.visible"></imes-input-definedselection>
+                    <imes-input-definedselection [field]="dseHabilMiercoles" *ngIf="dseHabilMiercoles.visible"></imes-input-definedselection>
+                    <imes-input-definedselection [field]="dseHabilJueves" *ngIf="dseHabilJueves.visible"></imes-input-definedselection>
+                    <imes-input-definedselection [field]="dseHabilViernes" *ngIf="dseHabilViernes.visible"></imes-input-definedselection>
+                    <imes-input-definedselection [field]="dseHabilSabado" *ngIf="dseHabilSabado.visible"></imes-input-definedselection>
+                    <imes-input-definedselection [field]="dseHabilDomingo" *ngIf="dseHabilDomingo.visible"></imes-input-definedselection>
+                    <imes-input-numeric [field]="dseANSAfiliaciones" *ngIf="dseANSAfiliaciones.visible"></imes-input-numeric>
+                    <imes-input-numeric [field]="dseANSAreaMedica" *ngIf="dseANSAreaMedica.visible"></imes-input-numeric>
+                </div>
+            </div>
+            <div *ngIf="showInstanceLog" class="iiuLogNavigation">
+                <a (click)="onNavigateLoginstance()">{{langMng.translateText('app_INSTANCELOG', 'Log Instance')}}</a>
+            </div>
+        </div>
+        <div class="col-12 iiuButtons">
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_CLOSE', '')}}</button>
+        </div>
+    </ng-container>
+</form>

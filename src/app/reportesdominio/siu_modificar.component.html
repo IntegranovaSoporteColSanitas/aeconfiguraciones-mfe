@@ -1,0 +1,16 @@
+﻿<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-lensesearch [field]="puthisReportesDominio" *ngIf="puthisReportesDominio.visible"
+                (selected)="processputhisreportesdominioSelected($event)" (cleared)="cleanputhisreportesdominio()"
+                (keypressLenseSearch)="onKeypressLenseSearch('onputhisreportesdominioChange')"
+                (searched)="doSearchAction('puthisReportesDominio')"></imes-lensesearch>
+            <imes-input-radio [field]="puEnviarAuto" *ngIf="puEnviarAuto.visible"></imes-input-radio>
+        </div>
+        <div class="col-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

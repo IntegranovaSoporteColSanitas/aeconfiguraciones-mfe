@@ -1,0 +1,30 @@
+﻿<form novalidate>
+    <ng-container *ngIf="visible">
+        <h3 class="title">{{title}}</h3>
+        <div class="iiuRegion" [ngClass]="cssClasses">
+            <imes-actionsnavigations [queryIU]="this"></imes-actionsnavigations>
+            <!-- Display Set elements -->
+            <div class="card displaySet">
+                <div class="card-header">{{title}}</div>
+                <div class="card-body">
+                    <imes-input-string [field]="dseTipoNovedadNombre" *ngIf="dseTipoNovedadNombre.visible"></imes-input-string>
+                    <imes-input-string [field]="dseNombre" *ngIf="dseNombre.visible"></imes-input-string>
+                    <imes-input-string [field]="dseAliasNovedad" *ngIf="dseAliasNovedad.visible"></imes-input-string>
+                    <imes-input-string [field]="dseDescripcion" *ngIf="dseDescripcion.visible"></imes-input-string>
+                    <imes-input-string [field]="dseCodigoLegal" *ngIf="dseCodigoLegal.visible"></imes-input-string>
+                    <imes-input-radio [field]="dseReqDocPersona" *ngIf="dseReqDocPersona.visible"></imes-input-radio>
+                    <imes-input-radio [field]="dseReqDocSolicitud" *ngIf="dseReqDocSolicitud.visible"></imes-input-radio>
+                    <imes-input-radio [field]="dseVariasFamilias" *ngIf="dseVariasFamilias.visible"></imes-input-radio>
+                    <imes-input-numeric [field]="dseMinValorMeses" *ngIf="dseMinValorMeses.visible"></imes-input-numeric>
+                    <imes-input-numeric [field]="dseMaxValorMeses" *ngIf="dseMaxValorMeses.visible"></imes-input-numeric>
+                </div>
+            </div>
+            <div *ngIf="showInstanceLog" class="iiuLogNavigation">
+                <a (click)="onNavigateLoginstance()">{{langMng.translateText('app_INSTANCELOG', 'Log Instance')}}</a>
+            </div>
+        </div>
+        <div class="col-12 iiuButtons">
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_CLOSE', '')}}</button>
+        </div>
+    </ng-container>
+</form>

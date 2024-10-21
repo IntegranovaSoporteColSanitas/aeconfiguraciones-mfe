@@ -1,0 +1,17 @@
+﻿<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-input-numeric [field]="puatrCodigo" *ngIf="puatrCodigo.visible"></imes-input-numeric>
+            <imes-input-string [field]="puatrDescripcion" *ngIf="puatrDescripcion.visible"></imes-input-string>
+            <imes-input-radio [field]="puatrUnBeneficiarioDistino" *ngIf="puatrUnBeneficiarioDistino.visible"></imes-input-radio>
+            <imes-input-radio [field]="puatrProhibidoBeneficiarios" *ngIf="puatrProhibidoBeneficiarios.visible"></imes-input-radio>
+            <imes-input-radio [field]="puatrProhibidoContratante" *ngIf="puatrProhibidoContratante.visible"></imes-input-radio>
+            <imes-input-radio [field]="puatrProhibidoTitular" *ngIf="puatrProhibidoTitular.visible"></imes-input-radio>
+        </div>
+        <div class="col-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

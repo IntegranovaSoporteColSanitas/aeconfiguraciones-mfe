@@ -1,0 +1,17 @@
+﻿<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-lense [field]="puthisGrupoAsignacionNovedad" *ngIf="puthisGrupoAsignacionNovedad.visible" (selected)="onputhisgrupoasignacionnovedadChange()"
+                (cleared)="cleanputhisgrupoasignacionnovedad()" (searched)="doSearchAction('puthisGrupoAsignacionNovedad')"></imes-lense>
+            <imes-lensesearch [field]="ptGrupo" *ngIf="ptGrupo.visible"
+                (selected)="processptgrupoSelected($event)" (cleared)="cleanptgrupo()"
+                (keypressLenseSearch)="onKeypressLenseSearch('onptgrupoChange')"
+                (searched)="doSearchAction('ptGrupo')"></imes-lensesearch>
+        </div>
+        <div class="col-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

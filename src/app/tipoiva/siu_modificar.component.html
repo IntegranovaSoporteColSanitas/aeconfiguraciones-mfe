@@ -1,0 +1,19 @@
+﻿<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-lensesearch [field]="puthisTipoIVA" *ngIf="puthisTipoIVA.visible"
+                (selected)="processputhistipoivaSelected($event)" (cleared)="cleanputhistipoiva()"
+                (keypressLenseSearch)="onKeypressLenseSearch('onputhistipoivaChange')"
+                (searched)="doSearchAction('puthisTipoIVA')"></imes-lensesearch>
+            <imes-input-string [field]="puDescripcion" *ngIf="puDescripcion.visible"></imes-input-string>
+            <imes-input-numeric [field]="puPorcentaje" *ngIf="puPorcentaje.visible"></imes-input-numeric>
+            <imes-input-date [field]="puFechaInicio" *ngIf="puFechaInicio.visible"></imes-input-date>
+            <imes-input-date [field]="puFechaFin" *ngIf="puFechaFin.visible"></imes-input-date>
+        </div>
+        <div class="col-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>
