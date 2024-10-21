@@ -30,5 +30,6 @@ spec:
             requests:
               cpu: 10m
               memory: 100Mi
+          env:  
             - name: TZ
               value: "America/Bogota"              
