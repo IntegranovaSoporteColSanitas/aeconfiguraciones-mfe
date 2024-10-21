@@ -13,8 +13,8 @@ spec:
   source:
     type: Git
     git:
-      uri: "git@github.com:elbarbe/aeconfiguraciones.git"
-      ref: "main"
+      uri: "https://github.com/IntegranovaSoporteColSanitas/aeconfiguraciones-mfe.git"
+      ref: "3.0.0"
     sourceSecret:
       name: ae-git-credentials
   strategy:
