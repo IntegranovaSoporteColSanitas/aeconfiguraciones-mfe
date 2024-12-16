@@ -98,7 +98,7 @@ export abstract class AbstractIIU extends AbstractQueryIU {
         if (!initialized) {
             this.selectedOid = undefined;
             this.setData(null);
-            this.util.hideWaitDialog();
+            this.setShowWait(false);
             this.changeDetectorRef.markForCheck();
         } else {
             this.refresh();
@@ -137,9 +137,10 @@ export abstract class AbstractIIU extends AbstractQueryIU {
                 queryRequest.filters.push(this.mdNavigationalFilter);
             }
 
-            this.util.showWaitDialog();
+            this.setShowWait(true);
             this.util.populationQuery(url, queryRequest).then((okResponse: any) => {
                 const res = okResponse;
+                this.setShowWait(false);
                 if (res.resultCode === '000') {
                     if (res.results.length > 0) {
                         this.selectedOid = JSON.parse(res.results[0].oid);
@@ -150,11 +151,10 @@ export abstract class AbstractIIU extends AbstractQueryIU {
                 } else {
                     this.util.addErrorMessage(`ERROR (${res.resultCode}): ${res.resultDescription}`);
                 }
-                this.util.hideWaitDialog();
                 this.changeDetectorRef.markForCheck();
             }, (errorResponse: any) => {
                 this.util.addErrorMessage(errorResponse.message);
-                this.util.hideWaitDialog();
+                this.setShowWait(false);
                 this.changeDetectorRef.markForCheck();
             });
         }
@@ -263,21 +263,21 @@ export abstract class AbstractIIU extends AbstractQueryIU {
         filterByOid.variables.push({ name: 'oid', value: JSON.stringify(this.selectedOid) });
         queryRequest.filters.push(filterByOid);
 
-        this.util.showWaitDialog();
+        this.setShowWait(true);
         this.util.populationQuery(url, queryRequest).then((okResponse: any) => {
+            this.setShowWait(false);
             const res = okResponse;
             if (res.resultCode === '000') {
                 this.setData(res.results);
             } else {
                 this.util.addErrorMessage(`ERROR (${res.resultCode}): {res.resultDescription}`);
             }
-            this.util.hideWaitDialog();
             this.changeDetectorRef.markForCheck();
             this.selectionChanged.next();
 
         }, (errorResponse: any) => {
             this.util.addErrorMessage(errorResponse.message);
-            this.util.hideWaitDialog();
+            this.setShowWait(false);
             this.changeDetectorRef.markForCheck();
             this.selectionChanged.next();
         });

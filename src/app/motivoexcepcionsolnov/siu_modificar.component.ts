@@ -177,10 +177,12 @@ export class MotivoExcepcionSolNovSIUumodificarComponent extends AbstractService
                 'descripcion');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisMotivoExcepcionSolNovActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -192,7 +194,6 @@ export class MotivoExcepcionSolNovSIUumodificarComponent extends AbstractService
      */
     private executeDependecyRules1puthisMotivoExcepcionSolNovActions(): void {
         const varputhismotivoexcepcionsolnov = this.getFirstInstanceFromCache(this.puthisMotivoExcepcionSolNov);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhismotivoexcepcionsolnov && !this.util.isNull(varputhismotivoexcepcionsolnov)) {
             // p_Descripcion.SetValue( v.Descripcion )

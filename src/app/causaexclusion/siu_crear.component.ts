@@ -190,10 +190,12 @@ export class CausaExclusionSIUucrearComponent extends AbstractServiceIU implemen
                 'id_Novedad');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puagrNovedadActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -205,7 +207,6 @@ export class CausaExclusionSIUucrearComponent extends AbstractServiceIU implemen
      */
     private executeDependecyRules1puagrNovedadActions(): void {
         const varpuagrnovedad = this.getFirstInstanceFromCache(this.puagrNovedad);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varpuagrnovedad && !this.util.isNull(varpuagrnovedad)) {
             // p_agrNovedad.SetVisible( FALSE )

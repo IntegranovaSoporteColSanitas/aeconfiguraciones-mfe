@@ -132,7 +132,7 @@ export class TipoFacturaSIUumodificarComponent extends AbstractServiceIU impleme
             promiseArr.push(defValpuActivo);
 
             Promise.all(promiseArr).then((results: any[]) => {
-                this.util.hideWaitDialog();
+                this.setShowWait(false);
                 this.changeDetectorRef.markForCheck();
                 resolve();
             });
@@ -162,17 +162,18 @@ export class TipoFacturaSIUumodificarComponent extends AbstractServiceIU impleme
         this.notifyCallToTheBackEnd();
         this.util.searchPreload('TipoFactura', 'IC_TipoFactura', [], null, '').then(
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 if (response && response.results) {
                     this.puthisTipoFactura.loadPreload(response.results);
                 } else {
                     this.puthisTipoFactura.loadPreload([]);
                 }
                 this.numberOfPendingPreload--;
-                this.notifyAnswerFromToTheBackEnd();
                 this.initializeFromContext();
                 this.changeDetectorRef.markForCheck();
             },
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 this.processErrorInLoadPreload(response.resultDescription);
             }
         );
@@ -207,10 +208,12 @@ export class TipoFacturaSIUumodificarComponent extends AbstractServiceIU impleme
                 'descripcion,esemail,escelular,activo');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisTipoFacturaActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -222,7 +225,6 @@ export class TipoFacturaSIUumodificarComponent extends AbstractServiceIU impleme
      */
     private executeDependecyRules1puthisTipoFacturaActions(): void {
         const varputhistipofactura = this.getFirstInstanceFromCache(this.puthisTipoFactura);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhistipofactura && !this.util.isNull(varputhistipofactura)) {
             // p_Descripcion.SetValue( v.Descripcion )

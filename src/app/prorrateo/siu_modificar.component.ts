@@ -187,10 +187,12 @@ export class ProrrateoSIUumodificarComponent extends AbstractServiceIU implement
                 'dia,porcentaje');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisProrrateoActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -202,7 +204,6 @@ export class ProrrateoSIUumodificarComponent extends AbstractServiceIU implement
      */
     private executeDependecyRules1puthisProrrateoActions(): void {
         const varputhisprorrateo = this.getFirstInstanceFromCache(this.puthisProrrateo);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisprorrateo && !this.util.isNull(varputhisprorrateo)) {
             // p_Dia.SetValue( v.Dia )

@@ -112,17 +112,18 @@ export class GSSIUuTGCREARTARIFAComponent extends AbstractServiceIU implements O
         this.notifyCallToTheBackEnd();
         this.util.searchPreload('Productos', 'IC_Producto', [], null, 'OC_Producto').then(
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 if (response && response.results) {
                     this.pProducto.loadPreload(response.results);
                 } else {
                     this.pProducto.loadPreload([]);
                 }
                 this.numberOfPendingPreload--;
-                this.notifyAnswerFromToTheBackEnd();
                 this.initializeFromContext();
                 this.changeDetectorRef.markForCheck();
             },
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 this.processErrorInLoadPreload(response.resultDescription);
             }
         );

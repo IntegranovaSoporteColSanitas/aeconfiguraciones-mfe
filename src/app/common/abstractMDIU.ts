@@ -125,6 +125,7 @@ export abstract class AbstractMDIU extends AbstractIU {
             instanceIU.initializeFromContext();
         } else {
             const populationIU: AbstractPIU = this.masterAbstract as AbstractPIU;
+            populationIU.initializeFromExchangeInfo(exchInfo);
             if (populationIU.paginationInClient) {
                 populationIU.refresh(1);
             }
@@ -324,5 +325,13 @@ export abstract class AbstractMDIU extends AbstractIU {
      */
     public assignValuesFromSelectionBackward(exchInfo: ExchangeInfo): void {
         // Empty method
+    }
+
+    public override setShowWait(value: boolean): void {
+        if (this.masterDetailContainer) {
+            this.masterDetailContainer.setShowWait(value);
+        } else {
+            super.setShowWait(value);
+        }
     }
 }

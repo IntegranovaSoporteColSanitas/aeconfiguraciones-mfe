@@ -184,10 +184,12 @@ export class SeccionSIUuTMODIFICARComponent extends AbstractServiceIU implements
                 'nombre,numorden');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisSeccionActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -199,7 +201,6 @@ export class SeccionSIUuTMODIFICARComponent extends AbstractServiceIU implements
      */
     private executeDependecyRules1puthisSeccionActions(): void {
         const varputhisseccion = this.getFirstInstanceFromCache(this.puthisSeccion);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisseccion && !this.util.isNull(varputhisseccion)) {
             // pt_p_Nombre.SetValue( v.Nombre )

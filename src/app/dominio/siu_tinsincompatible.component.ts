@@ -323,10 +323,12 @@ export class DominioSIUuTINSINCOMPATIBLEComponent extends AbstractServiceIU impl
                 'Numero');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1ptupuevcDominioActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -338,7 +340,6 @@ export class DominioSIUuTINSINCOMPATIBLEComponent extends AbstractServiceIU impl
      */
     private executeDependecyRules1ptupuevcDominioActions(): void {
         const varptupuevcdominio = this.getFirstInstanceFromCache(this.ptupuevcDominio);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varptupuevcdominio && !this.util.isNull(varptupuevcdominio)) {
             // pt_p_evcDominio.SetValue( NULL )
@@ -358,10 +359,12 @@ export class DominioSIUuTINSINCOMPATIBLEComponent extends AbstractServiceIU impl
                 'Numero');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules2ptupuevcDominioActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -373,7 +376,6 @@ export class DominioSIUuTINSINCOMPATIBLEComponent extends AbstractServiceIU impl
      */
     private executeDependecyRules2ptupuevcDominioActions(): void {
         const varptupuevcdominio = this.getFirstInstanceFromCache(this.ptupuevcDominio);
-        this.notifyAnswerFromToTheBackEnd();
         // v = FALSE
         if (varptupuevcdominio && this.util.valueEquals(varptupuevcdominio?.oid, false)) {
             // pt_p_evcDominio.SetActive( TRUE )

@@ -176,10 +176,12 @@ export class CompanyiaSIUumodificarComponent extends AbstractServiceIU implement
                 'esdemp');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisCompanyiaActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -191,7 +193,6 @@ export class CompanyiaSIUumodificarComponent extends AbstractServiceIU implement
      */
     private executeDependecyRules1puthisCompanyiaActions(): void {
         const varputhiscompanyia = this.getFirstInstanceFromCache(this.puthisCompanyia);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhiscompanyia && !this.util.isNull(varputhiscompanyia)) {
             // p_EsDeMP.SetValue( v.esdemp )

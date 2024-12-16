@@ -154,17 +154,18 @@ export class ParentescoDomSIUucrearComponent extends AbstractServiceIU implement
         this.notifyCallToTheBackEnd();
         this.util.searchPreload('Parentesco', 'IC_Parentesco', [], null, 'OC_Parentesco').then(
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 if (response && response.results) {
                     this.puagrParentesco.loadPreload(response.results);
                 } else {
                     this.puagrParentesco.loadPreload([]);
                 }
                 this.numberOfPendingPreload--;
-                this.notifyAnswerFromToTheBackEnd();
                 this.initializeFromContext();
                 this.changeDetectorRef.markForCheck();
             },
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 this.processErrorInLoadPreload(response.resultDescription);
             }
         );

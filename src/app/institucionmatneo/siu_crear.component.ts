@@ -213,17 +213,18 @@ export class InstitucionMatNeoSIUucrearComponent extends AbstractServiceIU imple
         this.notifyCallToTheBackEnd();
         this.util.searchPreload('TipoIdentificacion', 'IC_TipoIdentificacion', [], null, 'OC_TipoIdentificacion').then(
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 if (response && response.results) {
                     this.puagrTipoIdentificacion.loadPreload(response.results);
                 } else {
                     this.puagrTipoIdentificacion.loadPreload([]);
                 }
                 this.numberOfPendingPreload--;
-                this.notifyAnswerFromToTheBackEnd();
                 this.initializeFromContext();
                 this.changeDetectorRef.markForCheck();
             },
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 this.processErrorInLoadPreload(response.resultDescription);
             }
         );

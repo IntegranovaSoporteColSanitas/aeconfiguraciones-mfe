@@ -132,7 +132,7 @@ export class EstadoBeneficiarioSIUumodificarComponent extends AbstractServiceIU 
             promiseArr.push(defValpuEsError);
 
             Promise.all(promiseArr).then((results: any[]) => {
-                this.util.hideWaitDialog();
+                this.setShowWait(false);
                 this.changeDetectorRef.markForCheck();
                 resolve();
             });
@@ -234,10 +234,12 @@ export class EstadoBeneficiarioSIUumodificarComponent extends AbstractServiceIU 
                 'esactivo,confirmado');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisEstadoBeneficiarioActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -249,7 +251,6 @@ export class EstadoBeneficiarioSIUumodificarComponent extends AbstractServiceIU 
      */
     private executeDependecyRules1puthisEstadoBeneficiarioActions(): void {
         const varputhisestadobeneficiario = this.getFirstInstanceFromCache(this.puthisEstadoBeneficiario);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisestadobeneficiario && !this.util.isNull(varputhisestadobeneficiario)) {
             // p_EsActivo.SetValue( v.esactivo )

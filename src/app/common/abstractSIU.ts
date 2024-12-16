@@ -175,7 +175,7 @@ export abstract class AbstractServiceIU extends AbstractIU {
                     this.saveChanges();
                 } else {
                     this.visible = true;
-                    this.util.hideWaitDialog();
+                    this.setShowWait(false);
                     this.changeDetectorRef.markForCheck();
                 }
             }
@@ -186,9 +186,9 @@ export abstract class AbstractServiceIU extends AbstractIU {
      * Notifies a newcall to the backend
      */
     public notifyCallToTheBackEnd(): void {
+        this.asyncCallsInLoadingCounter++;
+        this.checkWaitStatus();
         if (this.inLoadingProcess) {
-            this.asyncCallsInLoadingCounter++;
-            this.util.showWaitDialog();
             if (this.asyncCallTimer) {
                 window.clearTimeout(this.asyncCallTimer);
             }
@@ -204,6 +204,7 @@ export abstract class AbstractServiceIU extends AbstractIU {
      */
     public notifyAnswerFromToTheBackEnd(): void {
         this.asyncCallsInLoadingCounter--;
+        this.checkWaitStatus();
         if (this.userIsAgent) {
             // Clear the timer
             if (this.asyncCallTimer) {
@@ -216,7 +217,6 @@ export abstract class AbstractServiceIU extends AbstractIU {
                     this.visible = false;
                     this.saveChanges();
                 }
-                this.util.hideWaitDialog();
                 this.changeDetectorRef.markForCheck();
             } else {
                 // Set timer again
@@ -518,7 +518,7 @@ export abstract class AbstractServiceIU extends AbstractIU {
     public saveChanges(): void {
         this.serviceRequests = [];
         if (!this.validateInputFields()) {
-            this.util.hideWaitDialog();
+            this.setShowWait(false);
             this.visible = true;
             return;
         }
@@ -535,7 +535,7 @@ export abstract class AbstractServiceIU extends AbstractIU {
             this.progressBarSubscription = this.util.progessBarCancelResponse.subscribe(() => this.processProgressBarCancel());
             this.executeService(this.serviceRequests.shift());
         } else {
-            this.util.showWaitDialog();
+            this.setShowWait(true);
             for (const request of this.serviceRequests) {
                 this.executeService(request);
             }
@@ -564,7 +564,7 @@ export abstract class AbstractServiceIU extends AbstractIU {
                 }
                 if (this.executionsCount === this.totalExecutions) {
                     this.util.addErrorMessageList(this.errorList);
-                    this.util.hideWaitDialog();
+                    this.setShowWait(false);
                     this.util.hideProgressBar();
                     this.processOutArgumentAndCondNavigation(request, response);
                     this.visible = true;
@@ -579,7 +579,7 @@ export abstract class AbstractServiceIU extends AbstractIU {
                 errResponse.messageParts.push(this.title);
                 this.errorList.push(this.util.translateError(errResponse));
                 if (this.executionsCount === this.totalExecutions) {
-                    this.util.hideWaitDialog();
+                    this.setShowWait(false);
                     this.util.hideProgressBar();
                     this.util.addErrorMessageList(this.errorList);
                     this.visible = true;
@@ -647,7 +647,6 @@ export abstract class AbstractServiceIU extends AbstractIU {
      */
     public processErrorInLoadPreload(errorMsg: string): void {
         this.numberOfPendingPreload--;
-        this.notifyAnswerFromToTheBackEnd();
         this.util.addErrorMessage(errorMsg);
         this.initializeFromContext();
         this.changeDetectorRef.markForCheck();
@@ -772,4 +771,22 @@ export abstract class AbstractServiceIU extends AbstractIU {
         this.serviceRequests = [];
         this.processCancel(true);
     }
+
+    public override setShowWait(value: boolean): void {
+        if (this.queryContainer) {
+            this.queryContainer.setShowWait(value);
+        }
+        super.setShowWait(value);
+    }
+
+    protected checkWaitStatus(): void {
+        if (this.asyncCallsInLoadingCounter > 0) {
+            if (!this.showWait) {
+                this.setShowWait(true);
+            }
+        } else if (this.showWait) {
+            this.setShowWait(false);
+        }
+    }
+
 }

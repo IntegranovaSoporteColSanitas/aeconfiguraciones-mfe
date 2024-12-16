@@ -44,11 +44,12 @@ export class GlobalServicesServices extends AbstractServices {
     private tGMODFINIEPSSrvName = 'TGMODFINIEPS';
     private tGCREARCONTEXENTOSrvName = 'TGCREARCONTEXENTO';
     private tGDELCONTRATOEXENTOSrvName = 'TGDELCONTRATOEXENTO';
+    private tGENREPALMSrvName = 'TGENREPALM';
 
     constructor(
         protected override readonly appGlobalInfo: AppGlobalInfo,
         protected override readonly util: Util) {
-        super(appGlobalInfo, util, 'globalservices');
+        super(appGlobalInfo, util, 'GlobalServices');
     }
 
     /**
@@ -743,6 +744,40 @@ export class GlobalServicesServices extends AbstractServices {
         return new Promise<ErrorInformation | void> ((resolve, reject) => {
              this.callService(this.tGDELCONTRATOEXENTOSrvName, request).then((response: any) => {
                 resolve();
+            }).catch( (errorInfo: ErrorInformation) => {
+                reject(errorInfo);
+            });
+        });
+    }
+
+    /**
+     * Call to the service 'TGENREPALM' in the backend
+     * Promise is resolved if service execution is successful and returns its outbound arguments in a JSON object.
+     * If service fails, promise is rejected and returned an instance of ErrorInformation
+     * @param ptReportesProcAlmInArg Mandatory argument 'ptReportesProcAlm'. Oid of 'ReportesProcAlm' class
+     * @param ptValorArgumentosInArg Optional argument 'ptValorArgumentos'
+     */
+    public tGENREPALM(
+        ptReportesProcAlmInArg: any, ptValorArgumentosInArg: string):
+        Promise<ErrorInformation | {
+            oafichero: string,
+            oanombrefichero: string
+        }> {
+        const request: {
+            ptreportesprocalm_json: any, ptvalorargumentos: string
+        } = {
+            ptreportesprocalm_json: ptReportesProcAlmInArg ? JSON.stringify(ptReportesProcAlmInArg) : '',
+            ptvalorargumentos: ptValorArgumentosInArg
+        };
+        return new Promise<ErrorInformation | {
+            oafichero: string,
+            oanombrefichero: string
+        }> ((resolve, reject) => {
+            this.callService(this.tGENREPALMSrvName, request).then((response: any) => {
+                resolve({
+                    oafichero: response.oafichero,
+                    oanombrefichero: response.oanombrefichero
+                });
             }).catch( (errorInfo: ErrorInformation) => {
                 reject(errorInfo);
             });

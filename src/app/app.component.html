@@ -1,6 +1,5 @@
 <app-menu *ngIf="appGlobalInfo.isStandAlone"></app-menu>
 <p-toast key="mainToast" [baseZIndex]="1031"></p-toast>
-<waitDialog [showWait]="showWaitDialog"></waitDialog>
 <gridPreferences [display]="showGridPreferences" [gridColumns]="gridColumnsToEdit"
     (closed)="closeGridPreferences($event)"></gridPreferences>
 <modalForIU [visible]="iuInPopUpInfo.visible" [selector]="iuInPopUpInfo.selector" [title]="iuInPopUpInfo.title">

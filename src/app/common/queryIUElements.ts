@@ -121,6 +121,8 @@ export class AccNavItem {
     public showInGrid = false;
     /* CSS style classes for the element */
     public styleClass = '';
+    /* Close the origin scenario */
+    public closeOrigin = false;
 
     constructor() {
     }
@@ -397,10 +399,6 @@ export abstract class AbstractQueryIU extends AbstractIU {
      * @param actionId Id of the action element
      */
     public doAction(actionId: number): void {
-
-        // Show the waiting image
-        this.util.showWaitDialog();
-
         // Save scenario information
         this.saveContextInfo();
 
@@ -483,6 +481,7 @@ export abstract class AbstractQueryIU extends AbstractIU {
      * @param actionItem Action item
      */
     private executeNoShowService(actionItem: AccNavItem): void {
+        this.setShowWait(true);
         if (!actionItem.noShowArgumentName) {
             this.executeNoShowServiceWithNoArgumnets(actionItem);
             return;
@@ -493,7 +492,7 @@ export abstract class AbstractQueryIU extends AbstractIU {
         let numErrors = 0;
         // Show wait dialog or progress bar
         if (totalExecutions > 1 && !actionItem.noShowExecuteMultiSelectionInParallel) {
-            this.util.hideWaitDialog();
+            this.setShowWait(false);
             this.progressBarSubscription = this.util.progessBarCancelResponse.subscribe(() => {
                 this.util.hideProgressBar();
                 actionItem.noShowExecuteSerializedInfo.oids = [];
@@ -506,7 +505,7 @@ export abstract class AbstractQueryIU extends AbstractIU {
             actionItem.noShowExecuteSerializedInfo.errorList = [];
             this.executeNoShowServiceSerialized(actionItem);
         } else {
-            this.util.showWaitDialog();
+            this.setShowWait(true);
             for (const oid of oids) {
                 let lOid = oid;
                 if (actionItem.noShowArgumentName.endsWith('_json')) {
@@ -524,14 +523,14 @@ export abstract class AbstractQueryIU extends AbstractIU {
                         }
                         if (totalExecutions === numExecutions) {
                             this.processOutArgumentAndCondNavigation(request, response, actionItem, totalExecutions, numErrors !== 0);
-                            this.util.hideWaitDialog();
+                            this.setShowWait(false);
                             this.changeDetectorRef.markForCheck();
                         }
                     }, (error: {request: any, response: any}) => {
                         numExecutions++;
                         numErrors++;
                         this.util.addErrorMessage(this.util.translateError(error.response));
-                        this.util.hideWaitDialog();
+                        this.setShowWait(false);
                         this.changeDetectorRef.markForCheck();
                     });
             }
@@ -548,12 +547,12 @@ export abstract class AbstractQueryIU extends AbstractIU {
                 if (response.resultCode !== '000' && response.resultCode !== '') {
                     this.util.addErrorMessage(response.resultDescription);
                 }
+                this.setShowWait(false);
                 this.processOutArgumentAndCondNavigation(request, response, actionItem, 1, response.resultCode !== '000' && response.resultCode !== '');
-                this.util.hideWaitDialog();
                 this.changeDetectorRef.markForCheck();
             }, (error: {request: any, response: any}) => {
                 this.util.addErrorMessage(this.util.translateError(error.response));
-                this.util.hideWaitDialog();
+                this.setShowWait(false);
                 this.changeDetectorRef.markForCheck();
         });       
     }
@@ -613,7 +612,7 @@ export abstract class AbstractQueryIU extends AbstractIU {
      * @param actionItem Action item
      * @param totalExecutions Total number of executions
      */
-    private processOutArgumentAndCondNavigation(request: any, response: any, actionItem: AccNavItem, totalExecutions: number,
+    protected processOutArgumentAndCondNavigation(request: any, response: any, actionItem: AccNavItem, totalExecutions: number,
                                                 anyError: boolean): void  {
         const thisContext = this.getContext();
         const globalContext = this.getGlobalContext();
@@ -634,9 +633,12 @@ export abstract class AbstractQueryIU extends AbstractIU {
                     this.getGlobalContext(), request, response);
             } else if (!this.condNavMng.processConditionalNavigation(actionItem.targetClass, actionItem.noShowServiceName,
                                                                       request, response, thisContext, globalContext)) {
-                this.refreshAll();
-            } else {
-                this.refreshAll();
+                // If no conditinal navigation, refresh
+                if (actionItem.closeOrigin) {
+                    this.processCancel(true);
+                } else {
+                    this.refreshAll();
+                }
             }
         } else {
             this.refreshAll();
@@ -650,7 +652,7 @@ export abstract class AbstractQueryIU extends AbstractIU {
     public doNavigation(navigationId: number): void {
 
         // Show the waiting image
-        this.util.showWaitDialog();
+        this.setShowWait(true);
 
         // Save scenario information
         this.saveContextInfo();
@@ -702,10 +704,10 @@ export abstract class AbstractQueryIU extends AbstractIU {
                 if (errorMsg) {
                     this.util.addErrorMessage(errorMsg);
                 }
-                this.util.hideWaitDialog();
+                this.setShowWait(false);
             }).catch((errorMsg) => {
                 this.util.addErrorMessage(errorMsg);
-                this.util.hideWaitDialog();
+                this.setShowWait(false);
             });
         }
     }
@@ -743,7 +745,7 @@ export abstract class AbstractQueryIU extends AbstractIU {
      * Returns the action element with the received id
      * @param actionId Action id
      */
-    private getActionById(actionId: number): AccNavItem {
+    protected getActionById(actionId: number): AccNavItem {
         let returnAcc: any;
         for (const nav of this.actions) {
             if (nav.id === actionId) {
@@ -758,7 +760,7 @@ export abstract class AbstractQueryIU extends AbstractIU {
      * Returns the navigation element with the received id
      * @param navigationId Navigation id
      */
-    private getNavigationById(navigationId: number): AccNavItem {
+    protected getNavigationById(navigationId: number): AccNavItem {
         let returnNav: any;
         for (const nav of this.navigations) {
             if (nav.id === navigationId) {
@@ -773,6 +775,8 @@ export abstract class AbstractQueryIU extends AbstractIU {
      * Initialize the scenario
      */
     public override initialize(): void {
+        super.initialize();
+        
         // Get the exchange information
         const exchInfo: ExchangeInfo = this.appGlobalInfo.appExchangeInfo.getExchangeInfoForScenario(this.className, this.iuName);
 
@@ -787,7 +791,6 @@ export abstract class AbstractQueryIU extends AbstractIU {
         } else {
             this.initializeFromExchangeInfo(exchInfo);
         }
-        this.util.hideWaitDialog();
     }
 
     /**
@@ -989,7 +992,7 @@ export abstract class AbstractQueryIU extends AbstractIU {
         const modifiedRows = this.getModifiedRows();
         const totalRows = modifiedRows.length;
         if (totalRows > 0) {
-            this.util.showWaitDialog();
+            this.setShowWait(true);
             this.saveChangesEditableGrid(modifiedRows);
         }
     }
@@ -1037,7 +1040,7 @@ export abstract class AbstractQueryIU extends AbstractIU {
     private processServiceExecutionFailForRow(row: any, response: any, pendingRows: number): void {
         this.util.addErrorMessage(response.message);
         if (pendingRows === 0) {
-            this.util.hideWaitDialog();
+            this.setShowWait(false);
             if (!this.editableGridExecuteInRowChange) {
                 this.refreshAll();
                 this.changeDetectorRef.markForCheck();
@@ -1056,7 +1059,7 @@ export abstract class AbstractQueryIU extends AbstractIU {
             this.util.addErrorMessage(response.resultDescription);
         }
         if (pendingRows === 0) {
-            this.util.hideWaitDialog();
+            this.setShowWait(false);
             if (!this.editableGridExecuteInRowChange) {
                 this.refreshAll();
                 this.changeDetectorRef.markForCheck();
@@ -1125,5 +1128,13 @@ export abstract class AbstractQueryIU extends AbstractIU {
      */
     public getRowData(row: any, dataName: string): any {
         return row[dataName.replace(new RegExp('\\.', 'g'), '-')];
+    }
+
+    public override setShowWait(value: boolean): void {
+        if (this.masterDetailContainer) {
+            this.masterDetailContainer.setShowWait(value);
+        } else {
+            super.setShowWait(value);
+        }
     }
 }

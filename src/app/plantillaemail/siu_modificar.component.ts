@@ -197,10 +197,12 @@ export class PlantillaEmailSIUumodificarComponent extends AbstractServiceIU impl
                 'asunto,textomensaje,emailconf');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisPlantillasEmailActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -212,7 +214,6 @@ export class PlantillaEmailSIUumodificarComponent extends AbstractServiceIU impl
      */
     private executeDependecyRules1puthisPlantillasEmailActions(): void {
         const varputhisplantillasemail = this.getFirstInstanceFromCache(this.puthisPlantillasEmail);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisplantillasemail && !this.util.isNull(varputhisplantillasemail)) {
             // p_Asunto.SetValue( v.asunto )

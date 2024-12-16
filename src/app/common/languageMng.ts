@@ -41,7 +41,7 @@ export class LanguageMng {
     /** Group (thousand) separator for formating number using the current locale */
     public groupSeparator = '';
     /** Date format to be used for input */
-    public inputDateFormat = 'dd/mm/yy';
+    public inputDateFormat = 'dd/mm/y';
     /** First day of week. 0 = Sunday, 1 = Monday */
     public firstDayOfWeek = 1;
 
@@ -104,7 +104,7 @@ export class LanguageMng {
         // Or assign fixed ones, if you prefer ...
         this.decimalSeparator = getLocaleNumberSymbol(this.currentLanguage, NumberSymbol.Decimal);
         this.groupSeparator = getLocaleNumberSymbol(this.currentLanguage, NumberSymbol.Group);
-        this.inputDateFormat = getLocaleDateFormat(this.currentLanguage, FormatWidth.Short).toLowerCase();
+        //this.inputDateFormat = getLocaleDateFormat(this.currentLanguage, FormatWidth.Short).toLowerCase();
     }
 
     /**

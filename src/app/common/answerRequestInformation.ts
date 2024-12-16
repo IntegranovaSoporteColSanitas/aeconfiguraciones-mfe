@@ -74,4 +74,15 @@ export class QueryResponse {
         this.totalItems = queryResponse.totalItems;
         this.results = queryResponse.results;
     }
+
+    public static getValue(row: any, propertyName: string): any {
+        if (row && propertyName) {
+            let value = row[propertyName];
+            if (value) {
+                return value;
+            }
+            return row[propertyName.toLowerCase().replace(new RegExp('[.]', 'g'), '-')];
+        }
+        return undefined;
+    }
 }

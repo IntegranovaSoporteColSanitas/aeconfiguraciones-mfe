@@ -105,18 +105,5 @@ export class ReportesProcAlmIIUuReportesProcAlmComponent extends AbstractIIU {
         accItem.targetUI = ModelConstants.Reportesprocalm.siuumodificar;
         this.actions.push(accItem);
 
-        accItem = new AccNavItem();
-        accItem.id = 1;
-        accItem.idXML = 'Clas_1547029184512775AccOfer_2ElemAcc_2';
-        accItem.alias = this.langMng.translateText(
-            'cls_ReportesProcAlm_act_A_ReportesProcAlm_M_MD_item_Clas_1547029184512775AccOfer_2ElemAcc_2',
-            'Generar');
-        accItem.nounVerb = true;
-        accItem.multiSelection = false;
-        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
-        accItem.targetClass = ModelConstants.Reportesprocalm.name;
-        accItem.targetUI = ModelConstants.Reportesprocalm.siuuevgenerar;
-        this.actions.push(accItem);
-
     }
 }

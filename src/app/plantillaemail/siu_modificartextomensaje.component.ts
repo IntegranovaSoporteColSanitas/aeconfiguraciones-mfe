@@ -172,10 +172,12 @@ export class PlantillaEmailSIUumodificarTextoMensajeComponent extends AbstractSe
                 'textomensaje');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisPlantillaEmailActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -187,7 +189,6 @@ export class PlantillaEmailSIUumodificarTextoMensajeComponent extends AbstractSe
      */
     private executeDependecyRules1puthisPlantillaEmailActions(): void {
         const varputhisplantillaemail = this.getFirstInstanceFromCache(this.puthisPlantillaEmail);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisplantillaemail && !this.util.isNull(varputhisplantillaemail)) {
             // p_TextoMensaje.SetValue( v.textomensaje )

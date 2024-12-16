@@ -207,10 +207,12 @@ export class ProductosSIUumodificarComponent extends AbstractServiceIU implement
                 'codanexomat,codanexoneo,nit,fechadocsolicitud');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisProductoActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -222,7 +224,6 @@ export class ProductosSIUumodificarComponent extends AbstractServiceIU implement
      */
     private executeDependecyRules1puthisProductoActions(): void {
         const varputhisproducto = this.getFirstInstanceFromCache(this.puthisProducto);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisproducto && !this.util.isNull(varputhisproducto)) {
             // p_CodAnexoMat.SetValue( v.codanexomat )

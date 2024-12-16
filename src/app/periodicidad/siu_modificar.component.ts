@@ -175,10 +175,12 @@ export class PeriodicidadSIUumodificarComponent extends AbstractServiceIU implem
                 'esmensual');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisPeriodicidadActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -190,7 +192,6 @@ export class PeriodicidadSIUumodificarComponent extends AbstractServiceIU implem
      */
     private executeDependecyRules1puthisPeriodicidadActions(): void {
         const varputhisperiodicidad = this.getFirstInstanceFromCache(this.puthisPeriodicidad);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisperiodicidad && !this.util.isNull(varputhisperiodicidad)) {
             // p_EsMensual.SetValue( v.esmensual )

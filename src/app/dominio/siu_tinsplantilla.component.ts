@@ -199,10 +199,12 @@ export class DominioSIUuTINSPLANTILLAComponent extends AbstractServiceIU impleme
                 'Numero');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisDominioActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -214,7 +216,6 @@ export class DominioSIUuTINSPLANTILLAComponent extends AbstractServiceIU impleme
      */
     private executeDependecyRules1puthisDominioActions(): void {
         const varputhisdominio = this.getFirstInstanceFromCache(this.puthisDominio);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisdominio && !this.util.isNull(varputhisdominio)) {
             // p_thisDominio.SetActive( FALSE )
@@ -364,10 +365,12 @@ export class DominioSIUuTINSPLANTILLAComponent extends AbstractServiceIU impleme
                 'IdPlantilla');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1ptPlantillaActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -379,7 +382,6 @@ export class DominioSIUuTINSPLANTILLAComponent extends AbstractServiceIU impleme
      */
     private executeDependecyRules1ptPlantillaActions(): void {
         const varptplantilla = this.getFirstInstanceFromCache(this.ptPlantilla);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varptplantilla && !this.util.isNull(varptplantilla)) {
             // ptPlantilla.SetValue( NULL )

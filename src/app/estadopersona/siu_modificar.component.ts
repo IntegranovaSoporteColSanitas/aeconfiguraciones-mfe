@@ -140,7 +140,7 @@ export class EstadoPersonaSIUumodificarComponent extends AbstractServiceIU imple
             promiseArr.push(defValpuProhibidoTitular);
 
             Promise.all(promiseArr).then((results: any[]) => {
-                this.util.hideWaitDialog();
+                this.setShowWait(false);
                 this.changeDetectorRef.markForCheck();
                 resolve();
             });
@@ -242,10 +242,12 @@ export class EstadoPersonaSIUumodificarComponent extends AbstractServiceIU imple
                 'unbeneficiariodistino,prohibidobeneficiarios,prohibidocontratante,prohibidotitular');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisEstadoPersonaActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -257,7 +259,6 @@ export class EstadoPersonaSIUumodificarComponent extends AbstractServiceIU imple
      */
     private executeDependecyRules1puthisEstadoPersonaActions(): void {
         const varputhisestadopersona = this.getFirstInstanceFromCache(this.puthisEstadoPersona);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisestadopersona && !this.util.isNull(varputhisestadopersona)) {
             // p_UnBeneficiarioDistino.SetValue( v.unbeneficiariodistino )

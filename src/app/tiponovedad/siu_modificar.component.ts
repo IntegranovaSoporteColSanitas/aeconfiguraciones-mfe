@@ -137,17 +137,18 @@ export class TipoNovedadSIUumodificarComponent extends AbstractServiceIU impleme
         this.notifyCallToTheBackEnd();
         this.util.searchPreload('TipoNovedad', 'IC_TipoNovedad', [], null, '').then(
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 if (response && response.results) {
                     this.puthisTipoNovedad.loadPreload(response.results);
                 } else {
                     this.puthisTipoNovedad.loadPreload([]);
                 }
                 this.numberOfPendingPreload--;
-                this.notifyAnswerFromToTheBackEnd();
                 this.initializeFromContext();
                 this.changeDetectorRef.markForCheck();
             },
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 this.processErrorInLoadPreload(response.resultDescription);
             }
         );
@@ -182,10 +183,12 @@ export class TipoNovedadSIUumodificarComponent extends AbstractServiceIU impleme
                 'aliastipo,nombre,descripcion,codigolegal');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisTipoNovedadActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -197,7 +200,6 @@ export class TipoNovedadSIUumodificarComponent extends AbstractServiceIU impleme
      */
     private executeDependecyRules1puthisTipoNovedadActions(): void {
         const varputhistiponovedad = this.getFirstInstanceFromCache(this.puthisTipoNovedad);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhistiponovedad && !this.util.isNull(varputhistiponovedad)) {
             // p_AliasTipo.SetValue( v.AliasTipo )

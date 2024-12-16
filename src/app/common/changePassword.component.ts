@@ -85,13 +85,10 @@ export class ChangePasswordComponent implements OnInit {
             return;
         }
 
-        this.util.showWaitDialog();
         this.util.callChangePassword(this.old, this.new).then( () => {
-            this.util.hideWaitDialog();
             this.processCancel();
         }).catch( (err: ErrorInformation) => {
             this.util.addErrorMessage(err);
-            this.util.hideWaitDialog();
         });
     }
 

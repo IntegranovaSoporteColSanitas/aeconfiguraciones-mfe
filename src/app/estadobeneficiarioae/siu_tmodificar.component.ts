@@ -132,17 +132,18 @@ export class EstadoBeneficiarioAESIUuTMODIFICARComponent extends AbstractService
         this.notifyCallToTheBackEnd();
         this.util.searchPreload('EstadoBeneficiario', 'IC_EstadoBeneficiario', [], null, '').then(
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 if (response && response.results) {
                     this.ptupuevcEstadoBeneficiario.loadPreload(response.results);
                 } else {
                     this.ptupuevcEstadoBeneficiario.loadPreload([]);
                 }
                 this.numberOfPendingPreload--;
-                this.notifyAnswerFromToTheBackEnd();
                 this.initializeFromContext();
                 this.changeDetectorRef.markForCheck();
             },
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 this.processErrorInLoadPreload(response.resultDescription);
             }
         );
@@ -230,10 +231,12 @@ export class EstadoBeneficiarioAESIUuTMODIFICARComponent extends AbstractService
                 'descripcion,estadobeneficiariocore.Codigo');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisEstadoBeneficiarioAEActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -245,7 +248,6 @@ export class EstadoBeneficiarioAESIUuTMODIFICARComponent extends AbstractService
      */
     private executeDependecyRules1puthisEstadoBeneficiarioAEActions(): void {
         const varputhisestadobeneficiarioae = this.getFirstInstanceFromCache(this.puthisEstadoBeneficiarioAE);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisestadobeneficiarioae && !this.util.isNull(varputhisestadobeneficiarioae)) {
             // pt_p_Descripcion.SetValue( v.descripcion )

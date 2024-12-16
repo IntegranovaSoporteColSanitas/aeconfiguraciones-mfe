@@ -146,7 +146,6 @@ export class LogLlamadasBHFilterFuLogLlamadasBH extends AbstractFilter {
         promiseArr.push(defValvfHasta);
 
         Promise.all(promiseArr).then((results: any[]) => {
-            this.util.hideWaitDialog();
             this.initialized = true;
             // Launch query
             if (this.populationContainer instanceof AbstractPIU) {

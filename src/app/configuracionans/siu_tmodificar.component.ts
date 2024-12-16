@@ -278,10 +278,12 @@ export class ConfiguracionANSSIUuTMODIFICARComponent extends AbstractServiceIU i
                 'ansareamedica,habillunes,habilmartes,habilmiercoles,habiljueves,habilviernes,habilsabado,habildomingo,ansafiliaciones');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisConfiguracionANSActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -293,7 +295,6 @@ export class ConfiguracionANSSIUuTMODIFICARComponent extends AbstractServiceIU i
      */
     private executeDependecyRules1puthisConfiguracionANSActions(): void {
         const varputhisconfiguracionans = this.getFirstInstanceFromCache(this.puthisConfiguracionANS);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisconfiguracionans && !this.util.isNull(varputhisconfiguracionans)) {
             // pt_p_ANSAreaMedica.SetValue( v.ANSAreaMedica )

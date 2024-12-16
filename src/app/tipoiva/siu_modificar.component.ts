@@ -206,10 +206,12 @@ export class TipoIVASIUumodificarComponent extends AbstractServiceIU implements 
                 'descripcion,porcentaje,fechainicio,fechafin');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisTipoIVAActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -221,7 +223,6 @@ export class TipoIVASIUumodificarComponent extends AbstractServiceIU implements 
      */
     private executeDependecyRules1puthisTipoIVAActions(): void {
         const varputhistipoiva = this.getFirstInstanceFromCache(this.puthisTipoIVA);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhistipoiva && !this.util.isNull(varputhistipoiva)) {
             // p_Descripcion.SetValue( v.Descripcion )

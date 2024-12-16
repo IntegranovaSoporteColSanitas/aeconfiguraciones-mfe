@@ -254,7 +254,7 @@ export class PreguntaSIUuTMODIFICARComponent extends AbstractServiceIU implement
             promiseArr.push(defValptupuCondicionEdadAnyos);
 
             Promise.all(promiseArr).then((results: any[]) => {
-                this.util.hideWaitDialog();
+                this.setShowWait(false);
                 this.changeDetectorRef.markForCheck();
                 resolve();
             });
@@ -306,17 +306,18 @@ export class PreguntaSIUuTMODIFICARComponent extends AbstractServiceIU implement
         this.notifyCallToTheBackEnd();
         this.util.searchPreload('Seccion', 'IC_Seccion', [], null, '').then(
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 if (response && response.results) {
                     this.ptupuevcSeccion.loadPreload(response.results);
                 } else {
                     this.ptupuevcSeccion.loadPreload([]);
                 }
                 this.numberOfPendingPreload--;
-                this.notifyAnswerFromToTheBackEnd();
                 this.initializeFromContext();
                 this.changeDetectorRef.markForCheck();
             },
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 this.processErrorInLoadPreload(response.resultDescription);
             }
         );
@@ -406,10 +407,12 @@ export class PreguntaSIUuTMODIFICARComponent extends AbstractServiceIU implement
                 ',valorsnobliga,seenviaalcore,condicionedad,condicionedadanyos');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisPreguntaActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -421,7 +424,6 @@ export class PreguntaSIUuTMODIFICARComponent extends AbstractServiceIU implement
      */
     private executeDependecyRules1puthisPreguntaActions(): void {
         const varputhispregunta = this.getFirstInstanceFromCache(this.puthisPregunta);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhispregunta && !this.util.isNull(varputhispregunta)) {
             // pt_p_Descripcion.SetValue( v.descripcion )
@@ -844,10 +846,12 @@ export class PreguntaSIUuTMODIFICARComponent extends AbstractServiceIU implement
                 'Identificador');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1ptupuevcSeccionActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -859,7 +863,6 @@ export class PreguntaSIUuTMODIFICARComponent extends AbstractServiceIU implement
      */
     private executeDependecyRules1ptupuevcSeccionActions(): void {
         const varptupuevcseccion = this.getFirstInstanceFromCache(this.ptupuevcSeccion);
-        this.notifyAnswerFromToTheBackEnd();
         // v = FALSE
         if (varptupuevcseccion && this.util.valueEquals(varptupuevcseccion?.oid, false)) {
             // pt_p_evcSeccion.SetActive( TRUE )

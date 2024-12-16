@@ -189,10 +189,12 @@ export class FormaPagoSIUumodificarComponent extends AbstractServiceIU implement
                 'abrirurl,esvisible');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisFormaPagoActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -204,7 +206,6 @@ export class FormaPagoSIUumodificarComponent extends AbstractServiceIU implement
      */
     private executeDependecyRules1puthisFormaPagoActions(): void {
         const varputhisformapago = this.getFirstInstanceFromCache(this.puthisFormaPago);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisformapago && !this.util.isNull(varputhisformapago)) {
             // p_AbrirURL.SetValue( v.abrirurl )

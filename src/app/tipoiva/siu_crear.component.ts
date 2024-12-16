@@ -154,17 +154,18 @@ export class TipoIVASIUucrearComponent extends AbstractServiceIU implements OnIn
         this.notifyCallToTheBackEnd();
         this.util.searchPreload('Productos', 'IC_Producto', [], null, 'OC_Producto').then(
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 if (response && response.results) {
                     this.puagrProductoT.loadPreload(response.results);
                 } else {
                     this.puagrProductoT.loadPreload([]);
                 }
                 this.numberOfPendingPreload--;
-                this.notifyAnswerFromToTheBackEnd();
                 this.initializeFromContext();
                 this.changeDetectorRef.markForCheck();
             },
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 this.processErrorInLoadPreload(response.resultDescription);
             }
         );

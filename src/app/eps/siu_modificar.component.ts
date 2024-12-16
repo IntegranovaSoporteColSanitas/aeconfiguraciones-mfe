@@ -176,10 +176,12 @@ export class EpsSIUumodificarComponent extends AbstractServiceIU implements OnIn
                 'epssanitas');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisEPSActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -191,7 +193,6 @@ export class EpsSIUumodificarComponent extends AbstractServiceIU implements OnIn
      */
     private executeDependecyRules1puthisEPSActions(): void {
         const varputhiseps = this.getFirstInstanceFromCache(this.puthisEPS);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhiseps && !this.util.isNull(varputhiseps)) {
             // p_EPSSanitas.SetValue( v.epssanitas )

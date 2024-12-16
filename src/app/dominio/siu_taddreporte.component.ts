@@ -107,7 +107,7 @@ export class DominioSIUuTADDREPORTEComponent extends AbstractServiceIU implement
             promiseArr.push(defValptupuatrEnviarAuto);
 
             Promise.all(promiseArr).then((results: any[]) => {
-                this.util.hideWaitDialog();
+                this.setShowWait(false);
                 this.changeDetectorRef.markForCheck();
                 resolve();
             });
@@ -235,10 +235,12 @@ export class DominioSIUuTADDREPORTEComponent extends AbstractServiceIU implement
                 'Numero');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisDominioActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -250,7 +252,6 @@ export class DominioSIUuTADDREPORTEComponent extends AbstractServiceIU implement
      */
     private executeDependecyRules1puthisDominioActions(): void {
         const varputhisdominio = this.getFirstInstanceFromCache(this.puthisDominio);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisdominio && !this.util.isNull(varputhisdominio)) {
             // p_thisDominio.SetActive( FALSE )

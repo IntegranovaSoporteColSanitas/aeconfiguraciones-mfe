@@ -186,10 +186,12 @@ export class CausaExclusionSIUumodificarComponent extends AbstractServiceIU impl
                 'aliascausa,descripcion');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisCausaExclusionActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -201,7 +203,6 @@ export class CausaExclusionSIUumodificarComponent extends AbstractServiceIU impl
      */
     private executeDependecyRules1puthisCausaExclusionActions(): void {
         const varputhiscausaexclusion = this.getFirstInstanceFromCache(this.puthisCausaExclusion);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhiscausaexclusion && !this.util.isNull(varputhiscausaexclusion)) {
             // p_AliasCausa.SetValue( v.AliasCausa )

@@ -198,10 +198,12 @@ export class ReportesProcAlmSIUumodificarComponent extends AbstractServiceIU imp
                 'descripcion,nombreproc,nombrefichero');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisReportesProcAlmActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -213,7 +215,6 @@ export class ReportesProcAlmSIUumodificarComponent extends AbstractServiceIU imp
      */
     private executeDependecyRules1puthisReportesProcAlmActions(): void {
         const varputhisreportesprocalm = this.getFirstInstanceFromCache(this.puthisReportesProcAlm);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisreportesprocalm && !this.util.isNull(varputhisreportesprocalm)) {
             // p_Descripcion.SetValue( v.descripcion )

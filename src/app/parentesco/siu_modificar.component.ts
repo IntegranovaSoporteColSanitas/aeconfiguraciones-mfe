@@ -152,7 +152,7 @@ export class ParentescoSIUumodificarComponent extends AbstractServiceIU implemen
             promiseArr.push(defValpuEsHijo);
 
             Promise.all(promiseArr).then((results: any[]) => {
-                this.util.hideWaitDialog();
+                this.setShowWait(false);
                 this.changeDetectorRef.markForCheck();
                 resolve();
             });
@@ -254,10 +254,12 @@ export class ParentescoSIUumodificarComponent extends AbstractServiceIU implemen
                 'estitular,esconyuge,espadre,eshijo');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisParentescoActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -269,7 +271,6 @@ export class ParentescoSIUumodificarComponent extends AbstractServiceIU implemen
      */
     private executeDependecyRules1puthisParentescoActions(): void {
         const varputhisparentesco = this.getFirstInstanceFromCache(this.puthisParentesco);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisparentesco && !this.util.isNull(varputhisparentesco)) {
             // p_EsTitular.SetValue( v.estitular )

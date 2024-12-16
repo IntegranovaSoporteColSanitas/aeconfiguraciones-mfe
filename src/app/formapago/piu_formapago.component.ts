@@ -151,6 +151,7 @@ export class FormaPagoPIUuFormaPagoComponent extends AbstractPIU implements OnIn
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Globalservices.name;
         accItem.targetUI = ModelConstants.Globalservices.siuutgsincformaspago;
+        accItem.setNoShowProperties('TGSINCFORMASPAGO', '', '', false);
 
         this.actions.push(accItem);
 

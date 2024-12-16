@@ -173,10 +173,12 @@ export class ParamConfigSIUuTMODIFICARComponent extends AbstractServiceIU implem
                 'valor');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisParamConfigActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -188,7 +190,6 @@ export class ParamConfigSIUuTMODIFICARComponent extends AbstractServiceIU implem
      */
     private executeDependecyRules1puthisParamConfigActions(): void {
         const varputhisparamconfig = this.getFirstInstanceFromCache(this.puthisParamConfig);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisparamconfig && !this.util.isNull(varputhisparamconfig)) {
             // pt_p_Valor.SetValue( v.Valor )

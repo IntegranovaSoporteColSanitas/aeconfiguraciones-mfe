@@ -14,7 +14,7 @@ spec:
     type: Git
     git:
       uri: "git@github.com:IntegranovaSoporteColSanitas/aeconfiguraciones-mfe.git"
-      ref: "3.0.0"
+      ref: "4.0.0"
     sourceSecret:
       name: ae-git-credentials
   strategy:

@@ -187,7 +187,6 @@ export class ClassServiceLogComponent implements OnInit {
      */
     public refresh(pageNumber = 1): void {
 
-        this.util.showWaitDialog();
 
         // Set the last first instance requested
         this.lastPageNumber = pageNumber;
@@ -220,7 +219,6 @@ export class ClassServiceLogComponent implements OnInit {
         }
 
         const url: string = this.appGlobalInfo.APPCONSTANTS.BASE_URL + this.queryURL + queryRequest;
-        this.util.showWaitDialog();
         this.util.populationQuery(url, '').then((okResponse: any) => {
             const res = okResponse;
             if (res.resultCode === '000') {
@@ -233,11 +231,9 @@ export class ClassServiceLogComponent implements OnInit {
             } else {
                 this.util.addErrorMessage(`ERROR (${res.resultCode}): ${res.resultDescription}`);
             }
-            this.util.hideWaitDialog();
             this.changeDetectorRef.markForCheck();
         }, (errorResponse: any) => {
             this.util.addErrorMessage(errorResponse.message);
-            this.util.hideWaitDialog();
             this.changeDetectorRef.markForCheck();
         });
     }

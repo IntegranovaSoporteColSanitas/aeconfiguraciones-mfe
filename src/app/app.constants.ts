@@ -932,10 +932,6 @@ export class Configuration {
                     navKey: '_GENERICSIU' }
                 , { name: ModelConstants.Reportesprocalm.siuumodificar,
                     navKey: 'siu_modificar' }
-                , { name: ModelConstants.Reportesprocalm.siuuevgenerar,
-                    navKey: 'siu_evgenerar' }
-                , { name: ModelConstants.Reportesprocalm.siuuevgeneraruout,
-                    navKey: 'siu_evgenerar_out' }
                 , { name: ModelConstants.Reportesprocalm.mdiuureportesprocalm,
                     navKey: 'mdiu_reportesprocalm' }
                 , { name: ModelConstants.Reportesprocalm.piuureportesprocalm,
@@ -1416,6 +1412,10 @@ export class Configuration {
                     navKey: 'siu_tgcrearcontexento' }
                 , { name: ModelConstants.Globalservices.siuutgdelcontratoexento,
                     navKey: '_GENERICSIU' }
+                , { name: ModelConstants.Globalservices.siuutgenrepalm,
+                    navKey: 'siu_tgenrepalm' }
+                , { name: ModelConstants.Globalservices.siuutgenrepalmuout,
+                    navKey: 'siu_tgenrepalm_out' }
             ]
         }
     ];

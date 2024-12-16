@@ -176,10 +176,12 @@ export class FrecuenciaActSIUumodificarComponent extends AbstractServiceIU imple
                 'frecuencia');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisFrecuenciaActActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -191,7 +193,6 @@ export class FrecuenciaActSIUumodificarComponent extends AbstractServiceIU imple
      */
     private executeDependecyRules1puthisFrecuenciaActActions(): void {
         const varputhisfrecuenciaact = this.getFirstInstanceFromCache(this.puthisFrecuenciaAct);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisfrecuenciaact && !this.util.isNull(varputhisfrecuenciaact)) {
             // p_Frecuencia.SetValue( v.Frecuencia )

@@ -250,7 +250,7 @@ export class PreguntaSIUuTCREARComponent extends AbstractServiceIU implements On
             promiseArr.push(defValptupuatrCondicionEdadAnyos);
 
             Promise.all(promiseArr).then((results: any[]) => {
-                this.util.hideWaitDialog();
+                this.setShowWait(false);
                 this.changeDetectorRef.markForCheck();
                 resolve();
             });
@@ -287,17 +287,18 @@ export class PreguntaSIUuTCREARComponent extends AbstractServiceIU implements On
         this.notifyCallToTheBackEnd();
         this.util.searchPreload('Seccion', 'IC_Seccion', [], null, '').then(
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 if (response && response.results) {
                     this.ptupuagrSeccion.loadPreload(response.results);
                 } else {
                     this.ptupuagrSeccion.loadPreload([]);
                 }
                 this.numberOfPendingPreload--;
-                this.notifyAnswerFromToTheBackEnd();
                 this.initializeFromContext();
                 this.changeDetectorRef.markForCheck();
             },
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 this.processErrorInLoadPreload(response.resultDescription);
             }
         );
@@ -332,10 +333,12 @@ export class PreguntaSIUuTCREARComponent extends AbstractServiceIU implements On
                 'Identificador');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1ptupuagrSeccionActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -347,7 +350,6 @@ export class PreguntaSIUuTCREARComponent extends AbstractServiceIU implements On
      */
     private executeDependecyRules1ptupuagrSeccionActions(): void {
         const varptupuagrseccion = this.getFirstInstanceFromCache(this.ptupuagrSeccion);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varptupuagrseccion && !this.util.isNull(varptupuagrseccion)) {
             // pt_p_atrEsNumero.SetValue( FALSE )

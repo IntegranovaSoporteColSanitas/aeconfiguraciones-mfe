@@ -11,7 +11,6 @@ export class ReportesProcAlmServices extends AbstractServices {
     private crearSrvName = 'crear';
     private eliminarSrvName = 'eliminar';
     private modificarSrvName = 'modificar';
-    private evGenerarSrvName = 'evGenerar';
 
     constructor(
         protected override readonly appGlobalInfo: AppGlobalInfo,
@@ -114,40 +113,6 @@ export class ReportesProcAlmServices extends AbstractServices {
         return new Promise<void> ((resolve, reject) => {
              this.callService(this.modificarSrvName, request).then((response: any) => {
                 resolve();
-            }).catch( (errorInfo: ErrorInformation) => {
-                reject(errorInfo);
-            });
-        });
-    }
-
-    /**
-     * Call to the service 'evGenerar' in the backend
-     * Promise is resolved if service execution is successful and returns its outbound arguments in a JSON object.
-     * If service fails, promise is rejected and returned an instance of ErrorInformation
-     * @param puthisReportesProcAlmInArg Mandatory argument 'p_thisReportesProcAlm'. Oid of 'ReportesProcAlm' class
-     * @param pValorArgumentosInArg Optional argument 'pValorArgumentos'
-     */
-    public evGenerar(
-        puthisReportesProcAlmInArg: any, pValorArgumentosInArg: string | null):
-        Promise<{
-            oafichero: string,
-            oanombrefichero: string
-        }> {
-        const request: {
-            p_thisreportesprocalm_json: any, pvalorargumentos: string | null
-        } = {
-            p_thisreportesprocalm_json: puthisReportesProcAlmInArg ? JSON.stringify(puthisReportesProcAlmInArg) : '',
-            pvalorargumentos: pValorArgumentosInArg
-        };
-        return new Promise<{
-            oafichero: string,
-            oanombrefichero: string
-        }> ((resolve, reject) => {
-            this.callService(this.evGenerarSrvName, request).then((response: any) => {
-                resolve({
-                    oafichero: response.oafichero,
-                    oanombrefichero: response.oanombrefichero
-                });
             }).catch( (errorInfo: ErrorInformation) => {
                 reject(errorInfo);
             });

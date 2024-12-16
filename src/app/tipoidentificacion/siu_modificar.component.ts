@@ -210,7 +210,7 @@ export class TipoIdentificacionSIUumodificarComponent extends AbstractServiceIU 
             promiseArr.push(defValpuEsPasaporte);
 
             Promise.all(promiseArr).then((results: any[]) => {
-                this.util.hideWaitDialog();
+                this.setShowWait(false);
                 this.changeDetectorRef.markForCheck();
                 resolve();
             });
@@ -240,17 +240,18 @@ export class TipoIdentificacionSIUumodificarComponent extends AbstractServiceIU 
         this.notifyCallToTheBackEnd();
         this.util.searchPreload('TipoIdentificacion', 'IC_TipoIdentificacion', [], null, 'OC_TipoIdentificacion').then(
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 if (response && response.results) {
                     this.puthisTipoIdentificacion.loadPreload(response.results);
                 } else {
                     this.puthisTipoIdentificacion.loadPreload([]);
                 }
                 this.numberOfPendingPreload--;
-                this.notifyAnswerFromToTheBackEnd();
                 this.initializeFromContext();
                 this.changeDetectorRef.markForCheck();
             },
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 this.processErrorInLoadPreload(response.resultDescription);
             }
         );
@@ -285,10 +286,12 @@ export class TipoIdentificacionSIUumodificarComponent extends AbstractServiceIU 
                 'validocontratante,validotitular,diplomatico,nit,hijode,requiereeps,menorsinidentificar,espasaporte,visiblevalidadorusu');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisTipoIdentificacionActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -300,7 +303,6 @@ export class TipoIdentificacionSIUumodificarComponent extends AbstractServiceIU 
      */
     private executeDependecyRules1puthisTipoIdentificacionActions(): void {
         const varputhistipoidentificacion = this.getFirstInstanceFromCache(this.puthisTipoIdentificacion);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhistipoidentificacion && !this.util.isNull(varputhistipoidentificacion)) {
             // p_ValidoContratante.SetValue( v.validocontratante )

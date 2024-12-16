@@ -202,10 +202,12 @@ export class GrupoAsignacionNovedadSIUuTASGGRUPOComponent extends AbstractServic
                 'grupousuarios.Id');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisGrupoAsignacionNovedadActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -217,7 +219,6 @@ export class GrupoAsignacionNovedadSIUuTASGGRUPOComponent extends AbstractServic
      */
     private executeDependecyRules1puthisGrupoAsignacionNovedadActions(): void {
         const varputhisgrupoasignacionnovedad = this.getFirstInstanceFromCache(this.puthisGrupoAsignacionNovedad);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisgrupoasignacionnovedad && !this.util.isNull(varputhisgrupoasignacionnovedad)) {
             // ptGrupo.SetValue( v.grupousuarios )

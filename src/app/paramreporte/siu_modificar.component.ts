@@ -203,10 +203,12 @@ export class ParamReporteSIUumodificarComponent extends AbstractServiceIU implem
                 'esnumerico,descripcion,titulo');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisParamReporteActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -218,7 +220,6 @@ export class ParamReporteSIUumodificarComponent extends AbstractServiceIU implem
      */
     private executeDependecyRules1puthisParamReporteActions(): void {
         const varputhisparamreporte = this.getFirstInstanceFromCache(this.puthisParamReporte);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisparamreporte && !this.util.isNull(varputhisparamreporte)) {
             // p_EsNumerico.SetValue( v.EsNumerico )

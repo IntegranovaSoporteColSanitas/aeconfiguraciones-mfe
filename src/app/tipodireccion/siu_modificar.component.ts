@@ -189,10 +189,12 @@ export class TipoDireccionSIUumodificarComponent extends AbstractServiceIU imple
                 'esresidencia,escorrespondencia');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisTipoDireccionActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -204,7 +206,6 @@ export class TipoDireccionSIUumodificarComponent extends AbstractServiceIU imple
      */
     private executeDependecyRules1puthisTipoDireccionActions(): void {
         const varputhistipodireccion = this.getFirstInstanceFromCache(this.puthisTipoDireccion);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhistipodireccion && !this.util.isNull(varputhistipodireccion)) {
             // p_EsResidencia.SetValue( v.esresidencia )

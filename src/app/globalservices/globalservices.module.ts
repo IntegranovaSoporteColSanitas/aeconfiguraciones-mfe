@@ -10,6 +10,8 @@ import { GSSIUuTGEDITPLANTREPComponent } from './siu_tgeditplantrep.component';
 import { GSSIUuTGCREARFINIEPSComponent } from './siu_tgcrearfinieps.component';
 import { GSSIUuTGMODFINIEPSComponent } from './siu_tgmodfinieps.component';
 import { GSSIUuTGCREARCONTEXENTOComponent } from './siu_tgcrearcontexento.component';
+import { GSSIUuTGENREPALMComponent } from './siu_tgenrepalm.component';
+import { GSSIUuTGENREPALMuOutComponent } from './siu_tgenrepalm_out.component';
 
 @NgModule({
   imports: [
@@ -25,7 +27,9 @@ import { GSSIUuTGCREARCONTEXENTOComponent } from './siu_tgcrearcontexento.compon
     GSSIUuTGEDITPLANTREPComponent,
     GSSIUuTGCREARFINIEPSComponent,
     GSSIUuTGMODFINIEPSComponent,
-    GSSIUuTGCREARCONTEXENTOComponent
+    GSSIUuTGCREARCONTEXENTOComponent,
+    GSSIUuTGENREPALMComponent,
+    GSSIUuTGENREPALMuOutComponent
   ],
   exports: [
     GSSIUuTGCREARTARIFAComponent,
@@ -35,7 +39,9 @@ import { GSSIUuTGCREARCONTEXENTOComponent } from './siu_tgcrearcontexento.compon
     GSSIUuTGEDITPLANTREPComponent,
     GSSIUuTGCREARFINIEPSComponent,
     GSSIUuTGMODFINIEPSComponent,
-    GSSIUuTGCREARCONTEXENTOComponent
+    GSSIUuTGCREARCONTEXENTOComponent,
+    GSSIUuTGENREPALMComponent,
+    GSSIUuTGENREPALMuOutComponent
   ]
 })
 export class GlobalServicesModule { }

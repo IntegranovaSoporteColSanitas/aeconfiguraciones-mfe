@@ -172,7 +172,7 @@ export class ParentescoSIUucrearComponent extends AbstractServiceIU implements O
             promiseArr.push(defValpuatrEsHijo);
 
             Promise.all(promiseArr).then((results: any[]) => {
-                this.util.hideWaitDialog();
+                this.setShowWait(false);
                 this.changeDetectorRef.markForCheck();
                 resolve();
             });

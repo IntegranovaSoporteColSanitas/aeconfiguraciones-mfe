@@ -174,10 +174,12 @@ export class MotDevAreaMedicaSIUumodificarComponent extends AbstractServiceIU im
                 'descripcion');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisMotDevAreaMedicaActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -189,7 +191,6 @@ export class MotDevAreaMedicaSIUumodificarComponent extends AbstractServiceIU im
      */
     private executeDependecyRules1puthisMotDevAreaMedicaActions(): void {
         const varputhismotdevareamedica = this.getFirstInstanceFromCache(this.puthisMotDevAreaMedica);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhismotdevareamedica && !this.util.isNull(varputhismotdevareamedica)) {
             // p_Descripcion.SetValue( v.Descripcion )

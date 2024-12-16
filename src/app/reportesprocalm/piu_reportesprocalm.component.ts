@@ -143,15 +143,15 @@ export class ReportesProcAlmPIUuReportesProcAlmComponent extends AbstractPIU imp
 
         accItem = new AccNavItem();
         accItem.id = 3;
-        accItem.idXML = 'Clas_1547029184512775AccOfer_1ElemAcc_4';
+        accItem.idXML = 'Clas_1547029184512775AccOfer_1ElemAcc_6';
         accItem.alias = this.langMng.translateText(
-            'cls_ReportesProcAlm_act_A_ReportesProcAlm_item_Clas_1547029184512775AccOfer_1ElemAcc_4',
+            'cls_ReportesProcAlm_act_A_ReportesProcAlm_item_Clas_1547029184512775AccOfer_1ElemAcc_6',
             'Generar');
         accItem.nounVerb = true;
         accItem.multiSelection = false;
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
-        accItem.targetClass = ModelConstants.Reportesprocalm.name;
-        accItem.targetUI = ModelConstants.Reportesprocalm.siuuevgenerar;
+        accItem.targetClass = ModelConstants.Globalservices.name;
+        accItem.targetUI = ModelConstants.Globalservices.siuutgenrepalm;
 
         this.actions.push(accItem);
 

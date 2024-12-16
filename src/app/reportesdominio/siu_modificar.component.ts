@@ -95,7 +95,7 @@ export class ReportesDominioSIUumodificarComponent extends AbstractServiceIU imp
             promiseArr.push(defValpuEnviarAuto);
 
             Promise.all(promiseArr).then((results: any[]) => {
-                this.util.hideWaitDialog();
+                this.setShowWait(false);
                 this.changeDetectorRef.markForCheck();
                 resolve();
             });
@@ -197,10 +197,12 @@ export class ReportesDominioSIUumodificarComponent extends AbstractServiceIU imp
                 'enviarauto');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisReportesDominioActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -212,7 +214,6 @@ export class ReportesDominioSIUumodificarComponent extends AbstractServiceIU imp
      */
     private executeDependecyRules1puthisReportesDominioActions(): void {
         const varputhisreportesdominio = this.getFirstInstanceFromCache(this.puthisReportesDominio);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisreportesdominio && !this.util.isNull(varputhisreportesdominio)) {
             // p_EnviarAuto.SetValue( v.enviarauto )

@@ -257,10 +257,12 @@ export class DetalleTarifaSIUuTCREARComponent extends AbstractServiceIU implemen
                 'plant.Plan,productot.Producto,tipocontrato');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1pTarifaActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -272,7 +274,6 @@ export class DetalleTarifaSIUuTCREARComponent extends AbstractServiceIU implemen
      */
     private executeDependecyRules1pTarifaActions(): void {
         const varptarifa = this.getFirstInstanceFromCache(this.pTarifa);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varptarifa && !this.util.isNull(varptarifa)) {
             // pTarifa.SetVisible( FALSE )

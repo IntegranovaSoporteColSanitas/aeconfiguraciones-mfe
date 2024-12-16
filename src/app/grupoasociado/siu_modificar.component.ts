@@ -92,7 +92,7 @@ export class GrupoAsociadoSIUumodificarComponent extends AbstractServiceIU imple
             promiseArr.push(defValpuDisminucionCarencia);
 
             Promise.all(promiseArr).then((results: any[]) => {
-                this.util.hideWaitDialog();
+                this.setShowWait(false);
                 this.changeDetectorRef.markForCheck();
                 resolve();
             });
@@ -194,10 +194,12 @@ export class GrupoAsociadoSIUumodificarComponent extends AbstractServiceIU imple
                 'disminucioncarencia');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisGrupoAsociadoActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -209,7 +211,6 @@ export class GrupoAsociadoSIUumodificarComponent extends AbstractServiceIU imple
      */
     private executeDependecyRules1puthisGrupoAsociadoActions(): void {
         const varputhisgrupoasociado = this.getFirstInstanceFromCache(this.puthisGrupoAsociado);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisgrupoasociado && !this.util.isNull(varputhisgrupoasociado)) {
             // p_DisminucionCarencia.SetValue( v.disminucioncarencia )

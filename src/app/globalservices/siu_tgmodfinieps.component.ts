@@ -207,10 +207,12 @@ export class GSSIUuTGMODFINIEPSComponent extends AbstractServiceIU implements On
                 'desde,fechainicioaplicar,hasta,tramite,tipocontrato');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1ptuputhisFechaIniEPSActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -222,7 +224,6 @@ export class GSSIUuTGMODFINIEPSComponent extends AbstractServiceIU implements On
      */
     private executeDependecyRules1ptuputhisFechaIniEPSActions(): void {
         const varptuputhisfechainieps = this.getFirstInstanceFromCache(this.ptuputhisFechaIniEPS);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varptuputhisfechainieps && !this.util.isNull(varptuputhisfechainieps)) {
             // pt_p_thisFechaIniEPS.SetVisible( false )

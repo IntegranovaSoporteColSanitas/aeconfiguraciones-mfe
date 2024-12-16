@@ -115,17 +115,18 @@ export class SeccionSIUuTCREARComponent extends AbstractServiceIU implements OnI
         this.notifyCallToTheBackEnd();
         this.util.searchPreload('CuestionarioMed', 'IC_CuestionarioMed', [], null, '').then(
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 if (response && response.results) {
                     this.ptupuagrCuestionario.loadPreload(response.results);
                 } else {
                     this.ptupuagrCuestionario.loadPreload([]);
                 }
                 this.numberOfPendingPreload--;
-                this.notifyAnswerFromToTheBackEnd();
                 this.initializeFromContext();
                 this.changeDetectorRef.markForCheck();
             },
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 this.processErrorInLoadPreload(response.resultDescription);
             }
         );

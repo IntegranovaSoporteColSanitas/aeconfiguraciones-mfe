@@ -209,10 +209,12 @@ export class ParentescoDomSIUumodificarComponent extends AbstractServiceIU imple
                 'edadminimaa,edadmaximaa,edadminimad,edadmaximap');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisParentescoDomActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -224,7 +226,6 @@ export class ParentescoDomSIUumodificarComponent extends AbstractServiceIU imple
      */
     private executeDependecyRules1puthisParentescoDomActions(): void {
         const varputhisparentescodom = this.getFirstInstanceFromCache(this.puthisParentescoDom);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisparentescodom && !this.util.isNull(varputhisparentescodom)) {
             // p_EdadMinimaA.SetValue( v.edadminimaa )

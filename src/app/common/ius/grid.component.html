@@ -175,7 +175,7 @@
                                         [style]="{width: '80vw', 'height': '80vh', 'box-shadow': 'none', 'border': '0px', 'padding-top': '60px'}"
                                         position="top" [closeOnEscape]="true" [dismissableMask]="true" [closable]="true">
                                         <textarea class="form-control" [ngModel]="rowData[col.field]"
-                                            style="height: 100%;" disabled="true" autocomplete="off"></textarea>
+                                            style="height: 100%!important;" disabled="true" autocomplete="off"></textarea>
                                         <p-footer>
                                             <button type="button" class="btnCancel btn btn-danger"
                                                 (click)="rowData['_inpopup' + col.field]=false">{{langMng.translateText('app_CLOSE', '')}}</button>

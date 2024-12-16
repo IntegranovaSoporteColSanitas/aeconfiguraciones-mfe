@@ -59,19 +59,15 @@ export class WrongVersionComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.util.hideWaitDialog();
         if (!this.appGlobalInfo.wrongVersionError) {
             this.util.navigateToMain();
         }
     }
 
     public downloadlastVersion(): void {
-        this.util.showWaitDialog();
         this.util.callHttpGetFile(this.downloadURL).then((data: any) => {
-            this.util.hideWaitDialog();
             this.util.saveFile(data, this.downloadFileName);
         }).catch((error: any) => {
-            this.util.hideWaitDialog();
             this.util.addErrorMessage(error);
         });
     }

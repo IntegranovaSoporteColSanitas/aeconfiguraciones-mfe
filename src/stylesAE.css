@@ -1,4 +1,10 @@
 /*  Ajustes para el Look & Feel de Afiliación Electrónica */
+.paraAE {
+    position: fixed;
+    width: 100%;
+    height: calc(100% - 64px);
+    overflow: auto;
+}
 .paraAE .container {
     max-width: 100%!important;
 }
@@ -379,9 +385,9 @@
 .paraAE .noActNavVisible .piuDisplaySet {
     width: 100% !important;
 }
-.paraAE .p-blockui-document.p-blockui.p-component-overlay.p-component-overlay-enter {
+/* .paraAE .p-blockui-document.p-blockui.p-component-overlay.p-component-overlay-enter {
     z-index: 10000;
-}
+} */
 .paraAE .labelForFile {
     height: 26.5px;
     border-radius: 4px !important;
@@ -392,4 +398,30 @@
 }
 .paraAE imes-input-blob .input-group-btn button {
     margin-right: 2px;
+}
+.paraAE p-radiobutton .p-disabled {
+    opacity: 0.8 !important;
+}
+.paraAE .argumentGroup {
+    width: min-content;
+}
+.paraAE .card-body {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+.paraAE .associatedService {
+    border: 0px;
+}
+.paraAE .cssDSNoShow .displaySet {
+    display: none;
+}
+
+.paraAE .cssAliasNoShow .aliasField {
+    display: none;
+}
+.paraAE .waitDialog {
+    z-index: 10000;
+}
+.paraAE .avisoProDatos textarea.form-control {
+    height: 350px !important;
 }

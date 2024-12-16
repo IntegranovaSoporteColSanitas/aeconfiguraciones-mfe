@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
     public password = '';
     /** Return URL */
     private returnUrl = '';
+    public showWait = false;
 
     constructor(private readonly appGlobalInfo: AppGlobalInfo,
                 private readonly util: Util,
@@ -42,7 +43,7 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         // Get the query params
         this.route.queryParams.subscribe(params => this.returnUrl = params['return'] || '');
-        this.util.hideWaitDialog();
+        this.showWait = false;
     }
 
     /**
@@ -107,9 +108,9 @@ export class LoginComponent implements OnInit {
                 }
             });
         } else {
+            this.showWait = false;
             this.util.addErrorMessage('Login error');
         }
-        this.util.hideWaitDialog();
         this.changeDetectorRef.markForCheck();
     }
 
@@ -121,7 +122,7 @@ export class LoginComponent implements OnInit {
         if (!loginData) {
             return;
         }
-        this.util.showWaitDialog();
+        this.showWait = true;
         this.util.loginUser(loginData).then(
             (response: any) => {
                 this.appGlobalInfo.setUserToken(response);
@@ -130,7 +131,7 @@ export class LoginComponent implements OnInit {
                 this.changeDetectorRef.markForCheck();
             }, (errorResponse: ErrorInformation) => {
                 this.util.addErrorMessage(this.langMng.translateError(errorResponse));
-                this.util.hideWaitDialog();
+                this.showWait = false;
                 this.changeDetectorRef.markForCheck();
             });
         this.changeDetectorRef.markForCheck();

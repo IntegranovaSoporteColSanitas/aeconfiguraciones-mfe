@@ -426,7 +426,7 @@ export class DominioSIUucrearComponent extends AbstractServiceIU implements OnIn
             promiseArr.push(defValpuatrVigenciaRadicacion);
 
             Promise.all(promiseArr).then((results: any[]) => {
-                this.util.hideWaitDialog();
+                this.setShowWait(false);
                 this.changeDetectorRef.markForCheck();
                 resolve();
             });
@@ -478,17 +478,18 @@ export class DominioSIUucrearComponent extends AbstractServiceIU implements OnIn
         this.notifyCallToTheBackEnd();
         this.util.searchPreload('Productos', 'IC_Producto', [], null, '').then(
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 if (response && response.results) {
                     this.puagrProductoT.loadPreload(response.results);
                 } else {
                     this.puagrProductoT.loadPreload([]);
                 }
                 this.numberOfPendingPreload--;
-                this.notifyAnswerFromToTheBackEnd();
                 this.initializeFromContext();
                 this.changeDetectorRef.markForCheck();
             },
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 this.processErrorInLoadPreload(response.resultDescription);
             }
         );

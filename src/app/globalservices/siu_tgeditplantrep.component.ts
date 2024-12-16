@@ -194,10 +194,12 @@ export class GSSIUuTGEDITPLANTREPComponent extends AbstractServiceIU implements 
                 'fechavigencia,rutaarchivos,titulo,nombrearchivopdf');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1ptuputhisPlantillaReporteActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -209,7 +211,6 @@ export class GSSIUuTGEDITPLANTREPComponent extends AbstractServiceIU implements 
      */
     private executeDependecyRules1ptuputhisPlantillaReporteActions(): void {
         const varptuputhisplantillareporte = this.getFirstInstanceFromCache(this.ptuputhisPlantillaReporte);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varptuputhisplantillareporte && !this.util.isNull(varptuputhisplantillareporte)) {
             // pt_p_thisPlantillaReporte.SetActive( FALSE )

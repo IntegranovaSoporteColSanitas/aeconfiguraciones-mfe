@@ -182,7 +182,7 @@ export class GrupoAsociadoSIUucrearComponent extends AbstractServiceIU implement
             promiseArr.push(defValpuatrDisminucionCarencia);
 
             Promise.all(promiseArr).then((results: any[]) => {
-                this.util.hideWaitDialog();
+                this.setShowWait(false);
                 this.changeDetectorRef.markForCheck();
                 resolve();
             });

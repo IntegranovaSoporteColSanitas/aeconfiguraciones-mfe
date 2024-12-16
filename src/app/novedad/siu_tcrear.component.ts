@@ -243,17 +243,18 @@ export class NovedadSIUuTCREARComponent extends AbstractServiceIU implements OnI
         this.notifyCallToTheBackEnd();
         this.util.searchPreload('TipoNovedad', 'IC_TipoNovedad', [], null, '').then(
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 if (response && response.results) {
                     this.ptupuagrTipoNovedad.loadPreload(response.results);
                 } else {
                     this.ptupuagrTipoNovedad.loadPreload([]);
                 }
                 this.numberOfPendingPreload--;
-                this.notifyAnswerFromToTheBackEnd();
                 this.initializeFromContext();
                 this.changeDetectorRef.markForCheck();
             },
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 this.processErrorInLoadPreload(response.resultDescription);
             }
         );
@@ -300,10 +301,12 @@ export class NovedadSIUuTCREARComponent extends AbstractServiceIU implements OnI
                 'tipo');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1ptupuagrTipoNovedadActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -315,7 +318,6 @@ export class NovedadSIUuTCREARComponent extends AbstractServiceIU implements OnI
      */
     private executeDependecyRules1ptupuagrTipoNovedadActions(): void {
         const varptupuagrtiponovedad = this.getFirstInstanceFromCache(this.ptupuagrTipoNovedad);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL AND v.tipo = 0
         if (varptupuagrtiponovedad && !this.util.isNull(varptupuagrtiponovedad) &&
             this.util.valueEquals(this.util.getInt(varptupuagrtiponovedad.get('tipo')), 0)) {
@@ -349,10 +351,12 @@ export class NovedadSIUuTCREARComponent extends AbstractServiceIU implements OnI
                 'tipo');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules2ptupuagrTipoNovedadActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -364,7 +368,6 @@ export class NovedadSIUuTCREARComponent extends AbstractServiceIU implements OnI
      */
     private executeDependecyRules2ptupuagrTipoNovedadActions(): void {
         const varptupuagrtiponovedad = this.getFirstInstanceFromCache(this.ptupuagrTipoNovedad);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL AND v.tipo <> 0
         if (varptupuagrtiponovedad && !this.util.isNull(varptupuagrtiponovedad) &&
             !this.util.valueEquals(this.util.getInt(varptupuagrtiponovedad.get('tipo')), 0)) {
@@ -384,10 +387,12 @@ export class NovedadSIUuTCREARComponent extends AbstractServiceIU implements OnI
                 'tipo');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules3ptupuagrTipoNovedadActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -399,7 +404,6 @@ export class NovedadSIUuTCREARComponent extends AbstractServiceIU implements OnI
      */
     private executeDependecyRules3ptupuagrTipoNovedadActions(): void {
         const varptupuagrtiponovedad = this.getFirstInstanceFromCache(this.ptupuagrTipoNovedad);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL AND v.tipo = 1
         if (varptupuagrtiponovedad && !this.util.isNull(varptupuagrtiponovedad) &&
             this.util.valueEquals(this.util.getInt(varptupuagrtiponovedad.get('tipo')), 1)) {
@@ -429,10 +433,12 @@ export class NovedadSIUuTCREARComponent extends AbstractServiceIU implements OnI
                 'tipo');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules4ptupuagrTipoNovedadActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -444,7 +450,6 @@ export class NovedadSIUuTCREARComponent extends AbstractServiceIU implements OnI
      */
     private executeDependecyRules4ptupuagrTipoNovedadActions(): void {
         const varptupuagrtiponovedad = this.getFirstInstanceFromCache(this.ptupuagrTipoNovedad);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL AND v.tipo = 2
         if (varptupuagrtiponovedad && !this.util.isNull(varptupuagrtiponovedad) &&
             this.util.valueEquals(this.util.getInt(varptupuagrtiponovedad.get('tipo')), 2)) {

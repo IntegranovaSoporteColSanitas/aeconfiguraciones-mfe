@@ -8,7 +8,14 @@ export class JsonUtility {
      * @param date Date value to be converted
      */
     public static date2Json(date: Date | null): string {
-        return JsonUtility.dateTime2Json(date);
+        let dateJson = '';
+        if (date) {
+            date.setMilliseconds(0);
+            dateJson = date.getFullYear().toString() + '-' +
+            (date.getMonth() + 1).toString().padStart(2, '0') + '-' +
+            date.getDate().toString().padStart(2, '0');
+        }
+        return dateJson;
     }
 
 
@@ -20,12 +27,12 @@ export class JsonUtility {
         let dateJson = '';
         if (date) {
             date.setMilliseconds(0);
-            dateJson = date.getUTCFullYear().toString() + '-' +
-            (date.getUTCMonth() + 1).toString().padStart(2, '0') + '-' +
-            date.getUTCDate().toString().padStart(2, '0') + 'T' +
-            date.getUTCHours().toString().padStart(2, '0') + ':' +
-            date.getUTCMinutes().toString().padStart(2, '0') + ':' +
-            date.getUTCSeconds().toString().padStart(2, '0') + 'Z';
+            dateJson = date.getFullYear().toString() + '-' +
+            (date.getMonth() + 1).toString().padStart(2, '0') + '-' +
+            date.getDate().toString().padStart(2, '0') + 'T' +
+            date.getHours().toString().padStart(2, '0') + ':' +
+            date.getMinutes().toString().padStart(2, '0') + ':' +
+            date.getSeconds().toString().padStart(2, '0');
         }
         return dateJson;
     }
@@ -35,7 +42,16 @@ export class JsonUtility {
      * @param date Date value to be converted
      */
     public static time2Json(date: Date | null): string {
-        return JsonUtility.dateTime2Json(date);
+        let timeJson = '';
+        if (date) {
+            date.setMilliseconds(0);
+            timeJson = '1970-01-01T' +
+            date.getHours().toString().padStart(2, '0') + ':' +
+            date.getMinutes().toString().padStart(2, '0') + ':' +
+            date.getSeconds().toString().padStart(2, '0');
+        }
+        return timeJson;
+
     }
 }
 

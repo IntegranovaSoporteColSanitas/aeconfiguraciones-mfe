@@ -1522,7 +1522,10 @@ export abstract class AbstractIU {
     public numberOfPendingPreload = 0;
     /** CSS classes to be assigned to the scenario */
     public cssClasses = '';
-
+    /** Custom options from model */
+    public customOptions = '';
+    /** Block IU using wait dialog */
+    public showWait = false;
     constructor(protected appGlobalInfo: AppGlobalInfo,
                 protected util: Util,
                 protected changeDetectorRef: ChangeDetectorRef) {
@@ -1612,5 +1615,17 @@ export abstract class AbstractIU {
      */
     public canBeDeactivated(): boolean {
         return true;
+    }
+
+    public setCustomOptions(options: string): void {
+        this.customOptions = options;
+        if (this.customOptions && this.customOptions.toLowerCase().indexOf('cssdsnoshow') >= 0) {
+            this.cssClasses += ' displaySetNoShow';
+        }
+    }
+
+    public setShowWait(value: boolean): void {
+        this.showWait = value;
+        this.changeDetectorRef.markForCheck();
     }
 }

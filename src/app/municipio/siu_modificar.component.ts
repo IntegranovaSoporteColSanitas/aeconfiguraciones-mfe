@@ -176,10 +176,12 @@ export class MunicipioSIUumodificarComponent extends AbstractServiceIU implement
                 'aplicaiva');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisMunicipioActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -191,7 +193,6 @@ export class MunicipioSIUumodificarComponent extends AbstractServiceIU implement
      */
     private executeDependecyRules1puthisMunicipioActions(): void {
         const varputhismunicipio = this.getFirstInstanceFromCache(this.puthisMunicipio);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhismunicipio && !this.util.isNull(varputhismunicipio)) {
             // p_AplicaIVA.SetValue( v.aplicaiva )

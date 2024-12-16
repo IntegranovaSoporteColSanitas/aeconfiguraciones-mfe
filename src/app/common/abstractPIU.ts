@@ -776,8 +776,9 @@ export abstract class AbstractPIU extends AbstractQueryIU {
 
         const url: string = this.appGlobalInfo.APPCONSTANTS.BASE_URL + this.queryURL;
 
-        this.util.showWaitDialog();
+        this.setShowWait(true);
         this.util.populationQuery(url, queryRequest).then((okResponse: any) => {
+            this.setShowWait(false);
             const res = okResponse;
             if (res.resultCode === '000') {
                 this.gridTotalInstances = res.totalItems;
@@ -787,14 +788,12 @@ export abstract class AbstractPIU extends AbstractQueryIU {
             } else {
                 this.util.addErrorMessage(`ERROR (${res.resultCode}): ${res.resultDescription}`);
             }
-            this.util.hideWaitDialog();
             // Verify if the selected rows are in the current data
             this.verifySelectedRowsInData();
             this.changeDetectorRef.markForCheck();
         }).catch( (errorResponse: any) => {
             this.util.addErrorMessage(errorResponse.message);
-            this.util.hideWaitDialog();
-            this.changeDetectorRef.markForCheck();
+            this.setShowWait(false);
         });
         this.changeDetectorRef.markForCheck();
     }

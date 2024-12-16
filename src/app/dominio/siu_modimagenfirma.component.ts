@@ -172,10 +172,12 @@ export class DominioSIUumodImagenFirmaComponent extends AbstractServiceIU implem
                 'respclaufirma');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisDominioActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -187,7 +189,6 @@ export class DominioSIUumodImagenFirmaComponent extends AbstractServiceIU implem
      */
     private executeDependecyRules1puthisDominioActions(): void {
         const varputhisdominio = this.getFirstInstanceFromCache(this.puthisDominio);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisdominio && !this.util.isNull(varputhisdominio)) {
             // pFirma.SetValue( v.RespClauFirma )

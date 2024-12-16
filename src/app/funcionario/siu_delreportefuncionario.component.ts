@@ -127,17 +127,18 @@ export class FuncionarioSIUuDelReporteFuncionarioComponent extends AbstractServi
         this.notifyCallToTheBackEnd();
         this.util.searchPreload('ReportesProcAlm', 'IC_ReportesProcAlm', [], null, '').then(
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 if (response && response.results) {
                     this.puevcReportesProcAlm.loadPreload(response.results);
                 } else {
                     this.puevcReportesProcAlm.loadPreload([]);
                 }
                 this.numberOfPendingPreload--;
-                this.notifyAnswerFromToTheBackEnd();
                 this.initializeFromContext();
                 this.changeDetectorRef.markForCheck();
             },
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 this.processErrorInLoadPreload(response.resultDescription);
             }
         );

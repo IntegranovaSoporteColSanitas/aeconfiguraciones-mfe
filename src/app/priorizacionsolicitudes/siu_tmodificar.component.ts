@@ -200,10 +200,12 @@ export class PriorizacionSolicitudesSIUuTMODIFICARComponent extends AbstractServ
                 'prioridad,estadodoc,estadosolicitud');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisPriorizacionSolicitudesActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -215,7 +217,6 @@ export class PriorizacionSolicitudesSIUuTMODIFICARComponent extends AbstractServ
      */
     private executeDependecyRules1puthisPriorizacionSolicitudesActions(): void {
         const varputhispriorizacionsolicitudes = this.getFirstInstanceFromCache(this.puthisPriorizacionSolicitudes);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhispriorizacionsolicitudes && !this.util.isNull(varputhispriorizacionsolicitudes)) {
             // pt_p_Prioridad.SetValue( v.prioridad )

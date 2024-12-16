@@ -173,10 +173,12 @@ export class GSSIUuTGEDITARCOMBOComponent extends AbstractServiceIU implements O
                 'contratointegral,contratoodontologico');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1ptuputhisContratoComboActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -188,7 +190,6 @@ export class GSSIUuTGEDITARCOMBOComponent extends AbstractServiceIU implements O
      */
     private executeDependecyRules1ptuputhisContratoComboActions(): void {
         const varptuputhiscontratocombo = this.getFirstInstanceFromCache(this.ptuputhisContratoCombo);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varptuputhiscontratocombo && !this.util.isNull(varptuputhiscontratocombo)) {
             // pt_p_ContratoIntegral.SetValue( v.ContratoIntegral )

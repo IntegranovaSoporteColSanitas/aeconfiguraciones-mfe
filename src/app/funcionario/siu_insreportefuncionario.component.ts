@@ -128,17 +128,18 @@ export class FuncionarioSIUuInsReporteFuncionarioComponent extends AbstractServi
         this.notifyCallToTheBackEnd();
         this.util.searchPreload('ReportesProcAlm', 'IC_ReportesProcAlm', [], null, '').then(
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 if (response && response.results) {
                     this.puevcReportesProcAlm.loadPreload(response.results);
                 } else {
                     this.puevcReportesProcAlm.loadPreload([]);
                 }
                 this.numberOfPendingPreload--;
-                this.notifyAnswerFromToTheBackEnd();
                 this.initializeFromContext();
                 this.changeDetectorRef.markForCheck();
             },
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 this.processErrorInLoadPreload(response.resultDescription);
             }
         );
@@ -226,10 +227,12 @@ export class FuncionarioSIUuInsReporteFuncionarioComponent extends AbstractServi
                 'Id');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisFuncionarioActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -241,7 +244,6 @@ export class FuncionarioSIUuInsReporteFuncionarioComponent extends AbstractServi
      */
     private executeDependecyRules1puthisFuncionarioActions(): void {
         const varputhisfuncionario = this.getFirstInstanceFromCache(this.puthisFuncionario);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisfuncionario && !this.util.isNull(varputhisfuncionario)) {
             // p_thisFuncionario.SetValue( NULL )

@@ -131,7 +131,7 @@ export class DominioSIUumodificarConfSolNovedadComponent extends AbstractService
             promiseArr.push(defValpuNovExcepcionReqDoc);
 
             Promise.all(promiseArr).then((results: any[]) => {
-                this.util.hideWaitDialog();
+                this.setShowWait(false);
                 this.changeDetectorRef.markForCheck();
                 resolve();
             });
@@ -233,10 +233,12 @@ export class DominioSIUumodificarConfSolNovedadComponent extends AbstractService
                 'novexcepcionreqdoc,solnovcoloroscuro,solnovcolorclaro,solnovlogo');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisDominioActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -248,7 +250,6 @@ export class DominioSIUumodificarConfSolNovedadComponent extends AbstractService
      */
     private executeDependecyRules1puthisDominioActions(): void {
         const varputhisdominio = this.getFirstInstanceFromCache(this.puthisDominio);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisdominio && !this.util.isNull(varputhisdominio)) {
             // p_NovExcepcionReqDoc.SetValue( v.novexcepcionreqdoc )

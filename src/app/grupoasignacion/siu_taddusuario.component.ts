@@ -227,10 +227,12 @@ export class GrupoAsignacionSIUuTADDUSUARIOComponent extends AbstractServiceIU i
                 'tipo');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisGrupoAsignacionActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -242,7 +244,6 @@ export class GrupoAsignacionSIUuTADDUSUARIOComponent extends AbstractServiceIU i
      */
     private executeDependecyRules1puthisGrupoAsignacionActions(): void {
         const varputhisgrupoasignacion = this.getFirstInstanceFromCache(this.puthisGrupoAsignacion);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL AND v.Tipo = 1
         if (varputhisgrupoasignacion && !this.util.isNull(varputhisgrupoasignacion) &&
             this.util.valueEquals(this.util.getInt(varputhisgrupoasignacion.get('tipo')), 1)) {
@@ -271,10 +272,12 @@ export class GrupoAsignacionSIUuTADDUSUARIOComponent extends AbstractServiceIU i
                 'tipo');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules2puthisGrupoAsignacionActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -286,7 +289,6 @@ export class GrupoAsignacionSIUuTADDUSUARIOComponent extends AbstractServiceIU i
      */
     private executeDependecyRules2puthisGrupoAsignacionActions(): void {
         const varputhisgrupoasignacion = this.getFirstInstanceFromCache(this.puthisGrupoAsignacion);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL AND v.Tipo = 2
         if (varputhisgrupoasignacion && !this.util.isNull(varputhisgrupoasignacion) &&
             this.util.valueEquals(this.util.getInt(varputhisgrupoasignacion.get('tipo')), 2)) {
@@ -445,10 +447,12 @@ export class GrupoAsignacionSIUuTADDUSUARIOComponent extends AbstractServiceIU i
                 'Id');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1ptFuncionarioActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -460,7 +464,6 @@ export class GrupoAsignacionSIUuTADDUSUARIOComponent extends AbstractServiceIU i
      */
     private executeDependecyRules1ptFuncionarioActions(): void {
         const varptfuncionario = this.getFirstInstanceFromCache(this.ptFuncionario);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varptfuncionario && !this.util.isNull(varptfuncionario)) {
             // ptFuncionario.SetValue( NULL )
@@ -614,10 +617,12 @@ export class GrupoAsignacionSIUuTADDUSUARIOComponent extends AbstractServiceIU i
                 'Id');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1ptAreaMedicaActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -629,7 +634,6 @@ export class GrupoAsignacionSIUuTADDUSUARIOComponent extends AbstractServiceIU i
      */
     private executeDependecyRules1ptAreaMedicaActions(): void {
         const varptareamedica = this.getFirstInstanceFromCache(this.ptAreaMedica);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varptareamedica && !this.util.isNull(varptareamedica)) {
             // ptAreaMedica.SetValue( NULL )

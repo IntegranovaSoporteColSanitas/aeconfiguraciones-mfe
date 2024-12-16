@@ -134,7 +134,7 @@ export class PlanesSIUumodificarComponent extends AbstractServiceIU implements O
             promiseArr.push(defValpuInicioContDiaUno);
 
             Promise.all(promiseArr).then((results: any[]) => {
-                this.util.hideWaitDialog();
+                this.setShowWait(false);
                 this.changeDetectorRef.markForCheck();
                 resolve();
             });
@@ -236,10 +236,12 @@ export class PlanesSIUumodificarComponent extends AbstractServiceIU implements O
                 'esbancorep,aceptapreexistencias,esvoluntario,iniciocontdiauno');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisPlanActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -251,7 +253,6 @@ export class PlanesSIUumodificarComponent extends AbstractServiceIU implements O
      */
     private executeDependecyRules1puthisPlanActions(): void {
         const varputhisplan = this.getFirstInstanceFromCache(this.puthisPlan);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisplan && !this.util.isNull(varputhisplan)) {
             // p_EsBancoRep.SetValue( v.esbancorep )

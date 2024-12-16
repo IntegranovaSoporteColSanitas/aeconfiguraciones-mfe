@@ -157,7 +157,7 @@ export class MSALUtil {
         // Write your own validation process
 
         if (!this.appGlobalInfo.getLoggedUserInfo().isUserInfoComplete()) {
-            this.util.showWaitDialog();
+            // this.util.showWaitDialog();
             this.callTokenAzure().then((userData: any) => {
 
                 if (userData.hasRegistered) {
@@ -170,11 +170,11 @@ export class MSALUtil {
                         displayName);
                     this.appGlobalInfo.updateUserToken(userData.token);
                     this.callGetUserInfo().then( () => {
-                        this.util.hideWaitDialog();
+                        // this.util.hideWaitDialog();
                     }).catch((err: Error) => {
                         console.log(err.toString());
                         this.util.addErrorMessage(err.message);
-                        this.util.hideWaitDialog();
+                        // this.util.hideWaitDialog();
                     });
                 } else {
                     let message = this.languageMng.translateText('app_LOGINERRORCLOSESESSION', '');
@@ -186,13 +186,13 @@ export class MSALUtil {
                             this.logOutAzure();
                         }
                     });
-                    this.util.hideWaitDialog();
+                    // this.util.hideWaitDialog();
                 }
             }).catch((err: Error) => {
                 console.log(err.toString());
                 this.util.addErrorMessage(err.message);
                 this.appGlobalInfo.setLogOut();
-                this.util.hideWaitDialog();
+                // this.util.hideWaitDialog();
             });
         }
     }

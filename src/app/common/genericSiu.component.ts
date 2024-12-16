@@ -18,6 +18,7 @@ import { Subscription } from 'rxjs';
     changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
 
+    <waitDialog [showWait]="showWait"></waitDialog> 
     <ng-container *ngIf="visible">
         <div style="text-align: center;margin-bottom: 10px;">
             <h2>{{title}}</h2>
@@ -80,6 +81,8 @@ export class GenericSiuComponent implements OnInit {
     /** Scenario is visible or not */
     public visible = true;
 
+    public showWait = false;
+
     constructor(
         protected appGlobalInfo: AppGlobalInfo,
         protected util: Util,
@@ -89,7 +92,6 @@ export class GenericSiuComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.util.hideWaitDialog();
         this.exchangeInfo = this.appGlobalInfo.appExchangeInfo.get();
         this.className = this.exchangeInfo.targetClassName;
         this.serviceIUName = this.exchangeInfo.targetIUName;
@@ -165,7 +167,7 @@ export class GenericSiuComponent implements OnInit {
             this.util.showProgressBar(this.title, executionCount + 1 === totalExecutions ? 99 :
                 Math.round(((executionCount + 1) / totalExecutions) * 100), 0);
         } else {
-            this.util.showWaitDialog();
+            this.showWait = true;
         }
         let lOid = oid;
         if (this.argNameInRequest?.endsWith('_json')) {
@@ -182,7 +184,7 @@ export class GenericSiuComponent implements OnInit {
                 if (this.oidList.length === 0) {
                     this.visible = true;
                     this.util.addErrorMessageList(errorList);
-                    this.util.hideWaitDialog();
+                    this.showWait = false;
                     this.util.hideProgressBar();
                     this.changeDetectorRef.markForCheck();
                 } else {
@@ -197,13 +199,13 @@ export class GenericSiuComponent implements OnInit {
         }
         if (this.oidList.length === 0) {
             if (errorList.length === 0) {
-                this.util.hideWaitDialog();
+                this.showWait = false;
                 this.util.hideProgressBar();
                 this.processSuccessfulExecution(data, executionCount);
             } else {
                 this.visible = true;
                 this.util.addErrorMessageList(errorList);
-                this.util.hideWaitDialog();
+                this.showWait = false;
                 this.util.hideProgressBar();
                 this.changeDetectorRef.markForCheck();
             }
@@ -269,7 +271,7 @@ export class GenericSiuComponent implements OnInit {
             }
         } else {
             // Query to get the value of attributes
-			this.util.showWaitDialog();
+			this.showWait = true;
 			this.util.callQueryByOid(this.argClassName, JSON.stringify(this.originalOidList[0]),
 				this.argSupInfAttNames).then((instance) => {
 				if (instance) {
@@ -291,7 +293,7 @@ export class GenericSiuComponent implements OnInit {
 				} else {
 					this.argValue = '';
 				}
-				this.util.hideWaitDialog();
+				this.showWait = false;
 				this.changeDetectorRef.markForCheck();
 				if (this.siuHasNoShow) {
 					this.saveChanges();
@@ -299,7 +301,7 @@ export class GenericSiuComponent implements OnInit {
 			}).catch((errorMsg) => {
 				this.argValue = '';
 				this.util.addErrorMessage(errorMsg);
-				this.util.hideWaitDialog();
+				this.showWait = false;
 				this.changeDetectorRef.markForCheck();
 			});
         }

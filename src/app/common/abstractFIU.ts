@@ -68,7 +68,7 @@ export abstract class AbstractFilterIU extends AbstractIU {
         } else {
             this.initializeFromExchangeInfo(exchInfo);
         }
-        this.util.hideWaitDialog();
+        this.setShowWait(false);
     }
 
     /**
@@ -172,7 +172,7 @@ export abstract class AbstractFilterIU extends AbstractIU {
             return;
         }
 
-        this.util.showWaitDialog();
+        this.setShowWait(true);
 
         // Generate the report
         this.util.generatePopulationReport(this.className, this.getContext().exchangeInfo.printUIName,
@@ -182,10 +182,10 @@ export abstract class AbstractFilterIU extends AbstractIU {
                 } else {
                     this.processCancel();
                 }
-                this.util.hideWaitDialog();
+                this.setShowWait(false);
             }).catch((errorMsg) => {
                 this.util.addErrorMessage(errorMsg);
-                this.util.hideWaitDialog();
+                this.setShowWait(false);
             });
     }
 }

@@ -132,17 +132,18 @@ export class DominioSIUuTINSNOVEDADComponent extends AbstractServiceIU implement
         this.notifyCallToTheBackEnd();
         this.util.searchPreload('TipoNovedad', 'IC_TipoNovedad', [], null, '').then(
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 if (response && response.results) {
                     this.ptTipo.loadPreload(response.results);
                 } else {
                     this.ptTipo.loadPreload([]);
                 }
                 this.numberOfPendingPreload--;
-                this.notifyAnswerFromToTheBackEnd();
                 this.initializeFromContext();
                 this.changeDetectorRef.markForCheck();
             },
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 this.processErrorInLoadPreload(response.resultDescription);
             }
         );

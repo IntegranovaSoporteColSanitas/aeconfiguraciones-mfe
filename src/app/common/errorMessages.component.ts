@@ -14,7 +14,7 @@ import { LanguageMng } from './languageMng';
         position="top" [baseZIndex]="1040"
         [style]="{'box-shadow': 'none', 'border': '0px', 'padding-top': '60px'}"
         styleClass="col-12 col-sm-7 col-md-5 errorMessages"
-        [contentStyle]="{'max-height':'300px', 'overflow-y': 'scroll', 'padding': '10px'}" >
+        [contentStyle]="{'max-height':'300px', 'overflow-y': 'auto', 'padding': '10px'}" >
         <p-header>{{langMng.translateText('app_ERROR_TITLE', '')}}</p-header>
 
         <ng-container *ngFor="let serviceError of messages">

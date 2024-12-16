@@ -244,10 +244,12 @@ export class CausalSIUumodificarComponent extends AbstractServiceIU implements O
                 'aliascausal,nombre,descripcion,codigolegal,reqdocpersona,reqdocsolicitud');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisCausalActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -259,7 +261,6 @@ export class CausalSIUumodificarComponent extends AbstractServiceIU implements O
      */
     private executeDependecyRules1puthisCausalActions(): void {
         const varputhiscausal = this.getFirstInstanceFromCache(this.puthisCausal);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhiscausal && !this.util.isNull(varputhiscausal)) {
             // p_AliasCausal.SetValue( v.aliascausal )
@@ -288,10 +289,12 @@ export class CausalSIUumodificarComponent extends AbstractServiceIU implements O
                 'novedad.reqdocpersona');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules2puthisCausalActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -303,7 +306,6 @@ export class CausalSIUumodificarComponent extends AbstractServiceIU implements O
      */
     private executeDependecyRules2puthisCausalActions(): void {
         const varputhiscausal = this.getFirstInstanceFromCache(this.puthisCausal);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL AND v.novedad.reqdocpersona = true
         if (varputhiscausal && !this.util.isNull(varputhiscausal) &&
             this.util.valueEquals(this.util.getBool(varputhiscausal.get('novedad.reqdocpersona')), true)) {
@@ -325,10 +327,12 @@ export class CausalSIUumodificarComponent extends AbstractServiceIU implements O
                 'novedad.reqdocsolicitud');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules3puthisCausalActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -340,7 +344,6 @@ export class CausalSIUumodificarComponent extends AbstractServiceIU implements O
      */
     private executeDependecyRules3puthisCausalActions(): void {
         const varputhiscausal = this.getFirstInstanceFromCache(this.puthisCausal);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL AND v.novedad.reqdocsolicitud = true
         if (varputhiscausal && !this.util.isNull(varputhiscausal) &&
             this.util.valueEquals(this.util.getBool(varputhiscausal.get('novedad.reqdocsolicitud')), true)) {

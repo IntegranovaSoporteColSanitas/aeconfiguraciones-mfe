@@ -349,6 +349,7 @@ select {
     .gridTextEnlarge{
         display: inline-flex!important;
         width: calc(100% - 20px);
+        overflow-x: hidden;
     }
     .p-datatable-tbody .editableCell p-celleditor{
         width: 100%;
@@ -1230,6 +1231,7 @@ imes-details-in-row-grid .p-datatable-footer {
 }
 .detailInRowGrid {
     padding-top: 5px;
+    padding-left: 25px;
 }
 .detailInRowGrid .gridFilterRow {
     display: none;

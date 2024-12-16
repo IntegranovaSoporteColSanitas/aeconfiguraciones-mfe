@@ -229,17 +229,18 @@ export class InstitucionMatNeoSIUuTMODIFICARComponent extends AbstractServiceIU 
         this.notifyCallToTheBackEnd();
         this.util.searchPreload('TipoIdentificacion', 'IC_TipoIdentificacion', [], null, 'OC_TipoIdentificacion').then(
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 if (response && response.results) {
                     this.ptupuevcTipoIdentificacion.loadPreload(response.results);
                 } else {
                     this.ptupuevcTipoIdentificacion.loadPreload([]);
                 }
                 this.numberOfPendingPreload--;
-                this.notifyAnswerFromToTheBackEnd();
                 this.initializeFromContext();
                 this.changeDetectorRef.markForCheck();
             },
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 this.processErrorInLoadPreload(response.resultDescription);
             }
         );
@@ -338,10 +339,12 @@ export class InstitucionMatNeoSIUuTMODIFICARComponent extends AbstractServiceIU 
                 ',tipoidentificacion.Codigo');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisInstitucionMatNeoActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -353,7 +356,6 @@ export class InstitucionMatNeoSIUuTMODIFICARComponent extends AbstractServiceIU 
      */
     private executeDependecyRules1puthisInstitucionMatNeoActions(): void {
         const varputhisinstitucionmatneo = this.getFirstInstanceFromCache(this.puthisInstitucionMatNeo);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisinstitucionmatneo && !this.util.isNull(varputhisinstitucionmatneo)) {
             // pt_p_NumIdentificacion.SetValue( v.numidentificacion )

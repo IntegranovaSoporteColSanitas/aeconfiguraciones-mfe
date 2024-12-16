@@ -192,17 +192,18 @@ export class RespRegionalSIUuTMODIFICARComponent extends AbstractServiceIU imple
         this.notifyCallToTheBackEnd();
         this.util.searchPreload('Regional', 'IC_Regional', [], null, '').then(
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 if (response && response.results) {
                     this.ptupuevcRegional.loadPreload(response.results);
                 } else {
                     this.ptupuevcRegional.loadPreload([]);
                 }
                 this.numberOfPendingPreload--;
-                this.notifyAnswerFromToTheBackEnd();
                 this.initializeFromContext();
                 this.changeDetectorRef.markForCheck();
             },
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 this.processErrorInLoadPreload(response.resultDescription);
             }
         );
@@ -290,10 +291,12 @@ export class RespRegionalSIUuTMODIFICARComponent extends AbstractServiceIU imple
                 'email,regional.Codigo,primerapellido,primernombre,segundoapellido,segundonombre,usuarioldap');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisRespRegionalActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -305,7 +308,6 @@ export class RespRegionalSIUuTMODIFICARComponent extends AbstractServiceIU imple
      */
     private executeDependecyRules1puthisRespRegionalActions(): void {
         const varputhisrespregional = this.getFirstInstanceFromCache(this.puthisRespRegional);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisrespregional && !this.util.isNull(varputhisrespregional)) {
             // pt_p_Email.SetValue( v.email )

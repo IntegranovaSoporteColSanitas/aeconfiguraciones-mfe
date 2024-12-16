@@ -174,10 +174,12 @@ export class ValorSIUumodificarComponent extends AbstractServiceIU implements On
                 'valorposible');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisValorActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -189,7 +191,6 @@ export class ValorSIUumodificarComponent extends AbstractServiceIU implements On
      */
     private executeDependecyRules1puthisValorActions(): void {
         const varputhisvalor = this.getFirstInstanceFromCache(this.puthisValor);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisvalor && !this.util.isNull(varputhisvalor)) {
             // p_ValorPosible.SetValue( v.ValorPosible )

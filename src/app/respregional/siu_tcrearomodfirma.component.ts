@@ -118,7 +118,7 @@ export class RespRegionalSIUuTCREAROMODFIRMAComponent extends AbstractServiceIU 
             promiseArr.push(defValputhisRespRegional);
 
             Promise.all(promiseArr).then((results: any[]) => {
-                this.util.hideWaitDialog();
+                this.setShowWait(false);
                 this.changeDetectorRef.markForCheck();
                 resolve();
             });

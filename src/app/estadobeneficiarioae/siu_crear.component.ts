@@ -104,17 +104,18 @@ export class EstadoBeneficiarioAESIUucrearComponent extends AbstractServiceIU im
         this.notifyCallToTheBackEnd();
         this.util.searchPreload('EstadoBeneficiario', 'IC_EstadoBeneficiario', [], null, '').then(
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 if (response && response.results) {
                     this.puagrEstadoBeneficiarioCORE.loadPreload(response.results);
                 } else {
                     this.puagrEstadoBeneficiarioCORE.loadPreload([]);
                 }
                 this.numberOfPendingPreload--;
-                this.notifyAnswerFromToTheBackEnd();
                 this.initializeFromContext();
                 this.changeDetectorRef.markForCheck();
             },
             (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
                 this.processErrorInLoadPreload(response.resultDescription);
             }
         );

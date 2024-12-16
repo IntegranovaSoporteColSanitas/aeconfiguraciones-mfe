@@ -44,7 +44,6 @@ export class AppComponent implements OnDestroy {
         this.appGlobalInfo.getLoggedUserInfo();
         this.appGlobalInfo.appExchangeInfo.clear();
         this.subscriptions = new Subscription();
-        this.subscriptions.add(util.waitDialogAction.subscribe(data => this.waitDialogAction(data)));
         this.subscriptions.add(util.errorMessagesAction.subscribe(data => this.errorMessagesAction(data)));
         this.subscriptions.add(util.gridPreferencesAction.subscribe(data => this.gridPreferencesAction(data)));
         this.subscriptions.add(util.modalForIUAction.subscribe(data => this.modalForIUAction(data)));
@@ -57,36 +56,6 @@ export class AppComponent implements OnDestroy {
     
     ngOnDestroy(): void {
         this.subscriptions.unsubscribe();
-    }
-
-    /**
-     * Manages the suscription to the wait dialog observable
-     */
-    public waitDialogAction(data: boolean): void {
-        this.showWaitDialog = data;
-        this.changeDetectorRef.markForCheck();
-        // setTimeout(() => {
-        //     this.showWaitDialog = data;
-        //     console.log('waitDialogAction: ' + data);
-        //     this.changeDetectorRef.markForCheck();
-        // }, 5);
-
-        // Set timeout for the bloking wait dialog
-        // if (data) {
-        //     if (this.waitDialogTimer) {
-        //         window.clearTimeout(this.waitDialogTimer);
-        //         this.waitDialogTimer = undefined;
-        //     }
-        //     this.waitDialogTimer = window.setTimeout(() => {
-        //         this.waitDialogTimer = undefined;
-        //         this.showWaitDialog = false;
-        //     }, 15000);
-        // } else {
-        //     if (this.waitDialogTimer) {
-        //         window.clearTimeout(this.waitDialogTimer);
-        //         this.waitDialogTimer = undefined;
-        //     }
-        // }
     }
 
     /**

@@ -146,8 +146,7 @@ export class ModelConstants {
     public static readonly Logcontsindocsol = {name : 'LogContSinDocSol', piuulogcontsindocsol: 'piu_logcontsindocsol'};
     public static readonly Logasignaciones = {name : 'LogAsignaciones'};
     public static readonly Reportesprocalm = {name : 'ReportesProcAlm', siuucrear: 'siu_crear', siuueliminar: 'siu_eliminar',
-        siuumodificar: 'siu_modificar', siuuevgenerar: 'siu_evgenerar', siuuevgeneraruout: 'siu_evgenerar_out',
-        piuureportesprocalm: 'piu_reportesprocalm', mdiuureportesprocalm: 'mdiu_reportesprocalm'};
+        siuumodificar: 'siu_modificar', piuureportesprocalm: 'piu_reportesprocalm', mdiuureportesprocalm: 'mdiu_reportesprocalm'};
     public static readonly Prorrateo = {name : 'Prorrateo', siuucrear: 'siu_crear', siuueliminar: 'siu_eliminar',
         siuumodificar: 'siu_modificar', piuuprorrateo: 'piu_prorrateo'};
     public static readonly Tipofactura = {name : 'TipoFactura', siuucrear: 'siu_crear', siuueliminar: 'siu_eliminar',
@@ -226,5 +225,6 @@ export class ModelConstants {
         siuutgcrearcombo: 'siu_tgcrearcombo', siuutgeditarcombo: 'siu_tgeditarcombo', siuutdelcombo: 'siu_tdelcombo',
         siuutgaddplantrep: 'siu_tgaddplantrep', siuutgeditplantrep: 'siu_tgeditplantrep', siuutgcrearfinieps: 'siu_tgcrearfinieps',
         siuutgmodfinieps: 'siu_tgmodfinieps', siuutgcrearcontexento: 'siu_tgcrearcontexento',
-        siuutgdelcontratoexento: 'siu_tgdelcontratoexento'};
+        siuutgdelcontratoexento: 'siu_tgdelcontratoexento', siuutgenrepalm: 'siu_tgenrepalm',
+        siuutgenrepalmuout: 'siu_tgenrepalm_out'};
 }

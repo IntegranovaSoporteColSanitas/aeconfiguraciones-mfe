@@ -10,6 +10,8 @@ import { GSSIUuTGEDITPLANTREPComponent } from './siu_tgeditplantrep.component';
 import { GSSIUuTGCREARFINIEPSComponent } from './siu_tgcrearfinieps.component';
 import { GSSIUuTGMODFINIEPSComponent } from './siu_tgmodfinieps.component';
 import { GSSIUuTGCREARCONTEXENTOComponent } from './siu_tgcrearcontexento.component';
+import { GSSIUuTGENREPALMComponent } from './siu_tgenrepalm.component';
+import { GSSIUuTGENREPALMuOutComponent } from './siu_tgenrepalm_out.component';
 
 const routes: Routes = [
     { path: 'siu_tgcreartarifa' , component: GSSIUuTGCREARTARIFAComponent,
@@ -27,6 +29,9 @@ const routes: Routes = [
     { path: 'siu_tgmodfinieps' , component: GSSIUuTGMODFINIEPSComponent,
         canActivate: [LoginGuard], canDeactivate: [PopStateNavigationGuard] },
     { path: 'siu_tgcrearcontexento' , component: GSSIUuTGCREARCONTEXENTOComponent,
+        canActivate: [LoginGuard], canDeactivate: [PopStateNavigationGuard] },
+    { path: 'siu_tgenrepalm' , component: GSSIUuTGENREPALMComponent, canActivate: [LoginGuard], canDeactivate: [PopStateNavigationGuard] },
+    { path: 'siu_tgenrepalm_out' , component: GSSIUuTGENREPALMuOutComponent,
         canActivate: [LoginGuard], canDeactivate: [PopStateNavigationGuard] }
 ];
 

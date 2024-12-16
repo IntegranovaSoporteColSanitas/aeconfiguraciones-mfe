@@ -185,10 +185,12 @@ export class GrupoAsignacionSIUuTMODIFICARComponent extends AbstractServiceIU im
                 'nombre,descripcion');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisGrupoAsignacionActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -200,7 +202,6 @@ export class GrupoAsignacionSIUuTMODIFICARComponent extends AbstractServiceIU im
      */
     private executeDependecyRules1puthisGrupoAsignacionActions(): void {
         const varputhisgrupoasignacion = this.getFirstInstanceFromCache(this.puthisGrupoAsignacion);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisgrupoasignacion && !this.util.isNull(varputhisgrupoasignacion)) {
             // pt_p_Nombre.SetValue( v.Nombre )

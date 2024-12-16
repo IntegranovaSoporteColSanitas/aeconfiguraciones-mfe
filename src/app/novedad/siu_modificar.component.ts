@@ -263,10 +263,12 @@ export class NovedadSIUumodificarComponent extends AbstractServiceIU implements 
                 'descripcion,codigolegal,reqdocpersona,reqdocsolicitud,variasfamilias,nombre,minvalormeses,maxvalormeses');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisNovedadActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -278,7 +280,6 @@ export class NovedadSIUumodificarComponent extends AbstractServiceIU implements 
      */
     private executeDependecyRules1puthisNovedadActions(): void {
         const varputhisnovedad = this.getFirstInstanceFromCache(this.puthisNovedad);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisnovedad && !this.util.isNull(varputhisnovedad)) {
             // p_Descripcion.SetValue( v.descripcion )
@@ -311,10 +312,12 @@ export class NovedadSIUumodificarComponent extends AbstractServiceIU implements 
                 'tiponovedad.tipo');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules2puthisNovedadActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -326,7 +329,6 @@ export class NovedadSIUumodificarComponent extends AbstractServiceIU implements 
      */
     private executeDependecyRules2puthisNovedadActions(): void {
         const varputhisnovedad = this.getFirstInstanceFromCache(this.puthisNovedad);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL AND v.tiponovedad.tipo = 0
         if (varputhisnovedad && !this.util.isNull(varputhisnovedad) &&
             this.util.valueEquals(this.util.getInt(varputhisnovedad.get('tiponovedad.tipo')), 0)) {

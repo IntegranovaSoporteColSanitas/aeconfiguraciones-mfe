@@ -255,10 +255,12 @@ export class DetalleTarifaSIUuTMODIFICARComponent extends AbstractServiceIU impl
                 'anyo,liminferioredad,limsuperioredad,tarifa.plant.Plan,tarifa.productot.Producto,tarifa.tipocontrato,valor');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             try {
                 this.executeDependecyRules1puthisDetalleTarifaActions();
             } catch (e) {
                 console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
             } });
@@ -270,7 +272,6 @@ export class DetalleTarifaSIUuTMODIFICARComponent extends AbstractServiceIU impl
      */
     private executeDependecyRules1puthisDetalleTarifaActions(): void {
         const varputhisdetalletarifa = this.getFirstInstanceFromCache(this.puthisDetalleTarifa);
-        this.notifyAnswerFromToTheBackEnd();
         // v <> NULL
         if (varputhisdetalletarifa && !this.util.isNull(varputhisdetalletarifa)) {
             // p_thisDetalleTarifa.SetVisible( FALSE )

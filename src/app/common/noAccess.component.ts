@@ -23,6 +23,5 @@ export class NoAccessComponent implements OnInit {
 
     public ngOnInit(): void {
         this.appGlobalInfo.setScenarioTitle('');
-        this.util.hideWaitDialog();
     }
 }
