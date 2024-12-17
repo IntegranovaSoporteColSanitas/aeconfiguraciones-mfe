@@ -10,6 +10,7 @@ metadata:
     app.kubernetes.io/part-of: ae-app-frontend
     app.openshift.io/runtime: aeconfiguraciones-mfe
 spec:
+  host: aeconfiguraciones-mfe-soporte-colsanitas-dev.apps.sandbox-m3.1530.p1.openshiftapps.com
   to:
     kind: Service
     name: aeconfiguraciones-mfe

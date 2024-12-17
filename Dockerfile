@@ -1,6 +1,8 @@
 # Serve application using Nginx server
 FROM nginx:alpine
 
+USER root
+
 # Copy from ./dist/ folder to destination
 COPY ./dist/. /usr/share/nginx/html
 
