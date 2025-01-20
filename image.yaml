@@ -1,0 +1,11 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: aeconfiguraciones-mfe
+  labels:
+    app: aeconfiguraciones-mfe
+    app.kubernetes.io/component: aeconfiguraciones-mfe
+    app.kubernetes.io/instance: aeconfiguraciones-mfe
+    app.kubernetes.io/name: aeconfiguraciones-mfe
+    app.kubernetes.io/part-of: ae-app-frontend
+    app.openshift.io/runtime: aeconfiguraciones-mfe

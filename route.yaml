@@ -1,0 +1,20 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: aeconfiguraciones-mfe
+  labels:
+    app: aeconfiguraciones-mfe
+    app.kubernetes.io/component: aeconfiguraciones-mfe
+    app.kubernetes.io/instance: aeconfiguraciones-mfe
+    app.kubernetes.io/name: aeconfiguraciones-mfe
+    app.kubernetes.io/part-of: ae-app-frontend
+    app.openshift.io/runtime: aeconfiguraciones-mfe
+spec:
+#INIHOST
+  host: aeconfiguraciones-mfe-soporte-colsanitas-dev.apps.sandbox-m3.1530.p1.openshiftapps.com
+#FINHOST
+  to:
+    kind: Service
+    name: aeconfiguraciones-mfe
+  tls:
+    termination: edge

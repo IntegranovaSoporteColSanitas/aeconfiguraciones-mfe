@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aeconfiguraciones-mfe
+  labels:
+    app: aeconfiguraciones-mfe
+    app.kubernetes.io/component: aeconfiguraciones-mfe
+    app.kubernetes.io/instance: aeconfiguraciones-mfe
+    app.kubernetes.io/name: aeconfiguraciones-mfe
+    app.kubernetes.io/part-of: ae-app-frontend
+    app.openshift.io/runtime: aeconfiguraciones-mfe
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aeconfiguraciones-mfe
+  template:
+    metadata:
+      labels:
+        app: aeconfiguraciones-mfe
+        deployment: aeconfiguraciones-mfe
+    spec:
+      containers:
+        - name: aeconfiguraciones-mfe
+#INIIMAGE
+          image: 'image-registry.openshift-image-registry.svc:5000/soporte-colsanitas-dev/aeconfiguraciones-mfe:latest'
+#FINIMAGE
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 100m
+              memory: 200Mi
+            requests:
+              cpu: 10m
+              memory: 100Mi
+          env:
+            - name: TZ
+              value: "America/Bogota"

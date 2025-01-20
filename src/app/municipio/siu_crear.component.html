@@ -1,0 +1,21 @@
+﻿<waitDialog [showWait]="showWait"></waitDialog> 
+<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-input-numeric [field]="puatrCodigo" *ngIf="puatrCodigo.visible"></imes-input-numeric>
+            <imes-input-string [field]="puatrDescripcion" *ngIf="puatrDescripcion.visible"></imes-input-string>
+            <imes-input-string [field]="puatrCodigoLegal" *ngIf="puatrCodigoLegal.visible"></imes-input-string>
+            <imes-input-radio [field]="puatrEsValidoEPS" *ngIf="puatrEsValidoEPS.visible"></imes-input-radio>
+            <imes-input-radio [field]="puatrAplicaIVA" *ngIf="puatrAplicaIVA.visible"></imes-input-radio>
+            <imes-lensesearch [field]="puagrDepartamento" *ngIf="puagrDepartamento.visible"
+                (selected)="processpuagrdepartamentoSelected($event)" (cleared)="cleanpuagrdepartamento()"
+                (keypressLenseSearch)="onKeypressLenseSearch('onpuagrdepartamentoChange')"
+                (searched)="doSearchAction('puagrDepartamento')"></imes-lensesearch>
+        </div>
+        <div class="col-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

@@ -1,0 +1,10 @@
+/* Específico de aeconfiguraciones */
+.paraAE imes-dominio-mdiu-dominio .iiuRegion .actionsNavigations button {
+    width: auto;
+}
+.paraAE imes-dominio-mdiu-dominio .iiuRegion .card.displaySet .card-body {
+    width: 1100px;
+}
+.paraAE .imesBlobImage .aliasField {
+    display: none;
+}

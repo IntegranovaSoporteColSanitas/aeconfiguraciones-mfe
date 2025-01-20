@@ -1,0 +1,22 @@
+﻿<waitDialog [showWait]="showWait"></waitDialog> 
+<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-input-string [field]="puatrAliasCausal" *ngIf="puatrAliasCausal.visible"></imes-input-string>
+            <imes-input-string [field]="puatrNombre" *ngIf="puatrNombre.visible"></imes-input-string>
+            <imes-input-string [field]="puatrDescripcion" *ngIf="puatrDescripcion.visible"></imes-input-string>
+            <imes-input-string [field]="puatrCodigoLegal" *ngIf="puatrCodigoLegal.visible"></imes-input-string>
+            <imes-input-radio [field]="puatrReqDocPersona" *ngIf="puatrReqDocPersona.visible"></imes-input-radio>
+            <imes-input-radio [field]="puatrReqDocSolicitud" *ngIf="puatrReqDocSolicitud.visible"></imes-input-radio>
+            <imes-lensesearch [field]="puagrNovedad" *ngIf="puagrNovedad.visible"
+                (selected)="processpuagrnovedadSelected($event)" (cleared)="cleanpuagrnovedad()"
+                (keypressLenseSearch)="onKeypressLenseSearch('onpuagrnovedadChange')"
+                (searched)="doSearchAction('puagrNovedad')"></imes-lensesearch>
+        </div>
+        <div class="col-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

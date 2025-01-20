@@ -1,0 +1,36 @@
+﻿<waitDialog [showWait]="showWait"></waitDialog> 
+<form novalidate>
+    <ng-container *ngIf="visible">
+        <h3 class="title">{{title}}</h3>
+        <div class="iiuRegion" [ngClass]="cssClasses">
+            <imes-actionsnavigations [queryIU]="this"></imes-actionsnavigations>
+            <!-- Display Set elements -->
+            <div class="card displaySet">
+                <div class="card-header">{{title}}</div>
+                <div class="card-body">
+                    <imes-input-string [field]="dseSeccionNombre" *ngIf="dseSeccionNombre.visible"></imes-input-string>
+                    <imes-input-numeric [field]="dseNumero" *ngIf="dseNumero.visible"></imes-input-numeric>
+                    <imes-input-numeric [field]="dseNumOrden" *ngIf="dseNumOrden.visible"></imes-input-numeric>
+                    <imes-input-string [field]="dseDescripcion" *ngIf="dseDescripcion.visible"></imes-input-string>
+                    <imes-input-definedselection [field]="dseValorSNObliga" *ngIf="dseValorSNObliga.visible"></imes-input-definedselection>
+                    <imes-input-definedselection [field]="dseObsOblig" *ngIf="dseObsOblig.visible"></imes-input-definedselection>
+                    <imes-input-definedselection [field]="dseEsNumero" *ngIf="dseEsNumero.visible"></imes-input-definedselection>
+                    <imes-input-numeric [field]="dseValorMin" *ngIf="dseValorMin.visible"></imes-input-numeric>
+                    <imes-input-numeric [field]="dseValorMax" *ngIf="dseValorMax.visible"></imes-input-numeric>
+                    <imes-input-definedselection [field]="dseSoloHombres" *ngIf="dseSoloHombres.visible"></imes-input-definedselection>
+                    <imes-input-definedselection [field]="dseSoloMujeres" *ngIf="dseSoloMujeres.visible"></imes-input-definedselection>
+                    <imes-input-definedselection [field]="dseRespMultiple" *ngIf="dseRespMultiple.visible"></imes-input-definedselection>
+                    <imes-input-definedselection [field]="dseCondicionEdad" *ngIf="dseCondicionEdad.visible"></imes-input-definedselection>
+                    <imes-input-numeric [field]="dseCondicionEdadAnyos" *ngIf="dseCondicionEdadAnyos.visible"></imes-input-numeric>
+                    <imes-input-string [field]="dsedrvValoresPosibles" *ngIf="dsedrvValoresPosibles.visible"></imes-input-string>
+                </div>
+            </div>
+            <div *ngIf="showInstanceLog" class="iiuLogNavigation">
+                <a (click)="onNavigateLoginstance()">{{langMng.translateText('app_INSTANCELOG', 'Log Instance')}}</a>
+            </div>
+        </div>
+        <div class="col-12 iiuButtons">
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_CLOSE', '')}}</button>
+        </div>
+    </ng-container>
+</form>

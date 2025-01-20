@@ -1,0 +1,42 @@
+﻿<waitDialog [showWait]="showWait"></waitDialog> 
+<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-lensesearch [field]="puthisDominio" *ngIf="puthisDominio.visible"
+                (selected)="processputhisdominioSelected($event)" (cleared)="cleanputhisdominio()"
+                (keypressLenseSearch)="onKeypressLenseSearch('onputhisdominioChange')"
+                (searched)="doSearchAction('puthisDominio')"></imes-lensesearch>
+            <imes-input-radio [field]="puReqCuesMed" *ngIf="puReqCuesMed.visible"></imes-input-radio>
+            <imes-input-radio [field]="puNoCuesMedTras" *ngIf="puNoCuesMedTras.visible"></imes-input-radio>
+            <imes-input-radio [field]="puNuevaAfiliacion" *ngIf="puNuevaAfiliacion.visible"></imes-input-radio>
+            <div class="card argumentGroup" *ngIf="isGroupVisible('4')">
+                <div class="card-header">{{getGroupAlias('4')}}</div>
+                <div class="card-body">
+                    <imes-input-radio [field]="puInclusion" *ngIf="puInclusion.visible" (valueChanged)="onpuinclusionChange()"></imes-input-radio>
+                    <imes-input-radio [field]="puInclusionModGrupoAsoc" *ngIf="puInclusionModGrupoAsoc.visible"></imes-input-radio>
+                </div>
+            </div>
+            <imes-input-radio [field]="puAcepCuesMat" *ngIf="puAcepCuesMat.visible"></imes-input-radio>
+            <imes-input-radio [field]="puAcepCuesNeo" *ngIf="puAcepCuesNeo.visible"></imes-input-radio>
+            <imes-input-radio [field]="puAcepBBGestante" *ngIf="puAcepBBGestante.visible"></imes-input-radio>
+            <imes-input-radio [field]="puIgnorarPreexistencias" *ngIf="puIgnorarPreexistencias.visible"></imes-input-radio>
+            <imes-input-radio [field]="puAcepPolizaInter" *ngIf="puAcepPolizaInter.visible"></imes-input-radio>
+            <imes-input-radio [field]="puPermiteRechazadosAfi" *ngIf="puPermiteRechazadosAfi.visible"></imes-input-radio>
+            <imes-input-radio [field]="puProrrateoUsuExistente" *ngIf="puProrrateoUsuExistente.visible"></imes-input-radio>
+            <div class="card argumentGroup" *ngIf="isGroupVisible('12')">
+                <div class="card-header">{{getGroupAlias('12')}}</div>
+                <div class="card-body">
+                    <imes-input-radio [field]="puMostrarPreexAnexos" *ngIf="puMostrarPreexAnexos.visible"></imes-input-radio>
+                    <imes-input-radio [field]="puMostrarPreexContrato" *ngIf="puMostrarPreexContrato.visible"></imes-input-radio>
+                </div>
+            </div>
+            <imes-input-radio [field]="puTramiteEnLinea" *ngIf="puTramiteEnLinea.visible"></imes-input-radio>
+            <imes-input-radio [field]="ptVigenciaRadicacion" *ngIf="ptVigenciaRadicacion.visible"></imes-input-radio>
+        </div>
+        <div class="col-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

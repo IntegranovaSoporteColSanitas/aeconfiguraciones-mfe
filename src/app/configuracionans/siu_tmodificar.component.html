@@ -1,0 +1,28 @@
+﻿<waitDialog [showWait]="showWait"></waitDialog> 
+<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-lense [field]="puthisConfiguracionANS" *ngIf="puthisConfiguracionANS.visible" (selected)="onputhisconfiguracionansChange()"
+                (cleared)="cleanputhisconfiguracionans()" (searched)="doSearchAction('puthisConfiguracionANS')"></imes-lense>
+            <imes-input-numeric [field]="ptupuANSAfiliaciones" *ngIf="ptupuANSAfiliaciones.visible"></imes-input-numeric>
+            <imes-input-numeric [field]="ptupuANSAreaMedica" *ngIf="ptupuANSAreaMedica.visible"></imes-input-numeric>
+            <div class="card argumentGroup" *ngIf="isGroupVisible('3')">
+                <div class="card-header">{{getGroupAlias('3')}}</div>
+                <div class="card-body">
+                    <imes-input-radio [field]="ptupuHabilLunes" *ngIf="ptupuHabilLunes.visible"></imes-input-radio>
+                    <imes-input-radio [field]="ptupuHabilMartes" *ngIf="ptupuHabilMartes.visible"></imes-input-radio>
+                    <imes-input-radio [field]="ptupuHabilMiercoles" *ngIf="ptupuHabilMiercoles.visible"></imes-input-radio>
+                    <imes-input-radio [field]="ptupuHabilJueves" *ngIf="ptupuHabilJueves.visible"></imes-input-radio>
+                    <imes-input-radio [field]="ptupuHabilViernes" *ngIf="ptupuHabilViernes.visible"></imes-input-radio>
+                    <imes-input-radio [field]="ptupuHabilSabado" *ngIf="ptupuHabilSabado.visible"></imes-input-radio>
+                    <imes-input-radio [field]="ptupuHabilDomingo" *ngIf="ptupuHabilDomingo.visible"></imes-input-radio>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

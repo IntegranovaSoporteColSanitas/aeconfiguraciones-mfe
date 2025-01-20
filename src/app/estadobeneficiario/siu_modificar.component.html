@@ -1,0 +1,19 @@
+﻿<waitDialog [showWait]="showWait"></waitDialog> 
+<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-lensesearch [field]="puthisEstadoBeneficiario" *ngIf="puthisEstadoBeneficiario.visible"
+                (selected)="processputhisestadobeneficiarioSelected($event)" (cleared)="cleanputhisestadobeneficiario()"
+                (keypressLenseSearch)="onKeypressLenseSearch('onputhisestadobeneficiarioChange')"
+                (searched)="doSearchAction('puthisEstadoBeneficiario')"></imes-lensesearch>
+            <imes-input-radio [field]="puEsActivo" *ngIf="puEsActivo.visible"></imes-input-radio>
+            <imes-input-radio [field]="puConfirmado" *ngIf="puConfirmado.visible"></imes-input-radio>
+            <imes-input-radio [field]="puEsError" *ngIf="puEsError.visible"></imes-input-radio>
+        </div>
+        <div class="col-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>
