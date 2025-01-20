@@ -20,6 +20,7 @@ spec:
         app: aeconfiguraciones-mfe
         deployment: aeconfiguraciones-mfe
     spec:
+      automountServiceAccountToken: false
       containers:
         - name: aeconfiguraciones-mfe
 #INIIMAGE
