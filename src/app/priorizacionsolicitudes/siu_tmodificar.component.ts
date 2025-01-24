@@ -223,11 +223,11 @@ export class PriorizacionSolicitudesSIUuTMODIFICARComponent extends AbstractServ
             this.ptupuPrioridad.setValue(this.util.getInt(varputhispriorizacionsolicitudes.get('prioridad')));
             // p_thisPriorizacionSolicitudes.SetVisible( FALSE )
             this.puthisPriorizacionSolicitudes.visible = false;
-            // ptEstadoDoc.SetValue( v.EstadoDoc )
+            // ptEstadoDoc.SetValue( v.estadodoc )
             this.ptEstadoDoc.setValue(this.util.getInt(varputhispriorizacionsolicitudes.get('estadodoc')));
             // ptEstadoDoc.SetActive( FALSE )
             this.ptEstadoDoc.enabled = false;
-            // ptEstadoSolicitud.SetValue( v.EstadoSolicitud )
+            // ptEstadoSolicitud.SetValue( v.estadosolicitud )
             this.ptEstadoSolicitud.setValue(this.util.getInt(varputhispriorizacionsolicitudes.get('estadosolicitud')));
             // ptEstadoSolicitud.SetActive( FALSE )
             this.ptEstadoSolicitud.enabled = false;

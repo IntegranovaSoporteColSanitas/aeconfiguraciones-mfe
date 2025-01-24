@@ -1339,6 +1339,20 @@ export class Configuration {
             ]
         }
         , {
+            className: ModelConstants.Textoaviso.name,
+            navKey: 'textoaviso',
+            ius: [
+                { name: ModelConstants.Textoaviso.siuucrear,
+                    navKey: 'siu_crear' }
+                , { name: ModelConstants.Textoaviso.siuueliminar,
+                    navKey: '_GENERICSIU' }
+                , { name: ModelConstants.Textoaviso.siuumodificar,
+                    navKey: 'siu_modificar' }
+                , { name: ModelConstants.Textoaviso.piuutextoaviso,
+                    navKey: 'piu_textoaviso' }
+            ]
+        }
+        , {
             className: 'globalservices',
             navKey: 'globalservices',
             ius: [

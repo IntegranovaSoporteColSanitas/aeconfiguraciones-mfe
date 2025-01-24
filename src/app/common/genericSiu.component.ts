@@ -475,6 +475,9 @@ export class GenericSiuComponent implements OnInit {
             case ModelConstants.Fechainieps.name:
                 siuFound = this.configureClassFechaIniEPS();
                 break;
+            case ModelConstants.Textoaviso.name:
+                siuFound = this.configureClassTextoAviso();
+                break;
             case ModelConstants.Globalservices.name:
                 siuFound = this.configureGlobalServices();
                 break;
@@ -1834,6 +1837,30 @@ export class GenericSiuComponent implements OnInit {
                     'Fechas inicio vigencia para EPS');
                 this.argSupInfAttNames = 'id';
                 this.argSupInfAttTypes = [Field.dtAuto];
+                siuFound = true;
+                break;
+        }
+        return siuFound;
+    }
+
+    /**
+     * Configuration for class TextoAviso
+     */
+    private configureClassTextoAviso(): boolean {
+        let siuFound = false;
+        switch (this.serviceIUName) {
+            case ModelConstants.Textoaviso.siuueliminar:
+                this.title = this.langMng.translateText('cls_TextoAviso_svc_eliminar',
+                    'Eliminar');
+                this.serviceName = 'eliminar';
+                this.argName = 'p_thistextoaviso';
+                this.argNameInRequest = 'p_thistextoaviso_oid';
+                this.argClassName = ModelConstants.Textoaviso.name;
+                this.argAlias = this.langMng.translateText(
+                    'cls_TextoAviso_svc_eliminar_inArg_p_thisTextoAviso',
+                    'Texto Aviso');
+                this.argSupInfAttNames = 'identificador';
+                this.argSupInfAttTypes = [Field.dtString];
                 siuFound = true;
                 break;
         }

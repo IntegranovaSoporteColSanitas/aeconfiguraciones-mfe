@@ -209,6 +209,8 @@ export class ModelConstants {
         piuucontratosexentosfingreso: 'piu_contratosexentosfingreso'};
     public static readonly Logcontratosexentosfingreso = {name : 'LogContratosExentosFIngreso',
         piuulogcontratosexentosfingres: 'piu_logcontratosexentosfingres'};
+    public static readonly Textoaviso = {name : 'TextoAviso', siuucrear: 'siu_crear', siuueliminar: 'siu_eliminar',
+        siuumodificar: 'siu_modificar', piuutextoaviso: 'piu_textoaviso'};
     public static readonly Globalservices = {name : 'GlobalServices', siuutgsincproductos: 'siu_tgsincproductos',
         siuutgsincplanes: 'siu_tgsincplanes', siuutgsincparentescos: 'siu_tgsincparentescos',
         siuutgsincperiodicidades: 'siu_tgsincperiodicidades', siuutgsincestadoscontrato: 'siu_tgsincestadoscontrato',

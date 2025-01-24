@@ -169,6 +169,8 @@ const routes: Routes = [
       loadChildren: () => import('./contratosexentosfingreso/contratosexentosfingreso.module').then(m => m.ContratosExentosFIngresoModule) },
     { path: environment.prefix + '/logcontratosexentosfingreso',
       loadChildren: () => import('./logcontratosexentosfingreso/logcontratosexentosfingreso.module').then(m => m.LogContratosExentosFIngresoModule) },
+    { path: environment.prefix + '/textoaviso',
+      loadChildren: () => import('./textoaviso/textoaviso.module').then(m => m.TextoAvisoModule) },
     { path: environment.prefix + '/globalservices',
       loadChildren: () => import('./globalservices/globalservices.module').then(m => m.GlobalServicesModule) },
     { path: '**', component: EmptyRouteComponent }

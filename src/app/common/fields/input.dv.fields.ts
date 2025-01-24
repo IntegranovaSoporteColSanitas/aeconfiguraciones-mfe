@@ -125,7 +125,7 @@ export class InputStringComponent {
      * Manages the key down event
      */
     public onKeyUp(event: KeyboardEvent): void {
-        if (this.intField && (this.intField.dataType === Field.dtString || this.intField.dataType === Field.dtText) &&
+        if (this.intField.editorCSSClasses.indexOf('NOMAYUSCULAS') === -1 && this.intField && (this.intField.dataType === Field.dtString || this.intField.dataType === Field.dtText) &&
             this.intField.value) {
             this.intField.value = this.intField.value.toUpperCase();
         }

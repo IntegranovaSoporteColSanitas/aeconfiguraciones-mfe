@@ -32,10 +32,10 @@ spec:
           resources:
             limits:
               cpu: 100m
-              memory: 200Mi
+              memory: 15Mi
             requests:
               cpu: 10m
-              memory: 100Mi
+              memory: 10Mi
           env:
             - name: TZ
               value: "America/Bogota"

@@ -94,95 +94,99 @@ export class AppHeaderComponent implements OnInit {
                 exchInfo.targetClassName = ModelConstants.Paramconfig.name;
                 exchInfo.targetIUName = ModelConstants.Paramconfig.piuuparamconfig;
                 break;
-            case '0_2_0':
+            case '0_2':
+                exchInfo.targetClassName = ModelConstants.Textoaviso.name;
+                exchInfo.targetIUName = ModelConstants.Textoaviso.piuutextoaviso;
+                break;
+            case '0_3_0':
                 exchInfo.targetClassName = ModelConstants.Cuestionariomed.name;
                 exchInfo.targetIUName = ModelConstants.Cuestionariomed.piuucuestionariomed;
                 break;
-            case '0_2_1':
+            case '0_3_1':
                 exchInfo.targetClassName = ModelConstants.Valor.name;
                 exchInfo.targetIUName = ModelConstants.Valor.piuuvalor;
                 break;
-            case '0_3':
+            case '0_4':
                 exchInfo.targetClassName = ModelConstants.Plantillaemail.name;
                 exchInfo.targetIUName = ModelConstants.Plantillaemail.piuuplantillaemail;
                 break;
-            case '0_4':
+            case '0_5':
                 exchInfo.targetClassName = ModelConstants.Estadobeneficiarioae.name;
                 exchInfo.targetIUName = ModelConstants.Estadobeneficiarioae.piuuestadobeneficiarioae;
                 break;
-            case '0_5':
+            case '0_6':
                 exchInfo.targetClassName = ModelConstants.Dominio.name;
                 exchInfo.targetIUName = ModelConstants.Dominio.piuudominio;
                 break;
-            case '0_6':
+            case '0_7':
                 exchInfo.targetClassName = ModelConstants.Motdevareamedica.name;
                 exchInfo.targetIUName = ModelConstants.Motdevareamedica.piuumotdevareamedica;
                 break;
-            case '0_7':
+            case '0_8':
                 exchInfo.targetClassName = ModelConstants.Respregional.name;
                 exchInfo.targetIUName = ModelConstants.Respregional.piuurespregional;
                 break;
-            case '0_8':
+            case '0_9':
                 exchInfo.targetClassName = ModelConstants.Institucionmatneo.name;
                 exchInfo.targetIUName = ModelConstants.Institucionmatneo.piuuinstitucionmatneo;
                 break;
-            case '0_9':
+            case '0_10':
                 exchInfo.targetClassName = ModelConstants.Tarifa.name;
                 exchInfo.targetIUName = ModelConstants.Tarifa.mdiuutarifas;
                 break;
-            case '0_10':
+            case '0_11':
                 exchInfo.targetClassName = ModelConstants.Contsindocsol.name;
                 exchInfo.targetIUName = ModelConstants.Contsindocsol.piuucontsindocsol;
                 break;
-            case '0_11':
+            case '0_12':
                 exchInfo.targetClassName = ModelConstants.Logcontsindocsol.name;
                 exchInfo.targetIUName = ModelConstants.Logcontsindocsol.piuulogcontsindocsol;
                 break;
-            case '0_12':
+            case '0_13':
                 exchInfo.targetClassName = ModelConstants.Reportesprocalm.name;
                 exchInfo.targetIUName = ModelConstants.Reportesprocalm.piuureportesprocalm;
                 break;
-            case '0_13':
+            case '0_14':
                 exchInfo.targetClassName = ModelConstants.Tipofactura.name;
                 exchInfo.targetIUName = ModelConstants.Tipofactura.piuutipofactura;
                 break;
-            case '0_14_0':
+            case '0_15_0':
                 exchInfo.targetClassName = ModelConstants.Novedad.name;
                 exchInfo.targetIUName = ModelConstants.Novedad.piuunovedad;
                 break;
-            case '0_14_1':
+            case '0_15_1':
                 exchInfo.targetClassName = ModelConstants.Tiponovedad.name;
                 exchInfo.targetIUName = ModelConstants.Tiponovedad.piuutiponovedad;
                 break;
-            case '0_14_2':
+            case '0_15_2':
                 exchInfo.targetClassName = ModelConstants.Motivoexcepcionsolnov.name;
                 exchInfo.targetIUName = ModelConstants.Motivoexcepcionsolnov.piuumotivoexcepcionsolnov;
                 break;
-            case '0_15':
+            case '0_16':
                 exchInfo.targetClassName = ModelConstants.Priorizacionsolicitudes.name;
                 exchInfo.targetIUName = ModelConstants.Priorizacionsolicitudes.piuupriorizacionsolicitudes;
                 break;
-            case '0_16':
+            case '0_17':
                 exchInfo.targetClassName = ModelConstants.Grupoasignacion.name;
                 exchInfo.targetIUName = ModelConstants.Grupoasignacion.mdiuugrupoasignacion;
                 break;
-            case '0_17':
+            case '0_18':
                 exchInfo.targetClassName = ModelConstants.Contratocombo.name;
                 exchInfo.targetIUName = ModelConstants.Contratocombo.piuucontratocombo;
                 break;
-            case '0_18':
+            case '0_19':
                 exchInfo.targetClassName = ModelConstants.Configuracionans.name;
                 exchInfo.targetIUName = ModelConstants.Configuracionans.piuuconfiguracionans;
                 break;
-            case '0_19':
+            case '0_20':
                 exchInfo.targetClassName = ModelConstants.Fechainieps.name;
                 exchInfo.targetIUName = ModelConstants.Fechainieps.piuufechainieps;
                 break;
-            case '0_20':
+            case '0_21':
                 exchInfo.targetClassName = ModelConstants.Contratosexentosfingreso.name;
                 exchInfo.targetIUName = ModelConstants.Contratosexentosfingreso.piuucontratosexentosfingreso;
                 break;
-            case '0_21':
+            case '0_22':
                 exchInfo.targetClassName = ModelConstants.Plantillareporte.name;
                 exchInfo.targetIUName = ModelConstants.Plantillareporte.piuuplantillareporte;
                 break;

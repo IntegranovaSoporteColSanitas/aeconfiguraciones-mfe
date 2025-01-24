@@ -56,8 +56,12 @@ export class GSSIUuTGENREPALMComponent extends AbstractServiceIU implements OnIn
         this.myngOnInit();
     }
 
-    public reporteSeleccionado(): void {
+    public override initializeFromCtxAnyInStack(): void {
+        super.initializeFromCtxAnyInStack();
+        this.procesarCambioReporte();
+    }
 
+    public reporteSeleccionado(): void {
         this.procesarCambioReporte();
     }
 
@@ -189,11 +193,6 @@ export class GSSIUuTGENREPALMComponent extends AbstractServiceIU implements OnIn
             }
         );
         this.numberOfPendingPreload++;
-    }
-
-    public override initializeFromCtxAnyInStack(): void {
-        super.initializeFromCtxAnyInStack();
-        this.procesarCambioReporte();
     }
 
     /**
