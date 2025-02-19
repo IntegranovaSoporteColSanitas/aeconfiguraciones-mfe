@@ -133,7 +133,6 @@ export class ModelConstants {
     public static readonly Tiposucursalc = {name : 'TipoSucursalC', siuucrear: 'siu_crear', siuueliminar: 'siu_eliminar',
         piuutiposucursalc: 'piu_tiposucursalc'};
     public static readonly Conceptoc = {name : 'ConceptoC'};
-    public static readonly Anonimo = {name : 'Anonimo'};
     public static readonly Detalletarifa = {name : 'DetalleTarifa', siuutcrear: 'siu_tcrear', siuutmodificar: 'siu_tmodificar',
         siuuteliminar: 'siu_teliminar', piuudetallestarifa: 'piu_detallestarifa'};
     public static readonly Agentexproducto = {name : 'AgentexProducto'};
@@ -211,6 +210,7 @@ export class ModelConstants {
         piuulogcontratosexentosfingres: 'piu_logcontratosexentosfingres'};
     public static readonly Textoaviso = {name : 'TextoAviso', siuucrear: 'siu_crear', siuueliminar: 'siu_eliminar',
         siuumodificar: 'siu_modificar', piuutextoaviso: 'piu_textoaviso'};
+    public static readonly Usuariosistemaexterno = {name : 'UsuarioSistemaExterno'};
     public static readonly Globalservices = {name : 'GlobalServices', siuutgsincproductos: 'siu_tgsincproductos',
         siuutgsincplanes: 'siu_tgsincplanes', siuutgsincparentescos: 'siu_tgsincparentescos',
         siuutgsincperiodicidades: 'siu_tgsincperiodicidades', siuutgsincestadoscontrato: 'siu_tgsincestadoscontrato',
