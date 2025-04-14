@@ -6,7 +6,7 @@ import { AbstractFilter } from '../../common/abstractFilter';
 import { StandardFunctions } from '../../common/standardFunctions';
 import { LanguageMng } from '../../common/languageMng';
 import { DefinedSelections } from '../../common/definedSelection';
-import { AbstractPIU } from 'src/app/common/abstractPIU';
+import { AbstractPIU } from '../../common/abstractPIU';
 
 /**
  * Manages the filter F_LogLlamadasAE of class LogLlamadasAE

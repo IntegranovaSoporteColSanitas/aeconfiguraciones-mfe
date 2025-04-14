@@ -81,7 +81,7 @@ export class GrupoAsignacionNovedadMDIUuGrupoAsignacionNovedadComponent extends 
             this.d0.title = this.langMng.translateText(
                 'cls_GrupoAsignacionNovedad_mdiu_MDIU_GrupoAsignacionNovedad_detail_Clas_1586852003840652UIMaDet_1Det_2',
                 'Usuarios');
-            this.d0.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Funcionario',
+            this.d0.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Funcionario',
                 this.master.getContext(), null, 'GrupoAsignacion.DominioCausalUsuario', null, 'GrupoAsignacionNovedad', ''));
         }
         super.initializeComponents();

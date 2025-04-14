@@ -107,7 +107,7 @@ export class DominioMDIUuDominioGruposUsuariosComponent extends AbstractMDIU imp
             this.d0.title = this.langMng.translateText(
                 'cls_Dominio_mdiu_MDIU_DominioGruposUsuarios_detail_Clas_1431701422080423UIMaDet_4Det_11',
                 'Grupo Asesores/Afiliaciones');
-            this.d0.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Dominio',
+            this.d0.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Dominio',
                 this.master.getContext(), null, '', null, 'Dominio', ''));
         }
         if (this.d1Visible && this.d1 != null) {
@@ -117,7 +117,7 @@ export class DominioMDIUuDominioGruposUsuariosComponent extends AbstractMDIU imp
             this.d1.title = this.langMng.translateText(
                 'cls_Dominio_mdiu_MDIU_DominioGruposUsuarios_detail_Clas_1431701422080423UIMaDet_4Det_12',
                 'Grupo Área Médica');
-            this.d1.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Dominio',
+            this.d1.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Dominio',
                 this.master.getContext(), null, '', null, 'Dominio', ''));
         }
         if (this.d2Visible && this.d2 != null) {
@@ -127,7 +127,7 @@ export class DominioMDIUuDominioGruposUsuariosComponent extends AbstractMDIU imp
             this.d2.title = this.langMng.translateText(
                 'cls_Dominio_mdiu_MDIU_DominioGruposUsuarios_detail_Clas_1431701422080423UIMaDet_4Det_14',
                 'Grupos Novedades');
-            this.d2.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('GrupoAsignacionNovedad',
+            this.d2.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('GrupoAsignacionNovedad',
                 this.master.getContext(), null, 'Dominio', null, 'Dominio', ''));
         }
         super.initializeComponents();

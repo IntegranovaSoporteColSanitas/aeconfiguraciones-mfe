@@ -81,7 +81,7 @@ export class DominioMDIUuDominiosIncompatblesComponent extends AbstractMDIU impl
             this.d0.title = this.langMng.translateText(
                 'cls_Dominio_mdiu_MDIU_DominiosIncompatbles_detail_Clas_1431701422080423UIMaDet_5Det_1',
                 'Incompatibles');
-            this.d0.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Dominio',
+            this.d0.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Dominio',
                 this.master.getContext(), null, 'DominiosConIncompatibilidad', null, 'Dominio', ''));
         }
         super.initializeComponents();

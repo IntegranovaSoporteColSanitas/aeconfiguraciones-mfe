@@ -81,7 +81,7 @@ export class DominioMDIUuDominiouLogDatosComponent extends AbstractMDIU implemen
             this.d0.title = this.langMng.translateText(
                 'cls_Dominio_mdiu_MDIU_Dominio_LogDatos_detail_Clas_1431701422080423UIMaDet_6Det_2',
                 'Log Dominio');
-            this.d0.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('LogDatosDominio',
+            this.d0.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('LogDatosDominio',
                 this.master.getContext(), null, 'Dominio', null, 'Dominio', ''));
         }
         super.initializeComponents();

@@ -81,7 +81,7 @@ export class TarifaMDIUuTarifasComponent extends AbstractMDIU implements OnInit 
             this.d0.title = this.langMng.translateText(
                 'cls_Tarifa_mdiu_MDIU_Tarifas_detail_Clas_1431714529280565UIMaDet_1Det_1',
                 'Detalles de Tarifa');
-            this.d0.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('DetalleTarifa',
+            this.d0.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('DetalleTarifa',
                 this.master.getContext(), null, 'Tarifa', null, 'Tarifa', ''));
         }
         super.initializeComponents();

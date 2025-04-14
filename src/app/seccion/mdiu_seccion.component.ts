@@ -81,7 +81,7 @@ export class SeccionMDIUuSeccionComponent extends AbstractMDIU implements OnInit
             this.d0.title = this.langMng.translateText(
                 'cls_Seccion_mdiu_MDIU_Seccion_detail_Clas_1431633526784668UIMaDet_1Det_1',
                 'Preguntas');
-            this.d0.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Pregunta',
+            this.d0.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Pregunta',
                 this.master.getContext(), null, 'Seccion', null, 'Seccion', ''));
         }
         super.initializeComponents();

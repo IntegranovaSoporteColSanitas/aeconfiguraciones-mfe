@@ -108,7 +108,7 @@ export class FrecuenciaActPIUuFrecuenciaActComponent extends AbstractPIU impleme
         dsItem.name = 'usuario';
         dsItem.field = 'usuario';
         dsItem.type = Field.dtString;
-        dsItem.maxLength = 20;
+        dsItem.maxLength = 50;
         dsItem.alias = this.langMng.translateText(
             'cls_FrecuenciaAct_ds_DS_FrecuenciaAct_PIU_item_Clas_1431632084992014CjtoVis_2ICtjoVis_4',
             this.dsusuario);

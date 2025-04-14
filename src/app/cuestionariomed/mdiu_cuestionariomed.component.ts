@@ -81,7 +81,7 @@ export class CuestionarioMedMDIUuCuestionarioMedComponent extends AbstractMDIU i
             this.d0.title = this.langMng.translateText(
                 'cls_CuestionarioMed_mdiu_MDIU_CuestionarioMed_detail_Clas_1431633526784077UIMaDet_1Det_1',
                 'Secciones');
-            this.d0.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Seccion',
+            this.d0.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Seccion',
                 this.master.getContext(), null, 'Cuestionario', null, 'CuestionarioMed', ''));
         }
         super.initializeComponents();

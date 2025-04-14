@@ -81,7 +81,7 @@ export class ParamConfigMDIUuParamConfigComponent extends AbstractMDIU implement
             this.d0.title = this.langMng.translateText(
                 'cls_ParamConfig_mdiu_MDIU_ParamConfig_detail_Clas_1431630118912680UIMaDet_1Det_1',
                 'Logs');
-            this.d0.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('LogParam',
+            this.d0.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('LogParam',
                 this.master.getContext(), null, 'ParamConfig', null, 'ParamConfig', ''));
         }
         super.initializeComponents();

@@ -94,7 +94,7 @@ export class NovedadMDIUuNovedaduCausalesComponent extends AbstractMDIU implemen
             this.d0.title = this.langMng.translateText(
                 'cls_Novedad_mdiu_MDIU_Novedad_Causales_detail_Clas_1581412253696713UIMaDet_1Det_1',
                 'Causales');
-            this.d0.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Causal',
+            this.d0.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Causal',
                 this.master.getContext(), null, 'Novedad', null, 'Novedad', ''));
         }
         if (this.d1Visible && this.d1 != null) {
@@ -104,7 +104,7 @@ export class NovedadMDIUuNovedaduCausalesComponent extends AbstractMDIU implemen
             this.d1.title = this.langMng.translateText(
                 'cls_Novedad_mdiu_MDIU_Novedad_Causales_detail_Clas_1581412253696713UIMaDet_1Det_2',
                 'Causas de Exclusion');
-            this.d1.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('CausaExclusion',
+            this.d1.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('CausaExclusion',
                 this.master.getContext(), null, 'Novedad', null, 'Novedad', ''));
         }
         super.initializeComponents();

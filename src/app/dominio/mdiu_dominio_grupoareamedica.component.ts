@@ -81,7 +81,7 @@ export class DominioMDIUuDominiouGrupoAreaMedicaComponent extends AbstractMDIU i
             this.d0.title = this.langMng.translateText(
                 'cls_Dominio_mdiu_MDIU_Dominio_GrupoAreaMedica_detail_Clas_1431701422080423UIMaDet_3Det_1',
                 'Usuarios');
-            this.d0.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Funcionario',
+            this.d0.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Funcionario',
                 this.master.getContext(), null, 'GrupoAsignacion.DominioAreaMedica', null, 'Dominio', ''));
         }
         super.initializeComponents();

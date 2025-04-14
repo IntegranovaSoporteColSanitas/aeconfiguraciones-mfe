@@ -94,7 +94,7 @@ export class ReportesProcAlmMDIUuReportesProcAlmComponent extends AbstractMDIU i
             this.d0.title = this.langMng.translateText(
                 'cls_ReportesProcAlm_mdiu_MDIU_ReportesProcAlm_detail_Clas_1547029184512775UIMaDet_1Det_1',
                 'Parámetros');
-            this.d0.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('ParamReporte',
+            this.d0.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('ParamReporte',
                 this.master.getContext(), null, 'Reporte', null, 'ReportesProcAlm', ''));
         }
         if (this.d1Visible && this.d1 != null) {
@@ -104,7 +104,7 @@ export class ReportesProcAlmMDIUuReportesProcAlmComponent extends AbstractMDIU i
             this.d1.title = this.langMng.translateText(
                 'cls_ReportesProcAlm_mdiu_MDIU_ReportesProcAlm_detail_Clas_1547029184512775UIMaDet_1Det_2',
                 'Usuarios autorizados');
-            this.d1.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Funcionario',
+            this.d1.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Funcionario',
                 this.master.getContext(), null, 'Reportes', null, 'ReportesProcAlm', ''));
         }
         super.initializeComponents();

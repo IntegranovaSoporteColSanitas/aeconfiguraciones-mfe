@@ -62,7 +62,7 @@ export class LogParamPIUuLogParamComponent extends AbstractPIU {
         dsItem.name = 'usuario';
         dsItem.field = 'usuario';
         dsItem.type = Field.dtString;
-        dsItem.maxLength = 20;
+        dsItem.maxLength = 50;
         dsItem.alias = this.langMng.translateText(
             'cls_LogParam_ds_DS_LogParam_PIU_item_Clas_1431631298560437CjtoVis_1ICtjoVis_2',
             this.dsusuario);

@@ -81,7 +81,7 @@ export class GrupoAsignacionMDIUuGrupoAsignacionComponent extends AbstractMDIU i
             this.d0.title = this.langMng.translateText(
                 'cls_GrupoAsignacion_mdiu_MDIU_GrupoAsignacion_detail_Clas_1586850168832947UIMaDet_1Det_1',
                 'Usuarios');
-            this.d0.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Funcionario',
+            this.d0.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Funcionario',
                 this.master.getContext(), null, 'GrupoAsignacion', null, 'GrupoAsignacion', ''));
         }
         super.initializeComponents();

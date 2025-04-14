@@ -198,7 +198,7 @@ export class DominioMDIUuDominioComponent extends AbstractMDIU implements OnInit
             this.d0.title = this.langMng.translateText(
                 'cls_Dominio_mdiu_MDIU_Dominio_detail_Clas_1431701422080423UIMaDet_1Det_18',
                 'Reportes');
-            this.d0.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('ReportesDominio',
+            this.d0.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('ReportesDominio',
                 this.master.getContext(), null, 'Dominio', null, 'Dominio', ''));
         }
         if (this.d1Visible && this.d1 != null) {
@@ -208,7 +208,7 @@ export class DominioMDIUuDominioComponent extends AbstractMDIU implements OnInit
             this.d1.title = this.langMng.translateText(
                 'cls_Dominio_mdiu_MDIU_Dominio_detail_Clas_1431701422080423UIMaDet_1Det_5',
                 'Parentescos');
-            this.d1.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('ParentescoDom',
+            this.d1.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('ParentescoDom',
                 this.master.getContext(), null, 'Dominio', null, 'Dominio', ''));
         }
         if (this.d2Visible && this.d2 != null) {
@@ -218,7 +218,7 @@ export class DominioMDIUuDominioComponent extends AbstractMDIU implements OnInit
             this.d2.title = this.langMng.translateText(
                 'cls_Dominio_mdiu_MDIU_Dominio_detail_Clas_1431701422080423UIMaDet_1Det_3',
                 'Periodicidades');
-            this.d2.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Periodicidad',
+            this.d2.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Periodicidad',
                 this.master.getContext(), null, 'Dominios', null, 'Dominio', ''));
         }
         if (this.d3Visible && this.d3 != null) {
@@ -228,7 +228,7 @@ export class DominioMDIUuDominioComponent extends AbstractMDIU implements OnInit
             this.d3.title = this.langMng.translateText(
                 'cls_Dominio_mdiu_MDIU_Dominio_detail_Clas_1431701422080423UIMaDet_1Det_7',
                 'Formas de Pago');
-            this.d3.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('FormaPago',
+            this.d3.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('FormaPago',
                 this.master.getContext(), null, 'Dominios', null, 'Dominio', ''));
         }
         if (this.d4Visible && this.d4 != null) {
@@ -238,7 +238,7 @@ export class DominioMDIUuDominioComponent extends AbstractMDIU implements OnInit
             this.d4.title = this.langMng.translateText(
                 'cls_Dominio_mdiu_MDIU_Dominio_detail_Clas_1431701422080423UIMaDet_1Det_6',
                 'Responsable plan voluntario');
-            this.d4.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Dominio',
+            this.d4.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Dominio',
                 this.master.getContext(), null, '', null, 'Dominio', ''));
         }
         if (this.d5Visible && this.d5 != null) {
@@ -248,7 +248,7 @@ export class DominioMDIUuDominioComponent extends AbstractMDIU implements OnInit
             this.d5.title = this.langMng.translateText(
                 'cls_Dominio_mdiu_MDIU_Dominio_detail_Clas_1431701422080423UIMaDet_1Det_4',
                 'Roles');
-            this.d5.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Rol',
+            this.d5.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Rol',
                 this.master.getContext(), null, 'Dominios', null, 'Dominio', ''));
         }
         if (this.d6Visible && this.d6 != null) {
@@ -258,7 +258,7 @@ export class DominioMDIUuDominioComponent extends AbstractMDIU implements OnInit
             this.d6.title = this.langMng.translateText(
                 'cls_Dominio_mdiu_MDIU_Dominio_detail_Clas_1431701422080423UIMaDet_1Det_8',
                 'Prorrateos');
-            this.d6.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Prorrateo',
+            this.d6.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Prorrateo',
                 this.master.getContext(), null, 'Dominio', null, 'Dominio', ''));
         }
         if (this.d7Visible && this.d7 != null) {
@@ -268,7 +268,7 @@ export class DominioMDIUuDominioComponent extends AbstractMDIU implements OnInit
             this.d7.title = this.langMng.translateText(
                 'cls_Dominio_mdiu_MDIU_Dominio_detail_Clas_1431701422080423UIMaDet_1Det_9',
                 'Plantillas notificaciones');
-            this.d7.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('PlantillaEmail',
+            this.d7.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('PlantillaEmail',
                 this.master.getContext(), null, 'Dominios', null, 'Dominio', ''));
         }
         if (this.d8Visible && this.d8 != null) {
@@ -278,7 +278,7 @@ export class DominioMDIUuDominioComponent extends AbstractMDIU implements OnInit
             this.d8.title = this.langMng.translateText(
                 'cls_Dominio_mdiu_MDIU_Dominio_detail_Clas_1431701422080423UIMaDet_1Det_10',
                 'Novedades');
-            this.d8.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Novedad',
+            this.d8.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Novedad',
                 this.master.getContext(), null, 'Dominios', null, 'Dominio', ''));
         }
         if (this.d9Visible && this.d9 != null) {
@@ -288,7 +288,7 @@ export class DominioMDIUuDominioComponent extends AbstractMDIU implements OnInit
             this.d9.title = this.langMng.translateText(
                 'cls_Dominio_mdiu_MDIU_Dominio_detail_Clas_1431701422080423UIMaDet_1Det_11',
                 'Solicitudes de Novedad');
-            this.d9.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Dominio',
+            this.d9.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Dominio',
                 this.master.getContext(), null, '', null, 'Dominio', ''));
         }
         super.initializeComponents();
