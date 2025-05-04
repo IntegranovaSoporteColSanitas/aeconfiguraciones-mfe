@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { AbstractMDIU } from '../common/abstractMDIU';
@@ -10,6 +10,9 @@ import { DominioIIUuDominiouMuGrupoAsesoresComponent } from './iiu_dominio_m_gru
 import { FuncionarioPIUuFuncionariouDuDominioComponent } from '../funcionario/piu_funcionario_d_dominio.component';
 
 
+/**
+ * « Implements MDIU MDIU_Dominio_GrupoAsesores of Dominio »
+ */
 @Component({
     selector: 'imes-dominio-mdiu-dominio-grupoasesores',
     templateUrl: './mdiu_dominio_grupoasesores.component.html',

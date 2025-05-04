@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
@@ -9,6 +9,9 @@ import { LanguageMng } from '../common/languageMng';
 import { StandardFunctions } from '../common/standardFunctions';
 import { ConditionalNavigationMng } from '../common/conditionalNavigationMng';
 
+/**
+ * « Implements PIU PIU_GrpAsigNovedad_D_Dominio of GrupoAsignacionNovedad »
+ */
 @Component({
     selector: 'imes-grupoasignacionnovedad-piu-grpasignovedad-d-dominio',
     templateUrl: './piu_grpasignovedad_d_dominio.component.html',

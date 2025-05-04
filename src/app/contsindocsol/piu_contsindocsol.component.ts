@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
@@ -10,6 +10,9 @@ import { LanguageMng } from '../common/languageMng';
 import { StandardFunctions } from '../common/standardFunctions';
 import { ConditionalNavigationMng } from '../common/conditionalNavigationMng';
 
+/**
+ * « Implements PIU PIU_ContSinDocSol of ContSinDocSol »
+ */
 @Component({
     selector: 'imes-contsindocsol-piu-contsindocsol',
     templateUrl: './piu_contsindocsol.component.html',

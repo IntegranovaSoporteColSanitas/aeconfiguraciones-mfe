@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { AbstractMDIU } from '../common/abstractMDIU';
@@ -10,6 +10,9 @@ import { SeccionPIUuSeccionComponent } from './piu_seccion.component';
 import { PreguntaPIUuPreguntaComponent } from '../pregunta/piu_pregunta.component';
 
 
+/**
+ * « Implements MDIU MDIU_Seccion of Seccion »
+ */
 @Component({
     selector: 'imes-seccion-mdiu-seccion',
     templateUrl: './mdiu_seccion.component.html',

@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { AbstractMDIU } from '../common/abstractMDIU';
@@ -10,6 +10,9 @@ import { DominioIIUuDominiouMuIncompatiblesComponent } from './iiu_dominio_m_inc
 import { DominioPIUuDominiouDuIncompatiblesComponent } from './piu_dominio_d_incompatibles.component';
 
 
+/**
+ * « Implements MDIU MDIU_DominiosIncompatbles of Dominio »
+ */
 @Component({
     selector: 'imes-dominio-mdiu-dominiosincompatbles',
     templateUrl: './mdiu_dominiosincompatbles.component.html',

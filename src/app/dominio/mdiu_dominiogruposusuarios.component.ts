@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { AbstractMDIU } from '../common/abstractMDIU';
@@ -12,6 +12,9 @@ import { DominioMDIUuDominiouGrupoAreaMedicaComponent } from './mdiu_dominio_gru
 import { GrupoAsignacionNovedadMDIUuGrupoAsignacionNovedadComponent } from '../grupoasignacionnovedad/mdiu_grupoasignacionnovedad.component';
 
 
+/**
+ * « Implements MDIU MDIU_DominioGruposUsuarios of Dominio »
+ */
 @Component({
     selector: 'imes-dominio-mdiu-dominiogruposusuarios',
     templateUrl: './mdiu_dominiogruposusuarios.component.html',

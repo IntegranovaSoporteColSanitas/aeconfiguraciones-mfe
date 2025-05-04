@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { DisplaySetItem } from '../common/queryIUElements';
@@ -10,6 +10,9 @@ import { LanguageMng } from '../common/languageMng';
 import { StandardFunctions } from '../common/standardFunctions';
 import { ConditionalNavigationMng } from '../common/conditionalNavigationMng';
 
+/**
+ * « Implements PIU PIU_Funcionario_Obs of Funcionario »
+ */
 @Component({
     selector: 'imes-funcionario-piu-funcionario-obs',
     templateUrl: './piu_funcionario_obs.component.html',

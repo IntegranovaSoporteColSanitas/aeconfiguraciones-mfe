@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { AbstractMDIU } from '../common/abstractMDIU';
@@ -10,6 +10,9 @@ import { TarifaPIUuTarifasComponent } from './piu_tarifas.component';
 import { DetalleTarifaPIUuDetallesTarifaComponent } from '../detalletarifa/piu_detallestarifa.component';
 
 
+/**
+ * « Implements MDIU MDIU_Tarifas of Tarifa »
+ */
 @Component({
     selector: 'imes-tarifa-mdiu-tarifas',
     templateUrl: './mdiu_tarifas.component.html',

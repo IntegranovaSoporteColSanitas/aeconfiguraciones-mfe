@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { AbstractMDIU } from '../common/abstractMDIU';
@@ -11,6 +11,9 @@ import { CausalPIUuCausaluDuMDuNovedadComponent } from '../causal/piu_causal_d_m
 import { CausaExclusionPIUuCausaExclusionComponent } from '../causaexclusion/piu_causaexclusion.component';
 
 
+/**
+ * « Implements MDIU MDIU_Novedad_Causales of Novedad »
+ */
 @Component({
     selector: 'imes-novedad-mdiu-novedad-causales',
     templateUrl: './mdiu_novedad_causales.component.html',

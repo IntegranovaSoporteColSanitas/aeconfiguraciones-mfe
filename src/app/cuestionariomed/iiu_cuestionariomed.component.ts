@@ -1,4 +1,4 @@
-﻿import { ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { ModelConstants } from '../common/model.constants';
@@ -8,6 +8,9 @@ import { StandardFunctions } from '../common/standardFunctions';
 import { LanguageMng } from '../common/languageMng';
 import { ConditionalNavigationMng } from '../common/conditionalNavigationMng';
 
+/**
+ * « Implements IIU IIU_CuestionarioMed of CuestionarioMed »
+ */
 export class CuestionarioMedIIUuCuestionarioMedComponent extends AbstractIIU {
 
     /** Display Set elements */

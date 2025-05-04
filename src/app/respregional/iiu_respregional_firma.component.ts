@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { AccNavItem } from '../common/queryIUElements';
@@ -9,6 +9,9 @@ import { StandardFunctions } from '../common/standardFunctions';
 import { LanguageMng } from '../common/languageMng';
 import { ConditionalNavigationMng } from '../common/conditionalNavigationMng';
 
+/**
+ * « Implements IIU IIU_RespRegional_Firma of RespRegional »
+ */
 @Component({
     selector: 'imes-respregional-iiu-respregional-firma',
     templateUrl: './iiu_respregional_firma.component.html',

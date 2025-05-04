@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { AbstractMDIU } from '../common/abstractMDIU';
@@ -10,6 +10,9 @@ import { CuestionarioMedIIUuCuestionarioMedComponent } from './iiu_cuestionariom
 import { SeccionMDIUuSeccionComponent } from '../seccion/mdiu_seccion.component';
 
 
+/**
+ * « Implements MDIU MDIU_CuestionarioMed of CuestionarioMed »
+ */
 @Component({
     selector: 'imes-cuestionariomed-mdiu-cuestionariomed',
     templateUrl: './mdiu_cuestionariomed.component.html',

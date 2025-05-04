@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { AbstractMDIU } from '../common/abstractMDIU';
@@ -11,6 +11,9 @@ import { ParamReportePIUuDuParametrosComponent } from '../paramreporte/piu_d_par
 import { FuncionarioPIUuDuFuncionariosReporteComponent } from '../funcionario/piu_d_funcionariosreporte.component';
 
 
+/**
+ * « Implements MDIU MDIU_ReportesProcAlm of ReportesProcAlm »
+ */
 @Component({
     selector: 'imes-reportesprocalm-mdiu-reportesprocalm',
     templateUrl: './mdiu_reportesprocalm.component.html',

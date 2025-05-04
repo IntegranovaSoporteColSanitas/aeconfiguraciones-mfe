@@ -1,5 +1,5 @@
 export const environment = {
-  version: '2.0.0',
+  version: '8.0.0',
   prefix: 'aeconfiguraciones',
   production: false,
   standalone: true,

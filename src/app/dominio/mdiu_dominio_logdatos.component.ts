@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { AbstractMDIU } from '../common/abstractMDIU';
@@ -10,6 +10,9 @@ import { DominioIIUuDominiouMuLogDatosComponent } from './iiu_dominio_m_logdatos
 import { LogDatosDominioPIUuLogDatosDominioComponent } from '../logdatosdominio/piu_logdatosdominio.component';
 
 
+/**
+ * « Implements MDIU MDIU_Dominio_LogDatos of Dominio »
+ */
 @Component({
     selector: 'imes-dominio-mdiu-dominio-logdatos',
     templateUrl: './mdiu_dominio_logdatos.component.html',

@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { ModelConstants } from '../common/model.constants';
@@ -9,6 +9,9 @@ import { StandardFunctions } from '../common/standardFunctions';
 import { LanguageMng } from '../common/languageMng';
 import { ConditionalNavigationMng } from '../common/conditionalNavigationMng';
 
+/**
+ * « Implements IIU IIU_LogLlamadasBH of LogLlamadasBH »
+ */
 @Component({
     selector: 'imes-logllamadasbh-iiu-logllamadasbh',
     templateUrl: './iiu_logllamadasbh.component.html',

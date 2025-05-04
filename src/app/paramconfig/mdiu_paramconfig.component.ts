@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { AbstractMDIU } from '../common/abstractMDIU';
@@ -10,6 +10,9 @@ import { ParamConfigIIUuParamConfigMaestroComponent } from './iiu_paramconfigmae
 import { LogParamPIUuLogParamComponent } from '../logparam/piu_logparam.component';
 
 
+/**
+ * « Implements MDIU MDIU_ParamConfig of ParamConfig »
+ */
 @Component({
     selector: 'imes-paramconfig-mdiu-paramconfig',
     templateUrl: './mdiu_paramconfig.component.html',

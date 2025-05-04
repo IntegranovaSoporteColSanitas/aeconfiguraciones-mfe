@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { CacheDependencyRules, InstanceCache } from '../common/app.cachedependencyrules';
 import { Field, FieldDefinedSelection } from '../common/baseIUElements';
@@ -11,6 +11,9 @@ import { StandardFunctions } from '../common/standardFunctions';
 import { LanguageMng } from '../common/languageMng';
 import { ConditionalNavigationMng } from '../common/conditionalNavigationMng';
 
+/**
+ * « Implements global SIU SIU_TGADDPLANTREP »
+ */
 @Component({
     selector: 'imes-gs-siu-tgaddplantrep',
     templateUrl: './siu_tgaddplantrep.component.html',

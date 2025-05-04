@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { AbstractMDIU } from '../common/abstractMDIU';
@@ -19,6 +19,9 @@ import { NovedadPIUuNovedaduDuDominioComponent } from '../novedad/piu_novedad_d_
 import { DominioIIUuDominiouDuSolNovedadComponent } from './iiu_dominio_d_solnovedad.component';
 
 
+/**
+ * « Implements MDIU MDIU_Dominio of Dominio »
+ */
 @Component({
     selector: 'imes-dominio-mdiu-dominio',
     templateUrl: './mdiu_dominio.component.html',

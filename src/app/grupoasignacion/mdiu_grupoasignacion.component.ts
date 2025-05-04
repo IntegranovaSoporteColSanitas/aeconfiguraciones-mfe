@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { AbstractMDIU } from '../common/abstractMDIU';
@@ -10,6 +10,9 @@ import { GrupoAsignacionPIUuGrupoAsignacionComponent } from './piu_grupoasignaci
 import { FuncionarioPIUuFuncionariouDuGrupoComponent } from '../funcionario/piu_funcionario_d_grupo.component';
 
 
+/**
+ * « Implements MDIU MDIU_GrupoAsignacion of GrupoAsignacion »
+ */
 @Component({
     selector: 'imes-grupoasignacion-mdiu-grupoasignacion',
     templateUrl: './mdiu_grupoasignacion.component.html',
