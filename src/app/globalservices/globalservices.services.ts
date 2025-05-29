@@ -16,17 +16,17 @@ export class GlobalServicesServices extends AbstractServices {
     private tGSINCESTADOSCONTRATOSrvName = 'TGSINCESTADOSCONTRATO';
     private tGSINCESTADOSBENEFICIARIOSrvName = 'TGSINCESTADOSBENEFICIARIO';
     private tGSINCREGIONALESSrvName = 'TGSINCREGIONALES';
-    private tGSINCSUCURSALESSrvName = 'TGSINCSUCURSALES';
+    private oGSINCSUCURSALESSrvName = 'OGSINCSUCURSALES';
     private oGSINCGRUPOSASOCIADOSSrvName = 'OGSINCGRUPOSASOCIADOS';
     private tGSINCESTADOSCIVILESSrvName = 'TGSINCESTADOSCIVILES';
     private tGSINCDEPARTAMENTOSSrvName = 'TGSINCDEPARTAMENTOS';
-    private tGSINCOMPANIASSrvName = 'TGSINCOMPANIAS';
+    private oGSINCOMPANIASSrvName = 'OGSINCOMPANIAS';
     private oGSINCMUNICIPIOSSrvName = 'OGSINCMUNICIPIOS';
     private tGSINCTIPOSDIRECCIONSrvName = 'TGSINCTIPOSDIRECCION';
     private tGSINCESTADOSPERSONASrvName = 'TGSINCESTADOSPERSONA';
     private tGSINCFORMASPAGOSrvName = 'TGSINCFORMASPAGO';
     private tGSINCTIPOSIDENTIFICACIONSrvName = 'TGSINCTIPOSIDENTIFICACION';
-    private tGSINCEPSSSrvName = 'TGSINCEPSS';
+    private oGSINCEPSSSrvName = 'OGSINCEPSS';
     private tGSINCPAISESSrvName = 'TGSINCPAISES';
     private tGSINCENTIDADESFINSrvName = 'TGSINCENTIDADESFIN';
     private tGSINCTIPOSDEENTIDADSrvName = 'TGSINCTIPOSDEENTIDAD';
@@ -172,15 +172,15 @@ export class GlobalServicesServices extends AbstractServices {
     }
 
     /**
-     * Call to the service 'TGSINCSUCURSALES' in the backend
+     * Call to the service 'OGSINCSUCURSALES' in the backend
      * Promise is resolved if service execution is successful and returns void.
      * If service fails, promise is rejected and returned an instance of ErrorInformation
      */
-    public tGSINCSUCURSALES(
+    public oGSINCSUCURSALES(
         ): Promise<ErrorInformation | void> {
         const request = {};
         return new Promise<ErrorInformation | void> ((resolve, reject) => {
-             this.callService(this.tGSINCSUCURSALESSrvName, request).then((response: any) => {
+             this.callService(this.oGSINCSUCURSALESSrvName, request).then((response: any) => {
                 resolve();
             }).catch( (errorInfo: ErrorInformation) => {
                 reject(errorInfo);
@@ -240,15 +240,15 @@ export class GlobalServicesServices extends AbstractServices {
     }
 
     /**
-     * Call to the service 'TGSINCOMPANIAS' in the backend
+     * Call to the service 'OGSINCOMPANIAS' in the backend
      * Promise is resolved if service execution is successful and returns void.
      * If service fails, promise is rejected and returned an instance of ErrorInformation
      */
-    public tGSINCOMPANIAS(
+    public oGSINCOMPANIAS(
         ): Promise<ErrorInformation | void> {
         const request = {};
         return new Promise<ErrorInformation | void> ((resolve, reject) => {
-             this.callService(this.tGSINCOMPANIASSrvName, request).then((response: any) => {
+             this.callService(this.oGSINCOMPANIASSrvName, request).then((response: any) => {
                 resolve();
             }).catch( (errorInfo: ErrorInformation) => {
                 reject(errorInfo);
@@ -342,15 +342,15 @@ export class GlobalServicesServices extends AbstractServices {
     }
 
     /**
-     * Call to the service 'TGSINCEPSS' in the backend
+     * Call to the service 'OGSINCEPSS' in the backend
      * Promise is resolved if service execution is successful and returns void.
      * If service fails, promise is rejected and returned an instance of ErrorInformation
      */
-    public tGSINCEPSS(
+    public oGSINCEPSS(
         ): Promise<ErrorInformation | void> {
         const request = {};
         return new Promise<ErrorInformation | void> ((resolve, reject) => {
-             this.callService(this.tGSINCEPSSSrvName, request).then((response: any) => {
+             this.callService(this.oGSINCEPSSSrvName, request).then((response: any) => {
                 resolve();
             }).catch( (errorInfo: ErrorInformation) => {
                 reject(errorInfo);

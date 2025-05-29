@@ -1370,7 +1370,7 @@ export class Configuration {
                     navKey: '_GENERICSIU' }
                 , { name: ModelConstants.Globalservices.siuutgsincregionales,
                     navKey: '_GENERICSIU' }
-                , { name: ModelConstants.Globalservices.siuutgsincsucursales,
+                , { name: ModelConstants.Globalservices.siuuogsincsucursales,
                     navKey: '_GENERICSIU' }
                 , { name: ModelConstants.Globalservices.siuuogsincgruposasociados,
                     navKey: '_GENERICSIU' }
@@ -1378,7 +1378,7 @@ export class Configuration {
                     navKey: '_GENERICSIU' }
                 , { name: ModelConstants.Globalservices.siuutgsincdepartamentos,
                     navKey: '_GENERICSIU' }
-                , { name: ModelConstants.Globalservices.siuutgsincompanias,
+                , { name: ModelConstants.Globalservices.siuuogsincompanias,
                     navKey: '_GENERICSIU' }
                 , { name: ModelConstants.Globalservices.siuuogsincmunicipios,
                     navKey: '_GENERICSIU' }
@@ -1390,7 +1390,7 @@ export class Configuration {
                     navKey: '_GENERICSIU' }
                 , { name: ModelConstants.Globalservices.siuutgsinctiposidentificacion,
                     navKey: '_GENERICSIU' }
-                , { name: ModelConstants.Globalservices.siuutgsincepss,
+                , { name: ModelConstants.Globalservices.siuuogsincepss,
                     navKey: '_GENERICSIU' }
                 , { name: ModelConstants.Globalservices.siuutgsincpaises,
                     navKey: '_GENERICSIU' }

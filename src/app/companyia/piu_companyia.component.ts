@@ -140,8 +140,8 @@ export class CompanyiaPIUuCompanyiaComponent extends AbstractPIU implements OnIn
         accItem.multiSelection = true;
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Globalservices.name;
-        accItem.targetUI = ModelConstants.Globalservices.siuutgsincompanias;
-        accItem.setNoShowProperties('TGSINCOMPANIAS', '', '', false);
+        accItem.targetUI = ModelConstants.Globalservices.siuuogsincompanias;
+        accItem.setNoShowProperties('OGSINCOMPANIAS', '', '', false);
 
         this.actions.push(accItem);
 

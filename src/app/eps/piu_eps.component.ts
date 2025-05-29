@@ -140,8 +140,8 @@ export class EpsPIUuEPSComponent extends AbstractPIU implements OnInit {
         accItem.multiSelection = true;
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Globalservices.name;
-        accItem.targetUI = ModelConstants.Globalservices.siuutgsincepss;
-        accItem.setNoShowProperties('TGSINCEPSS', '', '', false);
+        accItem.targetUI = ModelConstants.Globalservices.siuuogsincepss;
+        accItem.setNoShowProperties('OGSINCEPSS', '', '', false);
 
         this.actions.push(accItem);
 

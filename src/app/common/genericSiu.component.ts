@@ -1922,10 +1922,10 @@ export class GenericSiuComponent implements OnInit {
                 this.siuHasNoShow = true;
                 siuFound = true;
                 break;
-            case ModelConstants.Globalservices.siuutgsincsucursales:
-                this.title = this.langMng.translateText('gs_TGSINCSUCURSALES',
+            case ModelConstants.Globalservices.siuuogsincsucursales:
+                this.title = this.langMng.translateText('gs_OGSINCSUCURSALES',
                     'Sincronizar sucursales');
-                this.serviceName = 'TGSINCSUCURSALES';
+                this.serviceName = 'OGSINCSUCURSALES';
                 this.siuHasNoShow = true;
                 siuFound = true;
                 break;
@@ -1950,10 +1950,10 @@ export class GenericSiuComponent implements OnInit {
                 this.siuHasNoShow = true;
                 siuFound = true;
                 break;
-            case ModelConstants.Globalservices.siuutgsincompanias:
-                this.title = this.langMng.translateText('gs_TGSINCOMPANIAS',
+            case ModelConstants.Globalservices.siuuogsincompanias:
+                this.title = this.langMng.translateText('gs_OGSINCOMPANIAS',
                     'Sincronizar compañías');
-                this.serviceName = 'TGSINCOMPANIAS';
+                this.serviceName = 'OGSINCOMPANIAS';
                 this.siuHasNoShow = true;
                 siuFound = true;
                 break;
@@ -1991,10 +1991,10 @@ export class GenericSiuComponent implements OnInit {
                 this.siuHasNoShow = true;
                 siuFound = true;
                 break;
-            case ModelConstants.Globalservices.siuutgsincepss:
-                this.title = this.langMng.translateText('gs_TGSINCEPSS',
+            case ModelConstants.Globalservices.siuuogsincepss:
+                this.title = this.langMng.translateText('gs_OGSINCEPSS',
                     'Sincronizar EPS');
-                this.serviceName = 'TGSINCEPSS';
+                this.serviceName = 'OGSINCEPSS';
                 this.siuHasNoShow = true;
                 siuFound = true;
                 break;

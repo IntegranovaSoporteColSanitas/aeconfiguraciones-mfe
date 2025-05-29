@@ -125,8 +125,8 @@ export class SucursalPIUuSucursalComponent extends AbstractPIU implements OnInit
         accItem.multiSelection = true;
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Globalservices.name;
-        accItem.targetUI = ModelConstants.Globalservices.siuutgsincsucursales;
-        accItem.setNoShowProperties('TGSINCSUCURSALES', '', '', false);
+        accItem.targetUI = ModelConstants.Globalservices.siuuogsincsucursales;
+        accItem.setNoShowProperties('OGSINCSUCURSALES', '', '', false);
 
         this.actions.push(accItem);
 
