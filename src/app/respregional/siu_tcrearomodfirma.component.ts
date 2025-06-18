@@ -88,7 +88,6 @@ export class RespRegionalSIUuTCREAROMODFIRMAComponent extends AbstractServiceIU 
         this.ptupuatrLatitud.dataType = Field.dtString;
         this.ptupuatrLatitud.maxLength = 25;
         this.ptupuatrLatitud.assignCSS();
-        this.ptupuatrLatitud.addCSSClass('beginNewLine');
         this.fields.push(this.ptupuatrLatitud);
 
         this.ptupuatrLongitud.nameInRequest = 'pt_p_atrlongitud';

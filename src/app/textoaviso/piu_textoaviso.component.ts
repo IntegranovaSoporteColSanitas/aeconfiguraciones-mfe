@@ -39,7 +39,7 @@ export class TextoAvisoPIUuTextoAvisoComponent extends AbstractPIU implements On
         this.idXML = 'Clas_1737625305088101UIPobCl_1';
         this.className = ModelConstants.Textoaviso.name;
         this.iuName = ModelConstants.Textoaviso.piuutextoaviso;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_TextoAviso_piu_PIU_TextoAviso',
             'Textos de Aviso');
         this.queryURL = '/api/TextoAvisoApi/GetPopulationDynamic';
@@ -68,7 +68,7 @@ export class TextoAvisoPIUuTextoAvisoComponent extends AbstractPIU implements On
         dsItem.alias = this.langMng.translateText(
             'cls_TextoAviso_ds_DS_TextoAviso_item_Clas_1737625305088101CjtoVis_1ICtjoVis_1',
             this.dsidentificador);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -80,7 +80,7 @@ export class TextoAvisoPIUuTextoAvisoComponent extends AbstractPIU implements On
         dsItem.alias = this.langMng.translateText(
             'cls_TextoAviso_ds_DS_TextoAviso_item_Clas_1737625305088101CjtoVis_1ICtjoVis_2',
             this.dsdescripcion);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         this.displaySet.push(dsItem);
     }
 
