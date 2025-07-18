@@ -38,7 +38,7 @@ export class ParamReporteSIUumodificarComponent extends AbstractServiceIU implem
         this.idXML = 'Clas_1580739854336044Ser_3UIServ_1';
         this.className = ModelConstants.Paramreporte.name;
         this.iuName = ModelConstants.Paramreporte.siuumodificar;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['SuperAdmin']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.serviceName = 'modificar';
         this.title = this.langMng.translateText('cls_ParamReporte_svc_modificar',
             'Modificar');

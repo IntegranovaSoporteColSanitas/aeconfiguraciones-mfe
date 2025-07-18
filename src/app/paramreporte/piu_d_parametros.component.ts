@@ -111,7 +111,7 @@ export class ParamReportePIUuDuParametrosComponent extends AbstractPIU implement
             'Nuevo');
         accItem.nounVerb = false;
         accItem.multiSelection = true;
-        accItem.agents = [ModelConstants.Superadmin.name];
+        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Paramreporte.name;
         accItem.targetUI = ModelConstants.Paramreporte.siuutnew;
 
@@ -125,7 +125,7 @@ export class ParamReportePIUuDuParametrosComponent extends AbstractPIU implement
             'Modificar');
         accItem.nounVerb = true;
         accItem.multiSelection = true;
-        accItem.agents = [ModelConstants.Superadmin.name];
+        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Paramreporte.name;
         accItem.targetUI = ModelConstants.Paramreporte.siuumodificar;
 
@@ -139,7 +139,7 @@ export class ParamReportePIUuDuParametrosComponent extends AbstractPIU implement
             'Subir');
         accItem.nounVerb = true;
         accItem.multiSelection = true;
-        accItem.agents = [ModelConstants.Superadmin.name];
+        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Paramreporte.name;
         accItem.targetUI = ModelConstants.Paramreporte.siuutsubir;
         accItem.setNoShowProperties('TSUBIR', 'p_thisparamreporte_oid', '', false);
@@ -154,7 +154,7 @@ export class ParamReportePIUuDuParametrosComponent extends AbstractPIU implement
             'Bajar');
         accItem.nounVerb = true;
         accItem.multiSelection = true;
-        accItem.agents = [ModelConstants.Superadmin.name];
+        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Paramreporte.name;
         accItem.targetUI = ModelConstants.Paramreporte.siuutbajar;
         accItem.setNoShowProperties('TBAJAR', 'p_thisparamreporte_oid', '', false);
@@ -169,7 +169,7 @@ export class ParamReportePIUuDuParametrosComponent extends AbstractPIU implement
             'Eliminar');
         accItem.nounVerb = true;
         accItem.multiSelection = true;
-        accItem.agents = [ModelConstants.Superadmin.name];
+        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Paramreporte.name;
         accItem.targetUI = ModelConstants.Paramreporte.siuutdelete;
 

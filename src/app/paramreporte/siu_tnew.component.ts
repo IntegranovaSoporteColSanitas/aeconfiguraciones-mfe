@@ -38,7 +38,7 @@ export class ParamReporteSIUuTNEWComponent extends AbstractServiceIU implements 
         this.idXML = 'Clas_1580739854336044Ser_4UIServ_1';
         this.className = ModelConstants.Paramreporte.name;
         this.iuName = ModelConstants.Paramreporte.siuutnew;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['SuperAdmin']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.serviceName = 'TNEW';
         this.title = this.langMng.translateText('cls_ParamReporte_svc_TNEW',
             'Nuevo');

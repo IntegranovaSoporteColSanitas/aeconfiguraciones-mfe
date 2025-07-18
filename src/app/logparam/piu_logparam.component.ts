@@ -36,7 +36,7 @@ export class LogParamPIUuLogParamComponent extends AbstractPIU {
         this.idXML = 'Clas_1431631298560437UIPobCl_1';
         this.className = ModelConstants.Logparam.name;
         this.iuName = 'PIU_LogParam';
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['SuperAdmin']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_LogParam_piu_PIU_LogParam',
             'Log Parámetros Conf.');
         this.queryURL = '/api/LogParamApi/GetPopulationDynamic';
@@ -57,7 +57,7 @@ export class LogParamPIUuLogParamComponent extends AbstractPIU {
         dsItem.alias = this.langMng.translateText(
             'cls_LogParam_ds_DS_LogParam_PIU_item_Clas_1431631298560437CjtoVis_1ICtjoVis_1',
             this.dsfecha);
-        dsItem.agents = [ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -69,7 +69,7 @@ export class LogParamPIUuLogParamComponent extends AbstractPIU {
         dsItem.alias = this.langMng.translateText(
             'cls_LogParam_ds_DS_LogParam_PIU_item_Clas_1431631298560437CjtoVis_1ICtjoVis_2',
             this.dsusuario);
-        dsItem.agents = [ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -81,7 +81,7 @@ export class LogParamPIUuLogParamComponent extends AbstractPIU {
         dsItem.alias = this.langMng.translateText(
             'cls_LogParam_ds_DS_LogParam_PIU_item_Clas_1431631298560437CjtoVis_1ICtjoVis_3',
             this.dsvaloranterior);
-        dsItem.agents = [ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -93,7 +93,7 @@ export class LogParamPIUuLogParamComponent extends AbstractPIU {
         dsItem.alias = this.langMng.translateText(
             'cls_LogParam_ds_DS_LogParam_PIU_item_Clas_1431631298560437CjtoVis_1ICtjoVis_4',
             this.dsnuevovalor);
-        dsItem.agents = [ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         this.displaySet.push(dsItem);
     }
 

@@ -73,6 +73,8 @@ export class DominioSIUumodImagenFirmaComponent extends AbstractServiceIU implem
             'Imagen firma');
         this.pFirma.mandatory = true;
         this.pFirma.dataType = Field.dtBlob;
+        // Solo se admiten ficheros jpg
+        this.pFirma.fileAllowedExtensions = "jpg";
         this.pFirma.assignCSS();
         this.fields.push(this.pFirma);
     }

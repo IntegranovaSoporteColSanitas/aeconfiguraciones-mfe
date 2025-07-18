@@ -100,7 +100,7 @@ export class DominioMDIUuDominioComponent extends AbstractMDIU implements OnInit
         this.master.masterDetailContainer = this;
         this.masterAbstract = this.master;
         this.d0Visible = this.appGlobalInfo.getLoggedUserInfo().isDetailVisible(this.idXML, 'Clas_1431701422080423UIMaDet_1Det_18',
-            ['SuperAdmin']);
+            ['Admin', 'SuperAdmin']);
         this.d0 = new ReportesDominioPIUuReportesDominioComponent(appGlobalInfo, util, changeDetectorRef, langMng, stdFun,
             condNavMng);
         this.d0.masterDetailContainer = this;

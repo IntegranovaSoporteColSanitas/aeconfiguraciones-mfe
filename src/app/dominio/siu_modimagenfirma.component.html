@@ -7,7 +7,7 @@
                 (selected)="processputhisdominioSelected($event)" (cleared)="cleanputhisdominio()"
                 (keypressLenseSearch)="onKeypressLenseSearch('onputhisdominioChange')"
                 (searched)="doSearchAction('puthisDominio')"></imes-lensesearch>
-            <imes-input-blob-signature [field]="pFirma"></imes-input-blob-signature>
+            <imes-input-blob [field]="pFirma" *ngIf="pFirma.visible"></imes-input-blob>
         </div>
         <div class="col-12 siuButtons">
             <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>

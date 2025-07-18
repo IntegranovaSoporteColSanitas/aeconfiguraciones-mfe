@@ -45,7 +45,7 @@ export class PriorizacionSolicitudesPIUuPriorizacionSolicitudesComponent extends
         this.idXML = 'Clas_1586846892032587UIPobCl_1';
         this.className = ModelConstants.Priorizacionsolicitudes.name;
         this.iuName = ModelConstants.Priorizacionsolicitudes.piuupriorizacionsolicitudes;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_PriorizacionSolicitudes_piu_PIU_PriorizacionSolicitudes',
             'Priorización de Solicitudes');
         this.f0 = new PriorizacionSolicitudesFilterFuPriorizacionSolicitudes(this.appGlobalInfo,
@@ -78,7 +78,7 @@ export class PriorizacionSolicitudesPIUuPriorizacionSolicitudesComponent extends
         dsItem.alias = this.langMng.translateText(
             'cls_PriorizacionSolicitudes_ds_DS_PriorizacionSolicitudes_item_Clas_1586846892032587CjtoVis_1ICtjoVis_1',
             this.dsestadosolicitud);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         dsItem.options = DefinedSelections.DS_ESTADOSOLICITUD;
         this.displaySet.push(dsItem);
 
@@ -90,7 +90,7 @@ export class PriorizacionSolicitudesPIUuPriorizacionSolicitudesComponent extends
         dsItem.alias = this.langMng.translateText(
             'cls_PriorizacionSolicitudes_ds_DS_PriorizacionSolicitudes_item_Clas_1586846892032587CjtoVis_1ICtjoVis_2',
             this.dsestadodoc);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         dsItem.options = DefinedSelections.DS_ESTADODOCUMENTOG;
         this.displaySet.push(dsItem);
 
@@ -102,7 +102,7 @@ export class PriorizacionSolicitudesPIUuPriorizacionSolicitudesComponent extends
         dsItem.alias = this.langMng.translateText(
             'cls_PriorizacionSolicitudes_ds_DS_PriorizacionSolicitudes_item_Clas_1586846892032587CjtoVis_1ICtjoVis_3',
             this.dsprioridad);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         this.displaySet.push(dsItem);
     }
 
@@ -168,7 +168,7 @@ export class PriorizacionSolicitudesPIUuPriorizacionSolicitudesComponent extends
             'Histórico Priorización Solicitudes');
         navItem.nounVerb = true;
         navItem.multiSelection = false;
-        navItem.agents = [ModelConstants.Superadmin.name];
+        navItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         navItem.targetClass = ModelConstants.Logpriorizacionsol.name;
         navItem.targetUI = ModelConstants.Logpriorizacionsol.piuulogpriorizacionsol;
         navItem.rolePath = 'PriSolicitud';

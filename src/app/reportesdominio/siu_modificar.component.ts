@@ -36,7 +36,7 @@ export class ReportesDominioSIUumodificarComponent extends AbstractServiceIU imp
         this.idXML = 'Clas_1623832395776730Ser_3UIServ_1';
         this.className = ModelConstants.Reportesdominio.name;
         this.iuName = ModelConstants.Reportesdominio.siuumodificar;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['SuperAdmin']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.serviceName = 'modificar';
         this.title = this.langMng.translateText('cls_ReportesDominio_svc_modificar',
             'Modificar');

@@ -55,7 +55,7 @@ export class ParamConfigMDIUuParamConfigComponent extends AbstractMDIU implement
         this.master.masterDetailContainer = this;
         this.masterAbstract = this.master;
         this.d0Visible = this.appGlobalInfo.getLoggedUserInfo().isDetailVisible(this.idXML, 'Clas_1431630118912680UIMaDet_1Det_1',
-            ['SuperAdmin']);
+            ['Admin', 'SuperAdmin']);
         this.d0 = new LogParamPIUuLogParamComponent(appGlobalInfo, util, changeDetectorRef, langMng, stdFun,
             condNavMng);
         this.d0.masterDetailContainer = this;

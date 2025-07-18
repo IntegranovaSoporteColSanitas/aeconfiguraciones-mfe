@@ -42,7 +42,7 @@ export class ReportesDominioPIUuReportesDominioComponent extends AbstractPIU imp
         this.idXML = 'Clas_1623832395776730UIPobCl_1';
         this.className = ModelConstants.Reportesdominio.name;
         this.iuName = ModelConstants.Reportesdominio.piuureportesdominio;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['SuperAdmin']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_ReportesDominio_piu_PIU_ReportesDominio',
             'Reportes');
         this.queryURL = '/api/ReportesDominioApi/GetPopulationDynamic';
@@ -70,7 +70,7 @@ export class ReportesDominioPIUuReportesDominioComponent extends AbstractPIU imp
         dsItem.alias = this.langMng.translateText(
             'cls_ReportesDominio_ds_DS_ReportesDominio_item_Clas_1623832395776730CjtoVis_1ICtjoVis_1',
             this.dsplantillareportedtipo);
-        dsItem.agents = [ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         dsItem.options = DefinedSelections.DS_TIPOREPORTE;
         dsItem.linkIndex = 1;
         dsItem.linkIsAction = true;
@@ -84,7 +84,7 @@ export class ReportesDominioPIUuReportesDominioComponent extends AbstractPIU imp
         dsItem.alias = this.langMng.translateText(
             'cls_ReportesDominio_ds_DS_ReportesDominio_item_Clas_1623832395776730CjtoVis_1ICtjoVis_3',
             this.dsplantillareportedfechavigencia);
-        dsItem.agents = [ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -95,7 +95,7 @@ export class ReportesDominioPIUuReportesDominioComponent extends AbstractPIU imp
         dsItem.alias = this.langMng.translateText(
             'cls_ReportesDominio_ds_DS_ReportesDominio_item_Clas_1623832395776730CjtoVis_1ICtjoVis_4',
             this.dsenviarauto);
-        dsItem.agents = [ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         dsItem.options = DefinedSelections.DS_SINO;
         this.displaySet.push(dsItem);
 
@@ -108,7 +108,7 @@ export class ReportesDominioPIUuReportesDominioComponent extends AbstractPIU imp
         dsItem.alias = this.langMng.translateText(
             'cls_ReportesDominio_ds_DS_ReportesDominio_item_Clas_1623832395776730CjtoVis_1ICtjoVis_2',
             this.dsplantillareportedtitulo);
-        dsItem.agents = [ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         this.displaySet.push(dsItem);
     }
 
@@ -139,7 +139,7 @@ export class ReportesDominioPIUuReportesDominioComponent extends AbstractPIU imp
             'Modificar');
         accItem.nounVerb = true;
         accItem.multiSelection = true;
-        accItem.agents = [ModelConstants.Superadmin.name];
+        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Reportesdominio.name;
         accItem.targetUI = ModelConstants.Reportesdominio.siuumodificar;
 
@@ -155,7 +155,7 @@ export class ReportesDominioPIUuReportesDominioComponent extends AbstractPIU imp
             'Desasociar');
         accItem.nounVerb = true;
         accItem.multiSelection = true;
-        accItem.agents = [ModelConstants.Superadmin.name];
+        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Reportesdominio.name;
         accItem.targetUI = ModelConstants.Reportesdominio.siuueliminar;
         accItem.setShowInModalProperties('genericsiu',
