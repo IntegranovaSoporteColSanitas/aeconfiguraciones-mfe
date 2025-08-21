@@ -8,7 +8,8 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngClass]="{ 'show': menuOpen }">
             <ul class="navbar-nav me-auto">
-                <li class="nav-item dropdown" *ngIf="isNodeVisible('Vis_1720709677056946NodoJer_2',['Admin','SuperAdmin','Funcionario'])">
+                <li class="nav-item dropdown"
+                    *ngIf="isNodeVisible('Vis_1720709677056946NodoJer_2',['Admin','SuperAdmin','Funcionario'])">
                     <a class="nav-link dropdown-toggle" id="hat0" data-bs-toggle="dropdown"
                         aria-expanded="false" aria-haspopup="true">
                         {{langMng.translateText('_fixed.hat.0', 'Propias')}}
@@ -20,7 +21,8 @@
                             (click)="navigateFromHat('0_1')">{{langMng.translateText('_fixed.hat.0_1', 'Parámetros configuración')}}</a>
                         <a class="dropdown-item"*ngIf="isNodeVisible('Vis_1720709677056946NodoJer_73',['Funcionario','Admin','SuperAdmin'])" 
                             (click)="navigateFromHat('0_2')">{{langMng.translateText('_fixed.hat.0_2', 'Textos de Aviso')}}</a>
-                    <li class="dropdown-item dropdown-submenu" *ngIf="isNodeVisible('Vis_1720709677056946NodoJer_5',['Admin','SuperAdmin'])">
+                    <li class="dropdown-item dropdown-submenu"
+                        *ngIf="isNodeVisible('Vis_1720709677056946NodoJer_5',['Admin','SuperAdmin'])">
                         <a class="nav-link dropdown-toggle" id="hat0_3" data-bs-toggle="dropdown"
                             aria-expanded="false" aria-haspopup="true">
                             {{langMng.translateText('_fixed.hat.0_3', 'Cuestinario médico')}}
@@ -54,7 +56,8 @@
                             (click)="navigateFromHat('0_13')">{{langMng.translateText('_fixed.hat.0_13', 'Reportes en base de datos')}}</a>
                         <a class="dropdown-item"*ngIf="isNodeVisible('Vis_1720709677056946NodoJer_22',['Admin','SuperAdmin'])" 
                             (click)="navigateFromHat('0_14')">{{langMng.translateText('_fixed.hat.0_14', 'Tipos de Factura')}}</a>
-                    <li class="dropdown-item dropdown-submenu" *ngIf="isNodeVisible('Vis_1720709677056946NodoJer_23',['Admin','SuperAdmin'])">
+                    <li class="dropdown-item dropdown-submenu"
+                        *ngIf="isNodeVisible('Vis_1720709677056946NodoJer_23',['Admin','SuperAdmin'])">
                         <a class="nav-link dropdown-toggle" id="hat0_15" data-bs-toggle="dropdown"
                             aria-expanded="false" aria-haspopup="true">
                             {{langMng.translateText('_fixed.hat.0_15', 'Novedades')}}
@@ -84,7 +87,8 @@
                             (click)="navigateFromHat('0_22')">{{langMng.translateText('_fixed.hat.0_22', 'Reportes para solicitud')}}</a>
                     </ul>
                 </li>
-                <li class="nav-item dropdown" *ngIf="isNodeVisible('Vis_1720709677056946NodoJer_35',['Admin','SuperAdmin'])">
+                <li class="nav-item dropdown"
+                    *ngIf="isNodeVisible('Vis_1720709677056946NodoJer_35',['Admin','SuperAdmin'])">
                     <a class="nav-link dropdown-toggle" id="hat1" data-bs-toggle="dropdown"
                         aria-expanded="false" aria-haspopup="true">
                         {{langMng.translateText('_fixed.hat.1', 'Paramétricas')}}
@@ -114,7 +118,8 @@
                             (click)="navigateFromHat('1_10')">{{langMng.translateText('_fixed.hat.1_10', 'Tipos de institución')}}</a>
                     </ul>
                 </li>
-                <li class="nav-item dropdown" *ngIf="isNodeVisible('Vis_1720709677056946NodoJer_48',['Admin','SuperAdmin'])">
+                <li class="nav-item dropdown"
+                    *ngIf="isNodeVisible('Vis_1720709677056946NodoJer_48',['Admin','SuperAdmin'])">
                     <a class="nav-link dropdown-toggle" id="hat2" data-bs-toggle="dropdown"
                         aria-expanded="false" aria-haspopup="true">
                         {{langMng.translateText('_fixed.hat.2', 'Paramétricas ampliadas')}}
@@ -148,7 +153,8 @@
                             (click)="navigateFromHat('2_12')">{{langMng.translateText('_fixed.hat.2_12', 'Grupos Asociados')}}</a>
                     </ul>
                 </li>
-                <li class="nav-item dropdown" *ngIf="isNodeVisible('Vis_1720709677056946NodoJer_61',['Admin','SuperAdmin'])">
+                <li class="nav-item dropdown"
+                    *ngIf="isNodeVisible('Vis_1720709677056946NodoJer_61',['Admin','SuperAdmin'])">
                     <a class="nav-link dropdown-toggle" id="hat3" data-bs-toggle="dropdown"
                         aria-expanded="false" aria-haspopup="true">
                         {{langMng.translateText('_fixed.hat.3', 'Consulta Log Servicios')}}
@@ -160,7 +166,8 @@
                             (click)="navigateFromHat('3_1')">{{langMng.translateText('_fixed.hat.3_1', 'Llamadas a BH')}}</a>
                     </ul>
                 </li>
-                <li class="nav-item dropdown" *ngIf="isNodeVisible('Vis_1720709677056946NodoJer_69',['Admin','SuperAdmin'])">
+                <li class="nav-item dropdown"
+                    *ngIf="isNodeVisible('Vis_1720709677056946NodoJer_69',['Admin','SuperAdmin'])">
                     <a class="nav-link dropdown-toggle" id="hat4" data-bs-toggle="dropdown"
                         aria-expanded="false" aria-haspopup="true">
                         {{langMng.translateText('_fixed.hat.4', 'Gestión firmas')}}
