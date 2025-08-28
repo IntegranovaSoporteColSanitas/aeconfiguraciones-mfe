@@ -43,6 +43,9 @@ export class EstadoPersonaPIUuEstadoPersonaComponent extends AbstractPIU impleme
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431941021696517UIPobCl_1';
         this.className = ModelConstants.Estadopersona.name;
+        this.classAlias = this.langMng.translateText('cls_EstadoPersona',
+            'Estado persona');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Estadopersona.piuuestadopersona;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_EstadoPersona_piu_PIU_EstadoPersona',

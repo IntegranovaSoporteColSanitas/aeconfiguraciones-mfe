@@ -41,6 +41,9 @@ export class ContratosExentosFIngresoPIUuContratosExentosFIngresoComponent exten
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1658397392896210UIPobCl_1';
         this.className = ModelConstants.Contratosexentosfingreso.name;
+        this.classAlias = this.langMng.translateText('cls_ContratosExentosFIngreso',
+            'Contratos exentos fecha de ingreso');
+        this.supplementaryInfoAtt.push('numcontrato');
         this.iuName = ModelConstants.Contratosexentosfingreso.piuucontratosexentosfingreso;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_ContratosExentosFIngreso_piu_PIU_ContratosExentosFIngreso',

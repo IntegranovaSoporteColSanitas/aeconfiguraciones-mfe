@@ -39,6 +39,8 @@ export class GrupoAsignacionNovedadPIUuGrpAsigNovedaduDuDominioComponent extends
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1586852003840652UIPobCl_1';
         this.className = ModelConstants.Grupoasignacionnovedad.name;
+        this.classAlias = this.langMng.translateText('cls_GrupoAsignacionNovedad',
+            'Grupo Asignación Novedades');
         this.iuName = ModelConstants.Grupoasignacionnovedad.piuugrpasignovedadududominio;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_GrupoAsignacionNovedad_piu_PIU_GrpAsigNovedad_D_Dominio',

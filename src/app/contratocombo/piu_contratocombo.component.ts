@@ -42,6 +42,8 @@ export class ContratoComboPIUuContratoComboComponent extends AbstractPIU impleme
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1586858164224485UIPobCl_1';
         this.className = ModelConstants.Contratocombo.name;
+        this.classAlias = this.langMng.translateText('cls_ContratoCombo',
+            'Contrato Combo');
         this.iuName = ModelConstants.Contratocombo.piuucontratocombo;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_ContratoCombo_piu_PIU_ContratoCombo',

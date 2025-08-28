@@ -37,6 +37,9 @@ export class CausalPIUuCausaluNullComponent extends AbstractPIU implements OnIni
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1581414219776993UIPobCl_2';
         this.className = ModelConstants.Causal.name;
+        this.classAlias = this.langMng.translateText('cls_Causal',
+            'Causal');
+        this.supplementaryInfoAtt.push('nombre');
         this.iuName = ModelConstants.Causal.piuucausalunull;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Causal_piu_PIU_Causal_Null',

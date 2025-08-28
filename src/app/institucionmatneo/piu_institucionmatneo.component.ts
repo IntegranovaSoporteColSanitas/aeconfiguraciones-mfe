@@ -47,6 +47,9 @@ export class InstitucionMatNeoPIUuInstitucionMatNeoComponent extends AbstractPIU
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1463993499648846UIPobCl_1';
         this.className = ModelConstants.Institucionmatneo.name;
+        this.classAlias = this.langMng.translateText('cls_InstitucionMatNeo',
+            'Institución Maternal/Neonatal');
+        this.supplementaryInfoAtt.push('nombre');
         this.iuName = ModelConstants.Institucionmatneo.piuuinstitucionmatneo;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_InstitucionMatNeo_piu_PIU_InstitucionMatNeo',

@@ -48,6 +48,9 @@ export class NovedadIIUuNovedadComponent extends AbstractIIU implements OnInit {
         super(appGlobalInfo, util, changeDetectorRef, condNavMng);
         this.idXML = 'Clas_1581412253696713UIInst_1';
         this.className = ModelConstants.Novedad.name;
+        this.classAlias = this.langMng.translateText('cls_Novedad',
+            'Novedad');
+        this.supplementaryInfoAtt.push('nombre');
         this.iuName = ModelConstants.Novedad.iiuunovedad;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Novedad_iiu_IIU_Novedad',

@@ -35,7 +35,10 @@ export class ParamConfigIIUuParamConfigMaestroComponent extends AbstractIIU {
         super(appGlobalInfo, util, changeDetectorRef, condNavMng);
         this.idXML = 'Clas_1431630118912680UIInst_1';
         this.className = ModelConstants.Paramconfig.name;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
+        this.classAlias = this.langMng.translateText('cls_ParamConfig',
+            'Parámetro Conf.');
+        this.supplementaryInfoAtt.push('descripcion');
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_ParamConfig_iiu_IIU_ParamConfigMaestro',
             'Parámetro');
         this.queryURL = '/api/ParamConfigApi/GetPopulationDynamic';
@@ -54,7 +57,7 @@ export class ParamConfigIIUuParamConfigMaestroComponent extends AbstractIIU {
             'cls_ParamConfig_ds_DS_ParamConfig_IIUMaestro_item_Clas_1431630118912680CjtoVis_3ICtjoVis_1',
             'Código');
         this.dseCodigo.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1431630118912680CjtoVis_3ICtjoVis_1', ['Admin', 'SuperAdmin']);
+            'Clas_1431630118912680CjtoVis_3ICtjoVis_1', ['Funcionario', 'Admin', 'SuperAdmin']);
         this.dseCodigo.enabled = false;
         this.dseCodigo.mandatory = false;
         this.dseCodigo.dataType = Field.dtString;

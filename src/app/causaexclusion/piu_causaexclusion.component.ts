@@ -38,6 +38,9 @@ export class CausaExclusionPIUuCausaExclusionComponent extends AbstractPIU imple
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1581522485248372UIPobCl_1';
         this.className = ModelConstants.Causaexclusion.name;
+        this.classAlias = this.langMng.translateText('cls_CausaExclusion',
+            'Causa de Exclusion');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Causaexclusion.piuucausaexclusion;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_CausaExclusion_piu_PIU_CausaExclusion',

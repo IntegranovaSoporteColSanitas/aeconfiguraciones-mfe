@@ -38,6 +38,8 @@ export class EntidadFinancieraCPIUuEntidadFinancieraComponent extends AbstractPI
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431947444224046UIPobCl_3';
         this.className = ModelConstants.Entidadfinancierac.name;
+        this.classAlias = this.langMng.translateText('cls_EntidadFinancieraC',
+            'Entidad financiera');
         this.iuName = ModelConstants.Entidadfinancierac.piuuentidadfinanciera;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_EntidadFinancieraC_piu_PIU_EntidadFinanciera',

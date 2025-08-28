@@ -45,6 +45,8 @@ export class LogContratoComboPIUuLogContratoComboComponent extends AbstractPIU i
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1586858295296800UIPobCl_1';
         this.className = ModelConstants.Logcontratocombo.name;
+        this.classAlias = this.langMng.translateText('cls_LogContratoCombo',
+            'Histórico Global Contratos Combo');
         this.iuName = ModelConstants.Logcontratocombo.piuulogcontratocombo;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_LogContratoCombo_piu_PIU_LogContratoCombo',

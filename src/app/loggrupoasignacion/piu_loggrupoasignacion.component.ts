@@ -40,6 +40,8 @@ export class LogGrupoAsignacionPIUuLogGrupoAsignacionComponent extends AbstractP
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1586850430976759UIPobCl_1';
         this.className = ModelConstants.Loggrupoasignacion.name;
+        this.classAlias = this.langMng.translateText('cls_LogGrupoAsignacion',
+            'Histórico Grupo Asignación');
         this.iuName = ModelConstants.Loggrupoasignacion.piuuloggrupoasignacion;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_LogGrupoAsignacion_piu_PIU_LogGrupoAsignacion',

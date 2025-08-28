@@ -46,7 +46,7 @@ export class ParamConfigMDIUuParamConfigComponent extends AbstractMDIU implement
         this.idXML = 'Clas_1431630118912680UIMaDet_1';
         this.className = ModelConstants.Paramconfig.name;
         this.iuName = ModelConstants.Paramconfig.mdiuuparamconfig;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_ParamConfig_mdiu_MDIU_ParamConfig',
             'Log cambios');
         // Create the details and assign the master detail container

@@ -36,6 +36,12 @@ export class FuncionarioPIUuDuFuncionariosReporteComponent extends AbstractPIU {
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431626842112800UIPobCl_2';
         this.className = ModelConstants.Funcionario.name;
+        this.classAlias = this.langMng.translateText('cls_Funcionario',
+            'Usuario');
+        this.supplementaryInfoAtt.push('primernombre');
+        this.supplementaryInfoAtt.push('segundonombre');
+        this.supplementaryInfoAtt.push('primerapellido');
+        this.supplementaryInfoAtt.push('segundoapellido');
         this.iuName = 'PIU_D_FuncionariosReporte';
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Funcionario_piu_PIU_D_FuncionariosReporte',

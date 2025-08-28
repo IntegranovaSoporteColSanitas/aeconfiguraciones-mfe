@@ -35,6 +35,9 @@ export class ReportesProcAlmIIUuReportesProcAlmComponent extends AbstractIIU {
         super(appGlobalInfo, util, changeDetectorRef, condNavMng);
         this.idXML = 'Clas_1547029184512775UIInst_1';
         this.className = ModelConstants.Reportesprocalm.name;
+        this.classAlias = this.langMng.translateText('cls_ReportesProcAlm',
+            'Info Reporte');
+        this.supplementaryInfoAtt.push('descripcion');
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_ReportesProcAlm_iiu_IIU_ReportesProcAlm',
             'Info Reporte');

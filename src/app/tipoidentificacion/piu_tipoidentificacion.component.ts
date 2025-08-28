@@ -49,8 +49,12 @@ export class TipoIdentificacionPIUuTipoIdentificacionComponent extends AbstractP
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431942201344066UIPobCl_1';
         this.className = ModelConstants.Tipoidentificacion.name;
+        this.classAlias = this.langMng.translateText('cls_TipoIdentificacion',
+            'Tipo identificación');
+        this.supplementaryInfoAtt.push('nombrecorto');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Tipoidentificacion.piuutipoidentificacion;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_TipoIdentificacion_piu_PIU_TipoIdentificacion',
             'Tipos de identificación');
         this.queryURL = '/api/TipoIdentificacionApi/GetPopulationDynamic';
@@ -78,7 +82,7 @@ export class TipoIdentificacionPIUuTipoIdentificacionComponent extends AbstractP
         dsItem.alias = this.langMng.translateText(
             'cls_TipoIdentificacion_ds__Auto__item_Clas_1431942201344066CjtoVis_AutoICtjoVis_1',
             this.dscodigo);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();

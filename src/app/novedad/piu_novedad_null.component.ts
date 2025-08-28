@@ -37,6 +37,9 @@ export class NovedadPIUuNovedaduNullComponent extends AbstractPIU implements OnI
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1581412253696713UIPobCl_3';
         this.className = ModelConstants.Novedad.name;
+        this.classAlias = this.langMng.translateText('cls_Novedad',
+            'Novedad');
+        this.supplementaryInfoAtt.push('nombre');
         this.iuName = ModelConstants.Novedad.piuunovedadunull;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Novedad_piu_PIU_Novedad_Null',

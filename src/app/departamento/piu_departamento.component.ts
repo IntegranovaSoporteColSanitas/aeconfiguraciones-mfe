@@ -39,8 +39,11 @@ export class DepartamentoPIUuDepartamentoComponent extends AbstractPIU implement
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431882039296664UIPobCl_1';
         this.className = ModelConstants.Departamento.name;
+        this.classAlias = this.langMng.translateText('cls_Departamento',
+            'Departamento');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Departamento.piuudepartamento;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Departamento_piu_PIU_Departamento',
             'Departamentos');
         this.queryURL = '/api/DepartamentoApi/GetPopulationDynamic';
@@ -68,7 +71,7 @@ export class DepartamentoPIUuDepartamentoComponent extends AbstractPIU implement
         dsItem.alias = this.langMng.translateText(
             'cls_Departamento_ds__Auto__item_Clas_1431882039296664CjtoVis_AutoICtjoVis_1',
             this.dscodigo);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();

@@ -39,8 +39,11 @@ export class ParamConfigPIUuParamConfigComponent extends AbstractPIU implements 
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431630118912680UIPobCl_1';
         this.className = ModelConstants.Paramconfig.name;
+        this.classAlias = this.langMng.translateText('cls_ParamConfig',
+            'Parámetro Conf.');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Paramconfig.piuuparamconfig;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_ParamConfig_piu_PIU_ParamConfig',
             'Parámetros Conf.');
         this.queryURL = '/api/ParamConfigApi/GetPopulationDynamic';
@@ -69,7 +72,7 @@ export class ParamConfigPIUuParamConfigComponent extends AbstractPIU implements 
         dsItem.alias = this.langMng.translateText(
             'cls_ParamConfig_ds_DS_ParamConfig_PIU_item_Clas_1431630118912680CjtoVis_2ICtjoVis_1',
             this.dscodigo);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -138,7 +141,7 @@ export class ParamConfigPIUuParamConfigComponent extends AbstractPIU implements 
             'Log cambios');
         accItem.nounVerb = true;
         accItem.multiSelection = false;
-        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
+        accItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Paramconfig.name;
         accItem.targetUI = ModelConstants.Paramconfig.mdiuuparamconfig;
 

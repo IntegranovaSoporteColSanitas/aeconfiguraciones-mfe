@@ -47,6 +47,9 @@ export class FrecuenciaActPIUuFrecuenciaActComponent extends AbstractPIU impleme
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431632084992014UIPobCl_1';
         this.className = ModelConstants.Frecuenciaact.name;
+        this.classAlias = this.langMng.translateText('cls_FrecuenciaAct',
+            'Frecuencias act.');
+        this.supplementaryInfoAtt.push('drvnombreparametrica');
         this.iuName = ModelConstants.Frecuenciaact.piuufrecuenciaact;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_FrecuenciaAct_piu_PIU_FrecuenciaAct',

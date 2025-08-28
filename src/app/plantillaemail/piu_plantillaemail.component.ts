@@ -43,8 +43,11 @@ export class PlantillaEmailPIUuPlantillaEmailComponent extends AbstractPIU imple
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431708631040445UIPobCl_1';
         this.className = ModelConstants.Plantillaemail.name;
+        this.classAlias = this.langMng.translateText('cls_PlantillaEmail',
+            'Plantilla email');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Plantillaemail.piuuplantillaemail;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_PlantillaEmail_piu_PIU_PlantillaEmail',
             'Plantillas notificaciones (email/sms)');
         this.queryURL = '/api/PlantillaEmailApi/GetPopulationDynamic';
@@ -72,7 +75,7 @@ export class PlantillaEmailPIUuPlantillaEmailComponent extends AbstractPIU imple
         dsItem.alias = this.langMng.translateText(
             'cls_PlantillaEmail_ds_DS_PlantillaEmail_item_Clas_1431708631040445CjtoVis_3ICtjoVis_5',
             this.dsidplantilla);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();

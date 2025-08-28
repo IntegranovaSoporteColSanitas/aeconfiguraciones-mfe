@@ -46,6 +46,9 @@ export class PlantillaReportePIUuPlantillaReporteComponent extends AbstractPIU i
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1623831347200006UIPobCl_1';
         this.className = ModelConstants.Plantillareporte.name;
+        this.classAlias = this.langMng.translateText('cls_PlantillaReporte',
+            'Plantilla reporte');
+        this.supplementaryInfoAtt.push('titulo');
         this.iuName = ModelConstants.Plantillareporte.piuuplantillareporte;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_PlantillaReporte_piu_PIU_PlantillaReporte',

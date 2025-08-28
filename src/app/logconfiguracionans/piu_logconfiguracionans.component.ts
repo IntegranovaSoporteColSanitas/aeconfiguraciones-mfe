@@ -48,6 +48,8 @@ export class LogConfiguracionANSPIUuLogConfiguracionANSComponent extends Abstrac
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1586860392448303UIPobCl_1';
         this.className = ModelConstants.Logconfiguracionans.name;
+        this.classAlias = this.langMng.translateText('cls_LogConfiguracionANS',
+            'Histórico ANS');
         this.iuName = ModelConstants.Logconfiguracionans.piuulogconfiguracionans;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_LogConfiguracionANS_piu_PIU_LogConfiguracionANS',

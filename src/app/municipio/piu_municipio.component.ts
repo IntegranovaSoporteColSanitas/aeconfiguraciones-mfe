@@ -47,8 +47,11 @@ export class MunicipioPIUuMunicipioComponent extends AbstractPIU implements OnIn
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431890034688728UIPobCl_1';
         this.className = ModelConstants.Municipio.name;
+        this.classAlias = this.langMng.translateText('cls_Municipio',
+            'Municipio');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Municipio.piuumunicipio;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Funcionario']));
         this.title = this.langMng.translateText('cls_Municipio_piu_PIU_Municipio',
             'Municipios');
         this.f0 = new MunicipioFilterFuMunicipioVarios(this.appGlobalInfo,
@@ -92,7 +95,7 @@ export class MunicipioPIUuMunicipioComponent extends AbstractPIU implements OnIn
         dsItem.alias = this.langMng.translateText(
             'cls_Municipio_ds_DS_Municipio_PIU_item_Clas_1431890034688728CjtoVis_2ICtjoVis_2',
             this.dscodigo);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();

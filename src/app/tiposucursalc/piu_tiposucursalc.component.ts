@@ -38,6 +38,8 @@ export class TipoSucursalCPIUuTipoSucursalCComponent extends AbstractPIU impleme
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1437649993728293UIPobCl_1';
         this.className = ModelConstants.Tiposucursalc.name;
+        this.classAlias = this.langMng.translateText('cls_TipoSucursalC',
+            'Tipo Sucursal');
         this.iuName = ModelConstants.Tiposucursalc.piuutiposucursalc;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_TipoSucursalC_piu_PIU_TipoSucursalC',

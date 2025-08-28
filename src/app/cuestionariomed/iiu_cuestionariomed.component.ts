@@ -32,6 +32,9 @@ export class CuestionarioMedIIUuCuestionarioMedComponent extends AbstractIIU {
         super(appGlobalInfo, util, changeDetectorRef, condNavMng);
         this.idXML = 'Clas_1431633526784077UIInst_1';
         this.className = ModelConstants.Cuestionariomed.name;
+        this.classAlias = this.langMng.translateText('cls_CuestionarioMed',
+            'Cuestionario médico');
+        this.supplementaryInfoAtt.push('nombre');
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_CuestionarioMed_iiu_IIU_CuestionarioMed',
             'Cuestionario médico');

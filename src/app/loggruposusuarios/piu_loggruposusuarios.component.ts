@@ -42,6 +42,8 @@ export class LogGruposUsuariosPIUuLogGruposUsuariosComponent extends AbstractPIU
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1586851217408583UIPobCl_1';
         this.className = ModelConstants.Loggruposusuarios.name;
+        this.classAlias = this.langMng.translateText('cls_LogGruposUsuarios',
+            'Historico Grupos');
         this.iuName = ModelConstants.Loggruposusuarios.piuuloggruposusuarios;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_LogGruposUsuarios_piu_PIU_LogGruposUsuarios',

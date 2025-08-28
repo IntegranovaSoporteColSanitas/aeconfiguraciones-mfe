@@ -38,6 +38,9 @@ export class ProrrateoPIUuProrrateoComponent extends AbstractPIU implements OnIn
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1547053432832527UIPobCl_1';
         this.className = ModelConstants.Prorrateo.name;
+        this.classAlias = this.langMng.translateText('cls_Prorrateo',
+            'Prorrateo');
+        this.supplementaryInfoAtt.push('porcentaje');
         this.iuName = ModelConstants.Prorrateo.piuuprorrateo;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Prorrateo_piu_PIU_Prorrateo',

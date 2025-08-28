@@ -42,6 +42,8 @@ export class LogPriorizacionSolPIUuLogPriorizacionSolComponent extends AbstractP
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1586847547392173UIPobCl_1';
         this.className = ModelConstants.Logpriorizacionsol.name;
+        this.classAlias = this.langMng.translateText('cls_LogPriorizacionSol',
+            'Histórico Priorización Solicitudes');
         this.iuName = ModelConstants.Logpriorizacionsol.piuulogpriorizacionsol;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_LogPriorizacionSol_piu_PIU_LogPriorizacionSol',

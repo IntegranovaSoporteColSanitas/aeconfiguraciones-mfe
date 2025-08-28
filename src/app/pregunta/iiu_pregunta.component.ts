@@ -53,6 +53,8 @@ export class PreguntaIIUuPreguntaComponent extends AbstractIIU implements OnInit
         super(appGlobalInfo, util, changeDetectorRef, condNavMng);
         this.idXML = 'Clas_1431633788928040UIInst_1';
         this.className = ModelConstants.Pregunta.name;
+        this.classAlias = this.langMng.translateText('cls_Pregunta',
+            'Pregunta');
         this.iuName = ModelConstants.Pregunta.iiuupregunta;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Pregunta_iiu_IIU_Pregunta',

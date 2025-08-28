@@ -39,6 +39,9 @@ export class EstadoBeneficiarioAEPIUuEstadoBeneficiarioAEComponent extends Abstr
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431711383552943UIPobCl_1';
         this.className = ModelConstants.Estadobeneficiarioae.name;
+        this.classAlias = this.langMng.translateText('cls_EstadoBeneficiarioAE',
+            'Estado beneficiario AE');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Estadobeneficiarioae.piuuestadobeneficiarioae;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_EstadoBeneficiarioAE_piu_PIU_EstadoBeneficiarioAE',

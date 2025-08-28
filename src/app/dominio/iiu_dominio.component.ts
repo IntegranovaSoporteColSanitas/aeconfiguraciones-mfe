@@ -54,6 +54,10 @@ export class DominioIIUuDominioComponent extends AbstractIIU {
         super(appGlobalInfo, util, changeDetectorRef, condNavMng);
         this.idXML = 'Clas_1431701422080423UIInst_1';
         this.className = ModelConstants.Dominio.name;
+        this.classAlias = this.langMng.translateText('cls_Dominio',
+            'Dominio');
+        this.supplementaryInfoAtt.push('productot.descripcion');
+        this.supplementaryInfoAtt.push('plant.nombre');
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Dominio_iiu_IIU_Dominio',
             'Dominio');

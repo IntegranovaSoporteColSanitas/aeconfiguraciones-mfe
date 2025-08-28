@@ -48,8 +48,11 @@ export class PlanesPIUuPlanComponent extends AbstractPIU implements OnInit {
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431695392768502UIPobCl_1';
         this.className = ModelConstants.Planes.name;
+        this.classAlias = this.langMng.translateText('cls_Planes',
+            'Plan');
+        this.supplementaryInfoAtt.push('nombre');
         this.iuName = ModelConstants.Planes.piuuplan;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Funcionario']));
         this.title = this.langMng.translateText('cls_Planes_piu_PIU_Plan',
             'Planes');
         this.f0 = new PlanesFilterFuPlanVarios(this.appGlobalInfo,
@@ -93,7 +96,7 @@ export class PlanesPIUuPlanComponent extends AbstractPIU implements OnInit {
         dsItem.alias = this.langMng.translateText(
             'cls_Planes_ds_DS_Plan_PIU_item_Clas_1431695392768502CjtoVis_2ICtjoVis_2',
             this.dsplan);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();

@@ -41,6 +41,8 @@ export class ContSinDocSolPIUuContSinDocSolComponent extends AbstractPIU impleme
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1517844955136648UIPobCl_1';
         this.className = ModelConstants.Contsindocsol.name;
+        this.classAlias = this.langMng.translateText('cls_ContSinDocSol',
+            'Contratos exentos doc. Solicitud');
         this.iuName = ModelConstants.Contsindocsol.piuucontsindocsol;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_ContSinDocSol_piu_PIU_ContSinDocSol',

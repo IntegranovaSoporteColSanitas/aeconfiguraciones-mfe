@@ -40,8 +40,11 @@ export class EpsPIUuEPSComponent extends AbstractPIU implements OnInit {
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431942987776277UIPobCl_1';
         this.className = ModelConstants.Eps.name;
+        this.classAlias = this.langMng.translateText('cls_Eps',
+            'EPS');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Eps.piuueps;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Eps_piu_PIU_EPS',
             'EPS');
         this.queryURL = '/api/EpsApi/GetPopulationDynamic';
@@ -69,7 +72,7 @@ export class EpsPIUuEPSComponent extends AbstractPIU implements OnInit {
         dsItem.alias = this.langMng.translateText(
             'cls_Eps_ds__Auto__item_Clas_1431942987776277CjtoVis_AutoICtjoVis_1',
             this.dscodigo);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();

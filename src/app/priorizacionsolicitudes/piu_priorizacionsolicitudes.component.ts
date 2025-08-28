@@ -44,6 +44,8 @@ export class PriorizacionSolicitudesPIUuPriorizacionSolicitudesComponent extends
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1586846892032587UIPobCl_1';
         this.className = ModelConstants.Priorizacionsolicitudes.name;
+        this.classAlias = this.langMng.translateText('cls_PriorizacionSolicitudes',
+            'Priorización Solicitudes');
         this.iuName = ModelConstants.Priorizacionsolicitudes.piuupriorizacionsolicitudes;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_PriorizacionSolicitudes_piu_PIU_PriorizacionSolicitudes',

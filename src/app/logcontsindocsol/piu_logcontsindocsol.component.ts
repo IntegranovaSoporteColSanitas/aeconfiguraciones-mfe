@@ -43,6 +43,8 @@ export class LogContSinDocSolPIUuLogContSinDocSolComponent extends AbstractPIU i
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1517847052288825UIPobCl_1';
         this.className = ModelConstants.Logcontsindocsol.name;
+        this.classAlias = this.langMng.translateText('cls_LogContSinDocSol',
+            'Log Contratos exentos');
         this.iuName = ModelConstants.Logcontsindocsol.piuulogcontsindocsol;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_LogContSinDocSol_piu_PIU_LogContSinDocSol',

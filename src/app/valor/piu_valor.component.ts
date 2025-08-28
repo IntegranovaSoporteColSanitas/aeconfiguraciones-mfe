@@ -38,8 +38,11 @@ export class ValorPIUuValorComponent extends AbstractPIU implements OnInit {
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431634313216388UIPobCl_1';
         this.className = ModelConstants.Valor.name;
+        this.classAlias = this.langMng.translateText('cls_Valor',
+            'Valor');
+        this.supplementaryInfoAtt.push('valorposible');
         this.iuName = ModelConstants.Valor.piuuvalor;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Valor_piu_PIU_Valor',
             'Valores');
         this.queryURL = '/api/ValorApi/GetPopulationDynamic';
@@ -67,7 +70,7 @@ export class ValorPIUuValorComponent extends AbstractPIU implements OnInit {
         dsItem.alias = this.langMng.translateText(
             'cls_Valor_ds__Auto__item_Clas_1431634313216388CjtoVis_AutoICtjoVis_1',
             this.dsidentificador);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();

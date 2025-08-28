@@ -38,6 +38,9 @@ export class MotDevAreaMedicaPIUuMotDevAreaMedicaComponent extends AbstractPIU i
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1497629065216447UIPobCl_1';
         this.className = ModelConstants.Motdevareamedica.name;
+        this.classAlias = this.langMng.translateText('cls_MotDevAreaMedica',
+            'Motivo devolución');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Motdevareamedica.piuumotdevareamedica;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_MotDevAreaMedica_piu_PIU_MotDevAreaMedica',

@@ -38,8 +38,11 @@ export class CuestionarioMedPIUuCuestionarioMedComponent extends AbstractPIU imp
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431633526784077UIPobCl_1';
         this.className = ModelConstants.Cuestionariomed.name;
+        this.classAlias = this.langMng.translateText('cls_CuestionarioMed',
+            'Cuestionario médico');
+        this.supplementaryInfoAtt.push('nombre');
         this.iuName = ModelConstants.Cuestionariomed.piuucuestionariomed;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_CuestionarioMed_piu_PIU_CuestionarioMed',
             'Cuestionarios médicos');
         this.queryURL = '/api/CuestionarioMedApi/GetPopulationDynamic';
@@ -67,7 +70,7 @@ export class CuestionarioMedPIUuCuestionarioMedComponent extends AbstractPIU imp
         dsItem.alias = this.langMng.translateText(
             'cls_CuestionarioMed_ds_DS_CuestionarioMed_PIU_item_Clas_1431633526784077CjtoVis_2ICtjoVis_1',
             this.dsnumero);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();

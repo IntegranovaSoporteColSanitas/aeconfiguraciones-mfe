@@ -45,6 +45,11 @@ export class TarifaPIUuTarifasComponent extends AbstractPIU implements OnInit {
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431714529280565UIPobCl_1';
         this.className = ModelConstants.Tarifa.name;
+        this.classAlias = this.langMng.translateText('cls_Tarifa',
+            'Tarifa');
+        this.supplementaryInfoAtt.push('productot.descripcion');
+        this.supplementaryInfoAtt.push('plant.nombre');
+        this.supplementaryInfoAtt.push('codigo');
         this.iuName = ModelConstants.Tarifa.piuutarifas;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Tarifa_piu_PIU_Tarifas',

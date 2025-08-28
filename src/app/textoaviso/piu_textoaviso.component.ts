@@ -38,6 +38,9 @@ export class TextoAvisoPIUuTextoAvisoComponent extends AbstractPIU implements On
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1737625305088101UIPobCl_1';
         this.className = ModelConstants.Textoaviso.name;
+        this.classAlias = this.langMng.translateText('cls_TextoAviso',
+            'Texto Aviso');
+        this.supplementaryInfoAtt.push('identificador');
         this.iuName = ModelConstants.Textoaviso.piuutextoaviso;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_TextoAviso_piu_PIU_TextoAviso',

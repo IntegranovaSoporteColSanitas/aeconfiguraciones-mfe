@@ -46,6 +46,8 @@ export class FechaIniEPSPIUuFechaIniEPSComponent extends AbstractPIU implements 
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1655287709696534UIPobCl_1';
         this.className = ModelConstants.Fechainieps.name;
+        this.classAlias = this.langMng.translateText('cls_FechaIniEPS',
+            'Fechas inicio vigencia para EPS');
         this.iuName = ModelConstants.Fechainieps.piuufechainieps;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_FechaIniEPS_piu_PIU_FechaIniEPS',

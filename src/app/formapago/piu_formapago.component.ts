@@ -41,6 +41,9 @@ export class FormaPagoPIUuFormaPagoComponent extends AbstractPIU implements OnIn
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431941677056219UIPobCl_1';
         this.className = ModelConstants.Formapago.name;
+        this.classAlias = this.langMng.translateText('cls_FormaPago',
+            'Forma pago');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Formapago.piuuformapago;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_FormaPago_piu_PIU_FormaPago',

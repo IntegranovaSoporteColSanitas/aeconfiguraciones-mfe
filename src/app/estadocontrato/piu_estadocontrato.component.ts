@@ -38,6 +38,9 @@ export class EstadoContratoPIUuEstadoContratoComponent extends AbstractPIU imple
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431709286400354UIPobCl_1';
         this.className = ModelConstants.Estadocontrato.name;
+        this.classAlias = this.langMng.translateText('cls_EstadoContrato',
+            'Estado contrato');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Estadocontrato.piuuestadocontrato;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_EstadoContrato_piu_PIU_EstadoContrato',

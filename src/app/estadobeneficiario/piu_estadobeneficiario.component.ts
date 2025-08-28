@@ -42,8 +42,11 @@ export class EstadoBeneficiarioPIUuEstadoBeneficiarioComponent extends AbstractP
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431710597120636UIPobCl_1';
         this.className = ModelConstants.Estadobeneficiario.name;
+        this.classAlias = this.langMng.translateText('cls_EstadoBeneficiario',
+            'Estado beneficiario CORE');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Estadobeneficiario.piuuestadobeneficiario;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_EstadoBeneficiario_piu_PIU_EstadoBeneficiario',
             'Estados beneficiario CORE');
         this.queryURL = '/api/EstadoBeneficiarioApi/GetPopulationDynamic';
@@ -71,7 +74,7 @@ export class EstadoBeneficiarioPIUuEstadoBeneficiarioComponent extends AbstractP
         dsItem.alias = this.langMng.translateText(
             'cls_EstadoBeneficiario_ds__Auto__item_Clas_1431710597120636CjtoVis_AutoICtjoVis_1',
             this.dscodigo);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();

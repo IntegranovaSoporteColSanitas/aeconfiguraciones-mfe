@@ -46,6 +46,9 @@ export class TipoIVAPIUuTipoIVAComponent extends AbstractPIU implements OnInit {
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431882432512691UIPobCl_1';
         this.className = ModelConstants.Tipoiva.name;
+        this.classAlias = this.langMng.translateText('cls_TipoIVA',
+            'Tipo I.V.A');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Tipoiva.piuutipoiva;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_TipoIVA_piu_PIU_TipoIVA',

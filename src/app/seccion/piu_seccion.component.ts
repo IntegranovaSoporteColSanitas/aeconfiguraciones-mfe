@@ -38,6 +38,9 @@ export class SeccionPIUuSeccionComponent extends AbstractPIU implements OnInit {
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431633526784668UIPobCl_1';
         this.className = ModelConstants.Seccion.name;
+        this.classAlias = this.langMng.translateText('cls_Seccion',
+            'Sección');
+        this.supplementaryInfoAtt.push('nombre');
         this.iuName = ModelConstants.Seccion.piuuseccion;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Seccion_piu_PIU_Seccion',

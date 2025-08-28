@@ -42,6 +42,9 @@ export class TipoFacturaPIUuTipoFacturaComponent extends AbstractPIU implements 
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1547132600320261UIPobCl_1';
         this.className = ModelConstants.Tipofactura.name;
+        this.classAlias = this.langMng.translateText('cls_TipoFactura',
+            'Tipo Factura');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Tipofactura.piuutipofactura;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_TipoFactura_piu_PIU_TipoFactura',

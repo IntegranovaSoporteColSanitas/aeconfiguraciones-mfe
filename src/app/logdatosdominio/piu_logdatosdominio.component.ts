@@ -36,6 +36,8 @@ export class LogDatosDominioPIUuLogDatosDominioComponent extends AbstractPIU {
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1658394247168004UIPobCl_1';
         this.className = ModelConstants.Logdatosdominio.name;
+        this.classAlias = this.langMng.translateText('cls_LogDatosDominio',
+            'Log Dominio');
         this.iuName = 'PIU_LogDatosDominio';
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_LogDatosDominio_piu_PIU_LogDatosDominio',

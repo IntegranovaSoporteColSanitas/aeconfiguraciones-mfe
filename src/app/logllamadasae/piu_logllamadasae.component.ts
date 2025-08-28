@@ -46,6 +46,8 @@ export class LogLlamadasAEPIUuLogLlamadasAEComponent extends AbstractPIU impleme
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1641826746368185UIPobCl_1';
         this.className = ModelConstants.Logllamadasae.name;
+        this.classAlias = this.langMng.translateText('cls_LogLlamadasAE',
+            'Llamada a BH');
         this.iuName = ModelConstants.Logllamadasae.piuulogllamadasae;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_LogLlamadasAE_piu_PIU_LogLlamadasAE',

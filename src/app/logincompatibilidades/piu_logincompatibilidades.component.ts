@@ -40,6 +40,8 @@ export class LogIncompatibilidadesPIUuLogIncompatibilidadesComponent extends Abs
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1658387955712525UIPobCl_1';
         this.className = ModelConstants.Logincompatibilidades.name;
+        this.classAlias = this.langMng.translateText('cls_LogIncompatibilidades',
+            'Log Incompatibles');
         this.iuName = ModelConstants.Logincompatibilidades.piuulogincompatibilidades;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_LogIncompatibilidades_piu_PIU_LogIncompatibilidades',

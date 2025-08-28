@@ -39,6 +39,12 @@ export class RespRegionalIIUuRespRegionaluFirmaComponent extends AbstractIIU imp
         super(appGlobalInfo, util, changeDetectorRef, condNavMng);
         this.idXML = 'Clas_1431871684608346UIInst_1';
         this.className = ModelConstants.Respregional.name;
+        this.classAlias = this.langMng.translateText('cls_RespRegional',
+            'Responsable regional');
+        this.supplementaryInfoAtt.push('primernombre');
+        this.supplementaryInfoAtt.push('segundonombre');
+        this.supplementaryInfoAtt.push('primerapellido');
+        this.supplementaryInfoAtt.push('segundoapellido');
         this.iuName = ModelConstants.Respregional.iiuurespregionalufirma;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_RespRegional_iiu_IIU_RespRegional_Firma',

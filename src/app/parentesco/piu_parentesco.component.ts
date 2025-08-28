@@ -44,8 +44,11 @@ export class ParentescoPIUuParentescoComponent extends AbstractPIU implements On
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431698145280871UIPobCl_1';
         this.className = ModelConstants.Parentesco.name;
+        this.classAlias = this.langMng.translateText('cls_Parentesco',
+            'Parentesco');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Parentesco.piuuparentesco;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Parentesco_piu_PIU_Parentesco',
             'Parentescos');
         this.queryURL = '/api/ParentescoApi/GetPopulationDynamic';
@@ -73,7 +76,7 @@ export class ParentescoPIUuParentescoComponent extends AbstractPIU implements On
         dsItem.alias = this.langMng.translateText(
             'cls_Parentesco_ds__Auto__item_Clas_1431698145280871CjtoVis_AutoICtjoVis_1',
             this.dscodigo);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();

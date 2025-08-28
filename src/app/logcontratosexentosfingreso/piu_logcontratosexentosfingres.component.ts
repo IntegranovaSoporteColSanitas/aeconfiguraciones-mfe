@@ -44,6 +44,8 @@ export class LogContratosExentosFIngresoPIUuLogContratosExentosFIngresComponent 
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1658397523968042UIPobCl_1';
         this.className = ModelConstants.Logcontratosexentosfingreso.name;
+        this.classAlias = this.langMng.translateText('cls_LogContratosExentosFIngreso',
+            'Log Contratos exentos fecha ingreso');
         this.iuName = ModelConstants.Logcontratosexentosfingreso.piuulogcontratosexentosfingres;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_LogContratosExentosFIngreso_piu_PIU_LogContratosExentosFIngres',

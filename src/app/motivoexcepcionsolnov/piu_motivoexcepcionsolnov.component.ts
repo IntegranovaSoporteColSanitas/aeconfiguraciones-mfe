@@ -37,6 +37,8 @@ export class MotivoExcepcionSolNovPIUuMotivoExcepcionSolNovComponent extends Abs
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1583336390656979UIPobCl_1';
         this.className = ModelConstants.Motivoexcepcionsolnov.name;
+        this.classAlias = this.langMng.translateText('cls_MotivoExcepcionSolNov',
+            'Motivo Excepción');
         this.iuName = ModelConstants.Motivoexcepcionsolnov.piuumotivoexcepcionsolnov;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_MotivoExcepcionSolNov_piu_PIU_MotivoExcepcionSolNov',

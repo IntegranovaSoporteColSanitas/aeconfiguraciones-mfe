@@ -38,6 +38,9 @@ export class RolPIUuRolComponent extends AbstractPIU implements OnInit {
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431700897792807UIPobCl_1';
         this.className = ModelConstants.Rol.name;
+        this.classAlias = this.langMng.translateText('cls_Rol',
+            'Rol');
+        this.supplementaryInfoAtt.push('nombre');
         this.iuName = ModelConstants.Rol.piuurol;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Rol_piu_PIU_Rol',

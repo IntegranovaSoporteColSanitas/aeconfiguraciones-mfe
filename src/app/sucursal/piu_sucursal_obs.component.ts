@@ -39,6 +39,9 @@ export class SucursalPIUuSucursaluObsComponent extends AbstractPIU implements On
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431874043904178UIPobCl_2';
         this.className = ModelConstants.Sucursal.name;
+        this.classAlias = this.langMng.translateText('cls_Sucursal',
+            'Sucursal');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Sucursal.piuusucursaluobs;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Sucursal_piu_PIU_Sucursal_Obs',

@@ -43,8 +43,11 @@ export class ProductosPIUuProductosuObsComponent extends AbstractPIU implements 
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431687397376823UIPobCl_2';
         this.className = ModelConstants.Productos.name;
+        this.classAlias = this.langMng.translateText('cls_Productos',
+            'Producto');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Productos.piuuproductosuobs;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Productos_piu_PIU_Productos_Obs',
             'Productos');
         this.queryURL = '/api/ProductosApi/GetPopulationDynamic';
@@ -72,7 +75,7 @@ export class ProductosPIUuProductosuObsComponent extends AbstractPIU implements 
         dsItem.alias = this.langMng.translateText(
             'cls_Productos_ds__Auto__item_Clas_1431687397376823CjtoVis_AutoICtjoVis_1',
             this.dsproducto);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();

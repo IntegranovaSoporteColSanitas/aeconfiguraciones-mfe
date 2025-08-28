@@ -52,6 +52,8 @@ export class PreguntaPIUuPreguntaComponent extends AbstractPIU implements OnInit
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431633788928040UIPobCl_1';
         this.className = ModelConstants.Pregunta.name;
+        this.classAlias = this.langMng.translateText('cls_Pregunta',
+            'Pregunta');
         this.iuName = ModelConstants.Pregunta.piuupregunta;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Pregunta_piu_PIU_Pregunta',

@@ -36,8 +36,11 @@ export class PeriodicidadPIUuPeriodicidadDetDominioComponent extends AbstractPIU
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431699849216490UIPobCl_2';
         this.className = ModelConstants.Periodicidad.name;
+        this.classAlias = this.langMng.translateText('cls_Periodicidad',
+            'Periodicidad');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = 'PIU_PeriodicidadDetDominio';
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Periodicidad_piu_PIU_PeriodicidadDetDominio',
             'Periodicidades');
         this.queryURL = '/api/PeriodicidadApi/GetPopulationDynamic';
@@ -58,7 +61,7 @@ export class PeriodicidadPIUuPeriodicidadDetDominioComponent extends AbstractPIU
         dsItem.alias = this.langMng.translateText(
             'cls_Periodicidad_ds__Auto__item_Clas_1431699849216490CjtoVis_AutoICtjoVis_1',
             this.dscodigo);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();

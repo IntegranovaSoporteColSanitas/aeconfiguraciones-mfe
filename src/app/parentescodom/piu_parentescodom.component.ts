@@ -41,6 +41,8 @@ export class ParentescoDomPIUuParentescoDomComponent extends AbstractPIU impleme
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1434710704128231UIPobCl_1';
         this.className = ModelConstants.Parentescodom.name;
+        this.classAlias = this.langMng.translateText('cls_ParentescoDom',
+            'Parentesco dominio');
         this.iuName = ModelConstants.Parentescodom.piuuparentescodom;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_ParentescoDom_piu_PIU_ParentescoDom',

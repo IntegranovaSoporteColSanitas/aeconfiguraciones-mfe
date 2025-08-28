@@ -45,6 +45,9 @@ export class GrupoAsignacionPIUuGrupoAsignacionComponent extends AbstractPIU imp
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1586850168832947UIPobCl_1';
         this.className = ModelConstants.Grupoasignacion.name;
+        this.classAlias = this.langMng.translateText('cls_GrupoAsignacion',
+            'Grupo de Asignación');
+        this.supplementaryInfoAtt.push('nombre');
         this.iuName = ModelConstants.Grupoasignacion.piuugrupoasignacion;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_GrupoAsignacion_piu_PIU_GrupoAsignacion',

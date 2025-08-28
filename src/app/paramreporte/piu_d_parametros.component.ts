@@ -40,6 +40,8 @@ export class ParamReportePIUuDuParametrosComponent extends AbstractPIU implement
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1580739854336044UIPobCl_1';
         this.className = ModelConstants.Paramreporte.name;
+        this.classAlias = this.langMng.translateText('cls_ParamReporte',
+            'Parámetro de reporte');
         this.iuName = ModelConstants.Paramreporte.piuuduparametros;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_ParamReporte_piu_PIU_D_Parametros',

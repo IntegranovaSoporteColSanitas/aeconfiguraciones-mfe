@@ -35,6 +35,8 @@ export class LogParamPIUuLogParamComponent extends AbstractPIU {
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431631298560437UIPobCl_1';
         this.className = ModelConstants.Logparam.name;
+        this.classAlias = this.langMng.translateText('cls_LogParam',
+            'Log Parámetros Conf.');
         this.iuName = 'PIU_LogParam';
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_LogParam_piu_PIU_LogParam',

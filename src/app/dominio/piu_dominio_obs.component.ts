@@ -50,6 +50,10 @@ export class DominioPIUuDominiouObsComponent extends AbstractPIU implements OnIn
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431701422080423UIPobCl_5';
         this.className = ModelConstants.Dominio.name;
+        this.classAlias = this.langMng.translateText('cls_Dominio',
+            'Dominio');
+        this.supplementaryInfoAtt.push('productot.descripcion');
+        this.supplementaryInfoAtt.push('plant.nombre');
         this.iuName = ModelConstants.Dominio.piuudominiouobs;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Dominio_piu_PIU_Dominio_Obs',

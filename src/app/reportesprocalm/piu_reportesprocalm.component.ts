@@ -39,6 +39,9 @@ export class ReportesProcAlmPIUuReportesProcAlmComponent extends AbstractPIU imp
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1547029184512775UIPobCl_1';
         this.className = ModelConstants.Reportesprocalm.name;
+        this.classAlias = this.langMng.translateText('cls_ReportesProcAlm',
+            'Info Reporte');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Reportesprocalm.piuureportesprocalm;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_ReportesProcAlm_piu_PIU_ReportesProcAlm',

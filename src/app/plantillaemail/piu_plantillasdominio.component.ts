@@ -36,6 +36,9 @@ export class PlantillaEmailPIUuPlantillasDominioComponent extends AbstractPIU {
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431708631040445UIPobCl_2';
         this.className = ModelConstants.Plantillaemail.name;
+        this.classAlias = this.langMng.translateText('cls_PlantillaEmail',
+            'Plantilla email');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = 'PIU_PlantillasDominio';
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_PlantillaEmail_piu_PIU_PlantillasDominio',

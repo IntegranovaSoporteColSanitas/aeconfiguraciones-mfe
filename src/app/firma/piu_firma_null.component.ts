@@ -37,6 +37,8 @@ export class FirmaPIUuFirmauNullComponent extends AbstractPIU implements OnInit 
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1432994709504560UIPobCl_2';
         this.className = ModelConstants.Firma.name;
+        this.classAlias = this.langMng.translateText('cls_Firma',
+            'Firma');
         this.iuName = ModelConstants.Firma.piuufirmaunull;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Firma_piu_PIU_Firma_Null',

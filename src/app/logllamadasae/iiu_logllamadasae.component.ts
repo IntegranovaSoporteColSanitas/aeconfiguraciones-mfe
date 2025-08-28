@@ -47,6 +47,8 @@ export class LogLlamadasAEIIUuLogLlamadasAEComponent extends AbstractIIU impleme
         super(appGlobalInfo, util, changeDetectorRef, condNavMng);
         this.idXML = 'Clas_1641826746368185UIInst_1';
         this.className = ModelConstants.Logllamadasae.name;
+        this.classAlias = this.langMng.translateText('cls_LogLlamadasAE',
+            'Llamada a BH');
         this.iuName = ModelConstants.Logllamadasae.iiuulogllamadasae;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_LogLlamadasAE_iiu_IIU_LogLlamadasAE',

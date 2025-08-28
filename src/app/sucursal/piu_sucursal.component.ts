@@ -39,6 +39,9 @@ export class SucursalPIUuSucursalComponent extends AbstractPIU implements OnInit
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431874043904178UIPobCl_1';
         this.className = ModelConstants.Sucursal.name;
+        this.classAlias = this.langMng.translateText('cls_Sucursal',
+            'Sucursal');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Sucursal.piuusucursal;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Sucursal_piu_PIU_Sucursal',

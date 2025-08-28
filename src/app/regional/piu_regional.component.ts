@@ -38,6 +38,9 @@ export class RegionalPIUuRegionalComponent extends AbstractPIU implements OnInit
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431872733184951UIPobCl_1';
         this.className = ModelConstants.Regional.name;
+        this.classAlias = this.langMng.translateText('cls_Regional',
+            'Regional');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Regional.piuuregional;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Regional_piu_PIU_Regional',

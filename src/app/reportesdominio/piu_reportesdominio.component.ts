@@ -41,6 +41,9 @@ export class ReportesDominioPIUuReportesDominioComponent extends AbstractPIU imp
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1623832395776730UIPobCl_1';
         this.className = ModelConstants.Reportesdominio.name;
+        this.classAlias = this.langMng.translateText('cls_ReportesDominio',
+            'Reportes de Dominio');
+        this.supplementaryInfoAtt.push('plantillareporte.titulo');
         this.iuName = ModelConstants.Reportesdominio.piuureportesdominio;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_ReportesDominio_piu_PIU_ReportesDominio',

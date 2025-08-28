@@ -39,6 +39,9 @@ export class EstadoCivilPIUuEstadoCivilComponent extends AbstractPIU implements 
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431880990720963UIPobCl_1';
         this.className = ModelConstants.Estadocivil.name;
+        this.classAlias = this.langMng.translateText('cls_EstadoCivil',
+            'Estado civil');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Estadocivil.piuuestadocivil;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_EstadoCivil_piu_PIU_EstadoCivil',

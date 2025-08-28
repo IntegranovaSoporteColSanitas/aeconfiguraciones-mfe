@@ -38,6 +38,9 @@ export class CausalPIUuCausaluDuMDuNovedadComponent extends AbstractPIU {
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1581414219776993UIPobCl_1';
         this.className = ModelConstants.Causal.name;
+        this.classAlias = this.langMng.translateText('cls_Causal',
+            'Causal');
+        this.supplementaryInfoAtt.push('nombre');
         this.iuName = 'PIU_Causal_D_MD_Novedad';
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Causal_piu_PIU_Causal_D_MD_Novedad',

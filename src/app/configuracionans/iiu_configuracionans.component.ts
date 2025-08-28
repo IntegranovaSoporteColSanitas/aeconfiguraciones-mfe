@@ -52,6 +52,8 @@ export class ConfiguracionANSIIUuConfiguracionANSComponent extends AbstractIIU i
         super(appGlobalInfo, util, changeDetectorRef, condNavMng);
         this.idXML = 'Clas_1586859868160432UIInst_1';
         this.className = ModelConstants.Configuracionans.name;
+        this.classAlias = this.langMng.translateText('cls_ConfiguracionANS',
+            'Acuerdo nivel de servicio');
         this.iuName = ModelConstants.Configuracionans.iiuuconfiguracionans;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_ConfiguracionANS_iiu_IIU_ConfiguracionANS',

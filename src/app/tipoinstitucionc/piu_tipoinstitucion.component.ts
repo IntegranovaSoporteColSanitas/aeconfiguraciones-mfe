@@ -38,6 +38,9 @@ export class TipoInstitucionCPIUuTipoInstitucionComponent extends AbstractPIU im
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431947444224120UIPobCl_2';
         this.className = ModelConstants.Tipoinstitucionc.name;
+        this.classAlias = this.langMng.translateText('cls_TipoInstitucionC',
+            'Tipo institución');
+        this.supplementaryInfoAtt.push('nombre');
         this.iuName = ModelConstants.Tipoinstitucionc.piuutipoinstitucion;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_TipoInstitucionC_piu_PIU_TipoInstitucion',

@@ -40,6 +40,9 @@ export class CompanyiaPIUuCompanyiaComponent extends AbstractPIU implements OnIn
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431889510400288UIPobCl_1';
         this.className = ModelConstants.Companyia.name;
+        this.classAlias = this.langMng.translateText('cls_Companyia',
+            'Compañía');
+        this.supplementaryInfoAtt.push('nombre');
         this.iuName = ModelConstants.Companyia.piuucompanyia;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Companyia_piu_PIU_Companyia',

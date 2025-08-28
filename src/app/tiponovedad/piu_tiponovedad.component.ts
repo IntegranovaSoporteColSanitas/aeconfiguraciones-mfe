@@ -40,6 +40,9 @@ export class TipoNovedadPIUuTipoNovedadComponent extends AbstractPIU implements 
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1581411467264384UIPobCl_1';
         this.className = ModelConstants.Tiponovedad.name;
+        this.classAlias = this.langMng.translateText('cls_TipoNovedad',
+            'Tipo Novedad');
+        this.supplementaryInfoAtt.push('nombre');
         this.iuName = ModelConstants.Tiponovedad.piuutiponovedad;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_TipoNovedad_piu_PIU_TipoNovedad',
