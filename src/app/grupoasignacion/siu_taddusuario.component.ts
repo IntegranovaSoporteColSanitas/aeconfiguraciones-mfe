@@ -86,7 +86,7 @@ export class GrupoAsignacionSIUuTADDUSUARIOComponent extends AbstractServiceIU i
             'Área Médica');
         this.ptAreaMedica.mandatory = false;
         this.ptAreaMedica.dataType = ModelConstants.Areamedica.name;
-        this.ptAreaMedica.maxLength = 50;
+        this.ptAreaMedica.maxLength = 200;
         this.ptAreaMedica.assignCSS();
         this.fields.push(this.ptAreaMedica);
     }
@@ -578,7 +578,7 @@ export class GrupoAsignacionSIUuTADDUSUARIOComponent extends AbstractServiceIU i
      */
     private setSuppInfoptareamedica(): void {
 
-        const displaySetIC = 'UsuarioLDAP';
+        const displaySetIC = 'PrimerNombre,SegundoNombre,PrimerApellido,SegundoApellido';
         let numberMissingSupInfo = 0;
         for (const value of this.ptAreaMedica.getSelectedInstances()) {
             if (!value.supplementaryInfo || value.supplementaryInfo === '') {
@@ -598,7 +598,7 @@ export class GrupoAsignacionSIUuTADDUSUARIOComponent extends AbstractServiceIU i
                 for (const value of this.ptAreaMedica.getSelectedInstances()) {
                     if (!value.supplementaryInfo || value.supplementaryInfo === '') {
                         value.supplementaryInfo = this.cacheDependencyRules.getText(ModelConstants.Areamedica.name,
-                            value.oid, displaySetIC, [Field.dtString]);
+                            value.oid, displaySetIC, [Field.dtString, Field.dtString, Field.dtString, Field.dtString]);
                     }
                 }
                 this.ptAreaMedica.setText();

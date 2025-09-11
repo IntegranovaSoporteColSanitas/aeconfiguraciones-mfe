@@ -777,7 +777,7 @@ export class GenericSiuComponent implements OnInit {
                     'cls_Dominio_svc_TELIMINAR_inArg_p_thisDominio',
                     'Dominio');
                 this.argSupInfAttNames = 'productot.descripcion,plant.nombre';
-                this.argSupInfAttTypes = [Field.dtString,Field.dtString];
+                this.argSupInfAttTypes = [Field.dtString, Field.dtString];
                 this.siuHasNoShow = true;
                 siuFound = true;
                 break;
@@ -951,7 +951,7 @@ export class GenericSiuComponent implements OnInit {
                     'cls_GrupoAsociado_svc_eliminar_inArg_p_thisGrupoAsociado',
                     'Grupo Asociado');
                 this.argSupInfAttNames = 'codigolegal,descripcion';
-                this.argSupInfAttTypes = [Field.dtString,Field.dtString];
+                this.argSupInfAttTypes = [Field.dtString, Field.dtString];
                 this.siuHasNoShow = true;
                 siuFound = true;
                 break;
@@ -1176,7 +1176,7 @@ export class GenericSiuComponent implements OnInit {
                     'cls_TipoIdentificacion_svc_eliminar_inArg_p_thisTipoIdentificacion',
                     'Tipo identificación');
                 this.argSupInfAttNames = 'nombrecorto,descripcion';
-                this.argSupInfAttTypes = [Field.dtString,Field.dtString];
+                this.argSupInfAttTypes = [Field.dtString, Field.dtString];
                 this.siuHasNoShow = true;
                 siuFound = true;
                 break;

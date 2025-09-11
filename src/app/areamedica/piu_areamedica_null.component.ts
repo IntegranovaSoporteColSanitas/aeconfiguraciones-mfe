@@ -39,7 +39,10 @@ export class AreaMedicaPIUuAreaMedicauNullComponent extends AbstractPIU implemen
         this.className = ModelConstants.Areamedica.name;
         this.classAlias = this.langMng.translateText('cls_AreaMedica',
             'Área médica');
-        this.supplementaryInfoAtt.push('usuarioldap');
+        this.supplementaryInfoAtt.push('primernombre');
+        this.supplementaryInfoAtt.push('segundonombre');
+        this.supplementaryInfoAtt.push('primerapellido');
+        this.supplementaryInfoAtt.push('segundoapellido');
         this.iuName = ModelConstants.Areamedica.piuuareamedicaunull;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_AreaMedica_piu_PIU_AreaMedica_Null',
