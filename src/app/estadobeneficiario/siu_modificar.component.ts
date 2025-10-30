@@ -44,7 +44,7 @@ export class EstadoBeneficiarioSIUumodificarComponent extends AbstractServiceIU 
             'Modificar estado beneficiario');
 
         // Create inbound argument components
-        this.puthisEstadoBeneficiario = new FieldOVLenseSearch(this.langMng);
+        this.puthisEstadoBeneficiario = new FieldOVLenseSearch(this.langMng, this.util);
         this.puEsActivo = new FieldDefinedSelection(this.langMng);
         this.puConfirmado = new FieldDefinedSelection(this.langMng);
         this.puEsError = new FieldDefinedSelection(this.langMng);
@@ -261,45 +261,20 @@ export class EstadoBeneficiarioSIUumodificarComponent extends AbstractServiceIU 
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisEstadoBeneficiario lense search argument
      */
     public onputhisestadobeneficiarioChange(): void {
-
-        const searchText = this.puthisEstadoBeneficiario.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisEstadoBeneficiario.lastText) {
-                this.puthisEstadoBeneficiario.removeCSSClass('noResultsLenseSearch');
-                this.puthisEstadoBeneficiario.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Estadobeneficiario.name, 'IC_EstadoBeneficiario', searchText, [],
-                    null).then(
-                        (response: any) => {
-                            this.puthisEstadoBeneficiario.removeCSSClass('noResultsLenseSearch');
-                            this.puthisEstadoBeneficiario.searchResults = response.results;
-                            if (this.puthisEstadoBeneficiario.searchResults &&
-                                this.puthisEstadoBeneficiario.searchResults.length === 0) {
-                                this.puthisEstadoBeneficiario.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisEstadoBeneficiario.searchResults &&
-                                this.puthisEstadoBeneficiario.searchResults.length === 1) {
-                                this.processputhisestadobeneficiarioSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisEstadoBeneficiario.removeCSSClass('noResultsLenseSearch');
-                            this.puthisEstadoBeneficiario.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisEstadoBeneficiario, ModelConstants.Estadobeneficiario.name, 'IC_EstadoBeneficiario',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisestadobeneficiario();
             }
-        } else {
-            this.puthisEstadoBeneficiario.removeCSSClass('noResultsLenseSearch');
-            this.puthisEstadoBeneficiario.searchResults = [];
-            this.cleanputhisestadobeneficiario();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisestadobeneficiarioSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -319,7 +294,7 @@ export class EstadoBeneficiarioSIUumodificarComponent extends AbstractServiceIU 
                 this.puthisEstadoBeneficiario.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisEstadoBeneficiario.getSelectedInstances().push(selectedInstance);
+            this.puthisEstadoBeneficiario.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisestadobeneficiario('SetValue', false);
         this.changeDetectorRef.markForCheck();

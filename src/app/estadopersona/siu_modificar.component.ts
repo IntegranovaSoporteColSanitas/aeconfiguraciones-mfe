@@ -45,7 +45,7 @@ export class EstadoPersonaSIUumodificarComponent extends AbstractServiceIU imple
             'Modificar estado persona');
 
         // Create inbound argument components
-        this.puthisEstadoPersona = new FieldOVLenseSearch(this.langMng);
+        this.puthisEstadoPersona = new FieldOVLenseSearch(this.langMng, this.util);
         this.puUnBeneficiarioDistino = new FieldDefinedSelection(this.langMng);
         this.puProhibidoBeneficiarios = new FieldDefinedSelection(this.langMng);
         this.puProhibidoContratante = new FieldDefinedSelection(this.langMng);
@@ -273,44 +273,20 @@ export class EstadoPersonaSIUumodificarComponent extends AbstractServiceIU imple
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisEstadoPersona lense search argument
      */
     public onputhisestadopersonaChange(): void {
-
-        const searchText = this.puthisEstadoPersona.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisEstadoPersona.lastText) {
-                this.puthisEstadoPersona.removeCSSClass('noResultsLenseSearch');
-                this.puthisEstadoPersona.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Estadopersona.name, 'IC_EstadoPersona', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisEstadoPersona.removeCSSClass('noResultsLenseSearch');
-                            this.puthisEstadoPersona.searchResults = response.results;
-                            if (this.puthisEstadoPersona.searchResults &&
-                                this.puthisEstadoPersona.searchResults.length === 0) {
-                                this.puthisEstadoPersona.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisEstadoPersona.searchResults &&
-                                this.puthisEstadoPersona.searchResults.length === 1) {
-                                this.processputhisestadopersonaSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisEstadoPersona.removeCSSClass('noResultsLenseSearch');
-                            this.puthisEstadoPersona.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisEstadoPersona, ModelConstants.Estadopersona.name, 'IC_EstadoPersona',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisestadopersona();
             }
-        } else {
-            this.puthisEstadoPersona.removeCSSClass('noResultsLenseSearch');
-            this.puthisEstadoPersona.searchResults = [];
-            this.cleanputhisestadopersona();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisestadopersonaSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -330,7 +306,7 @@ export class EstadoPersonaSIUumodificarComponent extends AbstractServiceIU imple
                 this.puthisEstadoPersona.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisEstadoPersona.getSelectedInstances().push(selectedInstance);
+            this.puthisEstadoPersona.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisestadopersona('SetValue', false);
         this.changeDetectorRef.markForCheck();

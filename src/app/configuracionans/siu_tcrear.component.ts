@@ -53,7 +53,7 @@ export class ConfiguracionANSSIUuTCREARComponent extends AbstractServiceIU imple
             'Crear');
 
         // Create inbound argument components
-        this.ptupuagrDominio = new FieldOVLenseSearch(this.langMng);
+        this.ptupuagrDominio = new FieldOVLenseSearch(this.langMng, this.util);
         this.ptupuagrNovedad = new FieldOVPreload(this.langMng);
         this.ptupuagrCausal = new FieldOVPreload(this.langMng);
         this.ptupuatrTramite = new FieldDefinedSelection(this.langMng);
@@ -376,44 +376,20 @@ export class ConfiguracionANSSIUuTCREARComponent extends AbstractServiceIU imple
             });
         }
     }
-
     /**
      * Process the change in the pt_p_agrDominio lense search argument
      */
     public onptupuagrdominioChange(): void {
-
-        const searchText = this.ptupuagrDominio.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.ptupuagrDominio.lastText) {
-                this.ptupuagrDominio.removeCSSClass('noResultsLenseSearch');
-                this.ptupuagrDominio.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Dominio.name, 'IC_Dominio', searchText, [], null).then(
-                        (response: any) => {
-                            this.ptupuagrDominio.removeCSSClass('noResultsLenseSearch');
-                            this.ptupuagrDominio.searchResults = response.results;
-                            if (this.ptupuagrDominio.searchResults &&
-                                this.ptupuagrDominio.searchResults.length === 0) {
-                                this.ptupuagrDominio.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.ptupuagrDominio.searchResults &&
-                                this.ptupuagrDominio.searchResults.length === 1) {
-                                this.processptupuagrdominioSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.ptupuagrDominio.removeCSSClass('noResultsLenseSearch');
-                            this.ptupuagrDominio.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.ptupuagrDominio, ModelConstants.Dominio.name, 'IC_Dominio',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanptupuagrdominio();
             }
-        } else {
-            this.ptupuagrDominio.removeCSSClass('noResultsLenseSearch');
-            this.ptupuagrDominio.searchResults = [];
-            this.cleanptupuagrdominio();
-        }
-
+            if (foundInstances === 1) {
+                this.processptupuagrdominioSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -433,7 +409,7 @@ export class ConfiguracionANSSIUuTCREARComponent extends AbstractServiceIU imple
                 this.ptupuagrDominio.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.ptupuagrDominio.getSelectedInstances().push(selectedInstance);
+            this.ptupuagrDominio.addInstances(selectedInstance);
         }
         this.executeDependecyRulesptupuagrdominio('SetValue', false);
         this.changeDetectorRef.markForCheck();

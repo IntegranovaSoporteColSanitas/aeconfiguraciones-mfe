@@ -49,8 +49,8 @@ export class DetalleTarifaSIUuTMODIFICARComponent extends AbstractServiceIU impl
 
         // Create inbound argument components
         this.puthisDetalleTarifa = new FieldOVLense(this.langMng);
-        this.pProducto = new FieldOVLenseSearch(this.langMng);
-        this.pPlan = new FieldOVLenseSearch(this.langMng);
+        this.pProducto = new FieldOVLenseSearch(this.langMng, this.util);
+        this.pPlan = new FieldOVLenseSearch(this.langMng, this.util);
         this.pTipoContrato = new FieldDefinedSelection(this.langMng);
         this.pAnyo = new Field(this.langMng);
         this.pLimInferiorEdad = new Field(this.langMng);
@@ -428,44 +428,20 @@ export class DetalleTarifaSIUuTMODIFICARComponent extends AbstractServiceIU impl
             });
         }
     }
-
     /**
      * Process the change in the pProducto lense search argument
      */
     public onpproductoChange(): void {
-
-        const searchText = this.pProducto.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.pProducto.lastText) {
-                this.pProducto.removeCSSClass('noResultsLenseSearch');
-                this.pProducto.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Productos.name, 'IC_Producto', searchText, [], null).then(
-                        (response: any) => {
-                            this.pProducto.removeCSSClass('noResultsLenseSearch');
-                            this.pProducto.searchResults = response.results;
-                            if (this.pProducto.searchResults &&
-                                this.pProducto.searchResults.length === 0) {
-                                this.pProducto.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.pProducto.searchResults &&
-                                this.pProducto.searchResults.length === 1) {
-                                this.processpproductoSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.pProducto.removeCSSClass('noResultsLenseSearch');
-                            this.pProducto.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.pProducto, ModelConstants.Productos.name, 'IC_Producto',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanpproducto();
             }
-        } else {
-            this.pProducto.removeCSSClass('noResultsLenseSearch');
-            this.pProducto.searchResults = [];
-            this.cleanpproducto();
-        }
-
+            if (foundInstances === 1) {
+                this.processpproductoSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -485,7 +461,7 @@ export class DetalleTarifaSIUuTMODIFICARComponent extends AbstractServiceIU impl
                 this.pProducto.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.pProducto.getSelectedInstances().push(selectedInstance);
+            this.pProducto.addInstances(selectedInstance);
         }
         this.executeDependecyRulespproducto('SetValue', false);
         this.changeDetectorRef.markForCheck();
@@ -548,44 +524,20 @@ export class DetalleTarifaSIUuTMODIFICARComponent extends AbstractServiceIU impl
             });
         }
     }
-
     /**
      * Process the change in the pPlan lense search argument
      */
     public onpplanChange(): void {
-
-        const searchText = this.pPlan.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.pPlan.lastText) {
-                this.pPlan.removeCSSClass('noResultsLenseSearch');
-                this.pPlan.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Planes.name, 'IC_Plan', searchText, [], null).then(
-                        (response: any) => {
-                            this.pPlan.removeCSSClass('noResultsLenseSearch');
-                            this.pPlan.searchResults = response.results;
-                            if (this.pPlan.searchResults &&
-                                this.pPlan.searchResults.length === 0) {
-                                this.pPlan.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.pPlan.searchResults &&
-                                this.pPlan.searchResults.length === 1) {
-                                this.processpplanSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.pPlan.removeCSSClass('noResultsLenseSearch');
-                            this.pPlan.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.pPlan, ModelConstants.Planes.name, 'IC_Plan',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanpplan();
             }
-        } else {
-            this.pPlan.removeCSSClass('noResultsLenseSearch');
-            this.pPlan.searchResults = [];
-            this.cleanpplan();
-        }
-
+            if (foundInstances === 1) {
+                this.processpplanSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -605,7 +557,7 @@ export class DetalleTarifaSIUuTMODIFICARComponent extends AbstractServiceIU impl
                 this.pPlan.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.pPlan.getSelectedInstances().push(selectedInstance);
+            this.pPlan.addInstances(selectedInstance);
         }
         this.executeDependecyRulespplan('SetValue', false);
         this.changeDetectorRef.markForCheck();

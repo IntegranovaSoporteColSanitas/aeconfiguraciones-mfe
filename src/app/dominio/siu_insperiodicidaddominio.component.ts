@@ -41,8 +41,8 @@ export class DominioSIUuInsPeriodicidadDominioComponent extends AbstractServiceI
             'Indicar periodicidad aceptada');
 
         // Create inbound argument components
-        this.puthisDominio = new FieldOVLenseSearch(this.langMng);
-        this.puevcPeriodicidad = new FieldOVLenseSearch(this.langMng);
+        this.puthisDominio = new FieldOVLenseSearch(this.langMng, this.util);
+        this.puevcPeriodicidad = new FieldOVLenseSearch(this.langMng, this.util);
 
     }
 
@@ -186,44 +186,20 @@ export class DominioSIUuInsPeriodicidadDominioComponent extends AbstractServiceI
             });
         }
     }
-
     /**
      * Process the change in the p_thisDominio lense search argument
      */
     public onputhisdominioChange(): void {
-
-        const searchText = this.puthisDominio.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisDominio.lastText) {
-                this.puthisDominio.removeCSSClass('noResultsLenseSearch');
-                this.puthisDominio.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Dominio.name, 'IC_Dominio', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisDominio.removeCSSClass('noResultsLenseSearch');
-                            this.puthisDominio.searchResults = response.results;
-                            if (this.puthisDominio.searchResults &&
-                                this.puthisDominio.searchResults.length === 0) {
-                                this.puthisDominio.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisDominio.searchResults &&
-                                this.puthisDominio.searchResults.length === 1) {
-                                this.processputhisdominioSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisDominio.removeCSSClass('noResultsLenseSearch');
-                            this.puthisDominio.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisDominio, ModelConstants.Dominio.name, 'IC_Dominio',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisdominio();
             }
-        } else {
-            this.puthisDominio.removeCSSClass('noResultsLenseSearch');
-            this.puthisDominio.searchResults = [];
-            this.cleanputhisdominio();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisdominioSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -243,7 +219,7 @@ export class DominioSIUuInsPeriodicidadDominioComponent extends AbstractServiceI
                 this.puthisDominio.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisDominio.getSelectedInstances().push(selectedInstance);
+            this.puthisDominio.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisdominio('SetValue', false);
         this.changeDetectorRef.markForCheck();
@@ -306,47 +282,22 @@ export class DominioSIUuInsPeriodicidadDominioComponent extends AbstractServiceI
             });
         }
     }
-
     /**
      * Process the change in the p_evcPeriodicidad lense search argument
      */
     public onpuevcperiodicidadChange(): void {
-
-        const searchText = this.puevcPeriodicidad.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puevcPeriodicidad.lastText) {
-                const navFilters: string[] = [];
-                navFilters.push('Dominio_InsPeriodicidadDominio_p_evcPeriodicidad_NavFilter0');
-                this.puevcPeriodicidad.removeCSSClass('noResultsLenseSearch');
-                this.puevcPeriodicidad.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Periodicidad.name, 'IC_Periodicidad', searchText, navFilters,
-                    this.getNavigationFilterVariables()).then(
-                        (response: any) => {
-                            this.puevcPeriodicidad.removeCSSClass('noResultsLenseSearch');
-                            this.puevcPeriodicidad.searchResults = response.results;
-                            if (this.puevcPeriodicidad.searchResults &&
-                                this.puevcPeriodicidad.searchResults.length === 0) {
-                                this.puevcPeriodicidad.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puevcPeriodicidad.searchResults &&
-                                this.puevcPeriodicidad.searchResults.length === 1) {
-                                this.processpuevcperiodicidadSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puevcPeriodicidad.removeCSSClass('noResultsLenseSearch');
-                            this.puevcPeriodicidad.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        const navFilters: string[] = [];
+        navFilters.push('Dominio_InsPeriodicidadDominio_p_evcPeriodicidad_NavFilter0');
+        this.executeLenseSearch(this.puevcPeriodicidad, ModelConstants.Periodicidad.name, 'IC_Periodicidad',
+            navFilters).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanpuevcperiodicidad();
             }
-        } else {
-            this.puevcPeriodicidad.removeCSSClass('noResultsLenseSearch');
-            this.puevcPeriodicidad.searchResults = [];
-            this.cleanpuevcperiodicidad();
-        }
-
+            if (foundInstances === 1) {
+                this.processpuevcperiodicidadSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -366,7 +317,7 @@ export class DominioSIUuInsPeriodicidadDominioComponent extends AbstractServiceI
                 this.puevcPeriodicidad.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puevcPeriodicidad.getSelectedInstances().push(selectedInstance);
+            this.puevcPeriodicidad.addInstances(selectedInstance);
         }
         this.executeDependecyRulespuevcperiodicidad('SetValue', false);
         this.changeDetectorRef.markForCheck();

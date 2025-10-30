@@ -43,7 +43,7 @@ export class RespRegionalSIUuTCREAROMODFIRMAComponent extends AbstractServiceIU 
             'Modificar firma');
 
         // Create inbound argument components
-        this.puthisRespRegional = new FieldOVLenseSearch(this.langMng);
+        this.puthisRespRegional = new FieldOVLenseSearch(this.langMng, this.util);
         this.ptupuatrImagenFirma = new FieldBlob(this.langMng);
         this.ptupuatrLatitud = new Field(this.langMng);
         this.ptupuatrLongitud = new Field(this.langMng);
@@ -199,44 +199,20 @@ export class RespRegionalSIUuTCREAROMODFIRMAComponent extends AbstractServiceIU 
             });
         }
     }
-
     /**
      * Process the change in the p_thisRespRegional lense search argument
      */
     public onputhisrespregionalChange(): void {
-
-        const searchText = this.puthisRespRegional.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisRespRegional.lastText) {
-                this.puthisRespRegional.removeCSSClass('noResultsLenseSearch');
-                this.puthisRespRegional.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Respregional.name, 'IC_RespRegionalNomApe', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisRespRegional.removeCSSClass('noResultsLenseSearch');
-                            this.puthisRespRegional.searchResults = response.results;
-                            if (this.puthisRespRegional.searchResults &&
-                                this.puthisRespRegional.searchResults.length === 0) {
-                                this.puthisRespRegional.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisRespRegional.searchResults &&
-                                this.puthisRespRegional.searchResults.length === 1) {
-                                this.processputhisrespregionalSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisRespRegional.removeCSSClass('noResultsLenseSearch');
-                            this.puthisRespRegional.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisRespRegional, ModelConstants.Respregional.name, 'IC_RespRegionalNomApe',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisrespregional();
             }
-        } else {
-            this.puthisRespRegional.removeCSSClass('noResultsLenseSearch');
-            this.puthisRespRegional.searchResults = [];
-            this.cleanputhisrespregional();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisrespregionalSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -256,7 +232,7 @@ export class RespRegionalSIUuTCREAROMODFIRMAComponent extends AbstractServiceIU 
                 this.puthisRespRegional.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisRespRegional.getSelectedInstances().push(selectedInstance);
+            this.puthisRespRegional.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisrespregional('SetValue', false);
         this.changeDetectorRef.markForCheck();

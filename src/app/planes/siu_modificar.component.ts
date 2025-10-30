@@ -45,7 +45,7 @@ export class PlanesSIUumodificarComponent extends AbstractServiceIU implements O
             'Modificar plan');
 
         // Create inbound argument components
-        this.puthisPlan = new FieldOVLenseSearch(this.langMng);
+        this.puthisPlan = new FieldOVLenseSearch(this.langMng, this.util);
         this.puEsBancoRep = new FieldDefinedSelection(this.langMng);
         this.puAceptaPreexistencias = new FieldDefinedSelection(this.langMng);
         this.puEsVoluntario = new FieldDefinedSelection(this.langMng);
@@ -267,44 +267,20 @@ export class PlanesSIUumodificarComponent extends AbstractServiceIU implements O
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisPlan lense search argument
      */
     public onputhisplanChange(): void {
-
-        const searchText = this.puthisPlan.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisPlan.lastText) {
-                this.puthisPlan.removeCSSClass('noResultsLenseSearch');
-                this.puthisPlan.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Planes.name, 'IC_Plan', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisPlan.removeCSSClass('noResultsLenseSearch');
-                            this.puthisPlan.searchResults = response.results;
-                            if (this.puthisPlan.searchResults &&
-                                this.puthisPlan.searchResults.length === 0) {
-                                this.puthisPlan.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisPlan.searchResults &&
-                                this.puthisPlan.searchResults.length === 1) {
-                                this.processputhisplanSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisPlan.removeCSSClass('noResultsLenseSearch');
-                            this.puthisPlan.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisPlan, ModelConstants.Planes.name, 'IC_Plan',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisplan();
             }
-        } else {
-            this.puthisPlan.removeCSSClass('noResultsLenseSearch');
-            this.puthisPlan.searchResults = [];
-            this.cleanputhisplan();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisplanSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -324,7 +300,7 @@ export class PlanesSIUumodificarComponent extends AbstractServiceIU implements O
                 this.puthisPlan.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisPlan.getSelectedInstances().push(selectedInstance);
+            this.puthisPlan.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisplan('SetValue', false);
         this.changeDetectorRef.markForCheck();

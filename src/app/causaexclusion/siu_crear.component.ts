@@ -42,7 +42,7 @@ export class CausaExclusionSIUucrearComponent extends AbstractServiceIU implemen
             'Crear');
 
         // Create inbound argument components
-        this.puagrNovedad = new FieldOVLenseSearch(this.langMng);
+        this.puagrNovedad = new FieldOVLenseSearch(this.langMng, this.util);
         this.puatrAliasCausa = new Field(this.langMng);
         this.puatrDescripcion = new Field(this.langMng);
 
@@ -215,44 +215,20 @@ export class CausaExclusionSIUucrearComponent extends AbstractServiceIU implemen
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_agrNovedad lense search argument
      */
     public onpuagrnovedadChange(): void {
-
-        const searchText = this.puagrNovedad.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puagrNovedad.lastText) {
-                this.puagrNovedad.removeCSSClass('noResultsLenseSearch');
-                this.puagrNovedad.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Novedad.name, 'IC_Novedad', searchText, [], null).then(
-                        (response: any) => {
-                            this.puagrNovedad.removeCSSClass('noResultsLenseSearch');
-                            this.puagrNovedad.searchResults = response.results;
-                            if (this.puagrNovedad.searchResults &&
-                                this.puagrNovedad.searchResults.length === 0) {
-                                this.puagrNovedad.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puagrNovedad.searchResults &&
-                                this.puagrNovedad.searchResults.length === 1) {
-                                this.processpuagrnovedadSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puagrNovedad.removeCSSClass('noResultsLenseSearch');
-                            this.puagrNovedad.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puagrNovedad, ModelConstants.Novedad.name, 'IC_Novedad',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanpuagrnovedad();
             }
-        } else {
-            this.puagrNovedad.removeCSSClass('noResultsLenseSearch');
-            this.puagrNovedad.searchResults = [];
-            this.cleanpuagrnovedad();
-        }
-
+            if (foundInstances === 1) {
+                this.processpuagrnovedadSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -272,7 +248,7 @@ export class CausaExclusionSIUucrearComponent extends AbstractServiceIU implemen
                 this.puagrNovedad.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puagrNovedad.getSelectedInstances().push(selectedInstance);
+            this.puagrNovedad.addInstances(selectedInstance);
         }
         this.executeDependecyRulespuagrnovedad('SetValue', false);
         this.changeDetectorRef.markForCheck();

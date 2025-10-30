@@ -44,7 +44,7 @@ export class TipoIVASIUumodificarComponent extends AbstractServiceIU implements 
             'Modificar');
 
         // Create inbound argument components
-        this.puthisTipoIVA = new FieldOVLenseSearch(this.langMng);
+        this.puthisTipoIVA = new FieldOVLenseSearch(this.langMng, this.util);
         this.puDescripcion = new Field(this.langMng);
         this.puPorcentaje = new Field(this.langMng);
         this.puFechaInicio = new Field(this.langMng);
@@ -237,44 +237,20 @@ export class TipoIVASIUumodificarComponent extends AbstractServiceIU implements 
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisTipoIVA lense search argument
      */
     public onputhistipoivaChange(): void {
-
-        const searchText = this.puthisTipoIVA.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisTipoIVA.lastText) {
-                this.puthisTipoIVA.removeCSSClass('noResultsLenseSearch');
-                this.puthisTipoIVA.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Tipoiva.name, 'IC_TipoIVA', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisTipoIVA.removeCSSClass('noResultsLenseSearch');
-                            this.puthisTipoIVA.searchResults = response.results;
-                            if (this.puthisTipoIVA.searchResults &&
-                                this.puthisTipoIVA.searchResults.length === 0) {
-                                this.puthisTipoIVA.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisTipoIVA.searchResults &&
-                                this.puthisTipoIVA.searchResults.length === 1) {
-                                this.processputhistipoivaSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisTipoIVA.removeCSSClass('noResultsLenseSearch');
-                            this.puthisTipoIVA.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisTipoIVA, ModelConstants.Tipoiva.name, 'IC_TipoIVA',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhistipoiva();
             }
-        } else {
-            this.puthisTipoIVA.removeCSSClass('noResultsLenseSearch');
-            this.puthisTipoIVA.searchResults = [];
-            this.cleanputhistipoiva();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhistipoivaSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -294,7 +270,7 @@ export class TipoIVASIUumodificarComponent extends AbstractServiceIU implements 
                 this.puthisTipoIVA.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisTipoIVA.getSelectedInstances().push(selectedInstance);
+            this.puthisTipoIVA.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhistipoiva('SetValue', false);
         this.changeDetectorRef.markForCheck();

@@ -49,7 +49,7 @@ export class NovedadSIUumodificarComponent extends AbstractServiceIU implements 
             'Modificar');
 
         // Create inbound argument components
-        this.puthisNovedad = new FieldOVLenseSearch(this.langMng);
+        this.puthisNovedad = new FieldOVLenseSearch(this.langMng, this.util);
         this.puDescripcion = new Field(this.langMng);
         this.puCodigoLegal = new Field(this.langMng);
         this.puReqDocPersona = new FieldDefinedSelection(this.langMng);
@@ -338,44 +338,20 @@ export class NovedadSIUumodificarComponent extends AbstractServiceIU implements 
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisNovedad lense search argument
      */
     public onputhisnovedadChange(): void {
-
-        const searchText = this.puthisNovedad.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisNovedad.lastText) {
-                this.puthisNovedad.removeCSSClass('noResultsLenseSearch');
-                this.puthisNovedad.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Novedad.name, 'IC_Novedad', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisNovedad.removeCSSClass('noResultsLenseSearch');
-                            this.puthisNovedad.searchResults = response.results;
-                            if (this.puthisNovedad.searchResults &&
-                                this.puthisNovedad.searchResults.length === 0) {
-                                this.puthisNovedad.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisNovedad.searchResults &&
-                                this.puthisNovedad.searchResults.length === 1) {
-                                this.processputhisnovedadSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisNovedad.removeCSSClass('noResultsLenseSearch');
-                            this.puthisNovedad.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisNovedad, ModelConstants.Novedad.name, 'IC_Novedad',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisnovedad();
             }
-        } else {
-            this.puthisNovedad.removeCSSClass('noResultsLenseSearch');
-            this.puthisNovedad.searchResults = [];
-            this.cleanputhisnovedad();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisnovedadSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -395,7 +371,7 @@ export class NovedadSIUumodificarComponent extends AbstractServiceIU implements 
                 this.puthisNovedad.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisNovedad.getSelectedInstances().push(selectedInstance);
+            this.puthisNovedad.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisnovedad('SetValue', false);
         this.changeDetectorRef.markForCheck();

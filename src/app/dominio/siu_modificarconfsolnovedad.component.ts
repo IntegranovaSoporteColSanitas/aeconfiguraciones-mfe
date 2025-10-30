@@ -45,7 +45,7 @@ export class DominioSIUumodificarConfSolNovedadComponent extends AbstractService
             'Modificar configuración Solicitudes de Novedad');
 
         // Create inbound argument components
-        this.puthisDominio = new FieldOVLenseSearch(this.langMng);
+        this.puthisDominio = new FieldOVLenseSearch(this.langMng, this.util);
         this.puNovExcepcionReqDoc = new FieldDefinedSelection(this.langMng);
         this.puSolNovColorOscuro = new Field(this.langMng);
         this.puSolNovColorClaro = new Field(this.langMng);
@@ -264,44 +264,20 @@ export class DominioSIUumodificarConfSolNovedadComponent extends AbstractService
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisDominio lense search argument
      */
     public onputhisdominioChange(): void {
-
-        const searchText = this.puthisDominio.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisDominio.lastText) {
-                this.puthisDominio.removeCSSClass('noResultsLenseSearch');
-                this.puthisDominio.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Dominio.name, 'IC_Dominio', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisDominio.removeCSSClass('noResultsLenseSearch');
-                            this.puthisDominio.searchResults = response.results;
-                            if (this.puthisDominio.searchResults &&
-                                this.puthisDominio.searchResults.length === 0) {
-                                this.puthisDominio.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisDominio.searchResults &&
-                                this.puthisDominio.searchResults.length === 1) {
-                                this.processputhisdominioSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisDominio.removeCSSClass('noResultsLenseSearch');
-                            this.puthisDominio.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisDominio, ModelConstants.Dominio.name, 'IC_Dominio',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisdominio();
             }
-        } else {
-            this.puthisDominio.removeCSSClass('noResultsLenseSearch');
-            this.puthisDominio.searchResults = [];
-            this.cleanputhisdominio();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisdominioSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -321,7 +297,7 @@ export class DominioSIUumodificarConfSolNovedadComponent extends AbstractService
                 this.puthisDominio.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisDominio.getSelectedInstances().push(selectedInstance);
+            this.puthisDominio.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisdominio('SetValue', false);
         this.changeDetectorRef.markForCheck();

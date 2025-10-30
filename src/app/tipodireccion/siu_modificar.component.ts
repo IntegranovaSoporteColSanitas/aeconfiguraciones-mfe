@@ -43,7 +43,7 @@ export class TipoDireccionSIUumodificarComponent extends AbstractServiceIU imple
             'Modificar tipo de dirección');
 
         // Create inbound argument components
-        this.puthisTipoDireccion = new FieldOVLenseSearch(this.langMng);
+        this.puthisTipoDireccion = new FieldOVLenseSearch(this.langMng, this.util);
         this.puEsResidencia = new FieldDefinedSelection(this.langMng);
         this.puEsCorrespondencia = new FieldDefinedSelection(this.langMng);
 
@@ -216,44 +216,20 @@ export class TipoDireccionSIUumodificarComponent extends AbstractServiceIU imple
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisTipoDireccion lense search argument
      */
     public onputhistipodireccionChange(): void {
-
-        const searchText = this.puthisTipoDireccion.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisTipoDireccion.lastText) {
-                this.puthisTipoDireccion.removeCSSClass('noResultsLenseSearch');
-                this.puthisTipoDireccion.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Tipodireccion.name, 'IC_TipoDireccion', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisTipoDireccion.removeCSSClass('noResultsLenseSearch');
-                            this.puthisTipoDireccion.searchResults = response.results;
-                            if (this.puthisTipoDireccion.searchResults &&
-                                this.puthisTipoDireccion.searchResults.length === 0) {
-                                this.puthisTipoDireccion.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisTipoDireccion.searchResults &&
-                                this.puthisTipoDireccion.searchResults.length === 1) {
-                                this.processputhistipodireccionSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisTipoDireccion.removeCSSClass('noResultsLenseSearch');
-                            this.puthisTipoDireccion.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisTipoDireccion, ModelConstants.Tipodireccion.name, 'IC_TipoDireccion',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhistipodireccion();
             }
-        } else {
-            this.puthisTipoDireccion.removeCSSClass('noResultsLenseSearch');
-            this.puthisTipoDireccion.searchResults = [];
-            this.cleanputhistipodireccion();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhistipodireccionSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -273,7 +249,7 @@ export class TipoDireccionSIUumodificarComponent extends AbstractServiceIU imple
                 this.puthisTipoDireccion.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisTipoDireccion.getSelectedInstances().push(selectedInstance);
+            this.puthisTipoDireccion.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhistipodireccion('SetValue', false);
         this.changeDetectorRef.markForCheck();

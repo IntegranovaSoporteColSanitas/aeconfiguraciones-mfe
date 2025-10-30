@@ -41,8 +41,8 @@ export class DominioSIUuDelFormaPagoComponent extends AbstractServiceIU implemen
             'Eliminar forma de pago aceptada');
 
         // Create inbound argument components
-        this.puthisDominio = new FieldOVLenseSearch(this.langMng);
-        this.puevcFormaPago = new FieldOVLenseSearch(this.langMng);
+        this.puthisDominio = new FieldOVLenseSearch(this.langMng, this.util);
+        this.puevcFormaPago = new FieldOVLenseSearch(this.langMng, this.util);
 
     }
 
@@ -185,44 +185,20 @@ export class DominioSIUuDelFormaPagoComponent extends AbstractServiceIU implemen
             });
         }
     }
-
     /**
      * Process the change in the p_thisDominio lense search argument
      */
     public onputhisdominioChange(): void {
-
-        const searchText = this.puthisDominio.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisDominio.lastText) {
-                this.puthisDominio.removeCSSClass('noResultsLenseSearch');
-                this.puthisDominio.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Dominio.name, 'IC_Dominio', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisDominio.removeCSSClass('noResultsLenseSearch');
-                            this.puthisDominio.searchResults = response.results;
-                            if (this.puthisDominio.searchResults &&
-                                this.puthisDominio.searchResults.length === 0) {
-                                this.puthisDominio.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisDominio.searchResults &&
-                                this.puthisDominio.searchResults.length === 1) {
-                                this.processputhisdominioSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisDominio.removeCSSClass('noResultsLenseSearch');
-                            this.puthisDominio.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisDominio, ModelConstants.Dominio.name, 'IC_Dominio',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisdominio();
             }
-        } else {
-            this.puthisDominio.removeCSSClass('noResultsLenseSearch');
-            this.puthisDominio.searchResults = [];
-            this.cleanputhisdominio();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisdominioSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -242,7 +218,7 @@ export class DominioSIUuDelFormaPagoComponent extends AbstractServiceIU implemen
                 this.puthisDominio.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisDominio.getSelectedInstances().push(selectedInstance);
+            this.puthisDominio.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisdominio('SetValue', false);
         this.changeDetectorRef.markForCheck();
@@ -305,47 +281,22 @@ export class DominioSIUuDelFormaPagoComponent extends AbstractServiceIU implemen
             });
         }
     }
-
     /**
      * Process the change in the p_evcFormaPago lense search argument
      */
     public onpuevcformapagoChange(): void {
-
-        const searchText = this.puevcFormaPago.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puevcFormaPago.lastText) {
-                const navFilters: string[] = [];
-                navFilters.push('Dominio_DelFormaPago_p_evcFormaPago_NavFilter0');
-                this.puevcFormaPago.removeCSSClass('noResultsLenseSearch');
-                this.puevcFormaPago.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Formapago.name, 'IC_FormaPago', searchText, navFilters,
-                    this.getNavigationFilterVariables()).then(
-                        (response: any) => {
-                            this.puevcFormaPago.removeCSSClass('noResultsLenseSearch');
-                            this.puevcFormaPago.searchResults = response.results;
-                            if (this.puevcFormaPago.searchResults &&
-                                this.puevcFormaPago.searchResults.length === 0) {
-                                this.puevcFormaPago.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puevcFormaPago.searchResults &&
-                                this.puevcFormaPago.searchResults.length === 1) {
-                                this.processpuevcformapagoSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puevcFormaPago.removeCSSClass('noResultsLenseSearch');
-                            this.puevcFormaPago.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        const navFilters: string[] = [];
+        navFilters.push('Dominio_DelFormaPago_p_evcFormaPago_NavFilter0');
+        this.executeLenseSearch(this.puevcFormaPago, ModelConstants.Formapago.name, 'IC_FormaPago',
+            navFilters).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanpuevcformapago();
             }
-        } else {
-            this.puevcFormaPago.removeCSSClass('noResultsLenseSearch');
-            this.puevcFormaPago.searchResults = [];
-            this.cleanpuevcformapago();
-        }
-
+            if (foundInstances === 1) {
+                this.processpuevcformapagoSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -365,7 +316,7 @@ export class DominioSIUuDelFormaPagoComponent extends AbstractServiceIU implemen
                 this.puevcFormaPago.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puevcFormaPago.getSelectedInstances().push(selectedInstance);
+            this.puevcFormaPago.addInstances(selectedInstance);
         }
         this.executeDependecyRulespuevcformapago('SetValue', false);
         this.changeDetectorRef.markForCheck();

@@ -41,7 +41,7 @@ export class PlantillaEmailSIUudummyModificarComponent extends AbstractServiceIU
         this.noShow = true;
 
         // Create inbound argument components
-        this.puthisPlantillaEmail = new FieldOVLenseSearch(this.langMng);
+        this.puthisPlantillaEmail = new FieldOVLenseSearch(this.langMng, this.util);
 
     }
 
@@ -143,44 +143,20 @@ export class PlantillaEmailSIUudummyModificarComponent extends AbstractServiceIU
             });
         }
     }
-
     /**
      * Process the change in the p_thisPlantillaEmail lense search argument
      */
     public onputhisplantillaemailChange(): void {
-
-        const searchText = this.puthisPlantillaEmail.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisPlantillaEmail.lastText) {
-                this.puthisPlantillaEmail.removeCSSClass('noResultsLenseSearch');
-                this.puthisPlantillaEmail.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Plantillaemail.name, 'IC_PlantillaEmail', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisPlantillaEmail.removeCSSClass('noResultsLenseSearch');
-                            this.puthisPlantillaEmail.searchResults = response.results;
-                            if (this.puthisPlantillaEmail.searchResults &&
-                                this.puthisPlantillaEmail.searchResults.length === 0) {
-                                this.puthisPlantillaEmail.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisPlantillaEmail.searchResults &&
-                                this.puthisPlantillaEmail.searchResults.length === 1) {
-                                this.processputhisplantillaemailSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisPlantillaEmail.removeCSSClass('noResultsLenseSearch');
-                            this.puthisPlantillaEmail.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisPlantillaEmail, ModelConstants.Plantillaemail.name, 'IC_PlantillaEmail',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisplantillaemail();
             }
-        } else {
-            this.puthisPlantillaEmail.removeCSSClass('noResultsLenseSearch');
-            this.puthisPlantillaEmail.searchResults = [];
-            this.cleanputhisplantillaemail();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisplantillaemailSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -200,7 +176,7 @@ export class PlantillaEmailSIUudummyModificarComponent extends AbstractServiceIU
                 this.puthisPlantillaEmail.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisPlantillaEmail.getSelectedInstances().push(selectedInstance);
+            this.puthisPlantillaEmail.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisplantillaemail('SetValue', false);
         this.changeDetectorRef.markForCheck();

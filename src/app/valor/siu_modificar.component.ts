@@ -41,7 +41,7 @@ export class ValorSIUumodificarComponent extends AbstractServiceIU implements On
             'Modificar valor posible de respuesta');
 
         // Create inbound argument components
-        this.puthisValor = new FieldOVLenseSearch(this.langMng);
+        this.puthisValor = new FieldOVLenseSearch(this.langMng, this.util);
         this.puValorPosible = new Field(this.langMng);
 
     }
@@ -199,44 +199,20 @@ export class ValorSIUumodificarComponent extends AbstractServiceIU implements On
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisValor lense search argument
      */
     public onputhisvalorChange(): void {
-
-        const searchText = this.puthisValor.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisValor.lastText) {
-                this.puthisValor.removeCSSClass('noResultsLenseSearch');
-                this.puthisValor.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Valor.name, 'IC_Valor', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisValor.removeCSSClass('noResultsLenseSearch');
-                            this.puthisValor.searchResults = response.results;
-                            if (this.puthisValor.searchResults &&
-                                this.puthisValor.searchResults.length === 0) {
-                                this.puthisValor.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisValor.searchResults &&
-                                this.puthisValor.searchResults.length === 1) {
-                                this.processputhisvalorSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisValor.removeCSSClass('noResultsLenseSearch');
-                            this.puthisValor.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisValor, ModelConstants.Valor.name, 'IC_Valor',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisvalor();
             }
-        } else {
-            this.puthisValor.removeCSSClass('noResultsLenseSearch');
-            this.puthisValor.searchResults = [];
-            this.cleanputhisvalor();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisvalorSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -256,7 +232,7 @@ export class ValorSIUumodificarComponent extends AbstractServiceIU implements On
                 this.puthisValor.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisValor.getSelectedInstances().push(selectedInstance);
+            this.puthisValor.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisvalor('SetValue', false);
         this.changeDetectorRef.markForCheck();

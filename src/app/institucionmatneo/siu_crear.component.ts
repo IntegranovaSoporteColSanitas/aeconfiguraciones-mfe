@@ -50,9 +50,9 @@ export class InstitucionMatNeoSIUucrearComponent extends AbstractServiceIU imple
             'Crear');
 
         // Create inbound argument components
-        this.puagrTarifa = new FieldOVLenseSearch(this.langMng);
+        this.puagrTarifa = new FieldOVLenseSearch(this.langMng, this.util);
         this.puagrTipoIdentificacion = new FieldOVPreload(this.langMng);
-        this.puagrMunicipio = new FieldOVLenseSearch(this.langMng);
+        this.puagrMunicipio = new FieldOVLenseSearch(this.langMng, this.util);
         this.puatrNumIdentificacion = new Field(this.langMng);
         this.puatrNombre = new Field(this.langMng);
         this.puatrParaMaternidad = new FieldDefinedSelection(this.langMng);
@@ -297,44 +297,20 @@ export class InstitucionMatNeoSIUucrearComponent extends AbstractServiceIU imple
             });
         }
     }
-
     /**
      * Process the change in the p_agrTarifa lense search argument
      */
     public onpuagrtarifaChange(): void {
-
-        const searchText = this.puagrTarifa.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puagrTarifa.lastText) {
-                this.puagrTarifa.removeCSSClass('noResultsLenseSearch');
-                this.puagrTarifa.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Tarifa.name, 'IC_Tarifa', searchText, [], null).then(
-                        (response: any) => {
-                            this.puagrTarifa.removeCSSClass('noResultsLenseSearch');
-                            this.puagrTarifa.searchResults = response.results;
-                            if (this.puagrTarifa.searchResults &&
-                                this.puagrTarifa.searchResults.length === 0) {
-                                this.puagrTarifa.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puagrTarifa.searchResults &&
-                                this.puagrTarifa.searchResults.length === 1) {
-                                this.processpuagrtarifaSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puagrTarifa.removeCSSClass('noResultsLenseSearch');
-                            this.puagrTarifa.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puagrTarifa, ModelConstants.Tarifa.name, 'IC_Tarifa',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanpuagrtarifa();
             }
-        } else {
-            this.puagrTarifa.removeCSSClass('noResultsLenseSearch');
-            this.puagrTarifa.searchResults = [];
-            this.cleanpuagrtarifa();
-        }
-
+            if (foundInstances === 1) {
+                this.processpuagrtarifaSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -354,7 +330,7 @@ export class InstitucionMatNeoSIUucrearComponent extends AbstractServiceIU imple
                 this.puagrTarifa.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puagrTarifa.getSelectedInstances().push(selectedInstance);
+            this.puagrTarifa.addInstances(selectedInstance);
         }
         this.executeDependecyRulespuagrtarifa('SetValue', false);
         this.changeDetectorRef.markForCheck();
@@ -417,44 +393,20 @@ export class InstitucionMatNeoSIUucrearComponent extends AbstractServiceIU imple
             });
         }
     }
-
     /**
      * Process the change in the p_agrMunicipio lense search argument
      */
     public onpuagrmunicipioChange(): void {
-
-        const searchText = this.puagrMunicipio.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puagrMunicipio.lastText) {
-                this.puagrMunicipio.removeCSSClass('noResultsLenseSearch');
-                this.puagrMunicipio.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Municipio.name, 'IC_Municipio', searchText, [], null).then(
-                        (response: any) => {
-                            this.puagrMunicipio.removeCSSClass('noResultsLenseSearch');
-                            this.puagrMunicipio.searchResults = response.results;
-                            if (this.puagrMunicipio.searchResults &&
-                                this.puagrMunicipio.searchResults.length === 0) {
-                                this.puagrMunicipio.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puagrMunicipio.searchResults &&
-                                this.puagrMunicipio.searchResults.length === 1) {
-                                this.processpuagrmunicipioSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puagrMunicipio.removeCSSClass('noResultsLenseSearch');
-                            this.puagrMunicipio.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puagrMunicipio, ModelConstants.Municipio.name, 'IC_Municipio',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanpuagrmunicipio();
             }
-        } else {
-            this.puagrMunicipio.removeCSSClass('noResultsLenseSearch');
-            this.puagrMunicipio.searchResults = [];
-            this.cleanpuagrmunicipio();
-        }
-
+            if (foundInstances === 1) {
+                this.processpuagrmunicipioSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -474,7 +426,7 @@ export class InstitucionMatNeoSIUucrearComponent extends AbstractServiceIU imple
                 this.puagrMunicipio.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puagrMunicipio.getSelectedInstances().push(selectedInstance);
+            this.puagrMunicipio.addInstances(selectedInstance);
         }
         this.executeDependecyRulespuagrmunicipio('SetValue', false);
         this.changeDetectorRef.markForCheck();

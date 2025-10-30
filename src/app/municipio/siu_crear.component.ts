@@ -46,7 +46,7 @@ export class MunicipioSIUucrearComponent extends AbstractServiceIU implements On
             'Crear municipio');
 
         // Create inbound argument components
-        this.puagrDepartamento = new FieldOVLenseSearch(this.langMng);
+        this.puagrDepartamento = new FieldOVLenseSearch(this.langMng, this.util);
         this.puatrCodigo = new Field(this.langMng);
         this.puatrDescripcion = new Field(this.langMng);
         this.puatrCodigoLegal = new Field(this.langMng);
@@ -208,44 +208,20 @@ export class MunicipioSIUucrearComponent extends AbstractServiceIU implements On
             });
         }
     }
-
     /**
      * Process the change in the p_agrDepartamento lense search argument
      */
     public onpuagrdepartamentoChange(): void {
-
-        const searchText = this.puagrDepartamento.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puagrDepartamento.lastText) {
-                this.puagrDepartamento.removeCSSClass('noResultsLenseSearch');
-                this.puagrDepartamento.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Departamento.name, 'IC_Departamento', searchText, [], null).then(
-                        (response: any) => {
-                            this.puagrDepartamento.removeCSSClass('noResultsLenseSearch');
-                            this.puagrDepartamento.searchResults = response.results;
-                            if (this.puagrDepartamento.searchResults &&
-                                this.puagrDepartamento.searchResults.length === 0) {
-                                this.puagrDepartamento.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puagrDepartamento.searchResults &&
-                                this.puagrDepartamento.searchResults.length === 1) {
-                                this.processpuagrdepartamentoSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puagrDepartamento.removeCSSClass('noResultsLenseSearch');
-                            this.puagrDepartamento.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puagrDepartamento, ModelConstants.Departamento.name, 'IC_Departamento',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanpuagrdepartamento();
             }
-        } else {
-            this.puagrDepartamento.removeCSSClass('noResultsLenseSearch');
-            this.puagrDepartamento.searchResults = [];
-            this.cleanpuagrdepartamento();
-        }
-
+            if (foundInstances === 1) {
+                this.processpuagrdepartamentoSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -265,7 +241,7 @@ export class MunicipioSIUucrearComponent extends AbstractServiceIU implements On
                 this.puagrDepartamento.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puagrDepartamento.getSelectedInstances().push(selectedInstance);
+            this.puagrDepartamento.addInstances(selectedInstance);
         }
         this.executeDependecyRulespuagrdepartamento('SetValue', false);
         this.changeDetectorRef.markForCheck();

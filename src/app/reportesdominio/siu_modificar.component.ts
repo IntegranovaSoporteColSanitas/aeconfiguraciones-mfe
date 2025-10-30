@@ -42,7 +42,7 @@ export class ReportesDominioSIUumodificarComponent extends AbstractServiceIU imp
             'Modificar');
 
         // Create inbound argument components
-        this.puthisReportesDominio = new FieldOVLenseSearch(this.langMng);
+        this.puthisReportesDominio = new FieldOVLenseSearch(this.langMng, this.util);
         this.puEnviarAuto = new FieldDefinedSelection(this.langMng);
 
     }
@@ -222,44 +222,20 @@ export class ReportesDominioSIUumodificarComponent extends AbstractServiceIU imp
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisReportesDominio lense search argument
      */
     public onputhisreportesdominioChange(): void {
-
-        const searchText = this.puthisReportesDominio.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisReportesDominio.lastText) {
-                this.puthisReportesDominio.removeCSSClass('noResultsLenseSearch');
-                this.puthisReportesDominio.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Reportesdominio.name, 'IC_ReportesDominio', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisReportesDominio.removeCSSClass('noResultsLenseSearch');
-                            this.puthisReportesDominio.searchResults = response.results;
-                            if (this.puthisReportesDominio.searchResults &&
-                                this.puthisReportesDominio.searchResults.length === 0) {
-                                this.puthisReportesDominio.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisReportesDominio.searchResults &&
-                                this.puthisReportesDominio.searchResults.length === 1) {
-                                this.processputhisreportesdominioSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisReportesDominio.removeCSSClass('noResultsLenseSearch');
-                            this.puthisReportesDominio.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisReportesDominio, ModelConstants.Reportesdominio.name, 'IC_ReportesDominio',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisreportesdominio();
             }
-        } else {
-            this.puthisReportesDominio.removeCSSClass('noResultsLenseSearch');
-            this.puthisReportesDominio.searchResults = [];
-            this.cleanputhisreportesdominio();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisreportesdominioSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -279,7 +255,7 @@ export class ReportesDominioSIUumodificarComponent extends AbstractServiceIU imp
                 this.puthisReportesDominio.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisReportesDominio.getSelectedInstances().push(selectedInstance);
+            this.puthisReportesDominio.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisreportesdominio('SetValue', false);
         this.changeDetectorRef.markForCheck();

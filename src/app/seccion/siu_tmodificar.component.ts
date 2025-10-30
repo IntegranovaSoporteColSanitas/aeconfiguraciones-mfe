@@ -42,7 +42,7 @@ export class SeccionSIUuTMODIFICARComponent extends AbstractServiceIU implements
             'Modificar sección');
 
         // Create inbound argument components
-        this.puthisSeccion = new FieldOVLenseSearch(this.langMng);
+        this.puthisSeccion = new FieldOVLenseSearch(this.langMng, this.util);
         this.ptupuNombre = new Field(this.langMng);
         this.ptupuNumOrden = new Field(this.langMng);
 
@@ -211,44 +211,20 @@ export class SeccionSIUuTMODIFICARComponent extends AbstractServiceIU implements
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisSeccion lense search argument
      */
     public onputhisseccionChange(): void {
-
-        const searchText = this.puthisSeccion.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisSeccion.lastText) {
-                this.puthisSeccion.removeCSSClass('noResultsLenseSearch');
-                this.puthisSeccion.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Seccion.name, 'IC_Seccion', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisSeccion.removeCSSClass('noResultsLenseSearch');
-                            this.puthisSeccion.searchResults = response.results;
-                            if (this.puthisSeccion.searchResults &&
-                                this.puthisSeccion.searchResults.length === 0) {
-                                this.puthisSeccion.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisSeccion.searchResults &&
-                                this.puthisSeccion.searchResults.length === 1) {
-                                this.processputhisseccionSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisSeccion.removeCSSClass('noResultsLenseSearch');
-                            this.puthisSeccion.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisSeccion, ModelConstants.Seccion.name, 'IC_Seccion',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisseccion();
             }
-        } else {
-            this.puthisSeccion.removeCSSClass('noResultsLenseSearch');
-            this.puthisSeccion.searchResults = [];
-            this.cleanputhisseccion();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisseccionSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -268,7 +244,7 @@ export class SeccionSIUuTMODIFICARComponent extends AbstractServiceIU implements
                 this.puthisSeccion.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisSeccion.getSelectedInstances().push(selectedInstance);
+            this.puthisSeccion.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisseccion('SetValue', false);
         this.changeDetectorRef.markForCheck();

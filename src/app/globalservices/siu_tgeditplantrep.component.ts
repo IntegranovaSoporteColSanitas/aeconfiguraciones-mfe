@@ -50,7 +50,7 @@ export class GSSIUuTGEDITPLANTREPComponent extends AbstractServiceIU implements 
             'Modificar');
 
         // Create inbound argument components
-        this.ptuputhisPlantillaReporte = new FieldOVLenseSearch(this.langMng);
+        this.ptuputhisPlantillaReporte = new FieldOVLenseSearch(this.langMng, this.util);
         this.ptupuTitulo = new Field(this.langMng);
         this.ptupuFechaVigencia = new Field(this.langMng);
         this.ptupuRutaArchivos = new Field(this.langMng);
@@ -231,44 +231,20 @@ export class GSSIUuTGEDITPLANTREPComponent extends AbstractServiceIU implements 
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the pt_p_thisPlantillaReporte lense search argument
      */
     public onptuputhisplantillareporteChange(): void {
-
-        const searchText = this.ptuputhisPlantillaReporte.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.ptuputhisPlantillaReporte.lastText) {
-                this.ptuputhisPlantillaReporte.removeCSSClass('noResultsLenseSearch');
-                this.ptuputhisPlantillaReporte.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Plantillareporte.name, 'IC_PlantillaReporte', searchText, [], null).then(
-                        (response: any) => {
-                            this.ptuputhisPlantillaReporte.removeCSSClass('noResultsLenseSearch');
-                            this.ptuputhisPlantillaReporte.searchResults = response.results;
-                            if (this.ptuputhisPlantillaReporte.searchResults &&
-                                this.ptuputhisPlantillaReporte.searchResults.length === 0) {
-                                this.ptuputhisPlantillaReporte.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.ptuputhisPlantillaReporte.searchResults &&
-                                this.ptuputhisPlantillaReporte.searchResults.length === 1) {
-                                this.processptuputhisplantillareporteSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.ptuputhisPlantillaReporte.removeCSSClass('noResultsLenseSearch');
-                            this.ptuputhisPlantillaReporte.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.ptuputhisPlantillaReporte, ModelConstants.Plantillareporte.name, 'IC_PlantillaReporte',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanptuputhisplantillareporte();
             }
-        } else {
-            this.ptuputhisPlantillaReporte.removeCSSClass('noResultsLenseSearch');
-            this.ptuputhisPlantillaReporte.searchResults = [];
-            this.cleanptuputhisplantillareporte();
-        }
-
+            if (foundInstances === 1) {
+                this.processptuputhisplantillareporteSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -288,7 +264,7 @@ export class GSSIUuTGEDITPLANTREPComponent extends AbstractServiceIU implements 
                 this.ptuputhisPlantillaReporte.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.ptuputhisPlantillaReporte.getSelectedInstances().push(selectedInstance);
+            this.ptuputhisPlantillaReporte.addInstances(selectedInstance);
         }
         this.executeDependecyRulesptuputhisplantillareporte('SetValue', false);
         this.changeDetectorRef.markForCheck();

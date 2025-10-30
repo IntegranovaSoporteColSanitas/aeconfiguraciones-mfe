@@ -41,7 +41,7 @@ export class ParamConfigSIUuTMODIFICARComponent extends AbstractServiceIU implem
             'Modificar parámetro de configuración');
 
         // Create inbound argument components
-        this.puthisParamConfig = new FieldOVLenseSearch(this.langMng);
+        this.puthisParamConfig = new FieldOVLenseSearch(this.langMng, this.util);
         this.ptupuValor = new Field(this.langMng);
 
     }
@@ -198,44 +198,20 @@ export class ParamConfigSIUuTMODIFICARComponent extends AbstractServiceIU implem
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisParamConfig lense search argument
      */
     public onputhisparamconfigChange(): void {
-
-        const searchText = this.puthisParamConfig.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisParamConfig.lastText) {
-                this.puthisParamConfig.removeCSSClass('noResultsLenseSearch');
-                this.puthisParamConfig.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Paramconfig.name, 'IC_ParamConfig', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisParamConfig.removeCSSClass('noResultsLenseSearch');
-                            this.puthisParamConfig.searchResults = response.results;
-                            if (this.puthisParamConfig.searchResults &&
-                                this.puthisParamConfig.searchResults.length === 0) {
-                                this.puthisParamConfig.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisParamConfig.searchResults &&
-                                this.puthisParamConfig.searchResults.length === 1) {
-                                this.processputhisparamconfigSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisParamConfig.removeCSSClass('noResultsLenseSearch');
-                            this.puthisParamConfig.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisParamConfig, ModelConstants.Paramconfig.name, 'IC_ParamConfig',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisparamconfig();
             }
-        } else {
-            this.puthisParamConfig.removeCSSClass('noResultsLenseSearch');
-            this.puthisParamConfig.searchResults = [];
-            this.cleanputhisparamconfig();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisparamconfigSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -255,7 +231,7 @@ export class ParamConfigSIUuTMODIFICARComponent extends AbstractServiceIU implem
                 this.puthisParamConfig.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisParamConfig.getSelectedInstances().push(selectedInstance);
+            this.puthisParamConfig.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisparamconfig('SetValue', false);
         this.changeDetectorRef.markForCheck();

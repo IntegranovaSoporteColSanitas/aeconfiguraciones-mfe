@@ -42,7 +42,7 @@ export class CausaExclusionSIUumodificarComponent extends AbstractServiceIU impl
             'Modificar');
 
         // Create inbound argument components
-        this.puthisCausaExclusion = new FieldOVLenseSearch(this.langMng);
+        this.puthisCausaExclusion = new FieldOVLenseSearch(this.langMng, this.util);
         this.puAliasCausa = new Field(this.langMng);
         this.puDescripcion = new Field(this.langMng);
 
@@ -213,44 +213,20 @@ export class CausaExclusionSIUumodificarComponent extends AbstractServiceIU impl
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisCausaExclusion lense search argument
      */
     public onputhiscausaexclusionChange(): void {
-
-        const searchText = this.puthisCausaExclusion.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisCausaExclusion.lastText) {
-                this.puthisCausaExclusion.removeCSSClass('noResultsLenseSearch');
-                this.puthisCausaExclusion.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Causaexclusion.name, 'IC_CausaExclusion', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisCausaExclusion.removeCSSClass('noResultsLenseSearch');
-                            this.puthisCausaExclusion.searchResults = response.results;
-                            if (this.puthisCausaExclusion.searchResults &&
-                                this.puthisCausaExclusion.searchResults.length === 0) {
-                                this.puthisCausaExclusion.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisCausaExclusion.searchResults &&
-                                this.puthisCausaExclusion.searchResults.length === 1) {
-                                this.processputhiscausaexclusionSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisCausaExclusion.removeCSSClass('noResultsLenseSearch');
-                            this.puthisCausaExclusion.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisCausaExclusion, ModelConstants.Causaexclusion.name, 'IC_CausaExclusion',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhiscausaexclusion();
             }
-        } else {
-            this.puthisCausaExclusion.removeCSSClass('noResultsLenseSearch');
-            this.puthisCausaExclusion.searchResults = [];
-            this.cleanputhiscausaexclusion();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhiscausaexclusionSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -270,7 +246,7 @@ export class CausaExclusionSIUumodificarComponent extends AbstractServiceIU impl
                 this.puthisCausaExclusion.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisCausaExclusion.getSelectedInstances().push(selectedInstance);
+            this.puthisCausaExclusion.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhiscausaexclusion('SetValue', false);
         this.changeDetectorRef.markForCheck();

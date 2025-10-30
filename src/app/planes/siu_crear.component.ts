@@ -45,7 +45,7 @@ export class PlanesSIUucrearComponent extends AbstractServiceIU implements OnIni
             'Crear plan');
 
         // Create inbound argument components
-        this.puagrProductoT = new FieldOVLenseSearch(this.langMng);
+        this.puagrProductoT = new FieldOVLenseSearch(this.langMng, this.util);
         this.puatrPlan = new Field(this.langMng);
         this.puatrNombre = new Field(this.langMng);
         this.puatrEsBancoRep = new FieldDefinedSelection(this.langMng);
@@ -195,44 +195,20 @@ export class PlanesSIUucrearComponent extends AbstractServiceIU implements OnIni
             });
         }
     }
-
     /**
      * Process the change in the p_agrProductoT lense search argument
      */
     public onpuagrproductotChange(): void {
-
-        const searchText = this.puagrProductoT.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puagrProductoT.lastText) {
-                this.puagrProductoT.removeCSSClass('noResultsLenseSearch');
-                this.puagrProductoT.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Productos.name, 'IC_Producto', searchText, [], null).then(
-                        (response: any) => {
-                            this.puagrProductoT.removeCSSClass('noResultsLenseSearch');
-                            this.puagrProductoT.searchResults = response.results;
-                            if (this.puagrProductoT.searchResults &&
-                                this.puagrProductoT.searchResults.length === 0) {
-                                this.puagrProductoT.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puagrProductoT.searchResults &&
-                                this.puagrProductoT.searchResults.length === 1) {
-                                this.processpuagrproductotSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puagrProductoT.removeCSSClass('noResultsLenseSearch');
-                            this.puagrProductoT.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puagrProductoT, ModelConstants.Productos.name, 'IC_Producto',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanpuagrproductot();
             }
-        } else {
-            this.puagrProductoT.removeCSSClass('noResultsLenseSearch');
-            this.puagrProductoT.searchResults = [];
-            this.cleanpuagrproductot();
-        }
-
+            if (foundInstances === 1) {
+                this.processpuagrproductotSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -252,7 +228,7 @@ export class PlanesSIUucrearComponent extends AbstractServiceIU implements OnIni
                 this.puagrProductoT.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puagrProductoT.getSelectedInstances().push(selectedInstance);
+            this.puagrProductoT.addInstances(selectedInstance);
         }
         this.executeDependecyRulespuagrproductot('SetValue', false);
         this.changeDetectorRef.markForCheck();

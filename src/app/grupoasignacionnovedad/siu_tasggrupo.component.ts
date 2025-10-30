@@ -42,7 +42,7 @@ export class GrupoAsignacionNovedadSIUuTASGGRUPOComponent extends AbstractServic
 
         // Create inbound argument components
         this.puthisGrupoAsignacionNovedad = new FieldOVLense(this.langMng);
-        this.ptGrupo = new FieldOVLenseSearch(this.langMng);
+        this.ptGrupo = new FieldOVLenseSearch(this.langMng, this.util);
 
     }
 
@@ -353,47 +353,22 @@ export class GrupoAsignacionNovedadSIUuTASGGRUPOComponent extends AbstractServic
             });
         }
     }
-
     /**
      * Process the change in the ptGrupo lense search argument
      */
     public onptgrupoChange(): void {
-
-        const searchText = this.ptGrupo.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.ptGrupo.lastText) {
-                const navFilters: string[] = [];
-                navFilters.push('GrupoAsignacionNovedad_TASGGRUPO_ptGrupo_NavFilter0');
-                this.ptGrupo.removeCSSClass('noResultsLenseSearch');
-                this.ptGrupo.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Grupoasignacion.name, 'IC_GrupoAsignacion', searchText, navFilters,
-                    this.getNavigationFilterVariables()).then(
-                        (response: any) => {
-                            this.ptGrupo.removeCSSClass('noResultsLenseSearch');
-                            this.ptGrupo.searchResults = response.results;
-                            if (this.ptGrupo.searchResults &&
-                                this.ptGrupo.searchResults.length === 0) {
-                                this.ptGrupo.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.ptGrupo.searchResults &&
-                                this.ptGrupo.searchResults.length === 1) {
-                                this.processptgrupoSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.ptGrupo.removeCSSClass('noResultsLenseSearch');
-                            this.ptGrupo.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        const navFilters: string[] = [];
+        navFilters.push('GrupoAsignacionNovedad_TASGGRUPO_ptGrupo_NavFilter0');
+        this.executeLenseSearch(this.ptGrupo, ModelConstants.Grupoasignacion.name, 'IC_GrupoAsignacion',
+            navFilters).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanptgrupo();
             }
-        } else {
-            this.ptGrupo.removeCSSClass('noResultsLenseSearch');
-            this.ptGrupo.searchResults = [];
-            this.cleanptgrupo();
-        }
-
+            if (foundInstances === 1) {
+                this.processptgrupoSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -413,7 +388,7 @@ export class GrupoAsignacionNovedadSIUuTASGGRUPOComponent extends AbstractServic
                 this.ptGrupo.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.ptGrupo.getSelectedInstances().push(selectedInstance);
+            this.ptGrupo.addInstances(selectedInstance);
         }
         this.executeDependecyRulesptgrupo('SetValue', false);
         this.changeDetectorRef.markForCheck();

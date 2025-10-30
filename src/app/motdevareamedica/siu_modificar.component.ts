@@ -41,7 +41,7 @@ export class MotDevAreaMedicaSIUumodificarComponent extends AbstractServiceIU im
             'Modificar');
 
         // Create inbound argument components
-        this.puthisMotDevAreaMedica = new FieldOVLenseSearch(this.langMng);
+        this.puthisMotDevAreaMedica = new FieldOVLenseSearch(this.langMng, this.util);
         this.puDescripcion = new Field(this.langMng);
 
     }
@@ -199,44 +199,20 @@ export class MotDevAreaMedicaSIUumodificarComponent extends AbstractServiceIU im
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisMotDevAreaMedica lense search argument
      */
     public onputhismotdevareamedicaChange(): void {
-
-        const searchText = this.puthisMotDevAreaMedica.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisMotDevAreaMedica.lastText) {
-                this.puthisMotDevAreaMedica.removeCSSClass('noResultsLenseSearch');
-                this.puthisMotDevAreaMedica.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Motdevareamedica.name, 'IC_MotDevAreaMedica', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisMotDevAreaMedica.removeCSSClass('noResultsLenseSearch');
-                            this.puthisMotDevAreaMedica.searchResults = response.results;
-                            if (this.puthisMotDevAreaMedica.searchResults &&
-                                this.puthisMotDevAreaMedica.searchResults.length === 0) {
-                                this.puthisMotDevAreaMedica.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisMotDevAreaMedica.searchResults &&
-                                this.puthisMotDevAreaMedica.searchResults.length === 1) {
-                                this.processputhismotdevareamedicaSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisMotDevAreaMedica.removeCSSClass('noResultsLenseSearch');
-                            this.puthisMotDevAreaMedica.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisMotDevAreaMedica, ModelConstants.Motdevareamedica.name, 'IC_MotDevAreaMedica',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhismotdevareamedica();
             }
-        } else {
-            this.puthisMotDevAreaMedica.removeCSSClass('noResultsLenseSearch');
-            this.puthisMotDevAreaMedica.searchResults = [];
-            this.cleanputhismotdevareamedica();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhismotdevareamedicaSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -256,7 +232,7 @@ export class MotDevAreaMedicaSIUumodificarComponent extends AbstractServiceIU im
                 this.puthisMotDevAreaMedica.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisMotDevAreaMedica.getSelectedInstances().push(selectedInstance);
+            this.puthisMotDevAreaMedica.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhismotdevareamedica('SetValue', false);
         this.changeDetectorRef.markForCheck();

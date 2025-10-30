@@ -41,8 +41,8 @@ export class GrupoAsignacionSIUuTDELUSUARIOComponent extends AbstractServiceIU i
             'Eliminar Usuario');
 
         // Create inbound argument components
-        this.puthisGrupoAsignacion = new FieldOVLenseSearch(this.langMng);
-        this.ptFuncionario = new FieldOVLenseSearch(this.langMng);
+        this.puthisGrupoAsignacion = new FieldOVLenseSearch(this.langMng, this.util);
+        this.ptFuncionario = new FieldOVLenseSearch(this.langMng, this.util);
 
     }
 
@@ -180,44 +180,20 @@ export class GrupoAsignacionSIUuTDELUSUARIOComponent extends AbstractServiceIU i
             });
         }
     }
-
     /**
      * Process the change in the p_thisGrupoAsignacion lense search argument
      */
     public onputhisgrupoasignacionChange(): void {
-
-        const searchText = this.puthisGrupoAsignacion.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisGrupoAsignacion.lastText) {
-                this.puthisGrupoAsignacion.removeCSSClass('noResultsLenseSearch');
-                this.puthisGrupoAsignacion.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Grupoasignacion.name, 'IC_GrupoAsignacion', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisGrupoAsignacion.removeCSSClass('noResultsLenseSearch');
-                            this.puthisGrupoAsignacion.searchResults = response.results;
-                            if (this.puthisGrupoAsignacion.searchResults &&
-                                this.puthisGrupoAsignacion.searchResults.length === 0) {
-                                this.puthisGrupoAsignacion.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisGrupoAsignacion.searchResults &&
-                                this.puthisGrupoAsignacion.searchResults.length === 1) {
-                                this.processputhisgrupoasignacionSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisGrupoAsignacion.removeCSSClass('noResultsLenseSearch');
-                            this.puthisGrupoAsignacion.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisGrupoAsignacion, ModelConstants.Grupoasignacion.name, 'IC_GrupoAsignacion',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisgrupoasignacion();
             }
-        } else {
-            this.puthisGrupoAsignacion.removeCSSClass('noResultsLenseSearch');
-            this.puthisGrupoAsignacion.searchResults = [];
-            this.cleanputhisgrupoasignacion();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisgrupoasignacionSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -237,7 +213,7 @@ export class GrupoAsignacionSIUuTDELUSUARIOComponent extends AbstractServiceIU i
                 this.puthisGrupoAsignacion.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisGrupoAsignacion.getSelectedInstances().push(selectedInstance);
+            this.puthisGrupoAsignacion.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisgrupoasignacion('SetValue', false);
         this.changeDetectorRef.markForCheck();
@@ -300,47 +276,22 @@ export class GrupoAsignacionSIUuTDELUSUARIOComponent extends AbstractServiceIU i
             });
         }
     }
-
     /**
      * Process the change in the ptFuncionario lense search argument
      */
     public onptfuncionarioChange(): void {
-
-        const searchText = this.ptFuncionario.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.ptFuncionario.lastText) {
-                const navFilters: string[] = [];
-                navFilters.push('GrupoAsignacion_TDELUSUARIO_ptFuncionario_NavFilter0');
-                this.ptFuncionario.removeCSSClass('noResultsLenseSearch');
-                this.ptFuncionario.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Funcionario.name, 'IC_Agente', searchText, navFilters,
-                    this.getNavigationFilterVariables()).then(
-                        (response: any) => {
-                            this.ptFuncionario.removeCSSClass('noResultsLenseSearch');
-                            this.ptFuncionario.searchResults = response.results;
-                            if (this.ptFuncionario.searchResults &&
-                                this.ptFuncionario.searchResults.length === 0) {
-                                this.ptFuncionario.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.ptFuncionario.searchResults &&
-                                this.ptFuncionario.searchResults.length === 1) {
-                                this.processptfuncionarioSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.ptFuncionario.removeCSSClass('noResultsLenseSearch');
-                            this.ptFuncionario.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        const navFilters: string[] = [];
+        navFilters.push('GrupoAsignacion_TDELUSUARIO_ptFuncionario_NavFilter0');
+        this.executeLenseSearch(this.ptFuncionario, ModelConstants.Funcionario.name, 'IC_Agente',
+            navFilters).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanptfuncionario();
             }
-        } else {
-            this.ptFuncionario.removeCSSClass('noResultsLenseSearch');
-            this.ptFuncionario.searchResults = [];
-            this.cleanptfuncionario();
-        }
-
+            if (foundInstances === 1) {
+                this.processptfuncionarioSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -360,7 +311,7 @@ export class GrupoAsignacionSIUuTDELUSUARIOComponent extends AbstractServiceIU i
                 this.ptFuncionario.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.ptFuncionario.getSelectedInstances().push(selectedInstance);
+            this.ptFuncionario.addInstances(selectedInstance);
         }
         this.executeDependecyRulesptfuncionario('SetValue', false);
         this.changeDetectorRef.markForCheck();

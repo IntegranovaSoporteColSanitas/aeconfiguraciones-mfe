@@ -41,8 +41,8 @@ export class NovedadSIUuDelNovedadComponent extends AbstractServiceIU implements
             'Quitar Novedad');
 
         // Create inbound argument components
-        this.puthisNovedad = new FieldOVLenseSearch(this.langMng);
-        this.puevcDominio = new FieldOVLenseSearch(this.langMng);
+        this.puthisNovedad = new FieldOVLenseSearch(this.langMng, this.util);
+        this.puevcDominio = new FieldOVLenseSearch(this.langMng, this.util);
 
     }
 
@@ -185,44 +185,20 @@ export class NovedadSIUuDelNovedadComponent extends AbstractServiceIU implements
             });
         }
     }
-
     /**
      * Process the change in the p_thisNovedad lense search argument
      */
     public onputhisnovedadChange(): void {
-
-        const searchText = this.puthisNovedad.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisNovedad.lastText) {
-                this.puthisNovedad.removeCSSClass('noResultsLenseSearch');
-                this.puthisNovedad.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Novedad.name, 'IC_Novedad', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisNovedad.removeCSSClass('noResultsLenseSearch');
-                            this.puthisNovedad.searchResults = response.results;
-                            if (this.puthisNovedad.searchResults &&
-                                this.puthisNovedad.searchResults.length === 0) {
-                                this.puthisNovedad.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisNovedad.searchResults &&
-                                this.puthisNovedad.searchResults.length === 1) {
-                                this.processputhisnovedadSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisNovedad.removeCSSClass('noResultsLenseSearch');
-                            this.puthisNovedad.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisNovedad, ModelConstants.Novedad.name, 'IC_Novedad',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisnovedad();
             }
-        } else {
-            this.puthisNovedad.removeCSSClass('noResultsLenseSearch');
-            this.puthisNovedad.searchResults = [];
-            this.cleanputhisnovedad();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisnovedadSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -242,7 +218,7 @@ export class NovedadSIUuDelNovedadComponent extends AbstractServiceIU implements
                 this.puthisNovedad.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisNovedad.getSelectedInstances().push(selectedInstance);
+            this.puthisNovedad.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisnovedad('SetValue', false);
         this.changeDetectorRef.markForCheck();
@@ -305,44 +281,20 @@ export class NovedadSIUuDelNovedadComponent extends AbstractServiceIU implements
             });
         }
     }
-
     /**
      * Process the change in the p_evcDominio lense search argument
      */
     public onpuevcdominioChange(): void {
-
-        const searchText = this.puevcDominio.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puevcDominio.lastText) {
-                this.puevcDominio.removeCSSClass('noResultsLenseSearch');
-                this.puevcDominio.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Dominio.name, 'IC_Dominio', searchText, [], null).then(
-                        (response: any) => {
-                            this.puevcDominio.removeCSSClass('noResultsLenseSearch');
-                            this.puevcDominio.searchResults = response.results;
-                            if (this.puevcDominio.searchResults &&
-                                this.puevcDominio.searchResults.length === 0) {
-                                this.puevcDominio.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puevcDominio.searchResults &&
-                                this.puevcDominio.searchResults.length === 1) {
-                                this.processpuevcdominioSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puevcDominio.removeCSSClass('noResultsLenseSearch');
-                            this.puevcDominio.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puevcDominio, ModelConstants.Dominio.name, 'IC_Dominio',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanpuevcdominio();
             }
-        } else {
-            this.puevcDominio.removeCSSClass('noResultsLenseSearch');
-            this.puevcDominio.searchResults = [];
-            this.cleanpuevcdominio();
-        }
-
+            if (foundInstances === 1) {
+                this.processpuevcdominioSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -362,7 +314,7 @@ export class NovedadSIUuDelNovedadComponent extends AbstractServiceIU implements
                 this.puevcDominio.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puevcDominio.getSelectedInstances().push(selectedInstance);
+            this.puevcDominio.addInstances(selectedInstance);
         }
         this.executeDependecyRulespuevcdominio('SetValue', false);
         this.changeDetectorRef.markForCheck();

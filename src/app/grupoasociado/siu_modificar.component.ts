@@ -41,7 +41,7 @@ export class GrupoAsociadoSIUumodificarComponent extends AbstractServiceIU imple
             'Modificar grupo asociado');
 
         // Create inbound argument components
-        this.puthisGrupoAsociado = new FieldOVLenseSearch(this.langMng);
+        this.puthisGrupoAsociado = new FieldOVLenseSearch(this.langMng, this.util);
         this.puDisminucionCarencia = new Field(this.langMng);
 
     }
@@ -219,44 +219,20 @@ export class GrupoAsociadoSIUumodificarComponent extends AbstractServiceIU imple
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisGrupoAsociado lense search argument
      */
     public onputhisgrupoasociadoChange(): void {
-
-        const searchText = this.puthisGrupoAsociado.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisGrupoAsociado.lastText) {
-                this.puthisGrupoAsociado.removeCSSClass('noResultsLenseSearch');
-                this.puthisGrupoAsociado.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Grupoasociado.name, 'IC_GrupoAsociado', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisGrupoAsociado.removeCSSClass('noResultsLenseSearch');
-                            this.puthisGrupoAsociado.searchResults = response.results;
-                            if (this.puthisGrupoAsociado.searchResults &&
-                                this.puthisGrupoAsociado.searchResults.length === 0) {
-                                this.puthisGrupoAsociado.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisGrupoAsociado.searchResults &&
-                                this.puthisGrupoAsociado.searchResults.length === 1) {
-                                this.processputhisgrupoasociadoSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisGrupoAsociado.removeCSSClass('noResultsLenseSearch');
-                            this.puthisGrupoAsociado.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisGrupoAsociado, ModelConstants.Grupoasociado.name, 'IC_GrupoAsociado',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisgrupoasociado();
             }
-        } else {
-            this.puthisGrupoAsociado.removeCSSClass('noResultsLenseSearch');
-            this.puthisGrupoAsociado.searchResults = [];
-            this.cleanputhisgrupoasociado();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisgrupoasociadoSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -276,7 +252,7 @@ export class GrupoAsociadoSIUumodificarComponent extends AbstractServiceIU imple
                 this.puthisGrupoAsociado.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisGrupoAsociado.getSelectedInstances().push(selectedInstance);
+            this.puthisGrupoAsociado.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisgrupoasociado('SetValue', false);
         this.changeDetectorRef.markForCheck();

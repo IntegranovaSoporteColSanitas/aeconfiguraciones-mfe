@@ -41,8 +41,8 @@ export class DominioSIUuTINSPLANTILLAComponent extends AbstractServiceIU impleme
             'Asignar Plantilla');
 
         // Create inbound argument components
-        this.puthisDominio = new FieldOVLenseSearch(this.langMng);
-        this.ptPlantilla = new FieldOVLenseSearch(this.langMng);
+        this.puthisDominio = new FieldOVLenseSearch(this.langMng, this.util);
+        this.ptPlantilla = new FieldOVLenseSearch(this.langMng, this.util);
 
     }
 
@@ -225,44 +225,20 @@ export class DominioSIUuTINSPLANTILLAComponent extends AbstractServiceIU impleme
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisDominio lense search argument
      */
     public onputhisdominioChange(): void {
-
-        const searchText = this.puthisDominio.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisDominio.lastText) {
-                this.puthisDominio.removeCSSClass('noResultsLenseSearch');
-                this.puthisDominio.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Dominio.name, 'IC_Dominio', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisDominio.removeCSSClass('noResultsLenseSearch');
-                            this.puthisDominio.searchResults = response.results;
-                            if (this.puthisDominio.searchResults &&
-                                this.puthisDominio.searchResults.length === 0) {
-                                this.puthisDominio.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisDominio.searchResults &&
-                                this.puthisDominio.searchResults.length === 1) {
-                                this.processputhisdominioSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisDominio.removeCSSClass('noResultsLenseSearch');
-                            this.puthisDominio.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisDominio, ModelConstants.Dominio.name, 'IC_Dominio',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisdominio();
             }
-        } else {
-            this.puthisDominio.removeCSSClass('noResultsLenseSearch');
-            this.puthisDominio.searchResults = [];
-            this.cleanputhisdominio();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisdominioSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -282,7 +258,7 @@ export class DominioSIUuTINSPLANTILLAComponent extends AbstractServiceIU impleme
                 this.puthisDominio.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisDominio.getSelectedInstances().push(selectedInstance);
+            this.puthisDominio.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisdominio('SetValue', false);
         this.changeDetectorRef.markForCheck();
@@ -391,44 +367,20 @@ export class DominioSIUuTINSPLANTILLAComponent extends AbstractServiceIU impleme
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the ptPlantilla lense search argument
      */
     public onptplantillaChange(): void {
-
-        const searchText = this.ptPlantilla.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.ptPlantilla.lastText) {
-                this.ptPlantilla.removeCSSClass('noResultsLenseSearch');
-                this.ptPlantilla.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Plantillaemail.name, 'IC_PlantillaEmail', searchText, [], null).then(
-                        (response: any) => {
-                            this.ptPlantilla.removeCSSClass('noResultsLenseSearch');
-                            this.ptPlantilla.searchResults = response.results;
-                            if (this.ptPlantilla.searchResults &&
-                                this.ptPlantilla.searchResults.length === 0) {
-                                this.ptPlantilla.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.ptPlantilla.searchResults &&
-                                this.ptPlantilla.searchResults.length === 1) {
-                                this.processptplantillaSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.ptPlantilla.removeCSSClass('noResultsLenseSearch');
-                            this.ptPlantilla.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.ptPlantilla, ModelConstants.Plantillaemail.name, 'IC_PlantillaEmail',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanptplantilla();
             }
-        } else {
-            this.ptPlantilla.removeCSSClass('noResultsLenseSearch');
-            this.ptPlantilla.searchResults = [];
-            this.cleanptplantilla();
-        }
-
+            if (foundInstances === 1) {
+                this.processptplantillaSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -448,7 +400,7 @@ export class DominioSIUuTINSPLANTILLAComponent extends AbstractServiceIU impleme
                 this.ptPlantilla.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.ptPlantilla.getSelectedInstances().push(selectedInstance);
+            this.ptPlantilla.addInstances(selectedInstance);
         }
         this.executeDependecyRulesptplantilla('SetValue', false);
         this.changeDetectorRef.markForCheck();

@@ -42,7 +42,7 @@ export class ProrrateoSIUucrearComponent extends AbstractServiceIU implements On
             'Crear');
 
         // Create inbound argument components
-        this.puagrDominio = new FieldOVLenseSearch(this.langMng);
+        this.puagrDominio = new FieldOVLenseSearch(this.langMng, this.util);
         this.puatrDia = new Field(this.langMng);
         this.puatrPorcentaje = new Field(this.langMng);
 
@@ -168,44 +168,20 @@ export class ProrrateoSIUucrearComponent extends AbstractServiceIU implements On
             });
         }
     }
-
     /**
      * Process the change in the p_agrDominio lense search argument
      */
     public onpuagrdominioChange(): void {
-
-        const searchText = this.puagrDominio.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puagrDominio.lastText) {
-                this.puagrDominio.removeCSSClass('noResultsLenseSearch');
-                this.puagrDominio.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Dominio.name, 'IC_Dominio', searchText, [], null).then(
-                        (response: any) => {
-                            this.puagrDominio.removeCSSClass('noResultsLenseSearch');
-                            this.puagrDominio.searchResults = response.results;
-                            if (this.puagrDominio.searchResults &&
-                                this.puagrDominio.searchResults.length === 0) {
-                                this.puagrDominio.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puagrDominio.searchResults &&
-                                this.puagrDominio.searchResults.length === 1) {
-                                this.processpuagrdominioSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puagrDominio.removeCSSClass('noResultsLenseSearch');
-                            this.puagrDominio.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puagrDominio, ModelConstants.Dominio.name, 'IC_Dominio',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanpuagrdominio();
             }
-        } else {
-            this.puagrDominio.removeCSSClass('noResultsLenseSearch');
-            this.puagrDominio.searchResults = [];
-            this.cleanpuagrdominio();
-        }
-
+            if (foundInstances === 1) {
+                this.processpuagrdominioSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -225,7 +201,7 @@ export class ProrrateoSIUucrearComponent extends AbstractServiceIU implements On
                 this.puagrDominio.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puagrDominio.getSelectedInstances().push(selectedInstance);
+            this.puagrDominio.addInstances(selectedInstance);
         }
         this.executeDependecyRulespuagrdominio('SetValue', false);
         this.changeDetectorRef.markForCheck();

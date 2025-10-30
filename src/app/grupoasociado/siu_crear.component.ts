@@ -49,8 +49,8 @@ export class GrupoAsociadoSIUucrearComponent extends AbstractServiceIU implement
             'Crear grupo asociado');
 
         // Create inbound argument components
-        this.puagrProductoT = new FieldOVLenseSearch(this.langMng);
-        this.puagrPlanT = new FieldOVLenseSearch(this.langMng);
+        this.puagrProductoT = new FieldOVLenseSearch(this.langMng, this.util);
+        this.puagrPlanT = new FieldOVLenseSearch(this.langMng, this.util);
         this.puatrCodigoLegal = new Field(this.langMng);
         this.puatrDescripcion = new Field(this.langMng);
         this.puatrFIniVigencia = new Field(this.langMng);
@@ -282,44 +282,20 @@ export class GrupoAsociadoSIUucrearComponent extends AbstractServiceIU implement
             });
         }
     }
-
     /**
      * Process the change in the p_agrProductoT lense search argument
      */
     public onpuagrproductotChange(): void {
-
-        const searchText = this.puagrProductoT.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puagrProductoT.lastText) {
-                this.puagrProductoT.removeCSSClass('noResultsLenseSearch');
-                this.puagrProductoT.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Productos.name, 'IC_Producto', searchText, [], null).then(
-                        (response: any) => {
-                            this.puagrProductoT.removeCSSClass('noResultsLenseSearch');
-                            this.puagrProductoT.searchResults = response.results;
-                            if (this.puagrProductoT.searchResults &&
-                                this.puagrProductoT.searchResults.length === 0) {
-                                this.puagrProductoT.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puagrProductoT.searchResults &&
-                                this.puagrProductoT.searchResults.length === 1) {
-                                this.processpuagrproductotSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puagrProductoT.removeCSSClass('noResultsLenseSearch');
-                            this.puagrProductoT.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puagrProductoT, ModelConstants.Productos.name, 'IC_Producto',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanpuagrproductot();
             }
-        } else {
-            this.puagrProductoT.removeCSSClass('noResultsLenseSearch');
-            this.puagrProductoT.searchResults = [];
-            this.cleanpuagrproductot();
-        }
-
+            if (foundInstances === 1) {
+                this.processpuagrproductotSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -339,7 +315,7 @@ export class GrupoAsociadoSIUucrearComponent extends AbstractServiceIU implement
                 this.puagrProductoT.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puagrProductoT.getSelectedInstances().push(selectedInstance);
+            this.puagrProductoT.addInstances(selectedInstance);
         }
         this.executeDependecyRulespuagrproductot('SetValue', false);
         this.changeDetectorRef.markForCheck();
@@ -402,44 +378,20 @@ export class GrupoAsociadoSIUucrearComponent extends AbstractServiceIU implement
             });
         }
     }
-
     /**
      * Process the change in the p_agrPlanT lense search argument
      */
     public onpuagrplantChange(): void {
-
-        const searchText = this.puagrPlanT.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puagrPlanT.lastText) {
-                this.puagrPlanT.removeCSSClass('noResultsLenseSearch');
-                this.puagrPlanT.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Planes.name, 'IC_Plan', searchText, [], null).then(
-                        (response: any) => {
-                            this.puagrPlanT.removeCSSClass('noResultsLenseSearch');
-                            this.puagrPlanT.searchResults = response.results;
-                            if (this.puagrPlanT.searchResults &&
-                                this.puagrPlanT.searchResults.length === 0) {
-                                this.puagrPlanT.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puagrPlanT.searchResults &&
-                                this.puagrPlanT.searchResults.length === 1) {
-                                this.processpuagrplantSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puagrPlanT.removeCSSClass('noResultsLenseSearch');
-                            this.puagrPlanT.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puagrPlanT, ModelConstants.Planes.name, 'IC_Plan',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanpuagrplant();
             }
-        } else {
-            this.puagrPlanT.removeCSSClass('noResultsLenseSearch');
-            this.puagrPlanT.searchResults = [];
-            this.cleanpuagrplant();
-        }
-
+            if (foundInstances === 1) {
+                this.processpuagrplantSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -459,7 +411,7 @@ export class GrupoAsociadoSIUucrearComponent extends AbstractServiceIU implement
                 this.puagrPlanT.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puagrPlanT.getSelectedInstances().push(selectedInstance);
+            this.puagrPlanT.addInstances(selectedInstance);
         }
         this.executeDependecyRulespuagrplant('SetValue', false);
         this.changeDetectorRef.markForCheck();

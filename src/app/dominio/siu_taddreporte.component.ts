@@ -43,8 +43,8 @@ export class DominioSIUuTADDREPORTEComponent extends AbstractServiceIU implement
             'Asociar reporte');
 
         // Create inbound argument components
-        this.puthisDominio = new FieldOVLenseSearch(this.langMng);
-        this.ptupuagrPlantillaReporte = new FieldOVLenseSearch(this.langMng);
+        this.puthisDominio = new FieldOVLenseSearch(this.langMng, this.util);
+        this.ptupuagrPlantillaReporte = new FieldOVLenseSearch(this.langMng, this.util);
         this.ptupuatrEnviarAuto = new FieldDefinedSelection(this.langMng);
 
     }
@@ -261,44 +261,20 @@ export class DominioSIUuTADDREPORTEComponent extends AbstractServiceIU implement
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisDominio lense search argument
      */
     public onputhisdominioChange(): void {
-
-        const searchText = this.puthisDominio.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisDominio.lastText) {
-                this.puthisDominio.removeCSSClass('noResultsLenseSearch');
-                this.puthisDominio.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Dominio.name, 'IC_Dominio', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisDominio.removeCSSClass('noResultsLenseSearch');
-                            this.puthisDominio.searchResults = response.results;
-                            if (this.puthisDominio.searchResults &&
-                                this.puthisDominio.searchResults.length === 0) {
-                                this.puthisDominio.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisDominio.searchResults &&
-                                this.puthisDominio.searchResults.length === 1) {
-                                this.processputhisdominioSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisDominio.removeCSSClass('noResultsLenseSearch');
-                            this.puthisDominio.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisDominio, ModelConstants.Dominio.name, 'IC_Dominio',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisdominio();
             }
-        } else {
-            this.puthisDominio.removeCSSClass('noResultsLenseSearch');
-            this.puthisDominio.searchResults = [];
-            this.cleanputhisdominio();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisdominioSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -318,7 +294,7 @@ export class DominioSIUuTADDREPORTEComponent extends AbstractServiceIU implement
                 this.puthisDominio.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisDominio.getSelectedInstances().push(selectedInstance);
+            this.puthisDominio.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisdominio('SetValue', false);
         this.changeDetectorRef.markForCheck();
@@ -381,47 +357,22 @@ export class DominioSIUuTADDREPORTEComponent extends AbstractServiceIU implement
             });
         }
     }
-
     /**
      * Process the change in the pt_p_agrPlantillaReporte lense search argument
      */
     public onptupuagrplantillareporteChange(): void {
-
-        const searchText = this.ptupuagrPlantillaReporte.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.ptupuagrPlantillaReporte.lastText) {
-                const navFilters: string[] = [];
-                navFilters.push('Dominio_TADDREPORTE_pt_p_agrPlantillaReporte_NavFilter0');
-                this.ptupuagrPlantillaReporte.removeCSSClass('noResultsLenseSearch');
-                this.ptupuagrPlantillaReporte.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Plantillareporte.name, 'IC_PlantillaReporte', searchText, navFilters,
-                    this.getNavigationFilterVariables()).then(
-                        (response: any) => {
-                            this.ptupuagrPlantillaReporte.removeCSSClass('noResultsLenseSearch');
-                            this.ptupuagrPlantillaReporte.searchResults = response.results;
-                            if (this.ptupuagrPlantillaReporte.searchResults &&
-                                this.ptupuagrPlantillaReporte.searchResults.length === 0) {
-                                this.ptupuagrPlantillaReporte.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.ptupuagrPlantillaReporte.searchResults &&
-                                this.ptupuagrPlantillaReporte.searchResults.length === 1) {
-                                this.processptupuagrplantillareporteSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.ptupuagrPlantillaReporte.removeCSSClass('noResultsLenseSearch');
-                            this.ptupuagrPlantillaReporte.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        const navFilters: string[] = [];
+        navFilters.push('Dominio_TADDREPORTE_pt_p_agrPlantillaReporte_NavFilter0');
+        this.executeLenseSearch(this.ptupuagrPlantillaReporte, ModelConstants.Plantillareporte.name, 'IC_PlantillaReporte',
+            navFilters).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanptupuagrplantillareporte();
             }
-        } else {
-            this.ptupuagrPlantillaReporte.removeCSSClass('noResultsLenseSearch');
-            this.ptupuagrPlantillaReporte.searchResults = [];
-            this.cleanptupuagrplantillareporte();
-        }
-
+            if (foundInstances === 1) {
+                this.processptupuagrplantillareporteSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -441,7 +392,7 @@ export class DominioSIUuTADDREPORTEComponent extends AbstractServiceIU implement
                 this.ptupuagrPlantillaReporte.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.ptupuagrPlantillaReporte.getSelectedInstances().push(selectedInstance);
+            this.ptupuagrPlantillaReporte.addInstances(selectedInstance);
         }
         this.executeDependecyRulesptupuagrplantillareporte('SetValue', false);
         this.changeDetectorRef.markForCheck();

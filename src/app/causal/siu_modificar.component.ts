@@ -47,7 +47,7 @@ export class CausalSIUumodificarComponent extends AbstractServiceIU implements O
             'Modificar');
 
         // Create inbound argument components
-        this.puthisCausal = new FieldOVLenseSearch(this.langMng);
+        this.puthisCausal = new FieldOVLenseSearch(this.langMng, this.util);
         this.puAliasCausal = new Field(this.langMng);
         this.puNombre = new Field(this.langMng);
         this.puDescripcion = new Field(this.langMng);
@@ -355,44 +355,20 @@ export class CausalSIUumodificarComponent extends AbstractServiceIU implements O
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisCausal lense search argument
      */
     public onputhiscausalChange(): void {
-
-        const searchText = this.puthisCausal.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisCausal.lastText) {
-                this.puthisCausal.removeCSSClass('noResultsLenseSearch');
-                this.puthisCausal.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Causal.name, 'IC_Causal', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisCausal.removeCSSClass('noResultsLenseSearch');
-                            this.puthisCausal.searchResults = response.results;
-                            if (this.puthisCausal.searchResults &&
-                                this.puthisCausal.searchResults.length === 0) {
-                                this.puthisCausal.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisCausal.searchResults &&
-                                this.puthisCausal.searchResults.length === 1) {
-                                this.processputhiscausalSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisCausal.removeCSSClass('noResultsLenseSearch');
-                            this.puthisCausal.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisCausal, ModelConstants.Causal.name, 'IC_Causal',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhiscausal();
             }
-        } else {
-            this.puthisCausal.removeCSSClass('noResultsLenseSearch');
-            this.puthisCausal.searchResults = [];
-            this.cleanputhiscausal();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhiscausalSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -412,7 +388,7 @@ export class CausalSIUumodificarComponent extends AbstractServiceIU implements O
                 this.puthisCausal.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisCausal.getSelectedInstances().push(selectedInstance);
+            this.puthisCausal.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhiscausal('SetValue', false);
         this.changeDetectorRef.markForCheck();

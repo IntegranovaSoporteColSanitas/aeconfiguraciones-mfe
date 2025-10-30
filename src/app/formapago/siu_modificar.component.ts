@@ -43,7 +43,7 @@ export class FormaPagoSIUumodificarComponent extends AbstractServiceIU implement
             'Modificar forma de pago');
 
         // Create inbound argument components
-        this.puthisFormaPago = new FieldOVLenseSearch(this.langMng);
+        this.puthisFormaPago = new FieldOVLenseSearch(this.langMng, this.util);
         this.puAbrirURL = new FieldDefinedSelection(this.langMng);
         this.puVisible = new FieldDefinedSelection(this.langMng);
 
@@ -216,44 +216,20 @@ export class FormaPagoSIUumodificarComponent extends AbstractServiceIU implement
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisFormaPago lense search argument
      */
     public onputhisformapagoChange(): void {
-
-        const searchText = this.puthisFormaPago.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisFormaPago.lastText) {
-                this.puthisFormaPago.removeCSSClass('noResultsLenseSearch');
-                this.puthisFormaPago.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Formapago.name, 'IC_FormaPago', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisFormaPago.removeCSSClass('noResultsLenseSearch');
-                            this.puthisFormaPago.searchResults = response.results;
-                            if (this.puthisFormaPago.searchResults &&
-                                this.puthisFormaPago.searchResults.length === 0) {
-                                this.puthisFormaPago.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisFormaPago.searchResults &&
-                                this.puthisFormaPago.searchResults.length === 1) {
-                                this.processputhisformapagoSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisFormaPago.removeCSSClass('noResultsLenseSearch');
-                            this.puthisFormaPago.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisFormaPago, ModelConstants.Formapago.name, 'IC_FormaPago',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisformapago();
             }
-        } else {
-            this.puthisFormaPago.removeCSSClass('noResultsLenseSearch');
-            this.puthisFormaPago.searchResults = [];
-            this.cleanputhisformapago();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisformapagoSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -273,7 +249,7 @@ export class FormaPagoSIUumodificarComponent extends AbstractServiceIU implement
                 this.puthisFormaPago.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisFormaPago.getSelectedInstances().push(selectedInstance);
+            this.puthisFormaPago.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisformapago('SetValue', false);
         this.changeDetectorRef.markForCheck();

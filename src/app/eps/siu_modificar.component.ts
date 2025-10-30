@@ -42,7 +42,7 @@ export class EpsSIUumodificarComponent extends AbstractServiceIU implements OnIn
             'Modificar EPS');
 
         // Create inbound argument components
-        this.puthisEPS = new FieldOVLenseSearch(this.langMng);
+        this.puthisEPS = new FieldOVLenseSearch(this.langMng, this.util);
         this.puEPSSanitas = new FieldDefinedSelection(this.langMng);
 
     }
@@ -201,44 +201,20 @@ export class EpsSIUumodificarComponent extends AbstractServiceIU implements OnIn
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisEPS lense search argument
      */
     public onputhisepsChange(): void {
-
-        const searchText = this.puthisEPS.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisEPS.lastText) {
-                this.puthisEPS.removeCSSClass('noResultsLenseSearch');
-                this.puthisEPS.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Eps.name, 'IC_EPS', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisEPS.removeCSSClass('noResultsLenseSearch');
-                            this.puthisEPS.searchResults = response.results;
-                            if (this.puthisEPS.searchResults &&
-                                this.puthisEPS.searchResults.length === 0) {
-                                this.puthisEPS.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisEPS.searchResults &&
-                                this.puthisEPS.searchResults.length === 1) {
-                                this.processputhisepsSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisEPS.removeCSSClass('noResultsLenseSearch');
-                            this.puthisEPS.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisEPS, ModelConstants.Eps.name, 'IC_EPS',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhiseps();
             }
-        } else {
-            this.puthisEPS.removeCSSClass('noResultsLenseSearch');
-            this.puthisEPS.searchResults = [];
-            this.cleanputhiseps();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisepsSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -258,7 +234,7 @@ export class EpsSIUumodificarComponent extends AbstractServiceIU implements OnIn
                 this.puthisEPS.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisEPS.getSelectedInstances().push(selectedInstance);
+            this.puthisEPS.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhiseps('SetValue', false);
         this.changeDetectorRef.markForCheck();

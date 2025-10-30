@@ -42,7 +42,7 @@ export class MunicipioSIUumodificarComponent extends AbstractServiceIU implement
             'Modificar municipio');
 
         // Create inbound argument components
-        this.puthisMunicipio = new FieldOVLenseSearch(this.langMng);
+        this.puthisMunicipio = new FieldOVLenseSearch(this.langMng, this.util);
         this.puAplicaIVA = new FieldDefinedSelection(this.langMng);
 
     }
@@ -201,44 +201,20 @@ export class MunicipioSIUumodificarComponent extends AbstractServiceIU implement
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisMunicipio lense search argument
      */
     public onputhismunicipioChange(): void {
-
-        const searchText = this.puthisMunicipio.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisMunicipio.lastText) {
-                this.puthisMunicipio.removeCSSClass('noResultsLenseSearch');
-                this.puthisMunicipio.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Municipio.name, 'IC_Municipio', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisMunicipio.removeCSSClass('noResultsLenseSearch');
-                            this.puthisMunicipio.searchResults = response.results;
-                            if (this.puthisMunicipio.searchResults &&
-                                this.puthisMunicipio.searchResults.length === 0) {
-                                this.puthisMunicipio.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisMunicipio.searchResults &&
-                                this.puthisMunicipio.searchResults.length === 1) {
-                                this.processputhismunicipioSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisMunicipio.removeCSSClass('noResultsLenseSearch');
-                            this.puthisMunicipio.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisMunicipio, ModelConstants.Municipio.name, 'IC_Municipio',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhismunicipio();
             }
-        } else {
-            this.puthisMunicipio.removeCSSClass('noResultsLenseSearch');
-            this.puthisMunicipio.searchResults = [];
-            this.cleanputhismunicipio();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhismunicipioSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -258,7 +234,7 @@ export class MunicipioSIUumodificarComponent extends AbstractServiceIU implement
                 this.puthisMunicipio.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisMunicipio.getSelectedInstances().push(selectedInstance);
+            this.puthisMunicipio.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhismunicipio('SetValue', false);
         this.changeDetectorRef.markForCheck();

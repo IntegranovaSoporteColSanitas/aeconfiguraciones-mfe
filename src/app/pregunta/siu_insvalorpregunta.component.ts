@@ -42,7 +42,7 @@ export class PreguntaSIUuInsValorPreguntaComponent extends AbstractServiceIU imp
 
         // Create inbound argument components
         this.puthisPregunta = new FieldOVLense(this.langMng);
-        this.puevcValor = new FieldOVLenseSearch(this.langMng);
+        this.puevcValor = new FieldOVLenseSearch(this.langMng, this.util);
 
     }
 
@@ -312,47 +312,22 @@ export class PreguntaSIUuInsValorPreguntaComponent extends AbstractServiceIU imp
             });
         }
     }
-
     /**
      * Process the change in the p_evcValor lense search argument
      */
     public onpuevcvalorChange(): void {
-
-        const searchText = this.puevcValor.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puevcValor.lastText) {
-                const navFilters: string[] = [];
-                navFilters.push('Pregunta_InsValorPregunta_p_evcValor_NavFilter0');
-                this.puevcValor.removeCSSClass('noResultsLenseSearch');
-                this.puevcValor.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Valor.name, 'IC_Valor', searchText, navFilters,
-                    this.getNavigationFilterVariables()).then(
-                        (response: any) => {
-                            this.puevcValor.removeCSSClass('noResultsLenseSearch');
-                            this.puevcValor.searchResults = response.results;
-                            if (this.puevcValor.searchResults &&
-                                this.puevcValor.searchResults.length === 0) {
-                                this.puevcValor.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puevcValor.searchResults &&
-                                this.puevcValor.searchResults.length === 1) {
-                                this.processpuevcvalorSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puevcValor.removeCSSClass('noResultsLenseSearch');
-                            this.puevcValor.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        const navFilters: string[] = [];
+        navFilters.push('Pregunta_InsValorPregunta_p_evcValor_NavFilter0');
+        this.executeLenseSearch(this.puevcValor, ModelConstants.Valor.name, 'IC_Valor',
+            navFilters).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanpuevcvalor();
             }
-        } else {
-            this.puevcValor.removeCSSClass('noResultsLenseSearch');
-            this.puevcValor.searchResults = [];
-            this.cleanpuevcvalor();
-        }
-
+            if (foundInstances === 1) {
+                this.processpuevcvalorSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -372,7 +347,7 @@ export class PreguntaSIUuInsValorPreguntaComponent extends AbstractServiceIU imp
                 this.puevcValor.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puevcValor.getSelectedInstances().push(selectedInstance);
+            this.puevcValor.addInstances(selectedInstance);
         }
         this.executeDependecyRulespuevcvalor('SetValue', false);
         this.changeDetectorRef.markForCheck();

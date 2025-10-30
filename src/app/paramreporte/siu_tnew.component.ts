@@ -44,7 +44,7 @@ export class ParamReporteSIUuTNEWComponent extends AbstractServiceIU implements 
             'Nuevo');
 
         // Create inbound argument components
-        this.ptupuagrReporte = new FieldOVLenseSearch(this.langMng);
+        this.ptupuagrReporte = new FieldOVLenseSearch(this.langMng, this.util);
         this.ptupuatrEsNumerico = new FieldDefinedSelection(this.langMng);
         this.ptupuatrDescripcion = new Field(this.langMng);
         this.ptupuatrTitulo = new Field(this.langMng);
@@ -184,44 +184,20 @@ export class ParamReporteSIUuTNEWComponent extends AbstractServiceIU implements 
             });
         }
     }
-
     /**
      * Process the change in the pt_p_agrReporte lense search argument
      */
     public onptupuagrreporteChange(): void {
-
-        const searchText = this.ptupuagrReporte.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.ptupuagrReporte.lastText) {
-                this.ptupuagrReporte.removeCSSClass('noResultsLenseSearch');
-                this.ptupuagrReporte.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Reportesprocalm.name, 'IC_ReportesProcAlm', searchText, [], null).then(
-                        (response: any) => {
-                            this.ptupuagrReporte.removeCSSClass('noResultsLenseSearch');
-                            this.ptupuagrReporte.searchResults = response.results;
-                            if (this.ptupuagrReporte.searchResults &&
-                                this.ptupuagrReporte.searchResults.length === 0) {
-                                this.ptupuagrReporte.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.ptupuagrReporte.searchResults &&
-                                this.ptupuagrReporte.searchResults.length === 1) {
-                                this.processptupuagrreporteSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.ptupuagrReporte.removeCSSClass('noResultsLenseSearch');
-                            this.ptupuagrReporte.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.ptupuagrReporte, ModelConstants.Reportesprocalm.name, 'IC_ReportesProcAlm',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanptupuagrreporte();
             }
-        } else {
-            this.ptupuagrReporte.removeCSSClass('noResultsLenseSearch');
-            this.ptupuagrReporte.searchResults = [];
-            this.cleanptupuagrreporte();
-        }
-
+            if (foundInstances === 1) {
+                this.processptupuagrreporteSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -241,7 +217,7 @@ export class ParamReporteSIUuTNEWComponent extends AbstractServiceIU implements 
                 this.ptupuagrReporte.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.ptupuagrReporte.getSelectedInstances().push(selectedInstance);
+            this.ptupuagrReporte.addInstances(selectedInstance);
         }
         this.executeDependecyRulesptupuagrreporte('SetValue', false);
         this.changeDetectorRef.markForCheck();

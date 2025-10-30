@@ -42,7 +42,7 @@ export class CompanyiaSIUumodificarComponent extends AbstractServiceIU implement
             'Modificar compañía');
 
         // Create inbound argument components
-        this.puthisCompanyia = new FieldOVLenseSearch(this.langMng);
+        this.puthisCompanyia = new FieldOVLenseSearch(this.langMng, this.util);
         this.puEsDeMP = new FieldDefinedSelection(this.langMng);
 
     }
@@ -201,44 +201,20 @@ export class CompanyiaSIUumodificarComponent extends AbstractServiceIU implement
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisCompanyia lense search argument
      */
     public onputhiscompanyiaChange(): void {
-
-        const searchText = this.puthisCompanyia.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisCompanyia.lastText) {
-                this.puthisCompanyia.removeCSSClass('noResultsLenseSearch');
-                this.puthisCompanyia.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Companyia.name, 'IC_Companyia', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisCompanyia.removeCSSClass('noResultsLenseSearch');
-                            this.puthisCompanyia.searchResults = response.results;
-                            if (this.puthisCompanyia.searchResults &&
-                                this.puthisCompanyia.searchResults.length === 0) {
-                                this.puthisCompanyia.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisCompanyia.searchResults &&
-                                this.puthisCompanyia.searchResults.length === 1) {
-                                this.processputhiscompanyiaSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisCompanyia.removeCSSClass('noResultsLenseSearch');
-                            this.puthisCompanyia.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisCompanyia, ModelConstants.Companyia.name, 'IC_Companyia',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhiscompanyia();
             }
-        } else {
-            this.puthisCompanyia.removeCSSClass('noResultsLenseSearch');
-            this.puthisCompanyia.searchResults = [];
-            this.cleanputhiscompanyia();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhiscompanyiaSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -258,7 +234,7 @@ export class CompanyiaSIUumodificarComponent extends AbstractServiceIU implement
                 this.puthisCompanyia.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisCompanyia.getSelectedInstances().push(selectedInstance);
+            this.puthisCompanyia.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhiscompanyia('SetValue', false);
         this.changeDetectorRef.markForCheck();

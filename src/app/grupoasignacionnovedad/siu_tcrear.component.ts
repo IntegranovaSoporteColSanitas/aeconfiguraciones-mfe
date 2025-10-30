@@ -43,9 +43,9 @@ export class GrupoAsignacionNovedadSIUuTCREARComponent extends AbstractServiceIU
             'Crear');
 
         // Create inbound argument components
-        this.ptupuagrDominio = new FieldOVLenseSearch(this.langMng);
+        this.ptupuagrDominio = new FieldOVLenseSearch(this.langMng, this.util);
         this.ptupuagrCausal = new FieldOVPreload(this.langMng);
-        this.ptupuagrGrupoUsuarios = new FieldOVLenseSearch(this.langMng);
+        this.ptupuagrGrupoUsuarios = new FieldOVLenseSearch(this.langMng, this.util);
         this.ptNovedad = new FieldOVPreload(this.langMng);
 
     }
@@ -268,44 +268,20 @@ export class GrupoAsignacionNovedadSIUuTCREARComponent extends AbstractServiceIU
             });
         }
     }
-
     /**
      * Process the change in the pt_p_agrDominio lense search argument
      */
     public onptupuagrdominioChange(): void {
-
-        const searchText = this.ptupuagrDominio.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.ptupuagrDominio.lastText) {
-                this.ptupuagrDominio.removeCSSClass('noResultsLenseSearch');
-                this.ptupuagrDominio.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Dominio.name, 'IC_Dominio', searchText, [], null).then(
-                        (response: any) => {
-                            this.ptupuagrDominio.removeCSSClass('noResultsLenseSearch');
-                            this.ptupuagrDominio.searchResults = response.results;
-                            if (this.ptupuagrDominio.searchResults &&
-                                this.ptupuagrDominio.searchResults.length === 0) {
-                                this.ptupuagrDominio.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.ptupuagrDominio.searchResults &&
-                                this.ptupuagrDominio.searchResults.length === 1) {
-                                this.processptupuagrdominioSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.ptupuagrDominio.removeCSSClass('noResultsLenseSearch');
-                            this.ptupuagrDominio.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.ptupuagrDominio, ModelConstants.Dominio.name, 'IC_Dominio',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanptupuagrdominio();
             }
-        } else {
-            this.ptupuagrDominio.removeCSSClass('noResultsLenseSearch');
-            this.ptupuagrDominio.searchResults = [];
-            this.cleanptupuagrdominio();
-        }
-
+            if (foundInstances === 1) {
+                this.processptupuagrdominioSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -325,7 +301,7 @@ export class GrupoAsignacionNovedadSIUuTCREARComponent extends AbstractServiceIU
                 this.ptupuagrDominio.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.ptupuagrDominio.getSelectedInstances().push(selectedInstance);
+            this.ptupuagrDominio.addInstances(selectedInstance);
         }
         this.executeDependecyRulesptupuagrdominio('SetValue', false);
         this.changeDetectorRef.markForCheck();
@@ -388,47 +364,22 @@ export class GrupoAsignacionNovedadSIUuTCREARComponent extends AbstractServiceIU
             });
         }
     }
-
     /**
      * Process the change in the pt_p_agrGrupoUsuarios lense search argument
      */
     public onptupuagrgrupousuariosChange(): void {
-
-        const searchText = this.ptupuagrGrupoUsuarios.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.ptupuagrGrupoUsuarios.lastText) {
-                const navFilters: string[] = [];
-                navFilters.push('GrupoAsignacionNovedad_TCREAR_pt_p_agrGrupoUsuarios_NavFilter0');
-                this.ptupuagrGrupoUsuarios.removeCSSClass('noResultsLenseSearch');
-                this.ptupuagrGrupoUsuarios.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Grupoasignacion.name, 'IC_GrupoAsignacion', searchText, navFilters,
-                    this.getNavigationFilterVariables()).then(
-                        (response: any) => {
-                            this.ptupuagrGrupoUsuarios.removeCSSClass('noResultsLenseSearch');
-                            this.ptupuagrGrupoUsuarios.searchResults = response.results;
-                            if (this.ptupuagrGrupoUsuarios.searchResults &&
-                                this.ptupuagrGrupoUsuarios.searchResults.length === 0) {
-                                this.ptupuagrGrupoUsuarios.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.ptupuagrGrupoUsuarios.searchResults &&
-                                this.ptupuagrGrupoUsuarios.searchResults.length === 1) {
-                                this.processptupuagrgrupousuariosSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.ptupuagrGrupoUsuarios.removeCSSClass('noResultsLenseSearch');
-                            this.ptupuagrGrupoUsuarios.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        const navFilters: string[] = [];
+        navFilters.push('GrupoAsignacionNovedad_TCREAR_pt_p_agrGrupoUsuarios_NavFilter0');
+        this.executeLenseSearch(this.ptupuagrGrupoUsuarios, ModelConstants.Grupoasignacion.name, 'IC_GrupoAsignacion',
+            navFilters).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanptupuagrgrupousuarios();
             }
-        } else {
-            this.ptupuagrGrupoUsuarios.removeCSSClass('noResultsLenseSearch');
-            this.ptupuagrGrupoUsuarios.searchResults = [];
-            this.cleanptupuagrgrupousuarios();
-        }
-
+            if (foundInstances === 1) {
+                this.processptupuagrgrupousuariosSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -448,7 +399,7 @@ export class GrupoAsignacionNovedadSIUuTCREARComponent extends AbstractServiceIU
                 this.ptupuagrGrupoUsuarios.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.ptupuagrGrupoUsuarios.getSelectedInstances().push(selectedInstance);
+            this.ptupuagrGrupoUsuarios.addInstances(selectedInstance);
         }
         this.executeDependecyRulesptupuagrgrupousuarios('SetValue', false);
         this.changeDetectorRef.markForCheck();

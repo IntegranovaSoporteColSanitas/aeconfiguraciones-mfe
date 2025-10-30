@@ -134,6 +134,7 @@ export class PlantillaEmailPIUuPlantillaEmailComponent extends AbstractPIU imple
         dsItem.alias = this.langMng.translateText(
             'cls_PlantillaEmail_ds_DS_PlantillaEmail_item_Clas_1431708631040445CjtoVis_3ICtjoVis_6',
             this.dstextomensaje);
+        dsItem.styleClass = 'HTML';
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         this.displaySet.push(dsItem);
     }

@@ -66,8 +66,8 @@ export class DominioSIUucrearComponent extends AbstractServiceIU implements OnIn
         // Create inbound argument components
         this.puagrPlanT = new FieldOVPreload(this.langMng);
         this.puagrProductoT = new FieldOVPreload(this.langMng);
-        this.puagrGrupoAsesores = new FieldOVLenseSearch(this.langMng);
-        this.puagrGrupoAreaMedica = new FieldOVLenseSearch(this.langMng);
+        this.puagrGrupoAsesores = new FieldOVLenseSearch(this.langMng, this.util);
+        this.puagrGrupoAreaMedica = new FieldOVLenseSearch(this.langMng, this.util);
         this.puatrReqCuesMed = new FieldDefinedSelection(this.langMng);
         this.puatrNoCuesMedTras = new FieldDefinedSelection(this.langMng);
         this.puatrNuevaAfiliacion = new FieldDefinedSelection(this.langMng);
@@ -594,44 +594,20 @@ export class DominioSIUucrearComponent extends AbstractServiceIU implements OnIn
             });
         }
     }
-
     /**
      * Process the change in the p_agrGrupoAsesores lense search argument
      */
     public onpuagrgrupoasesoresChange(): void {
-
-        const searchText = this.puagrGrupoAsesores.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puagrGrupoAsesores.lastText) {
-                this.puagrGrupoAsesores.removeCSSClass('noResultsLenseSearch');
-                this.puagrGrupoAsesores.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Grupoasignacion.name, 'IC_GrupoAsignacion', searchText, [], null).then(
-                        (response: any) => {
-                            this.puagrGrupoAsesores.removeCSSClass('noResultsLenseSearch');
-                            this.puagrGrupoAsesores.searchResults = response.results;
-                            if (this.puagrGrupoAsesores.searchResults &&
-                                this.puagrGrupoAsesores.searchResults.length === 0) {
-                                this.puagrGrupoAsesores.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puagrGrupoAsesores.searchResults &&
-                                this.puagrGrupoAsesores.searchResults.length === 1) {
-                                this.processpuagrgrupoasesoresSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puagrGrupoAsesores.removeCSSClass('noResultsLenseSearch');
-                            this.puagrGrupoAsesores.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puagrGrupoAsesores, ModelConstants.Grupoasignacion.name, 'IC_GrupoAsignacion',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanpuagrgrupoasesores();
             }
-        } else {
-            this.puagrGrupoAsesores.removeCSSClass('noResultsLenseSearch');
-            this.puagrGrupoAsesores.searchResults = [];
-            this.cleanpuagrgrupoasesores();
-        }
-
+            if (foundInstances === 1) {
+                this.processpuagrgrupoasesoresSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -651,7 +627,7 @@ export class DominioSIUucrearComponent extends AbstractServiceIU implements OnIn
                 this.puagrGrupoAsesores.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puagrGrupoAsesores.getSelectedInstances().push(selectedInstance);
+            this.puagrGrupoAsesores.addInstances(selectedInstance);
         }
         this.executeDependecyRulespuagrgrupoasesores('SetValue', false);
         this.changeDetectorRef.markForCheck();
@@ -714,44 +690,20 @@ export class DominioSIUucrearComponent extends AbstractServiceIU implements OnIn
             });
         }
     }
-
     /**
      * Process the change in the p_agrGrupoAreaMedica lense search argument
      */
     public onpuagrgrupoareamedicaChange(): void {
-
-        const searchText = this.puagrGrupoAreaMedica.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puagrGrupoAreaMedica.lastText) {
-                this.puagrGrupoAreaMedica.removeCSSClass('noResultsLenseSearch');
-                this.puagrGrupoAreaMedica.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Grupoasignacion.name, 'IC_GrupoAsignacion', searchText, [], null).then(
-                        (response: any) => {
-                            this.puagrGrupoAreaMedica.removeCSSClass('noResultsLenseSearch');
-                            this.puagrGrupoAreaMedica.searchResults = response.results;
-                            if (this.puagrGrupoAreaMedica.searchResults &&
-                                this.puagrGrupoAreaMedica.searchResults.length === 0) {
-                                this.puagrGrupoAreaMedica.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puagrGrupoAreaMedica.searchResults &&
-                                this.puagrGrupoAreaMedica.searchResults.length === 1) {
-                                this.processpuagrgrupoareamedicaSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puagrGrupoAreaMedica.removeCSSClass('noResultsLenseSearch');
-                            this.puagrGrupoAreaMedica.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puagrGrupoAreaMedica, ModelConstants.Grupoasignacion.name, 'IC_GrupoAsignacion',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanpuagrgrupoareamedica();
             }
-        } else {
-            this.puagrGrupoAreaMedica.removeCSSClass('noResultsLenseSearch');
-            this.puagrGrupoAreaMedica.searchResults = [];
-            this.cleanpuagrgrupoareamedica();
-        }
-
+            if (foundInstances === 1) {
+                this.processpuagrgrupoareamedicaSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -771,7 +723,7 @@ export class DominioSIUucrearComponent extends AbstractServiceIU implements OnIn
                 this.puagrGrupoAreaMedica.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puagrGrupoAreaMedica.getSelectedInstances().push(selectedInstance);
+            this.puagrGrupoAreaMedica.addInstances(selectedInstance);
         }
         this.executeDependecyRulespuagrgrupoareamedica('SetValue', false);
         this.changeDetectorRef.markForCheck();

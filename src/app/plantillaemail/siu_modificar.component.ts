@@ -43,7 +43,7 @@ export class PlantillaEmailSIUumodificarComponent extends AbstractServiceIU impl
             'Modificar plantilla de email');
 
         // Create inbound argument components
-        this.puthisPlantillasEmail = new FieldOVLenseSearch(this.langMng);
+        this.puthisPlantillasEmail = new FieldOVLenseSearch(this.langMng, this.util);
         this.puAsunto = new Field(this.langMng);
         this.puTextoMensaje = new Field(this.langMng);
         this.puEmailConf = new Field(this.langMng);
@@ -229,44 +229,20 @@ export class PlantillaEmailSIUumodificarComponent extends AbstractServiceIU impl
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisPlantillasEmail lense search argument
      */
     public onputhisplantillasemailChange(): void {
-
-        const searchText = this.puthisPlantillasEmail.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisPlantillasEmail.lastText) {
-                this.puthisPlantillasEmail.removeCSSClass('noResultsLenseSearch');
-                this.puthisPlantillasEmail.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Plantillaemail.name, 'IC_PlantillaEmail', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisPlantillasEmail.removeCSSClass('noResultsLenseSearch');
-                            this.puthisPlantillasEmail.searchResults = response.results;
-                            if (this.puthisPlantillasEmail.searchResults &&
-                                this.puthisPlantillasEmail.searchResults.length === 0) {
-                                this.puthisPlantillasEmail.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisPlantillasEmail.searchResults &&
-                                this.puthisPlantillasEmail.searchResults.length === 1) {
-                                this.processputhisplantillasemailSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisPlantillasEmail.removeCSSClass('noResultsLenseSearch');
-                            this.puthisPlantillasEmail.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisPlantillasEmail, ModelConstants.Plantillaemail.name, 'IC_PlantillaEmail',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisplantillasemail();
             }
-        } else {
-            this.puthisPlantillasEmail.removeCSSClass('noResultsLenseSearch');
-            this.puthisPlantillasEmail.searchResults = [];
-            this.cleanputhisplantillasemail();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisplantillasemailSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -286,7 +262,7 @@ export class PlantillaEmailSIUumodificarComponent extends AbstractServiceIU impl
                 this.puthisPlantillasEmail.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisPlantillasEmail.getSelectedInstances().push(selectedInstance);
+            this.puthisPlantillasEmail.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisplantillasemail('SetValue', false);
         this.changeDetectorRef.markForCheck();

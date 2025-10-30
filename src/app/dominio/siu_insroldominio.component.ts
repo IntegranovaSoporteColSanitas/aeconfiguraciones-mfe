@@ -41,8 +41,8 @@ export class DominioSIUuInsRolDominioComponent extends AbstractServiceIU impleme
             'Indicar rol con permisos');
 
         // Create inbound argument components
-        this.puthisDominio = new FieldOVLenseSearch(this.langMng);
-        this.puevcRol = new FieldOVLenseSearch(this.langMng);
+        this.puthisDominio = new FieldOVLenseSearch(this.langMng, this.util);
+        this.puevcRol = new FieldOVLenseSearch(this.langMng, this.util);
 
     }
 
@@ -186,44 +186,20 @@ export class DominioSIUuInsRolDominioComponent extends AbstractServiceIU impleme
             });
         }
     }
-
     /**
      * Process the change in the p_thisDominio lense search argument
      */
     public onputhisdominioChange(): void {
-
-        const searchText = this.puthisDominio.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisDominio.lastText) {
-                this.puthisDominio.removeCSSClass('noResultsLenseSearch');
-                this.puthisDominio.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Dominio.name, 'IC_Dominio', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisDominio.removeCSSClass('noResultsLenseSearch');
-                            this.puthisDominio.searchResults = response.results;
-                            if (this.puthisDominio.searchResults &&
-                                this.puthisDominio.searchResults.length === 0) {
-                                this.puthisDominio.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisDominio.searchResults &&
-                                this.puthisDominio.searchResults.length === 1) {
-                                this.processputhisdominioSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisDominio.removeCSSClass('noResultsLenseSearch');
-                            this.puthisDominio.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisDominio, ModelConstants.Dominio.name, 'IC_Dominio',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisdominio();
             }
-        } else {
-            this.puthisDominio.removeCSSClass('noResultsLenseSearch');
-            this.puthisDominio.searchResults = [];
-            this.cleanputhisdominio();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisdominioSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -243,7 +219,7 @@ export class DominioSIUuInsRolDominioComponent extends AbstractServiceIU impleme
                 this.puthisDominio.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisDominio.getSelectedInstances().push(selectedInstance);
+            this.puthisDominio.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisdominio('SetValue', false);
         this.changeDetectorRef.markForCheck();
@@ -306,47 +282,22 @@ export class DominioSIUuInsRolDominioComponent extends AbstractServiceIU impleme
             });
         }
     }
-
     /**
      * Process the change in the p_evcRol lense search argument
      */
     public onpuevcrolChange(): void {
-
-        const searchText = this.puevcRol.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puevcRol.lastText) {
-                const navFilters: string[] = [];
-                navFilters.push('Dominio_InsRolDominio_p_evcRol_NavFilter0');
-                this.puevcRol.removeCSSClass('noResultsLenseSearch');
-                this.puevcRol.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Rol.name, 'IC_Rol', searchText, navFilters,
-                    this.getNavigationFilterVariables()).then(
-                        (response: any) => {
-                            this.puevcRol.removeCSSClass('noResultsLenseSearch');
-                            this.puevcRol.searchResults = response.results;
-                            if (this.puevcRol.searchResults &&
-                                this.puevcRol.searchResults.length === 0) {
-                                this.puevcRol.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puevcRol.searchResults &&
-                                this.puevcRol.searchResults.length === 1) {
-                                this.processpuevcrolSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puevcRol.removeCSSClass('noResultsLenseSearch');
-                            this.puevcRol.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        const navFilters: string[] = [];
+        navFilters.push('Dominio_InsRolDominio_p_evcRol_NavFilter0');
+        this.executeLenseSearch(this.puevcRol, ModelConstants.Rol.name, 'IC_Rol',
+            navFilters).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanpuevcrol();
             }
-        } else {
-            this.puevcRol.removeCSSClass('noResultsLenseSearch');
-            this.puevcRol.searchResults = [];
-            this.cleanpuevcrol();
-        }
-
+            if (foundInstances === 1) {
+                this.processpuevcrolSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -366,7 +317,7 @@ export class DominioSIUuInsRolDominioComponent extends AbstractServiceIU impleme
                 this.puevcRol.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puevcRol.getSelectedInstances().push(selectedInstance);
+            this.puevcRol.addInstances(selectedInstance);
         }
         this.executeDependecyRulespuevcrol('SetValue', false);
         this.changeDetectorRef.markForCheck();

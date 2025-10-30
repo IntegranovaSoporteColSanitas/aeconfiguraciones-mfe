@@ -42,7 +42,7 @@ export class TextoAvisoSIUumodificarComponent extends AbstractServiceIU implemen
             'Modificar');
 
         // Create inbound argument components
-        this.puthisTextoAviso = new FieldOVLenseSearch(this.langMng);
+        this.puthisTextoAviso = new FieldOVLenseSearch(this.langMng, this.util);
         this.puDescripcion = new Field(this.langMng);
         this.puValor = new Field(this.langMng);
 
@@ -213,44 +213,20 @@ export class TextoAvisoSIUumodificarComponent extends AbstractServiceIU implemen
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisTextoAviso lense search argument
      */
     public onputhistextoavisoChange(): void {
-
-        const searchText = this.puthisTextoAviso.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisTextoAviso.lastText) {
-                this.puthisTextoAviso.removeCSSClass('noResultsLenseSearch');
-                this.puthisTextoAviso.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Textoaviso.name, 'IC_TextoAviso', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisTextoAviso.removeCSSClass('noResultsLenseSearch');
-                            this.puthisTextoAviso.searchResults = response.results;
-                            if (this.puthisTextoAviso.searchResults &&
-                                this.puthisTextoAviso.searchResults.length === 0) {
-                                this.puthisTextoAviso.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisTextoAviso.searchResults &&
-                                this.puthisTextoAviso.searchResults.length === 1) {
-                                this.processputhistextoavisoSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisTextoAviso.removeCSSClass('noResultsLenseSearch');
-                            this.puthisTextoAviso.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisTextoAviso, ModelConstants.Textoaviso.name, 'IC_TextoAviso',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhistextoaviso();
             }
-        } else {
-            this.puthisTextoAviso.removeCSSClass('noResultsLenseSearch');
-            this.puthisTextoAviso.searchResults = [];
-            this.cleanputhistextoaviso();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhistextoavisoSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -270,7 +246,7 @@ export class TextoAvisoSIUumodificarComponent extends AbstractServiceIU implemen
                 this.puthisTextoAviso.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisTextoAviso.getSelectedInstances().push(selectedInstance);
+            this.puthisTextoAviso.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhistextoaviso('SetValue', false);
         this.changeDetectorRef.markForCheck();

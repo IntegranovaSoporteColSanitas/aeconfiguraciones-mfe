@@ -144,6 +144,13 @@
                         <td [ngClass]="col.styleClass" [style.width]="col.applyWidth ? col.width + 'px' : ''"
                             class="p-resizable-column">
                             <span class="p-column-title">{{col.header}}</span>
+
+                            <ng-container *ngIf="col.styleClass.indexOf('HTML') >= 0">
+                                <span [innerHTML]="rowData[col.field]" ></span> 
+                            </ng-container>
+
+                            <ng-container *ngIf="col.styleClass.indexOf('HTML') < 0">
+
                             <ng-container *ngIf="col.type === 0">
                                 <ng-container *ngIf="!col.showPopup">
                                     <ng-container *ngIf="col.linkIndex >=0">
@@ -222,6 +229,8 @@
                             <ng-container *ngIf="col.type === 5">
                                 <button type="button" class="btn"
                                     (click)="piu.onGridClickCell(rowData, col.linkIsAction, col.linkIndex)">{{col.header}}</button>
+                            </ng-container>
+
                             </ng-container>
                         </td>
                     </ng-container>

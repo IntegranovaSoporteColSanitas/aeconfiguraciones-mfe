@@ -42,7 +42,7 @@ export class PeriodicidadSIUumodificarComponent extends AbstractServiceIU implem
             'Modificar periodicidad');
 
         // Create inbound argument components
-        this.puthisPeriodicidad = new FieldOVLenseSearch(this.langMng);
+        this.puthisPeriodicidad = new FieldOVLenseSearch(this.langMng, this.util);
         this.puEsMensual = new FieldDefinedSelection(this.langMng);
 
     }
@@ -200,44 +200,20 @@ export class PeriodicidadSIUumodificarComponent extends AbstractServiceIU implem
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisPeriodicidad lense search argument
      */
     public onputhisperiodicidadChange(): void {
-
-        const searchText = this.puthisPeriodicidad.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisPeriodicidad.lastText) {
-                this.puthisPeriodicidad.removeCSSClass('noResultsLenseSearch');
-                this.puthisPeriodicidad.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Periodicidad.name, 'IC_Periodicidad', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisPeriodicidad.removeCSSClass('noResultsLenseSearch');
-                            this.puthisPeriodicidad.searchResults = response.results;
-                            if (this.puthisPeriodicidad.searchResults &&
-                                this.puthisPeriodicidad.searchResults.length === 0) {
-                                this.puthisPeriodicidad.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisPeriodicidad.searchResults &&
-                                this.puthisPeriodicidad.searchResults.length === 1) {
-                                this.processputhisperiodicidadSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisPeriodicidad.removeCSSClass('noResultsLenseSearch');
-                            this.puthisPeriodicidad.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisPeriodicidad, ModelConstants.Periodicidad.name, 'IC_Periodicidad',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisperiodicidad();
             }
-        } else {
-            this.puthisPeriodicidad.removeCSSClass('noResultsLenseSearch');
-            this.puthisPeriodicidad.searchResults = [];
-            this.cleanputhisperiodicidad();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisperiodicidadSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -257,7 +233,7 @@ export class PeriodicidadSIUumodificarComponent extends AbstractServiceIU implem
                 this.puthisPeriodicidad.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisPeriodicidad.getSelectedInstances().push(selectedInstance);
+            this.puthisPeriodicidad.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisperiodicidad('SetValue', false);
         this.changeDetectorRef.markForCheck();

@@ -50,9 +50,9 @@ export class InstitucionMatNeoSIUuTMODIFICARComponent extends AbstractServiceIU 
             'Modificar');
 
         // Create inbound argument components
-        this.puthisInstitucionMatNeo = new FieldOVLenseSearch(this.langMng);
-        this.ptupuevcMunicipio = new FieldOVLenseSearch(this.langMng);
-        this.ptupuevcTarifa = new FieldOVLenseSearch(this.langMng);
+        this.puthisInstitucionMatNeo = new FieldOVLenseSearch(this.langMng, this.util);
+        this.ptupuevcMunicipio = new FieldOVLenseSearch(this.langMng, this.util);
+        this.ptupuevcTarifa = new FieldOVLenseSearch(this.langMng, this.util);
         this.ptupuevcTipoIdentificacion = new FieldOVPreload(this.langMng);
         this.ptupuNumIdentificacion = new Field(this.langMng);
         this.ptupuNombre = new Field(this.langMng);
@@ -385,44 +385,20 @@ export class InstitucionMatNeoSIUuTMODIFICARComponent extends AbstractServiceIU 
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisInstitucionMatNeo lense search argument
      */
     public onputhisinstitucionmatneoChange(): void {
-
-        const searchText = this.puthisInstitucionMatNeo.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisInstitucionMatNeo.lastText) {
-                this.puthisInstitucionMatNeo.removeCSSClass('noResultsLenseSearch');
-                this.puthisInstitucionMatNeo.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Institucionmatneo.name, 'IC_InstitucionMatNeo', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisInstitucionMatNeo.removeCSSClass('noResultsLenseSearch');
-                            this.puthisInstitucionMatNeo.searchResults = response.results;
-                            if (this.puthisInstitucionMatNeo.searchResults &&
-                                this.puthisInstitucionMatNeo.searchResults.length === 0) {
-                                this.puthisInstitucionMatNeo.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisInstitucionMatNeo.searchResults &&
-                                this.puthisInstitucionMatNeo.searchResults.length === 1) {
-                                this.processputhisinstitucionmatneoSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisInstitucionMatNeo.removeCSSClass('noResultsLenseSearch');
-                            this.puthisInstitucionMatNeo.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisInstitucionMatNeo, ModelConstants.Institucionmatneo.name, 'IC_InstitucionMatNeo',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisinstitucionmatneo();
             }
-        } else {
-            this.puthisInstitucionMatNeo.removeCSSClass('noResultsLenseSearch');
-            this.puthisInstitucionMatNeo.searchResults = [];
-            this.cleanputhisinstitucionmatneo();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisinstitucionmatneoSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -442,7 +418,7 @@ export class InstitucionMatNeoSIUuTMODIFICARComponent extends AbstractServiceIU 
                 this.puthisInstitucionMatNeo.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisInstitucionMatNeo.getSelectedInstances().push(selectedInstance);
+            this.puthisInstitucionMatNeo.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisinstitucionmatneo('SetValue', false);
         this.changeDetectorRef.markForCheck();
@@ -505,44 +481,20 @@ export class InstitucionMatNeoSIUuTMODIFICARComponent extends AbstractServiceIU 
             });
         }
     }
-
     /**
      * Process the change in the pt_p_evcMunicipio lense search argument
      */
     public onptupuevcmunicipioChange(): void {
-
-        const searchText = this.ptupuevcMunicipio.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.ptupuevcMunicipio.lastText) {
-                this.ptupuevcMunicipio.removeCSSClass('noResultsLenseSearch');
-                this.ptupuevcMunicipio.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Municipio.name, 'IC_Municipio', searchText, [], null).then(
-                        (response: any) => {
-                            this.ptupuevcMunicipio.removeCSSClass('noResultsLenseSearch');
-                            this.ptupuevcMunicipio.searchResults = response.results;
-                            if (this.ptupuevcMunicipio.searchResults &&
-                                this.ptupuevcMunicipio.searchResults.length === 0) {
-                                this.ptupuevcMunicipio.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.ptupuevcMunicipio.searchResults &&
-                                this.ptupuevcMunicipio.searchResults.length === 1) {
-                                this.processptupuevcmunicipioSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.ptupuevcMunicipio.removeCSSClass('noResultsLenseSearch');
-                            this.ptupuevcMunicipio.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.ptupuevcMunicipio, ModelConstants.Municipio.name, 'IC_Municipio',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanptupuevcmunicipio();
             }
-        } else {
-            this.ptupuevcMunicipio.removeCSSClass('noResultsLenseSearch');
-            this.ptupuevcMunicipio.searchResults = [];
-            this.cleanptupuevcmunicipio();
-        }
-
+            if (foundInstances === 1) {
+                this.processptupuevcmunicipioSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -562,7 +514,7 @@ export class InstitucionMatNeoSIUuTMODIFICARComponent extends AbstractServiceIU 
                 this.ptupuevcMunicipio.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.ptupuevcMunicipio.getSelectedInstances().push(selectedInstance);
+            this.ptupuevcMunicipio.addInstances(selectedInstance);
         }
         this.executeDependecyRulesptupuevcmunicipio('SetValue', false);
         this.changeDetectorRef.markForCheck();
@@ -625,44 +577,20 @@ export class InstitucionMatNeoSIUuTMODIFICARComponent extends AbstractServiceIU 
             });
         }
     }
-
     /**
      * Process the change in the pt_p_evcTarifa lense search argument
      */
     public onptupuevctarifaChange(): void {
-
-        const searchText = this.ptupuevcTarifa.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.ptupuevcTarifa.lastText) {
-                this.ptupuevcTarifa.removeCSSClass('noResultsLenseSearch');
-                this.ptupuevcTarifa.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Tarifa.name, 'IC_Tarifa', searchText, [], null).then(
-                        (response: any) => {
-                            this.ptupuevcTarifa.removeCSSClass('noResultsLenseSearch');
-                            this.ptupuevcTarifa.searchResults = response.results;
-                            if (this.ptupuevcTarifa.searchResults &&
-                                this.ptupuevcTarifa.searchResults.length === 0) {
-                                this.ptupuevcTarifa.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.ptupuevcTarifa.searchResults &&
-                                this.ptupuevcTarifa.searchResults.length === 1) {
-                                this.processptupuevctarifaSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.ptupuevcTarifa.removeCSSClass('noResultsLenseSearch');
-                            this.ptupuevcTarifa.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.ptupuevcTarifa, ModelConstants.Tarifa.name, 'IC_Tarifa',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanptupuevctarifa();
             }
-        } else {
-            this.ptupuevcTarifa.removeCSSClass('noResultsLenseSearch');
-            this.ptupuevcTarifa.searchResults = [];
-            this.cleanptupuevctarifa();
-        }
-
+            if (foundInstances === 1) {
+                this.processptupuevctarifaSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -682,7 +610,7 @@ export class InstitucionMatNeoSIUuTMODIFICARComponent extends AbstractServiceIU 
                 this.ptupuevcTarifa.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.ptupuevcTarifa.getSelectedInstances().push(selectedInstance);
+            this.ptupuevcTarifa.addInstances(selectedInstance);
         }
         this.executeDependecyRulesptupuevctarifa('SetValue', false);
         this.changeDetectorRef.markForCheck();

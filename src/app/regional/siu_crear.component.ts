@@ -42,7 +42,7 @@ export class RegionalSIUucrearComponent extends AbstractServiceIU implements OnI
             'Crear regional');
 
         // Create inbound argument components
-        this.puagrRespRegional = new FieldOVLenseSearch(this.langMng);
+        this.puagrRespRegional = new FieldOVLenseSearch(this.langMng, this.util);
         this.puatrCodigo = new Field(this.langMng);
         this.puatrDescripcion = new Field(this.langMng);
 
@@ -169,44 +169,20 @@ export class RegionalSIUucrearComponent extends AbstractServiceIU implements OnI
             });
         }
     }
-
     /**
      * Process the change in the p_agrRespRegional lense search argument
      */
     public onpuagrrespregionalChange(): void {
-
-        const searchText = this.puagrRespRegional.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puagrRespRegional.lastText) {
-                this.puagrRespRegional.removeCSSClass('noResultsLenseSearch');
-                this.puagrRespRegional.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Respregional.name, 'IC_RespRegionalNomApe', searchText, [], null).then(
-                        (response: any) => {
-                            this.puagrRespRegional.removeCSSClass('noResultsLenseSearch');
-                            this.puagrRespRegional.searchResults = response.results;
-                            if (this.puagrRespRegional.searchResults &&
-                                this.puagrRespRegional.searchResults.length === 0) {
-                                this.puagrRespRegional.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puagrRespRegional.searchResults &&
-                                this.puagrRespRegional.searchResults.length === 1) {
-                                this.processpuagrrespregionalSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puagrRespRegional.removeCSSClass('noResultsLenseSearch');
-                            this.puagrRespRegional.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puagrRespRegional, ModelConstants.Respregional.name, 'IC_RespRegionalNomApe',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanpuagrrespregional();
             }
-        } else {
-            this.puagrRespRegional.removeCSSClass('noResultsLenseSearch');
-            this.puagrRespRegional.searchResults = [];
-            this.cleanpuagrrespregional();
-        }
-
+            if (foundInstances === 1) {
+                this.processpuagrrespregionalSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -226,7 +202,7 @@ export class RegionalSIUucrearComponent extends AbstractServiceIU implements OnI
                 this.puagrRespRegional.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puagrRespRegional.getSelectedInstances().push(selectedInstance);
+            this.puagrRespRegional.addInstances(selectedInstance);
         }
         this.executeDependecyRulespuagrrespregional('SetValue', false);
         this.changeDetectorRef.markForCheck();

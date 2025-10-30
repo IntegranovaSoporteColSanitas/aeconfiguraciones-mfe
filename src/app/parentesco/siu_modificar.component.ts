@@ -45,7 +45,7 @@ export class ParentescoSIUumodificarComponent extends AbstractServiceIU implemen
             'Modificar parentesco');
 
         // Create inbound argument components
-        this.puthisParentesco = new FieldOVLenseSearch(this.langMng);
+        this.puthisParentesco = new FieldOVLenseSearch(this.langMng, this.util);
         this.puEsTitular = new FieldDefinedSelection(this.langMng);
         this.puEsConyuge = new FieldDefinedSelection(this.langMng);
         this.puEsPadre = new FieldDefinedSelection(this.langMng);
@@ -289,44 +289,20 @@ export class ParentescoSIUumodificarComponent extends AbstractServiceIU implemen
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisParentesco lense search argument
      */
     public onputhisparentescoChange(): void {
-
-        const searchText = this.puthisParentesco.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisParentesco.lastText) {
-                this.puthisParentesco.removeCSSClass('noResultsLenseSearch');
-                this.puthisParentesco.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Parentesco.name, 'IC_Parentesco', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisParentesco.removeCSSClass('noResultsLenseSearch');
-                            this.puthisParentesco.searchResults = response.results;
-                            if (this.puthisParentesco.searchResults &&
-                                this.puthisParentesco.searchResults.length === 0) {
-                                this.puthisParentesco.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisParentesco.searchResults &&
-                                this.puthisParentesco.searchResults.length === 1) {
-                                this.processputhisparentescoSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisParentesco.removeCSSClass('noResultsLenseSearch');
-                            this.puthisParentesco.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisParentesco, ModelConstants.Parentesco.name, 'IC_Parentesco',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisparentesco();
             }
-        } else {
-            this.puthisParentesco.removeCSSClass('noResultsLenseSearch');
-            this.puthisParentesco.searchResults = [];
-            this.cleanputhisparentesco();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisparentescoSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -346,7 +322,7 @@ export class ParentescoSIUumodificarComponent extends AbstractServiceIU implemen
                 this.puthisParentesco.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisParentesco.getSelectedInstances().push(selectedInstance);
+            this.puthisParentesco.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisparentesco('SetValue', false);
         this.changeDetectorRef.markForCheck();
