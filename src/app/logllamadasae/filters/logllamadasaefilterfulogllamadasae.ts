@@ -9,7 +9,7 @@ import { DefinedSelections } from '../../common/definedSelection';
 import { AbstractPIU } from '../../common/abstractPIU';
 
 /**
- * Manages the filter F_LogLlamadasAE of class LogLlamadasAE
+ * « Manages the filter F_LogLlamadasAE of class LogLlamadasAE »
  */
 export class LogLlamadasAEFilterFuLogLlamadasAE extends AbstractFilter {
 

@@ -8,7 +8,7 @@ import { StandardFunctions } from '../../common/standardFunctions';
 import { LanguageMng } from '../../common/languageMng';
 
 /**
- * Manages the filter F_FirmasResponsables of class Firma
+ * « Manages the filter F_FirmasResponsables of class Firma »
  */
 export class FirmaFilterFuFirmasResponsables extends AbstractFilter {
 

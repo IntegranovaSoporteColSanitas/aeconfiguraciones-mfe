@@ -70,7 +70,7 @@ export class ParamReporteSIUumodificarComponent extends AbstractServiceIU implem
         this.puthisParamReporte.dataType = ModelConstants.Paramreporte.name;
         this.puthisParamReporte.allowMultiSelect = true;
         this.puthisParamReporte.oidFields = Array(1);
-        this.puthisParamReporte.oidFieldsTypes = ['autonumerico'];
+        this.puthisParamReporte.oidFieldsTypes = [Field.dtAuto];
         this.puthisParamReporte.assignCSS();
         this.fields.push(this.puthisParamReporte);
 
@@ -263,7 +263,7 @@ export class ParamReporteSIUumodificarComponent extends AbstractServiceIU implem
         this.clearValidationMessages();
         let fieldsHasValue = true;
         for (const field of this.puthisParamReporte.oidFields) {
-            if (!field) {
+            if (this.util.isNull(field)) {
                 fieldsHasValue = false;
                 break;
             }

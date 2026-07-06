@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { Field } from '../common/baseIUElements';
@@ -103,7 +103,7 @@ export class TextoAvisoPIUuTextoAvisoComponent extends AbstractPIU implements On
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Textoaviso.name;
         accItem.targetUI = ModelConstants.Textoaviso.siuucrear;
-
+        accItem.targetType  = ScenarioType.Create;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -117,7 +117,7 @@ export class TextoAvisoPIUuTextoAvisoComponent extends AbstractPIU implements On
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Textoaviso.name;
         accItem.targetUI = ModelConstants.Textoaviso.siuumodificar;
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -131,7 +131,7 @@ export class TextoAvisoPIUuTextoAvisoComponent extends AbstractPIU implements On
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Textoaviso.name;
         accItem.targetUI = ModelConstants.Textoaviso.siuueliminar;
-
+        accItem.targetType  = ScenarioType.Delete;
         this.actions.push(accItem);
 
     }

@@ -4,7 +4,7 @@ import { Util } from '../common/app.utils';
 import { ErrorInformation, QueryResponse } from '../common/answerRequestInformation';
 
 /**
- * Service and queries of class 'Municipio'
+ * « Service and queries of class 'Municipio' »
  */
 export class MunicipioServices extends AbstractServices {
 

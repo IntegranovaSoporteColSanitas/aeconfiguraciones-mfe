@@ -65,7 +65,7 @@ export class MotivoExcepcionSolNovSIUumodificarComponent extends AbstractService
         this.puthisMotivoExcepcionSolNov.dataType = ModelConstants.Motivoexcepcionsolnov.name;
         this.puthisMotivoExcepcionSolNov.allowMultiSelect = true;
         this.puthisMotivoExcepcionSolNov.oidFields = Array(1);
-        this.puthisMotivoExcepcionSolNov.oidFieldsTypes = ['autonumerico'];
+        this.puthisMotivoExcepcionSolNov.oidFieldsTypes = [Field.dtAuto];
         this.puthisMotivoExcepcionSolNov.assignCSS();
         this.fields.push(this.puthisMotivoExcepcionSolNov);
 
@@ -235,7 +235,7 @@ export class MotivoExcepcionSolNovSIUumodificarComponent extends AbstractService
         this.clearValidationMessages();
         let fieldsHasValue = true;
         for (const field of this.puthisMotivoExcepcionSolNov.oidFields) {
-            if (!field) {
+            if (this.util.isNull(field)) {
                 fieldsHasValue = false;
                 break;
             }

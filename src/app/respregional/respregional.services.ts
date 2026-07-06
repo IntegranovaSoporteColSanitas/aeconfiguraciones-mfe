@@ -4,7 +4,7 @@ import { Util } from '../common/app.utils';
 import { ErrorInformation, QueryResponse } from '../common/answerRequestInformation';
 
 /**
- * Service and queries of class 'RespRegional'
+ * « Service and queries of class 'RespRegional' »
  */
 export class RespRegionalServices extends AbstractServices {
 

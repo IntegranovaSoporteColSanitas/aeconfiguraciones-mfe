@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { DefinedSelections } from '../common/definedSelection';
@@ -155,7 +155,7 @@ export class PlantillaEmailPIUuPlantillaEmailComponent extends AbstractPIU imple
         accItem.agents = [ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Plantillaemail.name;
         accItem.targetUI = ModelConstants.Plantillaemail.siuutnew;
-
+        accItem.targetType  = ScenarioType.Create;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -170,7 +170,7 @@ export class PlantillaEmailPIUuPlantillaEmailComponent extends AbstractPIU imple
         accItem.targetClass = ModelConstants.Plantillaemail.name;
         accItem.targetUI = ModelConstants.Plantillaemail.siuudummymodificar;
         accItem.setNoShowProperties('dummyModificar', 'p_thisplantillaemail_oid', '', false);
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -185,7 +185,7 @@ export class PlantillaEmailPIUuPlantillaEmailComponent extends AbstractPIU imple
         accItem.targetClass = ModelConstants.Plantillaemail.name;
         accItem.targetUI = ModelConstants.Plantillaemail.siuueliminar;
         accItem.setNoShowProperties('eliminar', 'p_thisplantillasemail_oid', '', false);
-
+        accItem.targetType  = ScenarioType.Delete;
         this.actions.push(accItem);
 
     }

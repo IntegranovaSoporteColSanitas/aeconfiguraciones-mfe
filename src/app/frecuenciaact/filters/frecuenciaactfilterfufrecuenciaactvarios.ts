@@ -8,7 +8,7 @@ import { LanguageMng } from '../../common/languageMng';
 import { DefinedSelections } from '../../common/definedSelection';
 
 /**
- * Manages the filter F_FrecuenciaActVarios of class FrecuenciaAct
+ * « Manages the filter F_FrecuenciaActVarios of class FrecuenciaAct »
  */
 export class FrecuenciaActFilterFuFrecuenciaActVarios extends AbstractFilter {
 

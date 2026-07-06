@@ -5,7 +5,7 @@ import { QueryResponse } from '../common/answerRequestInformation';
 import { JsonUtility } from '../common/jsonUtility';
 
 /**
- * Service and queries of class 'LogLlamadasAE'
+ * « Service and queries of class 'LogLlamadasAE' »
  */
 export class LogLlamadasAEServices extends AbstractServices {
 

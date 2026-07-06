@@ -7,7 +7,7 @@ import { StandardFunctions } from '../../common/standardFunctions';
 import { LanguageMng } from '../../common/languageMng';
 
 /**
- * Manages the filter F_LogContSinDocSol of class LogContSinDocSol
+ * « Manages the filter F_LogContSinDocSol of class LogContSinDocSol »
  */
 export class LogContSinDocSolFilterFuLogContSinDocSol extends AbstractFilter {
 

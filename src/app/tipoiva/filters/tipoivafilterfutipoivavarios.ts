@@ -8,7 +8,7 @@ import { StandardFunctions } from '../../common/standardFunctions';
 import { LanguageMng } from '../../common/languageMng';
 
 /**
- * Manages the filter F_TipoIVAVarios of class TipoIVA
+ * « Manages the filter F_TipoIVAVarios of class TipoIVA »
  */
 export class TipoIVAFilterFuTipoIVAVarios extends AbstractFilter {
 

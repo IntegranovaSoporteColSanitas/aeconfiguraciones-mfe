@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { DefinedSelections } from '../common/definedSelection';
@@ -116,7 +116,7 @@ export class ParamReportePIUuDuParametrosComponent extends AbstractPIU implement
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Paramreporte.name;
         accItem.targetUI = ModelConstants.Paramreporte.siuutnew;
-
+        accItem.targetType  = ScenarioType.Create;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -130,7 +130,7 @@ export class ParamReportePIUuDuParametrosComponent extends AbstractPIU implement
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Paramreporte.name;
         accItem.targetUI = ModelConstants.Paramreporte.siuumodificar;
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -145,7 +145,7 @@ export class ParamReportePIUuDuParametrosComponent extends AbstractPIU implement
         accItem.targetClass = ModelConstants.Paramreporte.name;
         accItem.targetUI = ModelConstants.Paramreporte.siuutsubir;
         accItem.setNoShowProperties('TSUBIR', 'p_thisparamreporte_oid', '', false);
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -160,7 +160,7 @@ export class ParamReportePIUuDuParametrosComponent extends AbstractPIU implement
         accItem.targetClass = ModelConstants.Paramreporte.name;
         accItem.targetUI = ModelConstants.Paramreporte.siuutbajar;
         accItem.setNoShowProperties('TBAJAR', 'p_thisparamreporte_oid', '', false);
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -174,7 +174,7 @@ export class ParamReportePIUuDuParametrosComponent extends AbstractPIU implement
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Paramreporte.name;
         accItem.targetUI = ModelConstants.Paramreporte.siuutdelete;
-
+        accItem.targetType  = ScenarioType.Delete;
         this.actions.push(accItem);
 
     }

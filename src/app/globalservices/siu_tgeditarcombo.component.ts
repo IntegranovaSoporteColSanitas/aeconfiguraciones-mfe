@@ -69,7 +69,7 @@ export class GSSIUuTGEDITARCOMBOComponent extends AbstractServiceIU implements O
         this.ptuputhisContratoCombo.mandatory = true;
         this.ptuputhisContratoCombo.dataType = ModelConstants.Contratocombo.name;
         this.ptuputhisContratoCombo.oidFields = Array(1);
-        this.ptuputhisContratoCombo.oidFieldsTypes = ['autonumerico'];
+        this.ptuputhisContratoCombo.oidFieldsTypes = [Field.dtAuto];
         this.ptuputhisContratoCombo.assignCSS();
         this.fields.push(this.ptuputhisContratoCombo);
 
@@ -234,7 +234,7 @@ export class GSSIUuTGEDITARCOMBOComponent extends AbstractServiceIU implements O
         this.clearValidationMessages();
         let fieldsHasValue = true;
         for (const field of this.ptuputhisContratoCombo.oidFields) {
-            if (!field) {
+            if (this.util.isNull(field)) {
                 fieldsHasValue = false;
                 break;
             }

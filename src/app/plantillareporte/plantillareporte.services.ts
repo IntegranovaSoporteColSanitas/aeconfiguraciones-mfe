@@ -5,7 +5,7 @@ import { ErrorInformation, QueryResponse } from '../common/answerRequestInformat
 import { JsonUtility } from '../common/jsonUtility';
 
 /**
- * Service and queries of class 'PlantillaReporte'
+ * « Service and queries of class 'PlantillaReporte' »
  */
 export class PlantillaReporteServices extends AbstractServices {
 

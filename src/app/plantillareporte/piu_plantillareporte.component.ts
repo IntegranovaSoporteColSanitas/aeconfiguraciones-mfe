@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { PlantillaReporteFilterFuPlantillaReporte} from './filters/plantillareportefilterfuplantillareporte';
@@ -154,7 +154,7 @@ export class PlantillaReportePIUuPlantillaReporteComponent extends AbstractPIU i
             this.langMng.translateText(
             'gs_TGADDPLANTREP',
             'Nuevo'));
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -172,7 +172,7 @@ export class PlantillaReportePIUuPlantillaReporteComponent extends AbstractPIU i
             this.langMng.translateText(
             'gs_TGEDITPLANTREP',
             'Modificar'));
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -190,7 +190,7 @@ export class PlantillaReportePIUuPlantillaReporteComponent extends AbstractPIU i
             this.langMng.translateText(
             'cls_PlantillaReporte_svc_eliminar',
             'Eliminar'));
-
+        accItem.targetType  = ScenarioType.Delete;
         this.actions.push(accItem);
 
     }

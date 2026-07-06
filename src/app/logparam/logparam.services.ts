@@ -4,7 +4,7 @@ import { Util } from '../common/app.utils';
 import { QueryResponse } from '../common/answerRequestInformation';
 
 /**
- * Service and queries of class 'LogParam'
+ * « Service and queries of class 'LogParam' »
  */
 export class LogParamServices extends AbstractServices {
 

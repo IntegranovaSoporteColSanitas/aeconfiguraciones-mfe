@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { Field } from '../common/baseIUElements';
@@ -102,7 +102,7 @@ export class ValorPIUuValorComponent extends AbstractPIU implements OnInit {
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Valor.name;
         accItem.targetUI = ModelConstants.Valor.siuucrear;
-
+        accItem.targetType  = ScenarioType.Create;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -116,7 +116,7 @@ export class ValorPIUuValorComponent extends AbstractPIU implements OnInit {
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Valor.name;
         accItem.targetUI = ModelConstants.Valor.siuumodificar;
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -131,7 +131,7 @@ export class ValorPIUuValorComponent extends AbstractPIU implements OnInit {
         accItem.targetClass = ModelConstants.Valor.name;
         accItem.targetUI = ModelConstants.Valor.siuueliminar;
         accItem.setNoShowProperties('eliminar', 'p_thisvalor_oid', '', false);
-
+        accItem.targetType  = ScenarioType.Delete;
         this.actions.push(accItem);
 
     }

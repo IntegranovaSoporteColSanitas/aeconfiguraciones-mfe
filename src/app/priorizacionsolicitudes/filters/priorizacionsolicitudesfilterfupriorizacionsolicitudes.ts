@@ -8,7 +8,7 @@ import { LanguageMng } from '../../common/languageMng';
 import { DefinedSelections } from '../../common/definedSelection';
 
 /**
- * Manages the filter F_PriorizacionSolicitudes of class PriorizacionSolicitudes
+ * « Manages the filter F_PriorizacionSolicitudes of class PriorizacionSolicitudes »
  */
 export class PriorizacionSolicitudesFilterFuPriorizacionSolicitudes extends AbstractFilter {
 

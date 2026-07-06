@@ -4,7 +4,7 @@ import { Util } from '../common/app.utils';
 import { ErrorInformation, QueryResponse } from '../common/answerRequestInformation';
 
 /**
- * Service and queries of class 'EstadoBeneficiario'
+ * « Service and queries of class 'EstadoBeneficiario' »
  */
 export class EstadoBeneficiarioServices extends AbstractServices {
 

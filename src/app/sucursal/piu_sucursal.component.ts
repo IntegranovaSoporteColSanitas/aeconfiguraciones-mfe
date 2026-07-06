@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { Field } from '../common/baseIUElements';
@@ -115,7 +115,7 @@ export class SucursalPIUuSucursalComponent extends AbstractPIU implements OnInit
         accItem.agents = [ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Sucursal.name;
         accItem.targetUI = ModelConstants.Sucursal.siuucrear;
-
+        accItem.targetType  = ScenarioType.Create;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -130,7 +130,7 @@ export class SucursalPIUuSucursalComponent extends AbstractPIU implements OnInit
         accItem.targetClass = ModelConstants.Globalservices.name;
         accItem.targetUI = ModelConstants.Globalservices.siuuogsincsucursales;
         accItem.setNoShowProperties('OGSINCSUCURSALES', '', '', false);
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -145,7 +145,7 @@ export class SucursalPIUuSucursalComponent extends AbstractPIU implements OnInit
         accItem.targetClass = ModelConstants.Sucursal.name;
         accItem.targetUI = ModelConstants.Sucursal.siuueliminar;
         accItem.setNoShowProperties('eliminar', 'p_thissucursal_oid', '', false);
-
+        accItem.targetType  = ScenarioType.Delete;
         this.actions.push(accItem);
 
     }

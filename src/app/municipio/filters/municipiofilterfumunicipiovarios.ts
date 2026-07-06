@@ -9,7 +9,7 @@ import { LanguageMng } from '../../common/languageMng';
 import { DefinedSelections } from '../../common/definedSelection';
 
 /**
- * Manages the filter F_MunicipioVarios of class Municipio
+ * « Manages the filter F_MunicipioVarios of class Municipio »
  */
 export class MunicipioFilterFuMunicipioVarios extends AbstractFilter {
 

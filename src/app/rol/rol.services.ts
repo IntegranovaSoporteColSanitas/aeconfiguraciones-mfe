@@ -4,7 +4,7 @@ import { Util } from '../common/app.utils';
 import { ErrorInformation, QueryResponse } from '../common/answerRequestInformation';
 
 /**
- * Service and queries of class 'Rol'
+ * « Service and queries of class 'Rol' »
  */
 export class RolServices extends AbstractServices {
 

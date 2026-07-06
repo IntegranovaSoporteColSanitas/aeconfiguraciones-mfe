@@ -9,7 +9,7 @@ import { LanguageMng } from '../../common/languageMng';
 import { DefinedSelections } from '../../common/definedSelection';
 
 /**
- * Manages the filter F_PlanVarios of class Planes
+ * « Manages the filter F_PlanVarios of class Planes »
  */
 export class PlanesFilterFuPlanVarios extends AbstractFilter {
 

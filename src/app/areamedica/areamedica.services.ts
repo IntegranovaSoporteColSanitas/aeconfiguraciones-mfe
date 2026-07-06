@@ -3,7 +3,7 @@ import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 
 /**
- * Service and queries of class 'AreaMedica'
+ * « Service and queries of class 'AreaMedica' »
  */
 export class AreaMedicaServices extends AbstractServices {
 

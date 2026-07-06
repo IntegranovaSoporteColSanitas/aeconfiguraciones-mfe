@@ -1,7 +1,7 @@
 import { ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { AccNavItem } from '../common/queryIUElements';
+import { AccNavItem, ScenarioType, OpenScenarioType} from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractIIU } from '../common/abstractIIU';
 import { Field } from '../common/baseIUElements';
@@ -96,6 +96,7 @@ export class DominioIIUuDominiouMuGruposUsuariosComponent extends AbstractIIU {
         navItem.targetClass = ModelConstants.Loggruposusuarios.name;
         navItem.targetUI = ModelConstants.Loggruposusuarios.piuuloggruposusuarios;
         navItem.rolePath = 'Dominio';
+        navItem.targetType  = ScenarioType.Population;
         this.navigations.push(navItem);
 
     }

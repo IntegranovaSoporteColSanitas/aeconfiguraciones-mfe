@@ -4,7 +4,7 @@ import { Util } from '../common/app.utils';
 import { ErrorInformation } from '../common/answerRequestInformation';
 
 /**
- * Service and queries of class 'MotivoExcepcionSolNov'
+ * « Service and queries of class 'MotivoExcepcionSolNov' »
  */
 export class MotivoExcepcionSolNovServices extends AbstractServices {
 

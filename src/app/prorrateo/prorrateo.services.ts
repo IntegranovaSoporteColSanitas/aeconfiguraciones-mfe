@@ -4,7 +4,7 @@ import { Util } from '../common/app.utils';
 import { ErrorInformation, QueryResponse } from '../common/answerRequestInformation';
 
 /**
- * Service and queries of class 'Prorrateo'
+ * « Service and queries of class 'Prorrateo' »
  */
 export class ProrrateoServices extends AbstractServices {
 

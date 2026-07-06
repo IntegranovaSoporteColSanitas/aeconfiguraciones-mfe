@@ -34,10 +34,10 @@ export class ConditionalNavigationMng {
 
         this.appGlobalInfo.appExchangeInfo.clearConditionalNavigation();
 
-        switch (className) {
-            case 'Dominio':
+        switch (className.toLowerCase()) {
+            case 'Dominio'.toLowerCase():
                 return this.processCondNavdominio(serviceName, request, response, previousContext, comeBackContext);
-            case 'PlantillaEmail':
+            case 'PlantillaEmail'.toLowerCase():
                 return this.processCondNavplantillaemail(serviceName, request, response, previousContext, comeBackContext);
         }
         return false;

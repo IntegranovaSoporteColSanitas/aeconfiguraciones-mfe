@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { DefinedSelections } from '../common/definedSelection';
@@ -142,7 +142,7 @@ export class EstadoBeneficiarioPIUuEstadoBeneficiarioComponent extends AbstractP
         accItem.agents = [ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Estadobeneficiario.name;
         accItem.targetUI = ModelConstants.Estadobeneficiario.siuucrear;
-
+        accItem.targetType  = ScenarioType.Create;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -156,7 +156,7 @@ export class EstadoBeneficiarioPIUuEstadoBeneficiarioComponent extends AbstractP
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Estadobeneficiario.name;
         accItem.targetUI = ModelConstants.Estadobeneficiario.siuumodificar;
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -171,7 +171,7 @@ export class EstadoBeneficiarioPIUuEstadoBeneficiarioComponent extends AbstractP
         accItem.targetClass = ModelConstants.Globalservices.name;
         accItem.targetUI = ModelConstants.Globalservices.siuutgsincestadosbeneficiario;
         accItem.setNoShowProperties('TGSINCESTADOSBENEFICIARIO', '', '', false);
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -186,7 +186,7 @@ export class EstadoBeneficiarioPIUuEstadoBeneficiarioComponent extends AbstractP
         accItem.targetClass = ModelConstants.Estadobeneficiario.name;
         accItem.targetUI = ModelConstants.Estadobeneficiario.siuueliminar;
         accItem.setNoShowProperties('eliminar', 'p_thisestadobeneficiario_oid', '', false);
-
+        accItem.targetType  = ScenarioType.Delete;
         this.actions.push(accItem);
 
     }

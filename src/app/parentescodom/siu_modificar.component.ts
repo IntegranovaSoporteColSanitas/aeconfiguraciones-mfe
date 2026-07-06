@@ -71,7 +71,7 @@ export class ParentescoDomSIUumodificarComponent extends AbstractServiceIU imple
         this.puthisParentescoDom.dataType = ModelConstants.Parentescodom.name;
         this.puthisParentescoDom.allowMultiSelect = true;
         this.puthisParentescoDom.oidFields = Array(2);
-        this.puthisParentescoDom.oidFieldsTypes = ['autonumerico', 'autonumerico'];
+        this.puthisParentescoDom.oidFieldsTypes = [Field.dtAuto, Field.dtAuto];
         this.puthisParentescoDom.assignCSS();
         this.fields.push(this.puthisParentescoDom);
 
@@ -272,7 +272,7 @@ export class ParentescoDomSIUumodificarComponent extends AbstractServiceIU imple
         this.clearValidationMessages();
         let fieldsHasValue = true;
         for (const field of this.puthisParentescoDom.oidFields) {
-            if (!field) {
+            if (this.util.isNull(field)) {
                 fieldsHasValue = false;
                 break;
             }

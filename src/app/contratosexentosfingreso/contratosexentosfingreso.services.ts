@@ -4,7 +4,7 @@ import { Util } from '../common/app.utils';
 import { QueryResponse } from '../common/answerRequestInformation';
 
 /**
- * Service and queries of class 'ContratosExentosFIngreso'
+ * « Service and queries of class 'ContratosExentosFIngreso' »
  */
 export class ContratosExentosFIngresoServices extends AbstractServices {
 

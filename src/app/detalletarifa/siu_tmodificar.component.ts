@@ -77,7 +77,7 @@ export class DetalleTarifaSIUuTMODIFICARComponent extends AbstractServiceIU impl
         this.puthisDetalleTarifa.mandatory = true;
         this.puthisDetalleTarifa.dataType = ModelConstants.Detalletarifa.name;
         this.puthisDetalleTarifa.oidFields = Array(1);
-        this.puthisDetalleTarifa.oidFieldsTypes = ['autonumerico'];
+        this.puthisDetalleTarifa.oidFieldsTypes = [Field.dtAuto];
         this.puthisDetalleTarifa.assignCSS();
         this.fields.push(this.puthisDetalleTarifa);
 
@@ -337,7 +337,7 @@ export class DetalleTarifaSIUuTMODIFICARComponent extends AbstractServiceIU impl
         this.clearValidationMessages();
         let fieldsHasValue = true;
         for (const field of this.puthisDetalleTarifa.oidFields) {
-            if (!field) {
+            if (this.util.isNull(field)) {
                 fieldsHasValue = false;
                 break;
             }

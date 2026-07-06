@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { PlanesFilterFuPlanVarios} from './filters/planesfilterfuplanvarios';
@@ -176,7 +176,7 @@ export class PlanesPIUuPlanComponent extends AbstractPIU implements OnInit {
         accItem.agents = [ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Planes.name;
         accItem.targetUI = ModelConstants.Planes.siuucrear;
-
+        accItem.targetType  = ScenarioType.Create;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -190,7 +190,7 @@ export class PlanesPIUuPlanComponent extends AbstractPIU implements OnInit {
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Planes.name;
         accItem.targetUI = ModelConstants.Planes.siuumodificar;
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -205,7 +205,7 @@ export class PlanesPIUuPlanComponent extends AbstractPIU implements OnInit {
         accItem.targetClass = ModelConstants.Globalservices.name;
         accItem.targetUI = ModelConstants.Globalservices.siuutgsincplanes;
         accItem.setNoShowProperties('TGSINCPLANES', '', '', false);
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -220,7 +220,7 @@ export class PlanesPIUuPlanComponent extends AbstractPIU implements OnInit {
         accItem.targetClass = ModelConstants.Planes.name;
         accItem.targetUI = ModelConstants.Planes.siuueliminar;
         accItem.setNoShowProperties('eliminar', 'p_thisplan_oid', '', false);
-
+        accItem.targetType  = ScenarioType.Delete;
         this.actions.push(accItem);
 
     }

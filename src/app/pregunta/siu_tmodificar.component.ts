@@ -91,7 +91,7 @@ export class PreguntaSIUuTMODIFICARComponent extends AbstractServiceIU implement
         this.puthisPregunta.mandatory = true;
         this.puthisPregunta.dataType = ModelConstants.Pregunta.name;
         this.puthisPregunta.oidFields = Array(1);
-        this.puthisPregunta.oidFieldsTypes = ['int'];
+        this.puthisPregunta.oidFieldsTypes = [Field.dtInt];
         this.puthisPregunta.assignCSS();
         this.fields.push(this.puthisPregunta);
 
@@ -495,7 +495,7 @@ export class PreguntaSIUuTMODIFICARComponent extends AbstractServiceIU implement
         this.clearValidationMessages();
         let fieldsHasValue = true;
         for (const field of this.puthisPregunta.oidFields) {
-            if (!field) {
+            if (this.util.isNull(field)) {
                 fieldsHasValue = false;
                 break;
             }

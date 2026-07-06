@@ -67,7 +67,7 @@ export class ProrrateoSIUumodificarComponent extends AbstractServiceIU implement
         this.puthisProrrateo.dataType = ModelConstants.Prorrateo.name;
         this.puthisProrrateo.allowMultiSelect = true;
         this.puthisProrrateo.oidFields = Array(2);
-        this.puthisProrrateo.oidFieldsTypes = ['autonumerico', 'autonumerico'];
+        this.puthisProrrateo.oidFieldsTypes = [Field.dtAuto, Field.dtAuto];
         this.puthisProrrateo.assignCSS();
         this.fields.push(this.puthisProrrateo);
 
@@ -246,7 +246,7 @@ export class ProrrateoSIUumodificarComponent extends AbstractServiceIU implement
         this.clearValidationMessages();
         let fieldsHasValue = true;
         for (const field of this.puthisProrrateo.oidFields) {
-            if (!field) {
+            if (this.util.isNull(field)) {
                 fieldsHasValue = false;
                 break;
             }

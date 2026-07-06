@@ -4,7 +4,7 @@ import { Util } from '../common/app.utils';
 import { ErrorInformation } from '../common/answerRequestInformation';
 
 /**
- * Service and queries of class 'Pais'
+ * « Service and queries of class 'Pais' »
  */
 export class PaisServices extends AbstractServices {
 

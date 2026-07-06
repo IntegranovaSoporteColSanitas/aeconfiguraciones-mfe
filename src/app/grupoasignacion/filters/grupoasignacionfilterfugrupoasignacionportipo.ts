@@ -8,7 +8,7 @@ import { LanguageMng } from '../../common/languageMng';
 import { DefinedSelections } from '../../common/definedSelection';
 
 /**
- * Manages the filter F_GrupoAsignacionPorTipo of class GrupoAsignacion
+ * « Manages the filter F_GrupoAsignacionPorTipo of class GrupoAsignacion »
  */
 export class GrupoAsignacionFilterFuGrupoAsignacionPorTipo extends AbstractFilter {
 

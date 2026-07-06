@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { DefinedSelections } from '../common/definedSelection';
@@ -131,7 +131,7 @@ export class ReportesDominioPIUuReportesDominioComponent extends AbstractPIU imp
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Dominio.name;
         accItem.targetUI = ModelConstants.Dominio.siuutaddreporte;
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -145,9 +145,9 @@ export class ReportesDominioPIUuReportesDominioComponent extends AbstractPIU imp
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Reportesdominio.name;
         accItem.targetUI = ModelConstants.Reportesdominio.siuumodificar;
-
         accItem.showInDefault = false;
         accItem.styleClass = 'accEditGrid';
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -165,7 +165,7 @@ export class ReportesDominioPIUuReportesDominioComponent extends AbstractPIU imp
             this.langMng.translateText(
             'cls_ReportesDominio_svc_eliminar',
             'Desasociar'));
-
+        accItem.targetType  = ScenarioType.Delete;
         this.actions.push(accItem);
 
     }

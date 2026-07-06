@@ -9,7 +9,7 @@ import { LanguageMng } from '../../common/languageMng';
 import { DefinedSelections } from '../../common/definedSelection';
 
 /**
- * Manages the filter F_DominioVarios of class Dominio
+ * « Manages the filter F_DominioVarios of class Dominio »
  */
 export class DominioFilterFuDominioVarios extends AbstractFilter {
 

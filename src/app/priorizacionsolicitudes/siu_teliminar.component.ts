@@ -67,7 +67,7 @@ export class PriorizacionSolicitudesSIUuTELIMINARComponent extends AbstractServi
         this.puthisPriorizacionSolicitudes.mandatory = true;
         this.puthisPriorizacionSolicitudes.dataType = ModelConstants.Priorizacionsolicitudes.name;
         this.puthisPriorizacionSolicitudes.oidFields = Array(2);
-        this.puthisPriorizacionSolicitudes.oidFieldsTypes = ['int', 'nat'];
+        this.puthisPriorizacionSolicitudes.oidFieldsTypes = [Field.dtInt, Field.dtNat];
         this.puthisPriorizacionSolicitudes.assignCSS();
         this.fields.push(this.puthisPriorizacionSolicitudes);
 
@@ -257,7 +257,7 @@ export class PriorizacionSolicitudesSIUuTELIMINARComponent extends AbstractServi
         this.clearValidationMessages();
         let fieldsHasValue = true;
         for (const field of this.puthisPriorizacionSolicitudes.oidFields) {
-            if (!field) {
+            if (this.util.isNull(field)) {
                 fieldsHasValue = false;
                 break;
             }

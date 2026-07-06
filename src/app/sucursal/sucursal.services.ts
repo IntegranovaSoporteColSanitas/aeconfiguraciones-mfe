@@ -4,7 +4,7 @@ import { Util } from '../common/app.utils';
 import { ErrorInformation, QueryResponse } from '../common/answerRequestInformation';
 
 /**
- * Service and queries of class 'Sucursal'
+ * « Service and queries of class 'Sucursal' »
  */
 export class SucursalServices extends AbstractServices {
 

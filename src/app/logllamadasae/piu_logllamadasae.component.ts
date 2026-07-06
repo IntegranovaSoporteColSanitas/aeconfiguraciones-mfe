@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { LogLlamadasAEFilterFuLogLlamadasAE} from './filters/logllamadasaefilterfulogllamadasae';
@@ -153,9 +153,9 @@ export class LogLlamadasAEPIUuLogLlamadasAEComponent extends AbstractPIU impleme
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Logllamadasae.name;
         accItem.targetUI = ModelConstants.Logllamadasae.iiuulogllamadasae;
-
         accItem.showInDefault = false;
         accItem.styleClass = 'accIIUGrid';
+        accItem.targetType  = ScenarioType.Instance;
         this.actions.push(accItem);
 
     }

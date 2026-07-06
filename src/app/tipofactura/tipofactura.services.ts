@@ -4,7 +4,7 @@ import { Util } from '../common/app.utils';
 import { ErrorInformation } from '../common/answerRequestInformation';
 
 /**
- * Service and queries of class 'TipoFactura'
+ * « Service and queries of class 'TipoFactura' »
  */
 export class TipoFacturaServices extends AbstractServices {
 

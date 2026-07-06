@@ -8,7 +8,7 @@ import { StandardFunctions } from '../../common/standardFunctions';
 import { LanguageMng } from '../../common/languageMng';
 
 /**
- * Manages the filter F_GrupoAsociadoVarios of class GrupoAsociado
+ * « Manages the filter F_GrupoAsociadoVarios of class GrupoAsociado »
  */
 export class GrupoAsociadoFilterFuGrupoAsociadoVarios extends AbstractFilter {
 

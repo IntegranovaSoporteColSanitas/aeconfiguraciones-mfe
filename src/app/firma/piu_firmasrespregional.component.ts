@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { FirmaFilterFuFirmasResponsables} from './filters/firmafilterfufirmasresponsables';
@@ -175,7 +175,7 @@ export class FirmaPIUuFirmasRespRegionalComponent extends AbstractPIU implements
         accItem.agents = [ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Respregional.name;
         accItem.targetUI = ModelConstants.Respregional.siuutcrearomodfirma;
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -189,7 +189,7 @@ export class FirmaPIUuFirmasRespRegionalComponent extends AbstractPIU implements
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Firma.name;
         accItem.targetUI = ModelConstants.Firma.siuueliminar;
-
+        accItem.targetType  = ScenarioType.Delete;
         this.actions.push(accItem);
 
     }
@@ -211,6 +211,7 @@ export class FirmaPIUuFirmasRespRegionalComponent extends AbstractPIU implements
         navItem.targetClass = ModelConstants.Respregional.name;
         navItem.targetUI = ModelConstants.Respregional.iiuurespregionalufirma;
         navItem.rolePath = 'Firma';
+        navItem.targetType  = ScenarioType.Instance;
         this.navigations.push(navItem);
 
     }

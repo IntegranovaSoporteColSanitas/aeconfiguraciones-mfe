@@ -4,7 +4,7 @@ import { Util } from '../common/app.utils';
 import { ErrorInformation, QueryResponse } from '../common/answerRequestInformation';
 
 /**
- * Service and queries of class 'CuestionarioMed'
+ * « Service and queries of class 'CuestionarioMed' »
  */
 export class CuestionarioMedServices extends AbstractServices {
 

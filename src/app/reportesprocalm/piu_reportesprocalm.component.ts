@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { Field } from '../common/baseIUElements';
@@ -116,7 +116,7 @@ export class ReportesProcAlmPIUuReportesProcAlmComponent extends AbstractPIU imp
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Reportesprocalm.name;
         accItem.targetUI = ModelConstants.Reportesprocalm.siuucrear;
-
+        accItem.targetType  = ScenarioType.Create;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -130,7 +130,7 @@ export class ReportesProcAlmPIUuReportesProcAlmComponent extends AbstractPIU imp
         accItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Reportesprocalm.name;
         accItem.targetUI = ModelConstants.Reportesprocalm.mdiuureportesprocalm;
-
+        accItem.targetType  = ScenarioType.MasterDetail;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -144,7 +144,7 @@ export class ReportesProcAlmPIUuReportesProcAlmComponent extends AbstractPIU imp
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Reportesprocalm.name;
         accItem.targetUI = ModelConstants.Reportesprocalm.siuumodificar;
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -158,7 +158,7 @@ export class ReportesProcAlmPIUuReportesProcAlmComponent extends AbstractPIU imp
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Globalservices.name;
         accItem.targetUI = ModelConstants.Globalservices.siuutgenrepalm;
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -172,7 +172,7 @@ export class ReportesProcAlmPIUuReportesProcAlmComponent extends AbstractPIU imp
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Reportesprocalm.name;
         accItem.targetUI = ModelConstants.Reportesprocalm.siuueliminar;
-
+        accItem.targetType  = ScenarioType.Delete;
         this.actions.push(accItem);
 
     }

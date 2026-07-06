@@ -7,7 +7,7 @@ import { StandardFunctions } from '../../common/standardFunctions';
 import { LanguageMng } from '../../common/languageMng';
 
 /**
- * Manages the filter F_ContratosExentosFIngreso of class ContratosExentosFIngreso
+ * « Manages the filter F_ContratosExentosFIngreso of class ContratosExentosFIngreso »
  */
 export class ContratosExentosFIngresoFilterFuContratosExentosFIngreso extends AbstractFilter {
 

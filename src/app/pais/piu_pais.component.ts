@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { Field } from '../common/baseIUElements';
@@ -103,7 +103,7 @@ export class PaisPIUuPaisComponent extends AbstractPIU implements OnInit {
         accItem.agents = [ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Pais.name;
         accItem.targetUI = ModelConstants.Pais.siuucrear;
-
+        accItem.targetType  = ScenarioType.Create;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -118,7 +118,7 @@ export class PaisPIUuPaisComponent extends AbstractPIU implements OnInit {
         accItem.targetClass = ModelConstants.Globalservices.name;
         accItem.targetUI = ModelConstants.Globalservices.siuutgsincpaises;
         accItem.setNoShowProperties('TGSINCPAISES', '', '', false);
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -132,7 +132,7 @@ export class PaisPIUuPaisComponent extends AbstractPIU implements OnInit {
         accItem.agents = [ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Pais.name;
         accItem.targetUI = ModelConstants.Pais.siuueliminar;
-
+        accItem.targetType  = ScenarioType.Delete;
         this.actions.push(accItem);
 
     }

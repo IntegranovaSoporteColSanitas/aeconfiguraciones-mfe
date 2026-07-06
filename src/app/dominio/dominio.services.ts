@@ -4,7 +4,7 @@ import { Util } from '../common/app.utils';
 import { ErrorInformation, QueryResponse } from '../common/answerRequestInformation';
 
 /**
- * Service and queries of class 'Dominio'
+ * « Service and queries of class 'Dominio' »
  */
 export class DominioServices extends AbstractServices {
 

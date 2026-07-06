@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { ContratoComboFilterFuContratoCombouPorNumero} from './filters/contratocombofilterfucontratocomboupornumero';
@@ -110,7 +110,7 @@ export class ContratoComboPIUuContratoComboComponent extends AbstractPIU impleme
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Globalservices.name;
         accItem.targetUI = ModelConstants.Globalservices.siuutgcrearcombo;
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -124,7 +124,7 @@ export class ContratoComboPIUuContratoComboComponent extends AbstractPIU impleme
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Globalservices.name;
         accItem.targetUI = ModelConstants.Globalservices.siuutgeditarcombo;
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -138,7 +138,7 @@ export class ContratoComboPIUuContratoComboComponent extends AbstractPIU impleme
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Globalservices.name;
         accItem.targetUI = ModelConstants.Globalservices.siuutdelcombo;
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -152,7 +152,7 @@ export class ContratoComboPIUuContratoComboComponent extends AbstractPIU impleme
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Logcontratocombo.name;
         accItem.targetUI = ModelConstants.Logcontratocombo.piuulogcontratocombo;
-
+        accItem.targetType  = ScenarioType.Population;
         this.actions.push(accItem);
 
     }

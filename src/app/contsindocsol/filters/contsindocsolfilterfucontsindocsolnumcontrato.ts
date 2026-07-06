@@ -7,7 +7,7 @@ import { StandardFunctions } from '../../common/standardFunctions';
 import { LanguageMng } from '../../common/languageMng';
 
 /**
- * Manages the filter F_ContSinDocSolNumContrato of class ContSinDocSol
+ * « Manages the filter F_ContSinDocSolNumContrato of class ContSinDocSol »
  */
 export class ContSinDocSolFilterFuContSinDocSolNumContrato extends AbstractFilter {
 

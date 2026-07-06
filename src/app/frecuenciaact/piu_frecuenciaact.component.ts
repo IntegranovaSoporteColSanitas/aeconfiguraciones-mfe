@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { FrecuenciaActFilterFuFrecuenciaActVarios} from './filters/frecuenciaactfilterfufrecuenciaactvarios';
@@ -162,7 +162,7 @@ export class FrecuenciaActPIUuFrecuenciaActComponent extends AbstractPIU impleme
         accItem.agents = [ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Frecuenciaact.name;
         accItem.targetUI = ModelConstants.Frecuenciaact.siuucrear;
-
+        accItem.targetType  = ScenarioType.Create;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -176,7 +176,7 @@ export class FrecuenciaActPIUuFrecuenciaActComponent extends AbstractPIU impleme
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Frecuenciaact.name;
         accItem.targetUI = ModelConstants.Frecuenciaact.siuumodificar;
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -191,7 +191,7 @@ export class FrecuenciaActPIUuFrecuenciaActComponent extends AbstractPIU impleme
         accItem.targetClass = ModelConstants.Frecuenciaact.name;
         accItem.targetUI = ModelConstants.Frecuenciaact.siuueliminar;
         accItem.setNoShowProperties('eliminar', 'p_thisfrecuenciaact_oid', '', false);
-
+        accItem.targetType  = ScenarioType.Delete;
         this.actions.push(accItem);
 
     }

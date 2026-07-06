@@ -8,7 +8,7 @@ import { LanguageMng } from '../../common/languageMng';
 import { DefinedSelections } from '../../common/definedSelection';
 
 /**
- * Manages the filter F_FechaIniEPS of class FechaIniEPS
+ * « Manages the filter F_FechaIniEPS of class FechaIniEPS »
  */
 export class FechaIniEPSFilterFuFechaIniEPS extends AbstractFilter {
 

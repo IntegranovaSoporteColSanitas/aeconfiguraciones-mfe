@@ -8,7 +8,7 @@ import { LanguageMng } from '../../common/languageMng';
 import { DefinedSelections } from '../../common/definedSelection';
 
 /**
- * Manages the filter F_PlantillaReporte of class PlantillaReporte
+ * « Manages the filter F_PlantillaReporte of class PlantillaReporte »
  */
 export class PlantillaReporteFilterFuPlantillaReporte extends AbstractFilter {
 

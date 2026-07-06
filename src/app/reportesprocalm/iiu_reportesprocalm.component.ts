@@ -1,7 +1,7 @@
 import { ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { AccNavItem } from '../common/queryIUElements';
+import { AccNavItem, ScenarioType, OpenScenarioType} from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractIIU } from '../common/abstractIIU';
 import { Field } from '../common/baseIUElements';
@@ -109,6 +109,7 @@ export class ReportesProcAlmIIUuReportesProcAlmComponent extends AbstractIIU {
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Reportesprocalm.name;
         accItem.targetUI = ModelConstants.Reportesprocalm.siuumodificar;
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
     }

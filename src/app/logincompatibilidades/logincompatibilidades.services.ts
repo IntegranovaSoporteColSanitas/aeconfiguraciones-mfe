@@ -4,7 +4,7 @@ import { Util } from '../common/app.utils';
 import { QueryResponse } from '../common/answerRequestInformation';
 
 /**
- * Service and queries of class 'LogIncompatibilidades'
+ * « Service and queries of class 'LogIncompatibilidades' »
  */
 export class LogIncompatibilidadesServices extends AbstractServices {
 

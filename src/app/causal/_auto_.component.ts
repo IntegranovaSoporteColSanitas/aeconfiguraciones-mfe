@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { AccNavItem } from '../common/queryIUElements';
+import { AccNavItem, ScenarioType, OpenScenarioType} from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractIIU } from '../common/abstractIIU';
 import { Field, FieldDefinedSelection } from '../common/baseIUElements';
@@ -194,6 +194,7 @@ export class CausalUAutouComponent extends AbstractIIU implements OnInit {
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Causal.name;
         accItem.targetUI = ModelConstants.Causal.siuucrear;
+        accItem.targetType  = ScenarioType.Create;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -207,6 +208,7 @@ export class CausalUAutouComponent extends AbstractIIU implements OnInit {
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Causal.name;
         accItem.targetUI = ModelConstants.Causal.siuueliminar;
+        accItem.targetType  = ScenarioType.Delete;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -220,6 +222,7 @@ export class CausalUAutouComponent extends AbstractIIU implements OnInit {
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Causal.name;
         accItem.targetUI = ModelConstants.Causal.siuumodificar;
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -233,6 +236,7 @@ export class CausalUAutouComponent extends AbstractIIU implements OnInit {
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Causal.name;
         accItem.targetUI = ModelConstants.Causal.uautou;
+        accItem.targetType  = ScenarioType.Instance;
         this.actions.push(accItem);
 
     }
@@ -254,6 +258,7 @@ export class CausalUAutouComponent extends AbstractIIU implements OnInit {
         navItem.targetClass = ModelConstants.Grupoasignacionnovedad.name;
         navItem.targetUI = ModelConstants.Grupoasignacionnovedad.piuugrpasignovedadududominio;
         navItem.rolePath = 'Causal';
+        navItem.targetType  = ScenarioType.Population;
         this.navigations.push(navItem);
 
         navItem = new AccNavItem();
@@ -268,6 +273,7 @@ export class CausalUAutouComponent extends AbstractIIU implements OnInit {
         navItem.targetClass = ModelConstants.Configuracionans.name;
         navItem.targetUI = ModelConstants.Configuracionans.piuuconfiguracionans;
         navItem.rolePath = 'Causal';
+        navItem.targetType  = ScenarioType.Population;
         this.navigations.push(navItem);
 
         navItem = new AccNavItem();
@@ -282,6 +288,7 @@ export class CausalUAutouComponent extends AbstractIIU implements OnInit {
         navItem.targetClass = ModelConstants.Novedad.name;
         navItem.targetUI = ModelConstants.Novedad.iiuunovedad;
         navItem.rolePath = 'Causales';
+        navItem.targetType  = ScenarioType.Instance;
         this.navigations.push(navItem);
 
     }

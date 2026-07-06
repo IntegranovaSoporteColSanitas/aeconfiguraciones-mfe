@@ -64,7 +64,7 @@ export class GrupoAsignacionNovedadSIUuTASGGRUPOComponent extends AbstractServic
         this.puthisGrupoAsignacionNovedad.mandatory = true;
         this.puthisGrupoAsignacionNovedad.dataType = ModelConstants.Grupoasignacionnovedad.name;
         this.puthisGrupoAsignacionNovedad.oidFields = Array(1);
-        this.puthisGrupoAsignacionNovedad.oidFieldsTypes = ['autonumerico'];
+        this.puthisGrupoAsignacionNovedad.oidFieldsTypes = [Field.dtAuto];
         this.puthisGrupoAsignacionNovedad.assignCSS();
         this.fields.push(this.puthisGrupoAsignacionNovedad);
 
@@ -262,7 +262,7 @@ export class GrupoAsignacionNovedadSIUuTASGGRUPOComponent extends AbstractServic
         this.clearValidationMessages();
         let fieldsHasValue = true;
         for (const field of this.puthisGrupoAsignacionNovedad.oidFields) {
-            if (!field) {
+            if (this.util.isNull(field)) {
                 fieldsHasValue = false;
                 break;
             }

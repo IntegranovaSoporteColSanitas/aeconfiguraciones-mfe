@@ -65,7 +65,7 @@ export class FrecuenciaActSIUumodificarComponent extends AbstractServiceIU imple
         this.puthisFrecuenciaAct.dataType = ModelConstants.Frecuenciaact.name;
         this.puthisFrecuenciaAct.allowMultiSelect = true;
         this.puthisFrecuenciaAct.oidFields = Array(1);
-        this.puthisFrecuenciaAct.oidFieldsTypes = ['autonumerico'];
+        this.puthisFrecuenciaAct.oidFieldsTypes = [Field.dtAuto];
         this.puthisFrecuenciaAct.assignCSS();
         this.fields.push(this.puthisFrecuenciaAct);
 
@@ -232,7 +232,7 @@ export class FrecuenciaActSIUumodificarComponent extends AbstractServiceIU imple
         this.clearValidationMessages();
         let fieldsHasValue = true;
         for (const field of this.puthisFrecuenciaAct.oidFields) {
-            if (!field) {
+            if (this.util.isNull(field)) {
                 fieldsHasValue = false;
                 break;
             }

@@ -4,7 +4,7 @@ import { Util } from '../common/app.utils';
 import { ErrorInformation } from '../common/answerRequestInformation';
 
 /**
- * Service and queries of class 'EntidadFinancieraC'
+ * « Service and queries of class 'EntidadFinancieraC' »
  */
 export class EntidadFinancieraCServices extends AbstractServices {
 

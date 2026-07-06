@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { DominioFilterFuDominioVarios} from './filters/dominiofilterfudominiovarios';
@@ -204,7 +204,7 @@ export class DominioPIUuDominioComponent extends AbstractPIU implements OnInit {
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Dominio.name;
         accItem.targetUI = ModelConstants.Dominio.siuucrear;
-
+        accItem.targetType  = ScenarioType.Create;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -218,7 +218,7 @@ export class DominioPIUuDominioComponent extends AbstractPIU implements OnInit {
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Dominio.name;
         accItem.targetUI = ModelConstants.Dominio.mdiuudominio;
-
+        accItem.targetType  = ScenarioType.MasterDetail;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -233,7 +233,7 @@ export class DominioPIUuDominioComponent extends AbstractPIU implements OnInit {
         accItem.targetClass = ModelConstants.Dominio.name;
         accItem.targetUI = ModelConstants.Dominio.siuuteliminar;
         accItem.setNoShowProperties('TELIMINAR', 'p_thisdominio_oid', '', false);
-
+        accItem.targetType  = ScenarioType.Delete;
         this.actions.push(accItem);
 
     }

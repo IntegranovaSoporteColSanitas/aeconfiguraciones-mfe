@@ -4,6 +4,7 @@ import { Util } from '../common/app.utils';
 import { DisplaySetItem } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
+import { FuncionarioFilterFuFuncionariouPorNombre} from './filters/funcionariofilterfufuncionarioupornombre';
 import { DefinedSelections } from '../common/definedSelection';
 import { Field } from '../common/baseIUElements';
 import { LanguageMng } from '../common/languageMng';
@@ -31,6 +32,9 @@ export class FuncionarioPIUuFuncionariouObsComponent extends AbstractPIU impleme
     private readonly dsemail = 'Email';
     private readonly dssucursalddescripcion = 'Sucursal';
 
+    /** Filters */
+    public f0: FuncionarioFilterFuFuncionariouPorNombre;
+
     /**
      * Component constructor
      * @param appGlobalInfo Application Global Information
@@ -57,6 +61,10 @@ export class FuncionarioPIUuFuncionariouObsComponent extends AbstractPIU impleme
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin']));
         this.title = this.langMng.translateText('cls_Funcionario_piu_PIU_Funcionario_Obs',
             'Usuarios');
+        this.f0 = new FuncionarioFilterFuFuncionariouPorNombre(this.appGlobalInfo,
+            this.util, this.changeDetectorRef, this.langMng, stdFun);
+        this.f0.populationContainer = this;
+        this.filters.push(this.f0);
         this.queryURL = '/api/FuncionarioApi/GetPopulationDynamic';
         this.paginationInClient = false;
     }

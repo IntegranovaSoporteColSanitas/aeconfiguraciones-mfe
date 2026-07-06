@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { DefinedSelections } from '../common/definedSelection';
@@ -129,7 +129,7 @@ export class FormaPagoPIUuFormaPagoComponent extends AbstractPIU implements OnIn
         accItem.agents = [ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Formapago.name;
         accItem.targetUI = ModelConstants.Formapago.siuucrear;
-
+        accItem.targetType  = ScenarioType.Create;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -143,7 +143,7 @@ export class FormaPagoPIUuFormaPagoComponent extends AbstractPIU implements OnIn
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Formapago.name;
         accItem.targetUI = ModelConstants.Formapago.siuumodificar;
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -158,7 +158,7 @@ export class FormaPagoPIUuFormaPagoComponent extends AbstractPIU implements OnIn
         accItem.targetClass = ModelConstants.Globalservices.name;
         accItem.targetUI = ModelConstants.Globalservices.siuutgsincformaspago;
         accItem.setNoShowProperties('TGSINCFORMASPAGO', '', '', false);
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -173,7 +173,7 @@ export class FormaPagoPIUuFormaPagoComponent extends AbstractPIU implements OnIn
         accItem.targetClass = ModelConstants.Formapago.name;
         accItem.targetUI = ModelConstants.Formapago.siuueliminar;
         accItem.setNoShowProperties('eliminar', 'p_thisformapago_oid', '', false);
-
+        accItem.targetType  = ScenarioType.Delete;
         this.actions.push(accItem);
 
     }

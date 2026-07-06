@@ -5,7 +5,7 @@ import { ErrorInformation, QueryResponse } from '../common/answerRequestInformat
 import { JsonUtility } from '../common/jsonUtility';
 
 /**
- * Service and queries of class 'TipoIVA'
+ * « Service and queries of class 'TipoIVA' »
  */
 export class TipoIVAServices extends AbstractServices {
 

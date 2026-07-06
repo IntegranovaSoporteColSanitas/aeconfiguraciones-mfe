@@ -8,7 +8,7 @@ import { StandardFunctions } from '../../common/standardFunctions';
 import { LanguageMng } from '../../common/languageMng';
 
 /**
- * Manages the filter F_Novedad of class Novedad
+ * « Manages the filter F_Novedad of class Novedad »
  */
 export class NovedadFilterFuNovedad extends AbstractFilter {
 

@@ -4,7 +4,7 @@ import { Util } from '../common/app.utils';
 import { QueryResponse } from '../common/answerRequestInformation';
 
 /**
- * Service and queries of class 'ContratoCombo'
+ * « Service and queries of class 'ContratoCombo' »
  */
 export class ContratoComboServices extends AbstractServices {
 

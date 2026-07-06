@@ -4,7 +4,7 @@ import { Util } from '../common/app.utils';
 import { ErrorInformation, QueryResponse } from '../common/answerRequestInformation';
 
 /**
- * Service and queries of class 'ReportesProcAlm'
+ * « Service and queries of class 'ReportesProcAlm' »
  */
 export class ReportesProcAlmServices extends AbstractServices {
 

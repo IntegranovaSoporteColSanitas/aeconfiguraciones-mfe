@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { DefinedSelections } from '../common/definedSelection';
@@ -166,7 +166,7 @@ export class ConfiguracionANSPIUuConfiguracionANSComponent extends AbstractPIU i
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Configuracionans.name;
         accItem.targetUI = ModelConstants.Configuracionans.siuutcrear;
-
+        accItem.targetType  = ScenarioType.Create;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -180,7 +180,7 @@ export class ConfiguracionANSPIUuConfiguracionANSComponent extends AbstractPIU i
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Configuracionans.name;
         accItem.targetUI = ModelConstants.Configuracionans.siuutmodificar;
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -194,7 +194,7 @@ export class ConfiguracionANSPIUuConfiguracionANSComponent extends AbstractPIU i
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Configuracionans.name;
         accItem.targetUI = ModelConstants.Configuracionans.siuuteliminar;
-
+        accItem.targetType  = ScenarioType.Delete;
         this.actions.push(accItem);
 
     }
@@ -216,6 +216,7 @@ export class ConfiguracionANSPIUuConfiguracionANSComponent extends AbstractPIU i
         navItem.targetClass = ModelConstants.Configuracionans.name;
         navItem.targetUI = ModelConstants.Configuracionans.iiuuconfiguracionans;
         navItem.rolePath = '';
+        navItem.targetType  = ScenarioType.Instance;
         this.navigations.push(navItem);
 
         navItem = new AccNavItem();
@@ -230,6 +231,7 @@ export class ConfiguracionANSPIUuConfiguracionANSComponent extends AbstractPIU i
         navItem.targetClass = ModelConstants.Logconfiguracionans.name;
         navItem.targetUI = ModelConstants.Logconfiguracionans.piuulogconfiguracionans;
         navItem.rolePath = 'ConfiguracionANS';
+        navItem.targetType  = ScenarioType.Population;
         this.navigations.push(navItem);
 
     }

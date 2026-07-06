@@ -5,7 +5,7 @@ import { QueryResponse } from '../common/answerRequestInformation';
 import { JsonUtility } from '../common/jsonUtility';
 
 /**
- * Service and queries of class 'LogContSinDocSol'
+ * « Service and queries of class 'LogContSinDocSol' »
  */
 export class LogContSinDocSolServices extends AbstractServices {
 

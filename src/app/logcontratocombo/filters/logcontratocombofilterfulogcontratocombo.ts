@@ -7,7 +7,7 @@ import { StandardFunctions } from '../../common/standardFunctions';
 import { LanguageMng } from '../../common/languageMng';
 
 /**
- * Manages the filter F_LogContratoCombo of class LogContratoCombo
+ * « Manages the filter F_LogContratoCombo of class LogContratoCombo »
  */
 export class LogContratoComboFilterFuLogContratoCombo extends AbstractFilter {
 

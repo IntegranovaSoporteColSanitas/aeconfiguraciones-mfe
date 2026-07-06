@@ -5,7 +5,7 @@ import { ErrorInformation, QueryResponse } from '../common/answerRequestInformat
 import { JsonUtility } from '../common/jsonUtility';
 
 /**
- * Service and queries of class 'GrupoAsociado'
+ * « Service and queries of class 'GrupoAsociado' »
  */
 export class GrupoAsociadoServices extends AbstractServices {
 

@@ -7,7 +7,7 @@ import { StandardFunctions } from '../../common/standardFunctions';
 import { LanguageMng } from '../../common/languageMng';
 
 /**
- * Manages the filter F_ContratoCombo_PorNumero of class ContratoCombo
+ * « Manages the filter F_ContratoCombo_PorNumero of class ContratoCombo »
  */
 export class ContratoComboFilterFuContratoCombouPorNumero extends AbstractFilter {
 

@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { PriorizacionSolicitudesFilterFuPriorizacionSolicitudes} from './filters/priorizacionsolicitudesfilterfupriorizacionsolicitudes';
@@ -124,7 +124,7 @@ export class PriorizacionSolicitudesPIUuPriorizacionSolicitudesComponent extends
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Priorizacionsolicitudes.name;
         accItem.targetUI = ModelConstants.Priorizacionsolicitudes.siuutcrear;
-
+        accItem.targetType  = ScenarioType.Create;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -138,7 +138,7 @@ export class PriorizacionSolicitudesPIUuPriorizacionSolicitudesComponent extends
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Priorizacionsolicitudes.name;
         accItem.targetUI = ModelConstants.Priorizacionsolicitudes.siuutmodificar;
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -152,7 +152,7 @@ export class PriorizacionSolicitudesPIUuPriorizacionSolicitudesComponent extends
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Priorizacionsolicitudes.name;
         accItem.targetUI = ModelConstants.Priorizacionsolicitudes.siuuteliminar;
-
+        accItem.targetType  = ScenarioType.Delete;
         this.actions.push(accItem);
 
     }
@@ -174,6 +174,7 @@ export class PriorizacionSolicitudesPIUuPriorizacionSolicitudesComponent extends
         navItem.targetClass = ModelConstants.Logpriorizacionsol.name;
         navItem.targetUI = ModelConstants.Logpriorizacionsol.piuulogpriorizacionsol;
         navItem.rolePath = 'PriSolicitud';
+        navItem.targetType  = ScenarioType.Population;
         this.navigations.push(navItem);
 
     }

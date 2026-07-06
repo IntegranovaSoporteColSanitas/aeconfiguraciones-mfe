@@ -4,7 +4,7 @@ import { Util } from '../common/app.utils';
 import { ErrorInformation } from '../common/answerRequestInformation';
 
 /**
- * Service and queries of class 'Eps'
+ * « Service and queries of class 'Eps' »
  */
 export class EpsServices extends AbstractServices {
 

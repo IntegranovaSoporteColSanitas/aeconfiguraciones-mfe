@@ -76,7 +76,7 @@ export class GSSIUuTGMODFINIEPSComponent extends AbstractServiceIU implements On
         this.ptuputhisFechaIniEPS.mandatory = true;
         this.ptuputhisFechaIniEPS.dataType = ModelConstants.Fechainieps.name;
         this.ptuputhisFechaIniEPS.oidFields = Array(1);
-        this.ptuputhisFechaIniEPS.oidFieldsTypes = ['autonumerico'];
+        this.ptuputhisFechaIniEPS.oidFieldsTypes = [Field.dtAuto];
         this.ptuputhisFechaIniEPS.assignCSS();
         this.fields.push(this.ptuputhisFechaIniEPS);
 
@@ -280,7 +280,7 @@ export class GSSIUuTGMODFINIEPSComponent extends AbstractServiceIU implements On
         this.clearValidationMessages();
         let fieldsHasValue = true;
         for (const field of this.ptuputhisFechaIniEPS.oidFields) {
-            if (!field) {
+            if (this.util.isNull(field)) {
                 fieldsHasValue = false;
                 break;
             }

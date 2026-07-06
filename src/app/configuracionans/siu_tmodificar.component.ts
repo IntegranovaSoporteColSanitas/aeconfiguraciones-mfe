@@ -81,7 +81,7 @@ export class ConfiguracionANSSIUuTMODIFICARComponent extends AbstractServiceIU i
         this.puthisConfiguracionANS.mandatory = true;
         this.puthisConfiguracionANS.dataType = ModelConstants.Configuracionans.name;
         this.puthisConfiguracionANS.oidFields = Array(1);
-        this.puthisConfiguracionANS.oidFieldsTypes = ['autonumerico'];
+        this.puthisConfiguracionANS.oidFieldsTypes = [Field.dtAuto];
         this.puthisConfiguracionANS.assignCSS();
         this.fields.push(this.puthisConfiguracionANS);
 
@@ -350,7 +350,7 @@ export class ConfiguracionANSSIUuTMODIFICARComponent extends AbstractServiceIU i
         this.clearValidationMessages();
         let fieldsHasValue = true;
         for (const field of this.puthisConfiguracionANS.oidFields) {
-            if (!field) {
+            if (this.util.isNull(field)) {
                 fieldsHasValue = false;
                 break;
             }

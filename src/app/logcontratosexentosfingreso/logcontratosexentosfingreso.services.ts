@@ -5,7 +5,7 @@ import { QueryResponse } from '../common/answerRequestInformation';
 import { JsonUtility } from '../common/jsonUtility';
 
 /**
- * Service and queries of class 'LogContratosExentosFIngreso'
+ * « Service and queries of class 'LogContratosExentosFIngreso' »
  */
 export class LogContratosExentosFIngresoServices extends AbstractServices {
 
