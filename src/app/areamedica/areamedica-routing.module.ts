@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PopStateNavigationGuard } from '../common/popStateNavigationGuard';
 import { LoginGuard } from '../common/loginGuard';
-import { AreaMedicaPIUuAreaMedicauNullComponent } from './piu_areamedica_null.component';
+import { AreaMedicaPIUuAreaMedicauObsComponent } from './piu_areamedica_obs.component';
 
 const routes: Routes = [
-    { path: 'piu_areamedica_null' , component: AreaMedicaPIUuAreaMedicauNullComponent,
+    { path: 'piu_areamedica_obs' , component: AreaMedicaPIUuAreaMedicauObsComponent,
         canActivate: [LoginGuard], canDeactivate: [PopStateNavigationGuard] }
 ];
 

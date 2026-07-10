@@ -40,8 +40,8 @@ export class Configuration {
             className: ModelConstants.Areamedica.name,
             navKey: 'areamedica',
             ius: [
-                { name: ModelConstants.Areamedica.piuuareamedicaunull,
-                    navKey: 'piu_areamedica_null' }
+                { name: ModelConstants.Areamedica.piuuareamedicauobs,
+                    navKey: 'piu_areamedica_obs' }
             ]
         }
         , {

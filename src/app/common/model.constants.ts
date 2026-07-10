@@ -8,7 +8,7 @@ export class ModelConstants {
     public static readonly Admin = {name : 'Admin'};
     public static readonly Superadmin = {name : 'SuperAdmin'};
     public static readonly Asesor = {name : 'Asesor'};
-    public static readonly Areamedica = {name : 'AreaMedica', piuuareamedicaunull: 'piu_areamedica_null'};
+    public static readonly Areamedica = {name : 'AreaMedica', piuuareamedicauobs: 'piu_areamedica_obs'};
     public static readonly Afiliaciones = {name : 'Afiliaciones'};
     public static readonly Respregional = {name : 'RespRegional', siuutmodificar: 'siu_tmodificar',
         siuutcrearomodfirma: 'siu_tcrearomodfirma', iiuurespregionalufirma: 'iiu_respregional_firma',

@@ -666,7 +666,7 @@ export class GrupoAsignacionSIUuTADDUSUARIOComponent extends AbstractServiceIU i
         }
         if ('ptAreaMedica'.toLowerCase() === argumentName.toLowerCase()) {
             this.ptAreaMedica.completeSelectionForwardExchInfo(exchInfo);
-            exchInfo.targetIUName = 'PIU_AreaMedica_Null';
+            exchInfo.targetIUName = 'PIU_AreaMedica_Obs';
             this.util.navigateSelectionForward(exchInfo);
         }
     }

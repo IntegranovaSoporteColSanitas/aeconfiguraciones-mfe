@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CommonComponentsModule } from '../commoncomponents.module';
 import { AreaMedicaRoutingModule } from './areamedica-routing.module';
-import { AreaMedicaPIUuAreaMedicauNullComponent } from './piu_areamedica_null.component';
+import { AreaMedicaPIUuAreaMedicauObsComponent } from './piu_areamedica_obs.component';
 
 @NgModule({
   imports: [
@@ -11,10 +11,10 @@ import { AreaMedicaPIUuAreaMedicauNullComponent } from './piu_areamedica_null.co
     AreaMedicaRoutingModule
   ],
   declarations: [
-    AreaMedicaPIUuAreaMedicauNullComponent
+    AreaMedicaPIUuAreaMedicauObsComponent
   ],
   exports: [
-    AreaMedicaPIUuAreaMedicauNullComponent
+    AreaMedicaPIUuAreaMedicauObsComponent
   ]
 })
 export class AreaMedicaModule { }

@@ -69,11 +69,11 @@ export class MSALUtil {
                         if (environment.standalone && response.state) {
                             this.util.navigateByUrl(response.state);
                         }
-                        console.log(response.account);
+                        // console.log(response.account);
                     },
                     error: (err: any) => this.util.addErrorMessage('Error in login (011). ' + err)
                 };
-                console.log(popupRequest);
+                // console.log(popupRequest);
                 this.authService.loginPopup(popupRequest).subscribe(observer);
             } else {
 
@@ -173,7 +173,7 @@ export class MSALUtil {
                     this.callGetUserInfo().then( () => {
                         // this.util.hideWaitDialog();
                     }).catch((err: Error) => {
-                        console.log(err.toString());
+                        // console.log(err.toString());
                         this.util.addErrorMessage(err.message);
                         // this.util.hideWaitDialog();
                     });
@@ -190,7 +190,7 @@ export class MSALUtil {
                     // this.util.hideWaitDialog();
                 }
             }).catch((err: Error) => {
-                console.log(err.toString());
+                // console.log(err.toString());
                 this.util.addErrorMessage(err.message);
                 this.appGlobalInfo.setLogOut();
                 // this.util.hideWaitDialog();
