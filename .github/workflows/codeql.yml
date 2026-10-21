@@ -1,5 +1,24 @@
-name: Initialize CodeQL
-uses: github/codeql-action/init@v4
-with:
-  languages: javascript-typescript
-  config-file: ./.github/codeql/codeql-config.yml
+name: "CodeQL Analysis"
+
+on:
+  push:
+    branches: ["publish"]
+
+jobs:
+  analyze:
+    name: Analyze Code
+
+    steps:
+
+    # Inicializar las herramientas de CodeQL
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v4
+      with:
+        languages: 'javascript-typescript'
+        config-file: ./.github/codeql/codeql-config.yml
+
+    #  Ejecutar el análisis de CodeQL
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v4
+      with:
+        category: "/language:javascript-typescript"
