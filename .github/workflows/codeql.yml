@@ -20,7 +20,13 @@ jobs:
       uses: github/codeql-action/init@v4
       with:
         languages: 'javascript-typescript'
-        config-file: ./.github/codeql/codeql-config.yml
+        queries: security-and-quality
+          # Directorios que no deben analizarse
+        paths-ignore:
+          - node_modules/**
+          - dist/**
+          - .angular/**
+        # config-file: ./.github/codeql/codeql-config.yml
 
     #  Ejecutar el análisis de CodeQL
     - name: Perform CodeQL Analysis
