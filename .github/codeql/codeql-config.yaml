@@ -1,0 +1,17 @@
+
+name: "CodeQL config for Angular"
+
+# Consultas de seguridad recomendadas por GitHub
+queries:
+  - uses: security-and-quality
+
+# Directorios que no deben analizarse
+paths-ignore:
+  - node_modules/**
+  - dist/**
+  - coverage/**
+  - .angular/**
+  - "**/*.spec.ts"
+  - "**/*.test.ts"
+  - "**/test/**"
+  - "**/tests/**"

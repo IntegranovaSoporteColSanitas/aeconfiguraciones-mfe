@@ -171,11 +171,9 @@ export class MSALUtil {
                         displayName);
                     this.appGlobalInfo.updateUserToken(userData.token);
                     this.callGetUserInfo().then( () => {
-                        // this.util.hideWaitDialog();
                     }).catch((err: Error) => {
                         // console.log(err.toString());
                         this.util.addErrorMessage(err.message);
-                        // this.util.hideWaitDialog();
                     });
                 } else {
                     let message = this.languageMng.translateText('app_LOGINERRORCLOSESESSION', '');
@@ -187,13 +185,11 @@ export class MSALUtil {
                             this.logOutAzure();
                         }
                     });
-                    // this.util.hideWaitDialog();
                 }
             }).catch((err: Error) => {
                 // console.log(err.toString());
                 this.util.addErrorMessage(err.message);
                 this.appGlobalInfo.setLogOut();
-                // this.util.hideWaitDialog();
             });
         }
     }
